@@ -307,6 +307,29 @@ templates = _Unavailable("templates")
 # None of them changes behaviour: each one either resolves a path differently
 # in the published layout, or reads an environment variable whose default is
 # what the internal run used.
+# Fixes that live in the PUBLISHED copy of a file and NOT yet in the internal
+# source it is copied from. Every entry here makes a non-`--check` run of this
+# assembler refuse outright (see main), because re-assembling would regenerate
+# the file from `<BENCH>/` and quietly undo the fix. This is not a place to
+# park work: an entry is an obligation on the next person with the working
+# repo, and it is cleared by mirroring the change, not by deleting the line.
+UNMIRRORED_FIXES: dict[str, str] = {
+    "src/verify_solutions.py":
+        "2026-09-13. Six ways of getting the runs-tree shape wrong -- a "
+        "nonexistent --runs directory, an empty one, <arm>/<task> instead of "
+        "<task>/<arm>, a missing meta.json, a typo'd task id, and a "
+        "submission named anything but solution.py -- all printed "
+        "'verified 0 runs (0 passed)' and exited 0. On the path README.md "
+        "calls the one most likely to be useful to an outsider, a silent "
+        "zero is the worst available answer. It now calls the "
+        "ExclusionLedger.enforce() it was already filling (exit 3, "
+        "STANDARDS R3c/R11: the gate existed and was never called), books a "
+        "meta.json claiming submitted:true beside no solution.py as an "
+        "exclusion rather than scoring it as a failed run (R2: a verdict the "
+        "evidence contradicts), and takes --allow-partial as the accept flag. "
+        "Mirror into <BENCH>/verify_solutions.py, then delete this entry.",
+}
+
 PORTABILITY_PATCHES: list[tuple[str, str, str]] = [
     # FIRST, and it is why: every module in src/ resolves the shared modules
     # at the working repo's ROOT, which in this layout holds no Python at all.
@@ -567,6 +590,26 @@ def main() -> int:
         for o, n, w in PORTABILITY_PATCHES]
     if not (src / GW).is_dir():
         print(f"no {GW} under {src}", file=sys.stderr)
+        return 2
+
+    # A fix made in the PUBLISHED copy of a file this assembler regenerates is
+    # a fix with a countdown on it: the next non-check run rewrites that file
+    # from the internal source and the change is gone, with no diff, no
+    # warning, and a green manifest afterwards because the manifest is
+    # rewritten in the same pass. (Standing lesson: fix the source, not just
+    # the copy -- a copy-only correction is undone by the next load.) So the
+    # revert is refused BEFORE anything is written rather than reported after,
+    # and clearing an entry is a deliberate act by whoever mirrored it.
+    if UNMIRRORED_FIXES and not args.check:
+        print("REFUSING to re-assemble: the published tree carries "
+              f"{len(UNMIRRORED_FIXES)} fix(es) that are not in the internal "
+              "source this would regenerate them from, so running would "
+              "silently revert them:", file=sys.stderr)
+        for rel, why in sorted(UNMIRRORED_FIXES.items()):
+            print(f"  {rel}\n      {why}", file=sys.stderr)
+        print("Mirror each into its internal source, then delete its entry "
+              "from UNMIRRORED_FIXES in this file. `--check` still works and "
+              "is unaffected.", file=sys.stderr)
         return 2
 
     manifest: dict[str, dict] = {}

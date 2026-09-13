@@ -172,6 +172,18 @@ run 1, and a grid of your own arm prints empty rather than erroring. Both
 commands above were run against a hand-built `runs/` tree from a fresh clone
 of this repository before this paragraph was written.
 
+**If you get the directory shape wrong, it now says so.** Measured 2026-09-13,
+six ways of getting it wrong all printed `verified 0 runs (0 passed)` and
+exited **0**: a `--runs` path that does not exist, an empty one,
+`<arm>/<task>` instead of `<task>/<arm>`, a missing `meta.json`, a typo'd task
+id, and — worst of the six — a submission named anything but `solution.py`,
+which came back as `verified 1 runs (0 passed)` and reads as *your agent
+failed* when nothing was ever loaded. `verify_solutions.py` refuses with
+**exit 3** on all six now, prints what it examined and what it excluded, and
+treats a `meta.json` claiming `submitted: true` beside no `solution.py` as a
+malformed input rather than a failing run. `--allow-partial` accepts those
+exclusions if an empty result is genuinely what you meant.
+
 A run **passes** iff every property in the task's recorded `pass_both` set
 passes, checked with `is True` — the strictness exists because an earlier
 version of the sandbox stringified numpy booleans and every consumer read

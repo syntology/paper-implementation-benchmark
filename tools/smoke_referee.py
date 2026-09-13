@@ -101,9 +101,19 @@ def main() -> int:
 
         for tf, tids in by_file.items():
             out = tmp / f"results_{Path(tf).stem}.json"
+            # --allow-partial, and it is not a shrug: this builds ONE runs
+            # tree covering several task files and then scores it once per
+            # file, so every run belonging to a DIFFERENT file is a
+            # `run_without_task` exclusion here by construction. Those
+            # exclusions used to be booked and never read; since 2026-09-13
+            # verify_solutions refuses (exit 3) on unaccepted ones, which is
+            # the point, and this is the caller that legitimately accepts
+            # them. It does not weaken the smoke test: the per-task assertion
+            # below still requires each expected tid to be present AND passed,
+            # so a run that went missing for any other reason is a FAIL here.
             cmd = [sys.executable, str(REPO / "src" / "verify_solutions.py"),
                    "--tasks", str(REPO / tf), "--runs", str(tmp / "runs"),
-                   "--out", str(out)]
+                   "--out", str(out), "--allow-partial"]
             r = subprocess.run(cmd, capture_output=True, text=True)
             if r.returncode != 0:
                 print(f"verify_solutions failed for {tf}:\n{r.stderr[-2000:]}",
