@@ -462,6 +462,14 @@ then discover no arm will start. The `python-3-9-boundary` job pins both halves
 and fails if either moves, including in the good direction: if the tree ever
 imports on 3.9, the job says so and tells you to lower the documented floor.
 
+Rehearsing that job found a defect in the gate itself worth recording, because
+it is the same mistake in miniature: `check_clean_clone.py` used
+`sys.stdlib_module_names`, which is 3.10+, so **the tool that measures the
+floor could not run below it** and would have reported a traceback where a
+finding belonged. It now falls back to `sysconfig`, and its self-test passes on
+3.9 through 3.14 — including the undeclared-import plant, which is what proves
+the fallback did not simply call everything stdlib.
+
 ### The community files, and one that was deliberately not written
 
 - **`CITATION.cff`** — machine-readable citation, so GitHub renders *Cite this

@@ -89,6 +89,33 @@ SKIP_FILE_NAMES = {".DS_Store"}
 SKIP_SUFFIXES = (".pyc",)
 
 
+def _stdlib_names() -> set:
+    """Every stdlib module name, on any interpreter this might be run by.
+
+    `sys.stdlib_module_names` is 3.10+, and this gate is the thing that
+    MEASURES the floor -- the `python-3-9-boundary` CI job runs it on 3.9
+    precisely to find out what does and does not work there. A tool that
+    crashes below the floor cannot report where the floor is.
+    """
+    names = getattr(sys, "stdlib_module_names", None)
+    if names is not None:
+        return set(names)
+    import os
+    import sysconfig
+    out = set(sys.builtin_module_names)
+    lib = sysconfig.get_path("stdlib")
+    for entry in os.listdir(lib):
+        if entry.endswith(".py"):
+            out.add(entry[:-3])
+        elif "." not in entry:
+            out.add(entry)
+    dynload = os.path.join(lib, "lib-dynload")
+    if os.path.isdir(dynload):
+        for entry in os.listdir(dynload):
+            out.add(entry.split(".")[0])
+    return out
+
+
 def _walk(root: Path):
     """Every file this gate speaks for, plus the count it deliberately skips.
 
@@ -182,6 +209,7 @@ def check_requirements(root: Path, subdir: str = "src") -> tuple[list[str], dict
         findings.append("no requirements.txt")
     mods = sorted((root / subdir).rglob("*.py"))
     shipped = {p.stem for p in mods} | {"query_engine"}
+    stdlib = _stdlib_names()
     n_imports = 0
     unparsed = 0
     for mod in mods:
@@ -216,8 +244,7 @@ def check_requirements(root: Path, subdir: str = "src") -> tuple[list[str], dict
                 continue
             n_imports += len(names)
             for n in names:
-                if (n in sys.stdlib_module_names or n in shipped
-                        or n.lower() in declared):
+                if (n in stdlib or n in shipped or n.lower() in declared):
                     continue
                 msg = (f"undeclared third-party import: {n} in "
                        f"{mod.relative_to(root)} is not in requirements.txt")
