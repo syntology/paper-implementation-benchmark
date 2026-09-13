@@ -313,22 +313,12 @@ templates = _Unavailable("templates")
 # the file from `<BENCH>/` and quietly undo the fix. This is not a place to
 # park work: an entry is an obligation on the next person with the working
 # repo, and it is cleared by mirroring the change, not by deleting the line.
-UNMIRRORED_FIXES: dict[str, str] = {
-    "src/verify_solutions.py":
-        "2026-09-13. Six ways of getting the runs-tree shape wrong -- a "
-        "nonexistent --runs directory, an empty one, <arm>/<task> instead of "
-        "<task>/<arm>, a missing meta.json, a typo'd task id, and a "
-        "submission named anything but solution.py -- all printed "
-        "'verified 0 runs (0 passed)' and exited 0. On the path README.md "
-        "calls the one most likely to be useful to an outsider, a silent "
-        "zero is the worst available answer. It now calls the "
-        "ExclusionLedger.enforce() it was already filling (exit 3, "
-        "STANDARDS R3c/R11: the gate existed and was never called), books a "
-        "meta.json claiming submitted:true beside no solution.py as an "
-        "exclusion rather than scoring it as a failed run (R2: a verdict the "
-        "evidence contradicts), and takes --allow-partial as the accept flag. "
-        "Mirror into <BENCH>/verify_solutions.py, then delete this entry.",
-}
+# Entries here BLOCK a non---check assemble run: the published tree carries a
+# fix the internal source does not, so regenerating would silently revert it.
+# Cleared 2026-09-13 -- src/verify_solutions.py's refusal fix was ported into
+# groundwork/20_graph_vs_search_benchmark/verify_solutions.py, verified there
+# (exit 3 on a bad runs tree, exit 0 with --allow-partial).
+UNMIRRORED_FIXES: dict[str, str] = {}
 
 PORTABILITY_PATCHES: list[tuple[str, str, str]] = [
     # FIRST, and it is why: every module in src/ resolves the shared modules
