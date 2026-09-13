@@ -1,0 +1,228 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Syntology paper-to-implementation benchmark: published artifact shapes",
+  "description": "The four shapes a machine reading this repository has to understand, in one file so there are no cross-file $refs to resolve. Point a validator at '#/$defs/<name>'. tools/validate_schemas.py validates every shipped artifact against these on every push (.github/workflows/ci.yml), so this file is a checked contract rather than documentation of one. What a schema CANNOT tell you is in README.md, 'What is NOT claimed': `passed` is a property-suite outcome, not a correctness claim, and `served_level` is what execution checks a sample passed, never fidelity to the paper.",
+
+  "$defs": {
+
+    "provenance": {
+      "type": "object",
+      "title": "syntology-provenance/1",
+      "description": "STANDARDS.md R1: every derived artifact records what it was derived from. Internal paths appear as stable aliases (<BENCH>, <REFIMPL>, <AUDIT>, <INTERNAL>, <CORPUS>, <REPO>, <HOME>) -- see ASSEMBLY_REPORT.md 1.",
+      "required": ["schema", "created_at", "generator"],
+      "properties": {
+        "schema": {"const": "syntology-provenance/1"},
+        "created_at": {"type": "string", "format": "date-time"},
+        "generator": {
+          "type": "object",
+          "required": ["script", "argv"],
+          "properties": {
+            "script": {"type": "string"},
+            "argv": {"type": "array", "items": {"type": "string"}},
+            "git_commit": {"type": "string"},
+            "git_dirty": {"type": "boolean"}
+          }
+        },
+        "inputs": {
+          "type": "array",
+          "description": "Each input with its sha256 at read time.",
+          "items": {
+            "type": "object",
+            "required": ["path", "sha256"],
+            "properties": {
+              "path": {"type": "string"},
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "bytes": {"type": "integer", "minimum": 0},
+              "mtime": {"type": "string"}
+            }
+          }
+        },
+        "params": {"type": "object"}
+      }
+    },
+
+    "task": {
+      "type": "object",
+      "title": "One benchmark task",
+      "description": "A row of tasks/*.json['tasks']. The subject is given method, paper, entry, signature and first_sentence -- and nothing else. Deriving the rest of the contract is the work the retrieval arms exist for.",
+      "required": ["task_id", "stratum", "method", "arxiv_id", "paper_title",
+                   "entry", "signature", "first_sentence", "pass_both",
+                   "suspect_tests", "property_tests", "impl_for_validation"],
+      "additionalProperties": false,
+      "properties": {
+        "task_id": {"type": "string", "pattern": "^(in|off|sub)_",
+                    "description": "Prefix encodes the stratum this task was drawn into: in__ = in-catalog, off_ = off-catalog, sub_ = substitution-set."},
+        "stratum": {"enum": ["in_catalog", "off_catalog", "substitution_new"],
+                    "description": "in_catalog tasks are the ones where the graph already served a verified implementation, so fetch-and-submit passes by construction -- README.md says why that asymmetry is the mechanism under test and not a flaw."},
+        "method": {"type": "string"},
+        "arxiv_id": {"type": "string", "pattern": "^[0-9]{4}\\.[0-9]{4,5}$"},
+        "paper_title": {"type": "string"},
+        "served_level": {"type": "integer", "minimum": -1, "maximum": 4,
+                         "description": "V0-V4 execution-verification level of the implementation the graph would serve, or -1 for a task with no served implementation at draw time (34 of the 120 task rows, in both strata). NOT a fidelity claim: the audit behind data/fidelity_audit/ found the ladder buys no fidelity."},
+        "entry": {"type": "string", "description": "The function the submission must define."},
+        "signature": {"type": "string"},
+        "first_sentence": {"type": "string", "description": "The ONLY specification text the subject receives."},
+        "pass_both": {"type": "array", "items": {"type": "string"},
+                      "description": "A run passes iff every property named here passes, checked with `is True`."},
+        "suspect_tests": {"type": "array", "items": {"type": "string"},
+                          "description": "Properties the drafter is known to have got wrong. Excluded from pass_both and ignored."},
+        "property_tests": {"type": "string", "pattern": "^referees/"},
+        "impl_for_validation": {"type": "string", "pattern": "^referees/"},
+        "stratum_run1": {"enum": ["in_catalog", "off_catalog", "substitution_new"]},
+        "stratum_v15": {"enum": ["in_catalog", "off_catalog", "substitution_new"]},
+        "served_level_run1": {"type": "integer", "minimum": -1, "maximum": 4},
+        "served_level_today": {"type": "integer", "minimum": -1, "maximum": 4}
+      }
+    },
+
+    "run_meta": {
+      "type": "object",
+      "title": "One run's structure: data/runs/<sweep>/<task_id>/<arm>/meta.json",
+      "description": "What happened, with nothing that was retrieved. Every tool call by NAME and argument SIZE; the bodies live only in the redacted transcript beside it as sha256 digests.",
+      "required": ["task_id", "arm", "stratum", "method", "model_id", "turns",
+                   "wall_s", "submitted", "stop_reason", "usage", "bedrock",
+                   "tool_calls", "syntology_calls", "search_calls", "_provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "task_id": {"type": "string"},
+        "arm": {"enum": ["none", "search", "syntology", "both", "code_only",
+                         "syntology_ho", "code_only_ho"],
+                "description": "_ho = the hold-out variant, where the answer was removed from the arm's reach."},
+        "base_arm": {"enum": ["syntology", "code_only", "none"],
+                     "description": "Present on hold-out-sweep runs: the arm this one is the hold-out form of. The floor arm carries base_arm `none` -- there is nothing to hold out from it, and it is in the sweep as the comparison."},
+        "stratum": {"enum": ["in_catalog", "off_catalog", "substitution_new"]},
+        "method": {"type": "string"},
+        "model_id": {"type": "string", "description": "One subject model throughout: Claude Sonnet 4.5 on Bedrock."},
+        "variant": {"type": ["string", "null"], "description": "Pins the tool descriptions and MCP server instructions. Absent or explicitly null on run 1, which predates the pin (96 runs omit it, 24 record null); v14_freeze from the freeze onward. Adoption moves with this string -- 0/24 vs 18/24 on the same tools."},
+        "turns": {"type": "integer", "minimum": 0},
+        "wall_s": {"type": "number", "minimum": 0},
+        "submitted": {"type": "boolean"},
+        "stop_reason": {"enum": ["submitted", "tool_use"],
+                        "description": "tool_use = the 20-turn cap was reached with no submission."},
+        "usage": {
+          "type": "object",
+          "required": ["inputTokens", "outputTokens"],
+          "additionalProperties": false,
+          "properties": {
+            "inputTokens": {"type": "integer", "minimum": 0},
+            "outputTokens": {"type": "integer", "minimum": 0},
+            "cacheReadInputTokens": {"type": "integer", "minimum": 0},
+            "cacheWriteInputTokens": {"type": "integer", "minimum": 0}
+          }
+        },
+        "bedrock": {
+          "type": "object",
+          "required": ["calls", "retries", "throttled"],
+          "additionalProperties": false,
+          "properties": {
+            "calls": {"type": "integer", "minimum": 0},
+            "retries": {"type": "integer", "minimum": 0},
+            "throttled": {"type": "integer", "minimum": 0}
+          }
+        },
+        "tool_calls": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["tool", "turn", "args_chars"],
+            "additionalProperties": false,
+            "properties": {
+              "tool": {"type": "string"},
+              "turn": {"type": "integer", "minimum": 0},
+              "args_chars": {"type": "integer", "minimum": 0,
+                             "description": "Argument SIZE, not argument text."}
+            }
+          }
+        },
+        "syntology_calls": {"type": "integer", "minimum": 0},
+        "search_calls": {"type": "integer", "minimum": 0},
+        "code_only_calls": {"type": "integer", "minimum": 0},
+        "holdout_shas": {
+          "type": "array",
+          "items": {"type": "string", "pattern": "^([0-9a-f]{16}|[0-9a-f]{64})$"},
+          "description": "The code samples this run was DENIED. Present on hold-out-sweep runs; src/verify_holdout.py audits that none of them was reachable. TWO SPELLINGS, measured: the v16 hold-out arms record a 16-hex PREFIX (400 entries) and the rest record the full 64-hex sha256 (114). Match on the prefix if you are joining these to a code_sha256."
+        },
+        "_provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+
+    "result_row": {
+      "type": "object",
+      "title": "One referee verdict: a row of data/results*.json['runs']",
+      "description": "The referee is deterministic, local, blind to the arms and identical across every run. `passed` means every property in the task's pass_both set returned True. It is NOT a claim that the module implements the paper -- README.md, 'What is NOT claimed', point 3.",
+      "required": ["task_id", "arm", "stratum", "method", "usage", "turns",
+                   "wall_s", "stop_reason", "passed", "syntology_calls",
+                   "search_calls"],
+      "additionalProperties": false,
+      "properties": {
+        "task_id": {"type": "string"},
+        "arm": {"enum": ["none", "search", "syntology", "both", "code_only",
+                         "syntology_ho", "code_only_ho"]},
+        "stratum": {"enum": ["in_catalog", "off_catalog", "substitution_new"]},
+        "method": {"type": "string"},
+        "usage": {"type": "object"},
+        "turns": {"type": "integer", "minimum": 0},
+        "wall_s": {"type": "number", "minimum": 0},
+        "syntology_calls": {"type": "integer", "minimum": 0},
+        "search_calls": {"type": "integer", "minimum": 0},
+        "code_only_calls": {"type": "integer", "minimum": 0},
+        "stop_reason": {"enum": ["submitted", "tool_use"]},
+        "passed": {"type": "boolean"},
+        "properties_required": {"type": "integer", "minimum": 0,
+                                "description": "len(pass_both). Absent when there was nothing to score."},
+        "properties_failed": {"type": "array", "items": {"type": "string"}},
+        "failure_details": {"type": "array"},
+        "reason": {"enum": ["no_submission", "referee_crash"],
+                   "description": "Why there is no property outcome. no_submission = the agent hit the turn cap; the search arm did this in 11 of 24 freeze runs."},
+        "detail": {"type": "string"}
+      }
+    },
+
+    "manifest": {
+      "type": "object",
+      "title": "MANIFEST.json",
+      "description": "Every file in this repository, its sha256, and the internal artifact it came from. tools/check_clean_clone.py verifies a clone against it with no credentials; tools/assemble.py --check additionally re-derives it from the working repo, which only the publisher can do.",
+      "required": ["note", "summary", "files"],
+      "properties": {
+        "note": {"type": "string"},
+        "summary": {
+          "type": "object",
+          "required": ["files", "problems"],
+          "properties": {
+            "files": {"type": "integer", "minimum": 1},
+            "run_metas": {"type": "integer", "minimum": 0},
+            "redacted_transcripts": {"type": "integer", "minimum": 0},
+            "audit_rows": {"type": "integer", "minimum": 0},
+            "referee_tasks": {"type": "integer", "minimum": 0},
+            "path_redactions": {"type": "integer", "minimum": 0},
+            "portability_patched_files": {"type": "integer", "minimum": 0},
+            "unmatched_patch_rules": {"type": "integer", "minimum": 0},
+            "problems": {"type": "array", "maxItems": 0,
+                         "description": "Non-empty means the assembler found something wrong and said so. A published tree has none."}
+          }
+        },
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "type": "object",
+            "required": ["sha256", "bytes", "source", "rule"],
+            "additionalProperties": false,
+            "properties": {
+              "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+              "bytes": {"type": "integer", "minimum": 0},
+              "source": {"type": "string",
+                         "description": "Where this file came from, with internal directory names replaced by stable aliases."},
+              "rule": {
+                "enum": ["verbatim", "portability-patched", "redacted-paths",
+                         "redacted-transcript", "quotations-removed", "derived",
+                         "path-rewritten", "authored", "stub"],
+                "description": "How it got here. `verbatim` = byte-identical to the code that produced the numbers; `portability-patched` = one of the 18 files with a listed, non-behavioural path fix (src/PORTABILITY_PATCHES.md)."
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

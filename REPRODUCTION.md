@@ -19,7 +19,11 @@ not an instrument, and running this one found six things wrong with it:
 | `tools/redact_transcripts.py --verify` defaulted to a directory that does not exist in the shipped tree | default corrected to `data/runs` |
 
 Five of the six were invisible from inside the working repository, which is
-where every previous check had been run.
+where every previous check had been run. That is now mechanical rather than
+remembered: `tools/check_clean_clone.py` asks whether this tree compiles,
+imports, declares its dependencies and matches `MANIFEST.json`, and
+`.github/workflows/ci.yml` runs it — and every other credential-free gate here
+— against a **fresh clone**, on five interpreters, on every push.
 
 ## The short version
 
@@ -45,8 +49,22 @@ python3 -m venv .venv && . .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Python 3.11+ (the runs used 3.14, and this file's transcript was produced on
-3.14.6). `numpy` is required by the referee; `boto3` and `botocore` by any arm
+**Python 3.10+, measured rather than assumed.** The runs used 3.14 and this
+file's transcript was produced on 3.14.6, but every credential-free check in
+this document is run on CPython 3.10, 3.11, 3.12, 3.13 and 3.14, on Linux and
+macOS, against a fresh clone, on every push: `.github/workflows/ci.yml`.
+
+This file said "3.11+" until the floor was actually measured, and the truth is
+more useful than the guess. On **CPython 3.9** — still the system Python on
+macOS, and what the first outside reader to clone this happened to run — the
+referee path works completely: `smoke_referee.py`, `verify_claims.py` and
+`recompute_fidelity_bracket.py` all pass. But **five modules do not import**,
+`src/agent_harness.py` among them, because PEP 604 annotations (`str | None`)
+are evaluated at module load. So on 3.9 you can score submissions all day and
+then find that **no arm will start**. The `python-3-9-boundary` job in CI pins
+both halves of that and turns red if either moves.
+
+`numpy` is required by the referee; `boto3` and `botocore` by any arm
 that calls a model; **`requests` by every arm**, because the outbound HTTP
 gateway is a module-level import in the harness's import chain — it was missing
 from `requirements.txt` until a clean clone tried the floor arm and died at
@@ -72,10 +90,15 @@ being satisfiable in your numpy — both worth knowing before you buy tokens.
 ```bash
 python3 tools/verify_claims.py              # 67 checks, offline, a few seconds
 python3 tools/recompute_fidelity_bracket.py # the 0.29-0.80 bracket, from rows
+python3 tools/check_clean_clone.py          # does THIS clone compile, import,
+                                            # declare its deps, match MANIFEST?
+python3 tools/check_clean_clone.py --self-test    # prove that gate can fire
 python3 tools/scan_secrets.py               # anyone
 python3 tools/scan_secrets.py --self-test   # prove it can fire
 python3 tools/redact_transcripts.py --self-test   # prove the redactor can fire
 python3 tools/redact_transcripts.py --verify      # check the shipped transcripts
+python3 tools/validate_schemas.py           # artifacts vs schemas/ (needs
+                                            # `pip install 'jsonschema>=4.18'`)
 
 # authors only -- needs the working repo AND its internal directory names,
 # which this repository deliberately does not carry:

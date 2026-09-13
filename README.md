@@ -172,6 +172,15 @@ the caveat; the conditional findings do not.
 
 ## Layout
 
+If you are standing at the root wondering which files are load-bearing: the
+four that answer *does this work* are `README.md`, `REPRODUCTION.md`,
+`requirements.txt` and `tools/` — and the two commands in **Running it**,
+below, exercise all of them. `MANIFEST.json` (322 KB) is a hash record for
+machines, not reading. `ASSEMBLY_REPORT.md` is where the defects and the
+exclusions are written down, `CLAIMS_TO_PREREG.md` maps each claim to the
+pre-registration that predicted it, and `LICENSE_QUESTION.md` records a
+decision rather than asking one. `llms.txt` is the same map for an agent.
+
 ```
 prereg/     the pre-registrations, verbatim, as committed before each run
             PREREGISTRATION.md            run 1  (2026-08-31)
@@ -199,13 +208,84 @@ tools/      assemble.py            built this tree; --check re-verifies it
             verify_claims.py       re-derives every checkable number from data/
             recompute_fidelity_bracket.py  re-derives the 0.29–0.80 bracket
             smoke_referee.py       proves the referee runs here, offline, $0
+            check_clean_clone.py   compile / import / declared-deps / manifest,
+                                   self-tested; the gate for the defect in §4.9
+            validate_schemas.py    the shipped artifacts against schemas/
             corpus_license_report.py  the licence census behind the exclusions
+schemas/    artifacts.schema.json  JSON Schema for the task, run-metadata,
+                                   referee-verdict and manifest shapes —
+                                   checked against every artifact in CI
+.github/    workflows/ci.yml       every credential-free gate, fresh clone,
+                                   CPython 3.10–3.14, Linux and macOS
+llms.txt    the machine-oriented map of this repository
 LICENSE     Apache-2.0, the full text
 NOTICE      what the grant covers, and the two things it cannot
+CITATION.cff   machine-readable citation metadata
+CONTRIBUTING.md  what is in scope, and what an outsider cannot run
+SECURITY.md    how to report, and what executing this tree actually does
 MANIFEST.json  every file, its sha256, and the internal artifact it came from
 ```
 
 ## Running it
+
+### Quickstart — about two minutes, no credentials, $0
+
+```bash
+git clone <this repository> && cd <repo>
+python3 -m venv .venv && . .venv/bin/activate      # CPython 3.10+
+pip install -r requirements.txt
+
+python3 tools/smoke_referee.py     # the referee really runs here: 3 tasks, offline
+python3 tools/verify_claims.py     # 67 checks re-derive every table above from data/
+```
+
+You should see `referee smoke: PASS` and
+`67 checks passed, 0 failed, 3 figures not checkable here`. That is the whole
+claim of this repository in two commands: **the referee runs in your
+environment, and every published number re-derives from the artifacts in
+`data/`** — including the mechanism analysis, re-run over the redacted
+transcripts, and the fidelity bracket, re-derived from the audit rows. The
+three it prints as *not* checkable here are printed rather than passed over.
+
+Three more, all offline, all $0:
+
+```bash
+python3 tools/check_clean_clone.py   # this clone compiles, imports, and matches MANIFEST.json
+python3 tools/scan_secrets.py        # the publication gate: credentials, hosts, paths
+python3 src/qc/qc_code_only_arm.py   # exits 4 — see below; that is it working
+```
+
+`qc_code_only_arm.py` exits **4**, not 0, and that is the answer: checks A and
+B — *the flat arm traverses no relationship and reads no `:Method` or `:Paper`
+node*, the claim the whole ablation rests on — pass here with no index and no
+graph, while C and D report a partial because they need an index you would have
+to build. Every exit code in this project means something: `0` clean, `1`
+findings, `2` drift, `3` unaccepted exclusions, `4` unresolved partials. **An
+exit 3 or 4 is a tool refusing to claim completeness, not a crash.**
+
+Everything above runs on every push, on CPython 3.10 through 3.14, on Linux and
+macOS, against a fresh clone: [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+It exists because on 2026-09-13 this tree did **not** import from a clean clone
+and nothing had ever checked — `ASSEMBLY_REPORT.md` §4.9.
+
+### Then, if you have AWS Bedrock: the floor arm, end to end, for about a dime
+
+```bash
+export AWS_DEFAULT_REGION=us-west-2
+python3 src/agent_harness.py --tasks tasks/tasks_freeze.json --arms none \
+    --only off_2210.17323 --variant v14_freeze --out runs --workers 1
+python3 src/verify_solutions.py --tasks tasks/tasks_freeze.json --runs runs \
+    --out my_results.json
+```
+
+One task, one arm, a real subject model, scored by the published referee. When
+this was last run from a clean clone it took 7 turns and 50 seconds, cost about
+$0.09, and **failed 4 of 4 properties** — a behavioural result, not an
+environment break, and the shape a reader should expect. `--variant
+v14_freeze` pins the tool descriptions the freeze used; leaving it off changes
+the experiment.
+
+### The rest
 
 **`REPRODUCTION.md` is the real answer** — including, in detail, what an
 outsider cannot reproduce and why. The short version:
@@ -217,11 +297,20 @@ outsider cannot reproduce and why. The short version:
 | `code_only` | **only over a code corpus you supply.** Ours is not in this repository — see below |
 | `syntology` | **no.** It reads a private Neo4j graph and imports serving code that is not published |
 
-The referee runs offline and needs no credentials at all:
+**What this repository needs and cannot provide: a private knowledge graph and
+a 118,400-row code index it has no licence to republish — so the headline
+comparison is re-derivable from `data/`, not re-runnable.**
+
+To score your own agent's submissions against these tasks — offline, no
+credentials, the same referee every arm was judged by:
 
 ```bash
 python3 src/verify_solutions.py --tasks tasks/tasks_freeze.json --runs <your runs dir>
 ```
+
+`REPRODUCTION.md` has the directory shape it expects. Results from a different
+subject model are the single most interesting thing this repository does not
+have.
 
 ### Why the flat index is not in this repository
 
@@ -273,6 +362,15 @@ anything here is correct (see *What is NOT claimed*), and it cannot convey
 rights Syntology does not hold — `NOTICE` names the models that produced the
 generated implementations and says that each provider's terms govern its own
 output.
+
+## Citing it
+
+`CITATION.cff` carries the citation metadata, validated on every push —
+GitHub renders it as *Cite this repository*, and `cffconvert -f bibtex` gives
+you the BibTeX. There is **no DOI**; `CONTRIBUTING.md` says what taking one
+would involve and why it is the owner's call. If you cite a number, cite the
+run it belongs to (v1, v1.4 freeze, v1.5, v1.6) — they are different
+experiments against different pre-registrations.
 
 ## Provenance
 

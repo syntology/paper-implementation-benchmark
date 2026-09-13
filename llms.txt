@@ -1,0 +1,94 @@
+# Can an agent implement a method from its paper?
+
+> A pre-registered benchmark of retrieval conditions for code-implementation
+> agents. Four arms, identical prompt and budgets, identical held-out referee,
+> varying only what retrieval the agent is given. Four runs, each against a
+> pre-registration committed before any subject token was spent. Apache-2.0.
+
+This file is the machine-oriented map. `README.md` is the human one and carries
+the caveats; nothing below replaces them.
+
+## Read this before quoting any number
+
+- The **headline is a null result about the authors' own product**: a flat
+  BM25 + cosine index over 118,400 code samples matched the knowledge-graph arm
+  on every task (0 discordant pairs in 24, sign test p = 1.00). With the answer
+  held out, neither arm beat having no tools at all (24/48 · 24/48 · 23/48;
+  95% CI on graph-vs-flat [-11.5%, +15.6%]).
+- **A tie is not equivalence.** v1.5 is a ceiling tie at 100%; the rule of
+  three bounds the graph's per-task advantage at 3 in 24, not at zero.
+- **`passed` is not correctness.** The referee is an LLM-drafted property
+  suite. No implementation here carries a correctness claim, and none is the
+  paper authors' code. An audit of the population they came from brackets
+  fidelity at **0.29–0.80** with no adjudicator earning the right to narrow it.
+- **`verification_level` / `served_level` mean "what execution checks it
+  passed"**, never "this is the paper's method". The audit's sharpest finding
+  is that the V0–V3 ladder buys no fidelity, because no rung of it reads the
+  paper.
+- Full list of what is not claimed: `README.md`, section "What is NOT claimed"
+  (seven numbered items). Quoting a table without them is a misquote.
+
+## Machine-readable contracts
+
+- `schemas/artifacts.schema.json` — JSON Schema (draft 2020-12) for the four
+  published shapes: `#/$defs/task`, `#/$defs/run_meta`, `#/$defs/result_row`,
+  `#/$defs/manifest`. Validated against every shipped artifact on every push by
+  `tools/validate_schemas.py`, so it is a checked contract, not documentation.
+- `MANIFEST.json` — every file in the repository with its sha256, byte count,
+  origin, and the rule that put it there (`verbatim`, `portability-patched`,
+  `redacted-transcript`, `authored`, …). Verify a clone against it with
+  `python3 tools/check_clean_clone.py`.
+- `referees/INDEX.json` — the 72 tasks, their papers, and what each referee
+  file is.
+- `data/results*.json` — one referee verdict per run, per version.
+  `data/runs/<sweep>/<task_id>/<arm>/meta.json` — that run's structure.
+  `transcript.json` beside it — the same run, **redacted**: message order, tool
+  calls and structural result fields kept, every retrieved body replaced by
+  `<redacted body sha256=… bytes=… field=… origin=…>`.
+
+## Runs with no credentials, offline, $0
+
+```
+python3 tools/smoke_referee.py            # the referee really runs here
+python3 tools/verify_claims.py            # 67 checks: re-derives the tables
+python3 tools/recompute_fidelity_bracket.py   # the 0.29-0.80 bracket
+python3 tools/check_clean_clone.py        # compiles, imports, deps, manifest
+python3 tools/scan_secrets.py             # the publication gate
+python3 tools/redact_transcripts.py --verify
+python3 src/qc/qc_code_only_arm.py        # exits 4: C and D need an index
+```
+
+Exit codes, everywhere in this project: `0` clean, `1` findings, `2` drift,
+`3` unaccepted exclusions, `4` unresolved partials. **An exit 3 or 4 is the
+tool refusing to claim completeness**, not a crash.
+
+## Needs credentials, or cannot be run at all
+
+- `none` arm — AWS Bedrock. ~$0.056 per task. The floor every arm is measured
+  against, and it is high: 13/24 in the freeze.
+- `search` arm — plus a GitHub token and a Semantic Scholar key. Its toolkit
+  drifted after the freeze; the freeze is its last clean measurement.
+- `code_only` arm — needs a flat index you build **and** a Neo4j store. Ours is
+  not published: 71.0% of its harvested rows carry no redistributable licence.
+- `syntology` / `syntology_ho` arms — **not runnable by anyone outside
+  Syntology.** Private graph, unpublished serving code.
+- `src/analyze_substitution.py` — needs a graph, at all.
+- `tools/assemble.py` — needs the working repo. Refuses with exit 2.
+
+So the headline comparison is **re-derivable from `data/`, not re-runnable**.
+`CONTRIBUTING.md` says that plainly and says why.
+
+## Files
+
+- `README.md` — the claims, and what is not claimed.
+- `REPRODUCTION.md` — what you can and cannot reproduce; every command in it
+  was executed from a clean clone before it was written.
+- `prereg/` — the pre-registrations, verbatim, as committed before each run.
+- `results/` — the results documents, with predictions scored.
+- `ASSEMBLY_REPORT.md` — what was scanned, found, excluded, and what is still
+  not right (§4 and §6 are the honest list).
+- `LICENSE_QUESTION.md` — the licence decision and the two things it does not
+  settle. `NOTICE` — what the grant covers and what it cannot.
+- `CONTRIBUTING.md` · `SECURITY.md` — scope, and the fact that this repository
+  ships generated code that the referee executes on your machine.
+- `CITATION.cff` — machine-readable citation. No DOI yet.

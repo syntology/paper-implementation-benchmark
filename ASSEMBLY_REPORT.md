@@ -238,6 +238,10 @@ a stand-in that raises an explanatory error.
 | `tools/recompute_fidelity_bracket.py` | **41 checks pass** — the 0.29-0.80 bracket, both Wilson bounds, both instruments' sensitivity/specificity and the mutation channel, all re-derived from the published rows |
 | `src/analyze_code_only_mechanism.py` over the published redacted transcripts | re-derives `data/mechanism_v15.json` **with no differing key** |
 | every module in `src/` imports | 18/18 — it was **5/18** before 2026-09-13 |
+| `tools/check_clean_clone.py` | **CLEAN** on a fresh clone: every `.py` compiles, all 30 modules under `src/` import with only their own directory on the path, every unguarded third-party import is declared, and every file matches its `MANIFEST.json` sha256 — measured on CPython 3.10, 3.11, 3.12 and 3.14 |
+| `tools/check_clean_clone.py --self-test` | 6/6 plants caught (a module that cannot import, an undeclared import, a syntax error, a hash drift, an unrecorded file, a recorded file that is missing) plus the clean-tree false-positive control; three real-tree mutations also caught, including re-introducing the 2026-09-13 defect itself |
+| `tools/validate_schemas.py` | 1,077 shipped artifacts validate against `schemas/artifacts.schema.json`; 4 mutations caught, and a missing `jsonschema` is an **error**, not a skip |
+| `CITATION.cff` | valid against CFF 1.2.0 (`cffconvert --validate`); two mutations of it rejected |
 | `tools/smoke_referee.py` | 3/3 tasks scored correctly, offline, $0 |
 | `src/qc/qc_code_only_arm.py` | checks A (arm purity) and B (tokenizer parity) **pass in this tree**; C and D report a partial (exit 4) with no index present. Proven able to refuse: planting a `-[` in the arm module makes it exit 1 with five findings |
 | `tools/assemble.py --check` | tree matches `MANIFEST.json` and the internal sources |
@@ -374,3 +378,145 @@ Stated as a list because every other section is about what *was* fixed.
   direction, which is the reason the bracket is a bracket.
 - **Re-run `tools/assemble.py`**, which needs the working repo and its internal
   directory names.
+
+---
+
+## 7. Continuous integration, and the community files (2026-09-13, second pass)
+
+§4.9 recorded a tree that did not import and a smoke test recorded as passing
+because it had only ever been run in the one place the defect was invisible.
+That defect was fixed by hand. **This section is about making its return
+impossible rather than unlikely.**
+
+### What now runs, and where
+
+`.github/workflows/ci.yml`, on every push and pull request: a **fresh clone**,
+a venv built **outside** the checkout, `pip install -r requirements.txt`, and
+then every gate in this repository that needs no credentials — on CPython
+3.10, 3.11, 3.12, 3.13 and 3.14 on Linux, plus 3.14 on macOS, which is where
+the runs were made.
+
+The two gates that caught the 2026-09-13 defect lived inside
+`tools/assemble.py`, which needs the working repo and its internal directory
+names — so **the person most likely to hit the defect was the one person who
+could not run the check.** They are in `tools/check_clean_clone.py` now, with
+two more beside them, and `assemble.py` calls that module rather than keeping a
+second copy:
+
+| check | what it refuses on |
+|---|---|
+| COMPILE | any `.py` in the tree that will not compile on the interpreter under test — the cheap way to catch syntax that only exists on 3.14 |
+| IMPORTS | any module under `src/` that fails to import with **only its own directory** on `sys.path`, which is exactly what `python3 src/analyze.py` gives it |
+| REQUIREMENTS | any unguarded module-level third-party import that `requirements.txt` does not declare — the `requests` defect |
+| MANIFEST | any file whose bytes do not match its recorded sha256, any recorded file missing from the tree, any file in the tree the manifest does not record |
+
+MANIFEST is the one that did not exist before in a form an outsider could run:
+`assemble.py --check` verifies the tree against the manifest **and** against
+the internal sources, so it needs the working repo. This half needs nothing but
+the clone, which means a reader can now check that what they downloaded is what
+was published.
+
+**Every gate was mutation-tested.** `--self-test` plants six defects, one per
+finding class, in throwaway trees and requires a hit on each, plus a clean-tree
+control that must produce none; it runs in CI, so the gate is proven able to
+fail on every interpreter, not once on a laptop. Three further mutations were
+run against the real tree: commenting out the vendor-path line in
+`verify_solutions.py` (reproducing the original defect exactly — *"shipped
+module does not import: src/verify_solutions.py -- ModuleNotFoundError: No
+module named 'provenance'"*), deleting `requests` from `requirements.txt`, and
+appending one byte to `data/results_v15.json`. All three were caught.
+
+### Three properties of the workflow that are deliberate
+
+1. **Nothing is skipped silently.** There is no `continue-on-error` and no
+   `if:` on any check step, and the last step of the job re-reads a ledger that
+   every check appends to and fails if a token is missing. A check that stops
+   running turns the build red instead of disappearing from a green one.
+2. **What cannot run is named out loud, and proved where proof is possible.**
+   The arms, `analyze_substitution.py`, `assemble.py --check` and
+   `corpus_license_report.py` are printed with the reason each is skipped —
+   and the two whose refusal is deterministic are *run and required to refuse*:
+   `assemble.py --check` must exit 2 naming the missing internal directories,
+   and `analyze_substitution.py` must fail with `KeyError: 'NEO4J_URI'`
+   specifically, not merely fail. `src/qc/qc_code_only_arm.py` must exit
+   **4**: 0 would mean an index appeared, 1 would mean arm purity itself broke.
+3. **Every count has a floor.** `verify_claims.py` exiting 0 with zero checks
+   run would be a green build that proved nothing, so 67 (claims), 41
+   (fidelity) and 3 (smoke tasks) are asserted. They are raised deliberately,
+   never allowed to fall.
+
+One more step exists because of a hazard this repository already had:
+**the checks must leave the tree unchanged** (`git status --porcelain` empty).
+`src/analyze_code_only_mechanism.py` defaults to writing over the published
+`data/mechanism_v15.json`, and `verify_claims.py` runs it.
+
+### The Python floor, measured instead of assumed
+
+`REPRODUCTION.md` said 3.11+. Nobody had measured it. The floor is **3.10**,
+and 3.9 is more interesting than a bare "unsupported": on CPython 3.9 the
+**referee path works completely** — smoke, the 67 claim checks and the fidelity
+recompute all pass — while **five modules fail to import**, `agent_harness.py`
+(the arm runner) among them, on PEP 604 annotations evaluated at module load.
+A reader on macOS's system Python can therefore score submissions all day and
+then discover no arm will start. The `python-3-9-boundary` job pins both halves
+and fails if either moves, including in the good direction: if the tree ever
+imports on 3.9, the job says so and tells you to lower the documented floor.
+
+### The community files, and one that was deliberately not written
+
+- **`CITATION.cff`** — machine-readable citation, so GitHub renders *Cite this
+  repository*. Validated in CI with `cffconvert`, because a malformed CFF file
+  renders **nothing** and says nothing about why — silent failure, the same
+  class as everything else here. Two mutations (a misspelled author key, a
+  wrong `cff-version`) were rejected by the validator. It names the
+  organisation, not individuals: a person author list is the owner's call and
+  is marked as such in the file.
+- **`CONTRIBUTING.md`** — scope, and the boundary from §6 stated up front: the
+  `syntology` arms cannot be run by anyone outside Syntology, `code_only` needs
+  an index and a Neo4j store you supply, `analyze_substitution.py` cannot run
+  here at all. It states plainly that **the headline comparison is
+  re-derivable, not re-runnable**, and that this is the largest thing wrong
+  with the artifact.
+- **`SECURITY.md`** — the honest version: this repository ships 216
+  machine-generated Python files and `tools/smoke_referee.py` executes them on
+  your machine, inside a sandbox whose own docstring says it is *"deliberately
+  not a security boundary against adversarial code"*. It also names the one
+  containment failure already measured here — run 1's network leak — because a
+  security document that omits the incident it already has is not credible.
+- **`CODE_OF_CONDUCT.md` — deliberately not added.** A code of conduct is a
+  governance instrument for a community, and it works when there are
+  maintainers and a reporting process behind it. This is a frozen artifact with
+  a closed task set and no contributor community; a Contributor-Covenant file
+  would be one more unread document in a repository whose argument is that its
+  documents are read. `CONTRIBUTING.md` carries the conduct expectation in a
+  paragraph and says the file should be added — and staffed — if this ever
+  grows contributors.
+- **A DOI — deliberately not registered.** `CONTRIBUTING.md` records what it
+  would take (enable the Zenodo integration, tag a release, add the DOI back to
+  `CITATION.cff`), what to decide first, and the reason it is worth more here
+  than citability: this repository's argument rests on the pre-registrations
+  having existed *before* the runs, and an archived, dated, immutable release
+  is better evidence of that than a git history the owner controls.
+
+### Machine-readable, for the agents that will read this
+
+The audience includes bots, so two things stopped being prose:
+
+- **`schemas/artifacts.schema.json`** — JSON Schema (draft 2020-12) for the
+  four published shapes: a task, a run's metadata, a referee verdict row, and
+  the manifest. `tools/validate_schemas.py` validates all 1,077 shipped
+  artifacts against it in CI, so it is a checked contract rather than a
+  description of one, and `additionalProperties: false` means a new field is a
+  build failure someone has to decide about. Writing it **found three things
+  nothing had documented**: `holdout_shas` has two spellings in the published
+  tree (400 entries are a 16-hex prefix, 114 are the full sha256), `base_arm`
+  takes the value `none`, and `variant` is explicitly `null` on run 1 rather
+  than absent. A consumer joining on `holdout_shas` would have got that wrong.
+- **`MANIFEST.json`** is now authoritative rather than incidental: it has a
+  schema, a credential-free verifier, and a CI job that fails if the tree and
+  the manifest disagree.
+
+`llms.txt` is the map for an agent arriving without the prose: the caveats that
+must travel with the numbers, the machine-readable files, the commands that run
+for $0, and the ones that cannot run at all. It is a pointer file, not a
+duplicate of the README.

@@ -871,87 +871,26 @@ def main() -> int:
                          "source": "authored in this repository",
                          "rule": "authored"}
 
-    # --- does the tree it just wrote actually import? ---------------------
+    # --- does the tree it just wrote compile, import, and declare its deps? --
     # The docstring above has always claimed "the test below runs every shipped
     # module". It did not exist, and 13 of the 18 modules in src/ raised
     # ModuleNotFoundError in the published tree for a month -- including every
     # analyzer REPRODUCTION.md tells a reader to run. A packaging step that
     # cannot answer "does this import" has not finished.
-    if not args.check:
-        import subprocess
-        for mod in sorted((DEST / "src").rglob("*.py")):
-            # Imported by NAME, on a path, not through a synthetic spec:
-            # arxiv_client.py reassigns `sys.modules[__name__].__class__`, and
-            # a module loaded under a made-up name fails there for reasons that
-            # have nothing to do with this tree.
-            r = subprocess.run(
-                [sys.executable, "-c",
-                 "import sys,importlib,pathlib;"
-                 "p=pathlib.Path(sys.argv[1]);"
-                 # ONLY the script's own directory, which is exactly what
-                 # `python3 src/analyze.py` puts on the path. Adding vendor/
-                 # here made the gate pass a tree whose modules could not
-                 # import -- the gate was supplying the fix it was testing for.
-                 "sys.path.insert(0, str(p.parent));"
-                 "importlib.import_module(p.stem)",
-                 str(mod)], capture_output=True, text=True)
-            if r.returncode != 0:
-                last = (r.stderr.strip().splitlines() or ["?"])[-1]
-                problems.append(f"shipped module does not import: "
-                                f"{mod.relative_to(DEST)} -- {last[:120]}")
-
-    # --- is every third-party import actually declared? -------------------
-    # `requests` was a module-level import in the outbound gateway, which the
-    # harness imports unconditionally, and it was not in requirements.txt. A
-    # clean clone of this repository could therefore install the stated
-    # requirements and still not start the `none` arm -- the one arm the
-    # README calls the reason this benchmark means anything to an outsider.
-    # The import check above did not catch it because it runs in the
-    # developer's interpreter, which has everything.
     #
-    # An import inside a try/except is a declared option, not a requirement
-    # (python-dotenv and scipy are both read that way), so only UNGUARDED
-    # module-level imports are demanded here.
+    # These three gates USED to be written out here. They are in
+    # tools/check_clean_clone.py now, and this calls them, because the person
+    # most likely to hit the defect is the one person who cannot run this
+    # assembler: it needs the working repo and the internal directory names.
+    # Two copies drift, and the copy nobody runs drifts first.
     if not args.check:
-        import ast as _ast
-        reqs = (DEST / "requirements.txt")
-        declared = set()
-        if reqs.exists():
-            for line in reqs.read_text().splitlines():
-                line = line.split("#")[0].strip()
-                if line:
-                    declared.add(re.split(r"[<>=!\[]", line)[0].strip().lower())
-        shipped = {p.stem for p in (DEST / "src").rglob("*.py")} | {"query_engine"}
-        for mod in sorted((DEST / "src").rglob("*.py")):
-            tree = _ast.parse(mod.read_text())
-            # Guarded = inside a try/except (an optional dependency), or
-            # inside `if __name__ == "__main__":` (a script-only import that
-            # never runs when the module is imported). Neither is a
-            # requirement; treating them as one would push two packages into
-            # requirements.txt that nothing importing this tree needs.
-            guarded = set()
-            for node in _ast.walk(tree):
-                main_guard = (isinstance(node, _ast.If)
-                              and "__name__" in _ast.dump(node.test))
-                if isinstance(node, _ast.Try) or main_guard:
-                    guarded |= {id(n) for n in _ast.walk(node)}
-            for node in _ast.walk(tree):
-                if id(node) in guarded:
-                    continue
-                if isinstance(node, _ast.Import):
-                    names = [a.name.split(".")[0] for a in node.names]
-                elif isinstance(node, _ast.ImportFrom) and not node.level and node.module:
-                    names = [node.module.split(".")[0]]
-                else:
-                    continue
-                for n in names:
-                    if (n in sys.stdlib_module_names or n in shipped
-                            or n.lower() in declared):
-                        continue
-                    msg = (f"undeclared third-party import: {n} in "
-                           f"{mod.relative_to(DEST)} is not in requirements.txt")
-                    if msg not in problems:
-                        problems.append(msg)
+        import check_clean_clone as ccc
+        for name, fn in (("compile", ccc.check_compile),
+                         ("import", ccc.check_imports),
+                         ("requirements", ccc.check_requirements)):
+            found, counts = fn(DEST) if name == "compile" else fn(DEST, "src")
+            print(f"  {name}: " + " ".join(f"{k}={v}" for k, v in counts.items()))
+            problems.extend(found)
 
     # A portability rule that matches nothing is either dead or -- the case
     # that actually happened -- a rule the redactor got to first. Either way it

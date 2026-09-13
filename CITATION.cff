@@ -1,0 +1,49 @@
+# Machine-readable citation metadata (Citation File Format 1.2.0).
+# GitHub reads this file to render the "Cite this repository" button, and
+# cffconvert validates it on every push (.github/workflows/ci.yml) -- a CFF
+# file with one wrong field renders NOTHING and fails silently, which is the
+# defect class this repository exists to be careful about.
+#
+# BEFORE RELEASE, the owner should add:
+#   - person authors under `authors:` if the artifact should cite individuals
+#     rather than the organisation (family-names / given-names / orcid),
+#   - `repository-code:` once there is a public URL,
+#   - a DOI under `identifiers:` if the Zenodo path in CONTRIBUTING.md is taken.
+# None of those is invented here.
+
+cff-version: 1.2.0
+message: "If you use this benchmark, please cite it as below."
+title: >-
+  Can an agent implement a method from its paper? A pre-registered benchmark
+  of retrieval conditions for code-implementation agents
+abstract: >-
+  A pre-registered benchmark that asks whether a coding agent, given a paper's
+  method name, entry point and one sentence of description, can produce a
+  working implementation -- varying only what retrieval the agent is given
+  across four arms (no tools, web search, a knowledge graph, and a flat index
+  over the same code with the graph removed). Four runs, each against a
+  pre-registration committed before any subject token was spent, 75.88 USD of
+  total subject spend. The headline result is a null about the authors' own
+  product: a flat BM25 + cosine index over 118,400 code samples matched the
+  graph arm on every task (0 discordant pairs in 24, sign test p = 1.00), and
+  with the answer held out neither arm beat having no tools at all (24/48 vs
+  24/48 vs 23/48, 95% CI on the graph-vs-flat difference [-11.5%, +15.6%]).
+  Every published number is re-derivable from the artifacts in the repository.
+type: software
+authors:
+  - name: "Syntology"
+    website: "https://syntology.ai"
+version: "1.6"
+date-released: "2026-09-13"
+license: Apache-2.0
+url: "https://syntology.ai"
+keywords:
+  - benchmark
+  - pre-registration
+  - retrieval-augmented generation
+  - knowledge graph
+  - code generation
+  - coding agents
+  - reproducibility
+  - null result
+  - ablation
