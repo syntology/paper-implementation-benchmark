@@ -1,0 +1,135 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T16:53:42+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--variant",
+    "salience",
+    "--out",
+    "<BENCH>/runs_v11",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.1 ablation per ABLATION_V11.md: does description-level salience alone fix the 0/24 get_reference_implementation adoption in the both arm"
+   ],
+   "git_commit": "6d56a11992dac2668d46c9702a10367b29c9a141",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 12,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "BOOST THEN CONVOLVE",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 7,
+ "stop_reason": "submitted",
+ "stratum": "off_catalog",
+ "submitted": true,
+ "syntology_calls": 2,
+ "task_id": "off_2101.08543",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 1
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 59,
+   "tool": "github_search_code",
+   "turn": 2
+  },
+  {
+   "args_chars": 71,
+   "tool": "github_fetch_file",
+   "turn": 3
+  },
+  {
+   "args_chars": 64,
+   "tool": "github_search_code",
+   "turn": 4
+  },
+  {
+   "args_chars": 1556,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 1001,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 413,
+   "tool": "run_python",
+   "turn": 7
+  },
+  {
+   "args_chars": 154,
+   "tool": "run_python",
+   "turn": 8
+  },
+  {
+   "args_chars": 28,
+   "tool": "run_python",
+   "turn": 9
+  },
+  {
+   "args_chars": 66,
+   "tool": "github_fetch_file",
+   "turn": 10
+  },
+  {
+   "args_chars": 1973,
+   "tool": "submit_solution",
+   "turn": 11
+  }
+ ],
+ "turns": 12,
+ "usage": {
+  "cacheReadInputTokens": 158699,
+  "cacheWriteInputTokens": 21209,
+  "inputTokens": 64,
+  "outputTokens": 3784
+ },
+ "variant": "salience",
+ "wall_s": 88.5
+}

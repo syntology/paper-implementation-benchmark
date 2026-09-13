@@ -1,0 +1,113 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T15:40:57+00:00",
+  "generator": {
+   "argv": [
+    "--workers",
+    "2",
+    "--intent",
+    "Measure CLAIMS.md's top open-debt row (agent+Syntology vs agent+search, working output): 24 revalidated tasks x 4 arms, Sonnet subjects on Bedrock, pre-registered in <BENCH>/PREREGISTRATION.md"
+   ],
+   "git_commit": "64479bd6e2690ac50081f00170c8d564b68363da",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "syntology",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "syntology",
+ "bedrock": {
+  "calls": 10,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "BOOST THEN CONVOLVE",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "off_catalog",
+ "submitted": true,
+ "syntology_calls": 4,
+ "task_id": "off_2101.08543",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 47,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 0
+  },
+  {
+   "args_chars": 740,
+   "tool": "run_python",
+   "turn": 1
+  },
+  {
+   "args_chars": 39,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 2
+  },
+  {
+   "args_chars": 1451,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 1841,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 1458,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 2480,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 2308,
+   "tool": "run_python",
+   "turn": 7
+  },
+  {
+   "args_chars": 3234,
+   "tool": "run_python",
+   "turn": 8
+  },
+  {
+   "args_chars": 1142,
+   "tool": "submit_solution",
+   "turn": 9
+  }
+ ],
+ "turns": 10,
+ "usage": {
+  "cacheReadInputTokens": 46102,
+  "cacheWriteInputTokens": 8998,
+  "inputTokens": 50,
+  "outputTokens": 5867
+ },
+ "wall_s": 86.6
+}

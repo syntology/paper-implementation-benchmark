@@ -1,0 +1,1758 @@
+{
+  "runs": [
+    {
+      "task_id": "in__2007.06680",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 2498,
+        "cacheReadInputTokens": 36483,
+        "cacheWriteInputTokens": 11800
+      },
+      "turns": 5,
+      "wall_s": 29.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2007.06680",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2131,
+        "cacheReadInputTokens": 5877,
+        "cacheWriteInputTokens": 3036
+      },
+      "turns": 4,
+      "wall_s": 29.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+        "beta_t=1 returns g_current_theta_t",
+        "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+      ],
+      "failure_details": [
+        {
+          "name": "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+          "detail": "Expected [1.215 2.36  3.505], got [0.475 1.425 2.375]"
+        },
+        {
+          "name": "beta_t=1 returns g_current_theta_t",
+          "detail": "Expected [0.5 1.5 2.5], got [1.19  2.285 3.38 ]"
+        },
+        {
+          "name": "w_ratio=1 and g_current=g_prev simplifies to momentum blend",
+          "detail": "Expected [0.65 1.65 2.65], got [0.85 1.85 2.85]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2007.06680",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3505,
+        "cacheReadInputTokens": 27415,
+        "cacheWriteInputTokens": 6002
+      },
+      "turns": 6,
+      "wall_s": 39.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3353,
+        "cacheReadInputTokens": 31667,
+        "cacheWriteInputTokens": 7891
+      },
+      "turns": 6,
+      "wall_s": 38.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 1031,
+        "outputTokens": 3535,
+        "cacheReadInputTokens": 8212,
+        "cacheWriteInputTokens": 3700
+      },
+      "turns": 5,
+      "wall_s": 43.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Uniform keys and values (bidirectional)"
+      ],
+      "failure_details": [
+        {
+          "name": "Uniform keys and values (bidirectional)",
+          "detail": "Max diff from uniform: 7073559.54628059"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 2853,
+        "cacheReadInputTokens": 25039,
+        "cacheWriteInputTokens": 7221
+      },
+      "turns": 5,
+      "wall_s": 28.9,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 1967,
+        "cacheReadInputTokens": 29614,
+        "cacheWriteInputTokens": 6657
+      },
+      "turns": 6,
+      "wall_s": 27.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 1035,
+        "outputTokens": 1227,
+        "cacheReadInputTokens": 3554,
+        "cacheWriteInputTokens": 2251
+      },
+      "turns": 4,
+      "wall_s": 23.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "linearity_in_v_resampled",
+        "negative_linearity_in_v_subset",
+        "output_is_exact_difference",
+        "sign_consistency"
+      ],
+      "failure_details": [
+        {
+          "name": "linearity_in_v_resampled",
+          "detail": "Expected difference 2.3, got 25.99000000000001"
+        },
+        {
+          "name": "negative_linearity_in_v_subset",
+          "detail": "Expected difference -1.5, got -10.35"
+        },
+        {
+          "name": "output_is_exact_difference",
+          "detail": "Expected 3.1999999999999997, got 10.239999999999998"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2068,
+        "cacheReadInputTokens": 23618,
+        "cacheWriteInputTokens": 4330
+      },
+      "turns": 6,
+      "wall_s": 26.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 38,
+        "outputTokens": 3232,
+        "cacheReadInputTokens": 63375,
+        "cacheWriteInputTokens": 11562
+      },
+      "turns": 8,
+      "wall_s": 41.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1645,
+        "cacheReadInputTokens": 7811,
+        "cacheWriteInputTokens": 2838
+      },
+      "turns": 5,
+      "wall_s": 25.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2520,
+        "cacheReadInputTokens": 25044,
+        "cacheWriteInputTokens": 4887
+      },
+      "turns": 6,
+      "wall_s": 30.2,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 4992,
+        "cacheReadInputTokens": 74539,
+        "cacheWriteInputTokens": 13060
+      },
+      "turns": 8,
+      "wall_s": 52.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2204,
+        "cacheReadInputTokens": 7594,
+        "cacheWriteInputTokens": 4216
+      },
+      "turns": 5,
+      "wall_s": 29.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 37,
+        "outputTokens": 3847,
+        "cacheReadInputTokens": 50707,
+        "cacheWriteInputTokens": 9504
+      },
+      "turns": 7,
+      "wall_s": 42.9,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2962,
+        "cacheReadInputTokens": 35272,
+        "cacheWriteInputTokens": 8641
+      },
+      "turns": 6,
+      "wall_s": 35.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2317,
+        "cacheReadInputTokens": 8400,
+        "cacheWriteInputTokens": 3136
+      },
+      "turns": 5,
+      "wall_s": 32.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3515,
+        "cacheReadInputTokens": 30530,
+        "cacheWriteInputTokens": 6826
+      },
+      "turns": 6,
+      "wall_s": 38.7,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3403,
+        "cacheReadInputTokens": 34075,
+        "cacheWriteInputTokens": 8575
+      },
+      "turns": 6,
+      "wall_s": 40.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1834,
+        "cacheReadInputTokens": 7203,
+        "cacheWriteInputTokens": 4058
+      },
+      "turns": 5,
+      "wall_s": 23.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Advantage scaling linearity",
+        "Clipping upper bound with positive advantages",
+        "Identity case (ratio=1)",
+        "Permutation invariance",
+        "Zero advantages"
+      ],
+      "failure_details": [
+        {
+          "name": "Advantage scaling linearity",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        },
+        {
+          "name": "Clipping upper bound with positive advantages",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        },
+        {
+          "name": "Identity case (ratio=1)",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 37,
+        "outputTokens": 3555,
+        "cacheReadInputTokens": 47831,
+        "cacheWriteInputTokens": 8833
+      },
+      "turns": 7,
+      "wall_s": 45.2,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2799,
+        "cacheReadInputTokens": 32857,
+        "cacheWriteInputTokens": 7992
+      },
+      "turns": 6,
+      "wall_s": 32.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 1857,
+        "cacheReadInputTokens": 10264,
+        "cacheWriteInputTokens": 3063
+      },
+      "turns": 6,
+      "wall_s": 32.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "monotonicity_in_loss_difference",
+        "multiple_identical_edges_averaging",
+        "result_is_finite",
+        "single_edge_equal_losses_returns_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "monotonicity_in_loss_difference",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part."
+        },
+        {
+          "name": "multiple_identical_edges_averaging",
+          "detail": "only 0-dimensional arrays can be converted to Python scalars"
+        },
+        {
+          "name": "result_is_finite",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (3,) + inhomogeneous part."
+        }
+      ]
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3361,
+        "cacheReadInputTokens": 26941,
+        "cacheWriteInputTokens": 5855
+      },
+      "turns": 6,
+      "wall_s": 38.8,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2663,
+        "cacheReadInputTokens": 33932,
+        "cacheWriteInputTokens": 8253
+      },
+      "turns": 6,
+      "wall_s": 31.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1842,
+        "cacheReadInputTokens": 5472,
+        "cacheWriteInputTokens": 2798
+      },
+      "turns": 4,
+      "wall_s": 25.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "weight_scaling_linearity",
+        "zero_weights_zero_output"
+      ],
+      "failure_details": [
+        {
+          "name": "weight_scaling_linearity",
+          "detail": "max_diff=0.967591885843035"
+        },
+        {
+          "name": "zero_weights_zero_output",
+          "detail": "max_abs=nan"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2420,
+        "cacheReadInputTokens": 24731,
+        "cacheWriteInputTokens": 4875
+      },
+      "turns": 6,
+      "wall_s": 27.8,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3332,
+        "cacheReadInputTokens": 48204,
+        "cacheWriteInputTokens": 11996
+      },
+      "turns": 6,
+      "wall_s": 40.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2897,
+        "cacheReadInputTokens": 6417,
+        "cacheWriteInputTokens": 3583
+      },
+      "turns": 4,
+      "wall_s": 40.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Beta=0 returns only gradient term",
+        "Beta=1 with zero gradient returns momentum only",
+        "Linear scaling in gradient G_t",
+        "Output shape is n\u00d7r",
+        "Zero inputs yield zero output"
+      ],
+      "failure_details": [
+        {
+          "name": "Beta=0 returns only gradient term",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 5 is different from 3)"
+        },
+        {
+          "name": "Beta=1 with zero gradient returns momentum only",
+          "detail": "operands could not be broadcast together with shapes (5,3) (5,4) "
+        },
+        {
+          "name": "Linear scaling in gradient G_t",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 3)"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 3738,
+        "cacheReadInputTokens": 35965,
+        "cacheWriteInputTokens": 6397
+      },
+      "turns": 7,
+      "wall_s": 44.7,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3782,
+        "cacheReadInputTokens": 40720,
+        "cacheWriteInputTokens": 10541
+      },
+      "turns": 6,
+      "wall_s": 45.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1803,
+        "cacheReadInputTokens": 8109,
+        "cacheWriteInputTokens": 2962
+      },
+      "turns": 5,
+      "wall_s": 25.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_correctness",
+          "detail": "output=[0.29289322 1.71715729 2.85857864], expected=[0.  1.6 2.8]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 3295,
+        "cacheReadInputTokens": 33891,
+        "cacheWriteInputTokens": 5900
+      },
+      "turns": 7,
+      "wall_s": 39.1,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2814,
+        "cacheReadInputTokens": 31233,
+        "cacheWriteInputTokens": 9163
+      },
+      "turns": 6,
+      "wall_s": 34.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2658,
+        "cacheReadInputTokens": 9808,
+        "cacheWriteInputTokens": 2905
+      },
+      "turns": 6,
+      "wall_s": 41.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "mode_produces_different_results"
+      ],
+      "failure_details": [
+        {
+          "name": "mode_produces_different_results",
+          "detail": "pretrain=[0.21627409 0.26766595 0.51605996], finetune=[0.21627409 0.26766595 0.51605996]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3151,
+        "cacheReadInputTokens": 35003,
+        "cacheWriteInputTokens": 10920
+      },
+      "turns": 6,
+      "wall_s": 40.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 3032,
+        "cacheReadInputTokens": 33843,
+        "cacheWriteInputTokens": 11175
+      },
+      "turns": 5,
+      "wall_s": 33.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 6,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2563,
+        "cacheReadInputTokens": 8153,
+        "cacheWriteInputTokens": 3097
+      },
+      "turns": 5,
+      "wall_s": 42.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 6,
+      "properties_failed": [
+        "empty_filter_indices_zeros",
+        "non_negativity_relu",
+        "output_shape_invariant",
+        "selected_filters_identical",
+        "single_filter_relu_match",
+        "unselected_filters_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_filter_indices_zeros",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        },
+        {
+          "name": "non_negativity_relu",
+          "detail": "Output contains negative values: min=-1.233646176350817"
+        },
+        {
+          "name": "output_shape_invariant",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 2713,
+        "cacheReadInputTokens": 20198,
+        "cacheWriteInputTokens": 5426
+      },
+      "turns": 5,
+      "wall_s": 28.2,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 6,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 2944,
+        "cacheReadInputTokens": 84251,
+        "cacheWriteInputTokens": 20295
+      },
+      "turns": 7,
+      "wall_s": 43.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1895,
+        "cacheReadInputTokens": 4359,
+        "cacheWriteInputTokens": 3798
+      },
+      "turns": 4,
+      "wall_s": 26.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "baseline_translation_invariance",
+        "learning_rate_linear_scaling",
+        "zero_incentives_reproducible",
+        "zero_rewards_incentives_closed_form"
+      ],
+      "failure_details": [
+        {
+          "name": "baseline_translation_invariance",
+          "detail": "Expected diff: -0.027178239541490658, actual diff: [ 0.01125922 -0.01974536 -0.0186921 ]"
+        },
+        {
+          "name": "learning_rate_linear_scaling",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        },
+        {
+          "name": "zero_incentives_reproducible",
+          "detail": "Zero incentives reproducibility: [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05] vs [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05]"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2410,
+        "cacheReadInputTokens": 18560,
+        "cacheWriteInputTokens": 4689
+      },
+      "turns": 5,
+      "wall_s": 29.2,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2333,
+        "cacheReadInputTokens": 31301,
+        "cacheWriteInputTokens": 7286
+      },
+      "turns": 6,
+      "wall_s": 29.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1600,
+        "cacheReadInputTokens": 7657,
+        "cacheWriteInputTokens": 2791
+      },
+      "turns": 5,
+      "wall_s": 24.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2222,
+        "cacheReadInputTokens": 27832,
+        "cacheWriteInputTokens": 5480
+      },
+      "turns": 6,
+      "wall_s": 28.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2442,
+        "cacheReadInputTokens": 23442,
+        "cacheWriteInputTokens": 7438
+      },
+      "turns": 5,
+      "wall_s": 28.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1675,
+        "cacheReadInputTokens": 7930,
+        "cacheWriteInputTokens": 2880
+      },
+      "turns": 5,
+      "wall_s": 27.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 2602,
+        "cacheReadInputTokens": 19216,
+        "cacheWriteInputTokens": 5053
+      },
+      "turns": 5,
+      "wall_s": 30.9,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2479,
+        "cacheReadInputTokens": 48463,
+        "cacheWriteInputTokens": 11692
+      },
+      "turns": 6,
+      "wall_s": 30.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 38,
+        "outputTokens": 2257,
+        "cacheReadInputTokens": 16553,
+        "cacheWriteInputTokens": 3475
+      },
+      "turns": 8,
+      "wall_s": 40.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "correctness_subtraction",
+        "negation_on_swap",
+        "zero_correction_identical_gradients"
+      ],
+      "failure_details": [
+        {
+          "name": "correctness_subtraction",
+          "detail": "Max difference: 2.366818312219089"
+        },
+        {
+          "name": "negation_on_swap",
+          "detail": "Max difference: 3.4956625811202793"
+        },
+        {
+          "name": "zero_correction_identical_gradients",
+          "detail": "Max absolute value in result: 5.193757260514028"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2982,
+        "cacheReadInputTokens": 34893,
+        "cacheWriteInputTokens": 5984
+      },
+      "turns": 7,
+      "wall_s": 36.6,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3872,
+        "cacheReadInputTokens": 37121,
+        "cacheWriteInputTokens": 7083
+      },
+      "turns": 6,
+      "wall_s": 100.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 3226,
+        "cacheReadInputTokens": 8204,
+        "cacheWriteInputTokens": 5290
+      },
+      "turns": 5,
+      "wall_s": 38.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 4540,
+        "cacheReadInputTokens": 41121,
+        "cacheWriteInputTokens": 10139
+      },
+      "turns": 6,
+      "wall_s": 42.4,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3035,
+        "cacheReadInputTokens": 47613,
+        "cacheWriteInputTokens": 11850
+      },
+      "turns": 6,
+      "wall_s": 34.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2781,
+        "cacheReadInputTokens": 8043,
+        "cacheWriteInputTokens": 3135
+      },
+      "turns": 5,
+      "wall_s": 38.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3310,
+        "cacheReadInputTokens": 27954,
+        "cacheWriteInputTokens": 6074
+      },
+      "turns": 6,
+      "wall_s": 36.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2579,
+        "cacheReadInputTokens": 47007,
+        "cacheWriteInputTokens": 11287
+      },
+      "turns": 6,
+      "wall_s": 32.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 1038,
+        "outputTokens": 1354,
+        "cacheReadInputTokens": 3733,
+        "cacheWriteInputTokens": 2256
+      },
+      "turns": 4,
+      "wall_s": 23.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gradient_linearity",
+        "step_size_scaling",
+        "zero_gradient_recovers_diffusion",
+        "zero_noise_recovers_drift"
+      ],
+      "failure_details": [
+        {
+          "name": "gradient_linearity",
+          "detail": "Max diff: 0.03"
+        },
+        {
+          "name": "step_size_scaling",
+          "detail": "Ratio: 0.0, expected 2.0"
+        },
+        {
+          "name": "zero_gradient_recovers_diffusion",
+          "detail": "Max diff: nan"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3161,
+        "cacheReadInputTokens": 40870,
+        "cacheWriteInputTokens": 9096
+      },
+      "turns": 6,
+      "wall_s": 37.2,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 3048,
+        "cacheReadInputTokens": 34683,
+        "cacheWriteInputTokens": 11690
+      },
+      "turns": 5,
+      "wall_s": 32.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1638,
+        "cacheReadInputTokens": 5213,
+        "cacheWriteInputTokens": 2616
+      },
+      "turns": 4,
+      "wall_s": 23.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 3014,
+        "cacheReadInputTokens": 29145,
+        "cacheWriteInputTokens": 8549
+      },
+      "turns": 5,
+      "wall_s": 35.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2298,
+        "cacheReadInputTokens": 48696,
+        "cacheWriteInputTokens": 12449
+      },
+      "turns": 6,
+      "wall_s": 30.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1608,
+        "cacheReadInputTokens": 7344,
+        "cacheWriteInputTokens": 2606
+      },
+      "turns": 5,
+      "wall_s": 26.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 3034,
+        "cacheReadInputTokens": 31593,
+        "cacheWriteInputTokens": 5183
+      },
+      "turns": 7,
+      "wall_s": 37.0,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "code_only",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 25,
+        "outputTokens": 3476,
+        "cacheReadInputTokens": 34854,
+        "cacheWriteInputTokens": 12074
+      },
+      "turns": 5,
+      "wall_s": 33.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 3,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 3288,
+        "cacheReadInputTokens": 6075,
+        "cacheWriteInputTokens": 4911
+      },
+      "turns": 5,
+      "wall_s": 47.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 3,
+      "properties_failed": [
+        "Loss invariant to compensating h_t_g and theta_g scaling",
+        "Loss is non-negative"
+      ],
+      "failure_details": [
+        {
+          "name": "Loss invariant to compensating h_t_g and theta_g scaling",
+          "detail": "Loss1 = 1.0023986748890183, Loss2 = 0.6951573690138697; expected equal"
+        },
+        {
+          "name": "Loss is non-negative",
+          "detail": "operands could not be broadcast together with shapes (3,5) (3,4,5) "
+        }
+      ]
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "syntology",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 4214,
+        "cacheReadInputTokens": 49195,
+        "cacheWriteInputTokens": 9400
+      },
+      "turns": 7,
+      "wall_s": 45.6,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 3,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "code_only",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3088,
+        "cacheReadInputTokens": 43706,
+        "cacheWriteInputTokens": 10831
+      },
+      "turns": 6,
+      "wall_s": 37.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2015,
+        "cacheReadInputTokens": 8449,
+        "cacheWriteInputTokens": 3117
+      },
+      "turns": 5,
+      "wall_s": 26.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "syntology",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2580,
+        "cacheReadInputTokens": 32585,
+        "cacheWriteInputTokens": 5325
+      },
+      "turns": 7,
+      "wall_s": 32.6,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    }
+  ],
+  "_provenance": {
+    "schema": "syntology-provenance/1",
+    "created_at": "2026-09-10T20:22:30+00:00",
+    "generator": {
+      "script": "<BENCH>/verify_solutions.py",
+      "argv": [
+        "--tasks",
+        "<BENCH>/tasks/tasks_freeze.json",
+        "--runs",
+        "<BENCH>/runs_v15"
+      ],
+      "git_commit": "01bf41ea18e987b6ecfe648f2c79e4d29d2e6b62",
+      "git_dirty": true
+    },
+    "inputs": [
+      {
+        "path": "<BENCH>/tasks/tasks_freeze.json",
+        "sha256": "3c35c35d8b38ee3c280108657354c3bb8b3da5545fad51a34c24a20ce1dd19ab",
+        "bytes": 27406,
+        "mtime": "2026-09-02T19:03:42+00:00"
+      }
+    ],
+    "params": {
+      "tasks": "<BENCH>/tasks/tasks_freeze.json",
+      "runs": "<BENCH>/runs_v15",
+      "out": "<REPO>/<BENCH>/results_v15.json"
+    },
+    "exclusions": {
+      "examined": 72,
+      "processed": 72,
+      "excluded": {}
+    }
+  }
+}

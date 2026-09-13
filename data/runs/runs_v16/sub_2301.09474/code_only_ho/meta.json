@@ -1,0 +1,185 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-11T00:08:55+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_substitution.json",
+    "--holdout",
+    "<BENCH>/tasks/holdout_sets.json",
+    "--out",
+    "<BENCH>/runs_v16",
+    "--workers",
+    "2",
+    "--arms",
+    "syntology_ho,code_only_ho",
+    "--only",
+    "in__2505.24844,in__2110.02544,off_2402.05367,sub_2006.09226,sub_2301.09474,sub_2304.03274",
+    "--intent",
+    "v1.6 substitution experiment (PREREGISTRATION_SUBSTITUTION.md): hold each task's own code out of BOTH arms and measure what each offers instead; tests proximity, which no version of this benchmark has ever tested; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "1cc0d2d73a2768b25449c398f0afc1c5fb746868",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 77302,
+    "mtime": "2026-09-10T23:52:11+00:00",
+    "path": "<BENCH>/tasks/tasks_substitution.json",
+    "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1"
+   }
+  ],
+  "params": {
+   "arm": "code_only_ho",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "code_only_ho",
+ "base_arm": "code_only",
+ "bedrock": {
+  "calls": 20,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 16,
+ "holdout_shas": [
+  "5ea303260d853959d9368904305fa96a8bb126a71ccc8bbb22bdd04a6366ed50",
+  "a60d050b85355f25",
+  "a7d3d6028a35c805",
+  "e2eb739b5032d913"
+ ],
+ "method": "DIFFORMER",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "tool_use",
+ "stratum": "substitution_new",
+ "submitted": false,
+ "syntology_calls": 0,
+ "task_id": "sub_2301.09474",
+ "tool_calls": [
+  {
+   "args_chars": 52,
+   "tool": "code_search",
+   "turn": 0
+  },
+  {
+   "args_chars": 76,
+   "tool": "code_search",
+   "turn": 0
+  },
+  {
+   "args_chars": 73,
+   "tool": "code_search",
+   "turn": 1
+  },
+  {
+   "args_chars": 60,
+   "tool": "code_search",
+   "turn": 1
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 2
+  },
+  {
+   "args_chars": 1159,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 916,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 78,
+   "tool": "code_search",
+   "turn": 5
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 6
+  },
+  {
+   "args_chars": 86,
+   "tool": "code_search",
+   "turn": 7
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 8
+  },
+  {
+   "args_chars": 87,
+   "tool": "code_search",
+   "turn": 9
+  },
+  {
+   "args_chars": 87,
+   "tool": "code_search",
+   "turn": 10
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 11
+  },
+  {
+   "args_chars": 2108,
+   "tool": "run_python",
+   "turn": 12
+  },
+  {
+   "args_chars": 701,
+   "tool": "run_python",
+   "turn": 13
+  },
+  {
+   "args_chars": 342,
+   "tool": "run_python",
+   "turn": 14
+  },
+  {
+   "args_chars": 68,
+   "tool": "code_search",
+   "turn": 15
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 16
+  },
+  {
+   "args_chars": 35,
+   "tool": "code_get",
+   "turn": 17
+  },
+  {
+   "args_chars": 35,
+   "tool": "code_get",
+   "turn": 18
+  },
+  {
+   "args_chars": 1915,
+   "tool": "run_python",
+   "turn": 19
+  }
+ ],
+ "turns": 20,
+ "usage": {
+  "cacheReadInputTokens": 501119,
+  "cacheWriteInputTokens": 41559,
+  "inputTokens": 102,
+  "outputTokens": 4877
+ },
+ "variant": "v14_freeze",
+ "wall_s": 101.0
+}

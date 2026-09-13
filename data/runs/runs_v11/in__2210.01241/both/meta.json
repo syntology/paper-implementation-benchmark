@@ -1,0 +1,135 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T16:47:27+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--variant",
+    "salience",
+    "--out",
+    "<BENCH>/runs_v11",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.1 ablation per ABLATION_V11.md: does description-level salience alone fix the 0/24 get_reference_implementation adoption in the both arm"
+   ],
+   "git_commit": "6d56a11992dac2668d46c9702a10367b29c9a141",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 14,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "NLPO",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 8,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 1,
+ "task_id": "in__2210.01241",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 60,
+   "tool": "fetch_url",
+   "turn": 3
+  },
+  {
+   "args_chars": 44,
+   "tool": "github_fetch_file",
+   "turn": 4
+  },
+  {
+   "args_chars": 55,
+   "tool": "github_fetch_file",
+   "turn": 5
+  },
+  {
+   "args_chars": 59,
+   "tool": "github_fetch_file",
+   "turn": 6
+  },
+  {
+   "args_chars": 66,
+   "tool": "github_fetch_file",
+   "turn": 7
+  },
+  {
+   "args_chars": 2347,
+   "tool": "run_python",
+   "turn": 8
+  },
+  {
+   "args_chars": 1689,
+   "tool": "run_python",
+   "turn": 9
+  },
+  {
+   "args_chars": 364,
+   "tool": "run_python",
+   "turn": 10
+  },
+  {
+   "args_chars": 131,
+   "tool": "run_python",
+   "turn": 11
+  },
+  {
+   "args_chars": 27,
+   "tool": "run_python",
+   "turn": 12
+  },
+  {
+   "args_chars": 1743,
+   "tool": "submit_solution",
+   "turn": 13
+  }
+ ],
+ "turns": 14,
+ "usage": {
+  "cacheReadInputTokens": 359738,
+  "cacheWriteInputTokens": 35935,
+  "inputTokens": 70,
+  "outputTokens": 3856
+ },
+ "variant": "salience",
+ "wall_s": 74.6
+}

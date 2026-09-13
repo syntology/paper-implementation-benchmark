@@ -1,0 +1,133 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-11T00:05:46+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_substitution.json",
+    "--holdout",
+    "<BENCH>/tasks/holdout_sets.json",
+    "--out",
+    "<BENCH>/runs_v16",
+    "--workers",
+    "2",
+    "--arms",
+    "syntology_ho,code_only_ho",
+    "--only",
+    "in__2505.24844,in__2110.02544,off_2402.05367,sub_2006.09226,sub_2301.09474,sub_2304.03274",
+    "--intent",
+    "v1.6 substitution experiment (PREREGISTRATION_SUBSTITUTION.md): hold each task's own code out of BOTH arms and measure what each offers instead; tests proximity, which no version of this benchmark has ever tested; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "1cc0d2d73a2768b25449c398f0afc1c5fb746868",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 77302,
+    "mtime": "2026-09-10T23:52:11+00:00",
+    "path": "<BENCH>/tasks/tasks_substitution.json",
+    "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1"
+   }
+  ],
+  "params": {
+   "arm": "code_only_ho",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "code_only_ho",
+ "base_arm": "code_only",
+ "bedrock": {
+  "calls": 7,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 5,
+ "holdout_shas": [
+  "08bc67177889a2b3",
+  "1905f5c7465accec",
+  "211b65805e3d00f5",
+  "30b971afd000a522",
+  "355814dd5ff90a73",
+  "3e9c7f43e77628ea",
+  "4822786f826bcb45b66d0648856d85e75f158f728eedc637648107376050d66d",
+  "500395d982e1b1bb",
+  "5a3c7c6596133237",
+  "5b8ea40ba7cb0c66",
+  "8147e91b3d0fe9f1",
+  "850da12d3368c65a",
+  "afcbe0b62b04095b",
+  "b48a3565db4b5491",
+  "c62ea025f6578059",
+  "d32eca8fe0b18c43",
+  "fa54d99ecac04864"
+ ],
+ "method": "Dual-Aspect Collaborative Transformer (DACT)",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 0,
+ "task_id": "in__2110.02544",
+ "tool_calls": [
+  {
+   "args_chars": 78,
+   "tool": "code_search",
+   "turn": 0
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 1
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 1
+  },
+  {
+   "args_chars": 83,
+   "tool": "code_get",
+   "turn": 1
+  },
+  {
+   "args_chars": 61,
+   "tool": "code_search",
+   "turn": 2
+  },
+  {
+   "args_chars": 3669,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 3341,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 80,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 2109,
+   "tool": "submit_solution",
+   "turn": 6
+  }
+ ],
+ "turns": 7,
+ "usage": {
+  "cacheReadInputTokens": 61632,
+  "cacheWriteInputTokens": 14663,
+  "inputTokens": 35,
+  "outputTokens": 4273
+ },
+ "variant": "v14_freeze",
+ "wall_s": 50.1
+}

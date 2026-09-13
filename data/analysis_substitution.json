@@ -1,0 +1,215 @@
+{
+  "arms": [
+    "none",
+    "syntology_ho",
+    "code_only_ho"
+  ],
+  "n_tasks_run": 49,
+  "n_tasks_usable": 49,
+  "invalidated_by_leak": [],
+  "leaks": [],
+  "table": {
+    "none": {
+      "n": 48,
+      "passed": 24,
+      "mean_property_fraction": 0.6413,
+      "no_submission": 0
+    },
+    "syntology_ho": {
+      "n": 49,
+      "passed": 25,
+      "mean_property_fraction": 0.6844,
+      "no_submission": 0
+    },
+    "code_only_ho": {
+      "n": 49,
+      "passed": 24,
+      "mean_property_fraction": 0.6701,
+      "no_submission": 1
+    }
+  },
+  "comparisons": {
+    "syntology_ho vs code_only_ho": {
+      "wins": 6,
+      "losses": 5,
+      "n_paired": 49,
+      "p": 1.0,
+      "discordant": {
+        "favours_syntology_ho": [
+          "in__2505.24844",
+          "off_2209.02257",
+          "off_2311.15100",
+          "sub_2006.05849",
+          "sub_2010.02089",
+          "sub_2210.05922"
+        ],
+        "favours_code_only_ho": [
+          "in__2009.14794",
+          "off_2006.06051",
+          "off_2101.08543",
+          "off_2402.05367",
+          "sub_2202.08836"
+        ]
+      },
+      "wilcoxon_property_fraction": {
+        "n_nonzero": 17,
+        "W_plus": 80.5,
+        "W_minus": 72.5,
+        "W": 72.5,
+        "z": -0.189,
+        "p": 0.8899688720703125
+      },
+      "n_paired_fraction": 49,
+      "mean_fraction_delta": 0.0143
+    },
+    "syntology_ho vs none": {
+      "wins": 3,
+      "losses": 3,
+      "n_paired": 48,
+      "p": 1.0,
+      "discordant": {
+        "favours_syntology_ho": [
+          "in__2505.24844",
+          "off_2209.02257",
+          "off_2210.17323"
+        ],
+        "favours_none": [
+          "off_2101.08543",
+          "sub_2110.06197",
+          "sub_2202.08836"
+        ]
+      },
+      "wilcoxon_property_fraction": {
+        "n_nonzero": 16,
+        "W_plus": 83.5,
+        "W_minus": 52.5,
+        "W": 52.5,
+        "z": -0.801,
+        "p": 0.4637451171875
+      },
+      "n_paired_fraction": 48,
+      "mean_fraction_delta": 0.0365
+    },
+    "code_only_ho vs none": {
+      "wins": 4,
+      "losses": 5,
+      "n_paired": 48,
+      "p": 1.0,
+      "discordant": {
+        "favours_code_only_ho": [
+          "in__2009.14794",
+          "off_2006.06051",
+          "off_2210.17323",
+          "off_2402.05367"
+        ],
+        "favours_none": [
+          "off_2311.15100",
+          "sub_2006.05849",
+          "sub_2010.02089",
+          "sub_2110.06197",
+          "sub_2210.05922"
+        ]
+      },
+      "wilcoxon_property_fraction": {
+        "n_nonzero": 15,
+        "W_plus": 66.5,
+        "W_minus": 53.5,
+        "W": 53.5,
+        "z": -0.369,
+        "p": 0.76153564453125
+      },
+      "n_paired_fraction": 48,
+      "mean_fraction_delta": 0.0219
+    }
+  },
+  "effort": {
+    "none": {
+      "median_turns": 5.0,
+      "median_wall_s": 30.05,
+      "median_cost_usd": 0.0464,
+      "total_cost_usd": 2.3057
+    },
+    "syntology_ho": {
+      "median_turns": 7,
+      "median_wall_s": 50.5,
+      "median_cost_usd": 0.0846,
+      "total_cost_usd": 4.4732
+    },
+    "code_only_ho": {
+      "median_turns": 10,
+      "median_wall_s": 57.0,
+      "median_cost_usd": 0.1787,
+      "total_cost_usd": 9.03
+    }
+  },
+  "adoption": {
+    "none": {
+      "arm_tool_calls": 0,
+      "runs_that_received_an_artifact": 0,
+      "runs": 48,
+      "syntology_compose_calls": 0,
+      "distinct_substitute_origins": 0
+    },
+    "syntology_ho": {
+      "arm_tool_calls": 171,
+      "runs_that_received_an_artifact": 2,
+      "runs": 49,
+      "syntology_compose_calls": 0,
+      "distinct_substitute_origins": 4
+    },
+    "code_only_ho": {
+      "arm_tool_calls": 377,
+      "runs_that_received_an_artifact": 49,
+      "runs": 49,
+      "syntology_compose_calls": 0,
+      "distinct_substitute_origins": 147
+    }
+  },
+  "total_spend_usd": 15.8089,
+  "_provenance": {
+    "schema": "syntology-provenance/1",
+    "created_at": "2026-09-11T00:57:42+00:00",
+    "generator": {
+      "script": "<BENCH>/analyze_substitution.py",
+      "argv": [
+        "--results",
+        "<BENCH>/results_v16.json",
+        "--runs",
+        "<BENCH>/runs_v16",
+        "--holdout",
+        "<BENCH>/tasks/holdout_sets.json",
+        "--tasks",
+        "<BENCH>/tasks/tasks_substitution.json"
+      ],
+      "git_commit": "c08309d8fe2344f9a88b9547d7311ba5adae1adc",
+      "git_dirty": true
+    },
+    "inputs": [
+      {
+        "path": "<BENCH>/results_v16.json",
+        "sha256": "4ca3f43e25f9eb967f4114b7a20521e8686771a0a1ee2e20613cb6d1d36b7a7f",
+        "bytes": 118795,
+        "mtime": "2026-09-11T00:57:35+00:00"
+      },
+      {
+        "path": "<BENCH>/tasks/holdout_sets.json",
+        "sha256": "4acee75ef6afb2827f44fbff0f888e397a8c0df9f8ec9d06db88f91c4766ea65",
+        "bytes": 101517,
+        "mtime": "2026-09-10T23:53:04+00:00"
+      },
+      {
+        "path": "<BENCH>/tasks/tasks_substitution.json",
+        "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1",
+        "bytes": 77302,
+        "mtime": "2026-09-10T23:52:11+00:00"
+      }
+    ],
+    "params": {
+      "results": "<BENCH>/results_v16.json",
+      "runs": "<BENCH>/runs_v16",
+      "holdout": "<BENCH>/tasks/holdout_sets.json",
+      "tasks": "<BENCH>/tasks/tasks_substitution.json",
+      "out": "<REPO>/<BENCH>/analysis_substitution.json"
+    }
+  }
+}

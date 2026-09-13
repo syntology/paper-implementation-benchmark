@@ -1,0 +1,120 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T19:55:20+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--variant",
+    "v13",
+    "--out",
+    "<BENCH>/runs_v13",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.3 per ABLATION_V13.md: behavioral measurement of the STRUCTURAL fix (cbc9a69) -- inline verified_reference_implementations in the paper tools, server-level instructions, and the 0bd28b9 get-resolver token fallback. Shim re-lifted from main.py@cbc9a69 by ast extraction. Pre-registered adoption 8-11/24, floor 6, ceiling 12."
+   ],
+   "git_commit": "dd5477db7b693fb08d394deb2b9c05f98158d91a",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 12,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "SUNGEN",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 4,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 2,
+ "task_id": "in__2205.12679",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 34,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 3
+  },
+  {
+   "args_chars": 62,
+   "tool": "github_search_code",
+   "turn": 4
+  },
+  {
+   "args_chars": 56,
+   "tool": "github_fetch_file",
+   "turn": 5
+  },
+  {
+   "args_chars": 3365,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 2536,
+   "tool": "run_python",
+   "turn": 7
+  },
+  {
+   "args_chars": 600,
+   "tool": "run_python",
+   "turn": 8
+  },
+  {
+   "args_chars": 124,
+   "tool": "run_python",
+   "turn": 9
+  },
+  {
+   "args_chars": 62,
+   "tool": "run_python",
+   "turn": 10
+  },
+  {
+   "args_chars": 2027,
+   "tool": "submit_solution",
+   "turn": 11
+  }
+ ],
+ "turns": 12,
+ "usage": {
+  "cacheReadInputTokens": 257072,
+  "cacheWriteInputTokens": 32807,
+  "inputTokens": 58,
+  "outputTokens": 4524
+ },
+ "variant": "v13",
+ "wall_s": 68.4
+}

@@ -1,0 +1,283 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e1ec7af6019ac03b0ce6921b29fe1f013170e36c9061054c0e2fdebc60c69fe4 bytes=622 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=ea6095ad928c61285ce59684fec3590a6964cc596e9276dd90f1e7da227bbcf2 bytes=112 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2102.03607"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_nhmvjMXkNXFYi7WE2OJc8q",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2102.03607"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_d7sqpWHrgcxsDdGsDRYRQZ",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Bootstrapping Fitted Q-Evaluation for Off-Policy Inference\", \"abstract\": \"<redacted body sha256=7216134c6393544b4ddaa2d71db32fb141ea6c666999b986afab8d187c727be7 bytes=986 field=abstract origin=2102.03607>\", \"arxiv_id\": \"2102.03607\", \"source_file\": \"2102.03607v3.tei.xml\", \"conference\": \"icml\", \"venue\": \"ICML\", \"year\": 2021, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Csaba Szepesv\\u00e1ri\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Botao Hao\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Mengdi Wang\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Xiang Ji\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Yaqi Duan\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Hao Lu\", \"provenance\": \"deterministic:grobid_header_parse\"}], \"repos\": [], \"reviews\": [], \"n_reviews\": 0, \"authors_note\": \"all 6 author(s), in no particular order -- this graph does not record author position, so the first name here is not necessarily the first-listed author\"}"
+      }
+     ],
+     "toolUseId": "tooluse_nhmvjMXkNXFYi7WE2OJc8q"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2102.03607\", \"repos\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_d7sqpWHrgcxsDdGsDRYRQZ"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=19af9894ee302ff9a3e934983fd12a9a72aef7d9ef2f5ef427e4bb735676cb96 bytes=83 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "bootstrapping FQE"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_SepihQ0wIN0pcP0cg1B7SH",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Pessimistic Bootstrapping for offline RL (PBRL)\", \"origin_arxiv_id\": \"2202.11566\", \"paper_title\": \"Pessimistic Bootstrapping for Uncertainty-Driven Offline Reinforcement Learning\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Bootstrapping (BS) framework\", \"origin_arxiv_id\": \"2510.19422\", \"paper_title\": \"LLM Unlearning with LLM Beliefs\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"LLM-based Multi-Agent framework\", \"origin_arxiv_id\": \"2503.02445\", \"paper_title\": \"BRIDGE: Bootstrapping Text to Control Time-Series Generation via Multi-Agent Iterative Optimization and Diffusion Modeling\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}], \"note\": \"No entry matched all 2 query tokens, but 3 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_SepihQ0wIN0pcP0cg1B7SH"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=55ff416e42620713b613c61502db906b2d3a6bb5c1af5fe68f33b4b8d16d201e bytes=27 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "FQE"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_Q5FX1AsYaLDW4UvSI5RxKB",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "fitted Q-evaluation"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_hg0PUM3lp3cYyL71nzsyMx",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_Q5FX1AsYaLDW4UvSI5RxKB"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Fitted Likelihood Estimation (FLE)\", \"origin_arxiv_id\": \"2302.09456\", \"paper_title\": \"Distributional Offline Policy Evaluation with Predictive Error Guarantees\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 3, \"matched_distinctive\": 2, \"of_distinctive\": 2}, {\"method\": \"3S Testing\", \"origin_arxiv_id\": \"2310.16524\", \"paper_title\": \"Can You Rely on Your Model Evaluation? Improving Model Evaluation with Synthetic Test Data\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Active Testing\", \"origin_arxiv_id\": \"2103.05331\", \"paper_title\": \"Active Testing: Sample-Efficient Model Evaluation\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Chain-of-Embedding (CoE)\", \"origin_arxiv_id\": \"2410.13640\", \"paper_title\": \"Latent Space Chain-of-Embedding Enables Output-free LLM Self-Evaluation\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"DUET\", \"origin_arxiv_id\": \"2502.00270\", \"paper_title\": \"DUET: OPTIMIZING LLM TRAINING DATA MIXTURES VIA NOISY FEEDBACK FROM UNSEEN EVALUATION TASKS\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"LyCORIS\", \"origin_arxiv_id\": \"2309.14859\", \"paper_title\": \"Navigating Text-To-Image Customization: From LyCORIS Fine-Tuning to Model Evaluation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"METAGL\", \"origin_arxiv_id\": \"2206.09280\", \"paper_title\": \"MetaGL: Evaluation-Free Selection of Graph Learning Models via Meta-Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Prior-Data Fitted Networks (PFNs)\", \"origin_arxiv_id\": \"2112.10510\", \"paper_title\": \"Transformers Can Do Bayesian Inference\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Robust Fitted Q-Iteration (RFQI)\", \"origin_arxiv_id\": \"2208.05129\", \"paper_title\": \"Robust Reinforcement Learning using Offline Data\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"a new IRM variant\", \"origin_arxiv_id\": \"2303.02343\", \"paper_title\": \"What Is Missing in IRM Training and Evaluation? Challenges and Solutions\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"autoregressive dynamics models\", \"origin_arxiv_id\": \"2104.13877\", \"paper_title\": \"Autoregressive Dynamics Models for Offline Policy Evaluation and Optimization\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"new evaluation metrics for unlearning based on data poisoning\", \"origin_arxiv_id\": \"2406.17216\", \"paper_title\": \"Machine Unlearning Fails to Remove Data Poisoning Attacks\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"token importance evaluation method\", \"origin_arxiv_id\": \"2409.18962\", \"paper_title\": \"Exploring Token Pruning in Vision State Space Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"variational framework\", \"origin_arxiv_id\": \"2008.06668\", \"paper_title\": \"Accountable Off-Policy Evaluation With Kernel Bellman Statistics\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"AgentAuditor\", \"origin_arxiv_id\": \"2506.00641\", \"paper_title\": \"AgentAuditor: Human-Level Safety and Security Evaluation for LLM Agents\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Automated Evaluation of Retrieval-Augmented Language Models with Task-Specific Exam Generation\", \"origin_arxiv_id\": \"2405.13622\", \"paper_title\": \"Automated Evaluation of Retrieval-Augmented Language Models with Task-Specific Exam Generation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Delaunay Component Analysis (DCA)\", \"origin_arxiv_id\": \"2202.06866\", \"paper_title\": \"Delaunay Component Analysis for Evaluation of Data Representations\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Generative Synopsis Peer Prediction Mechanism (GSPPM)\", \"origin_arxiv_id\": \"2405.15077\", \"paper_title\": \"Eliciting Informative Text Evaluations with Large Language Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"PromptEval\", \"origin_arxiv_id\": \"2405.17202\", \"paper_title\": \"Efficient multi-prompt evaluation of LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Variational Latent Branching Model (VLBM)\", \"origin_arxiv_id\": \"2301.12056\", \"paper_title\": \"Variational Latent Branching Model for Off-Policy Evaluation\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"future-dependent value-based off-policy evaluation\", \"origin_arxiv_id\": \"2207.13081\", \"paper_title\": \"Future-Dependent Value-Based Off-Policy Evaluation in POMDPs\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 2}], \"note\": \"No entry matched all 3 query tokens, but 21 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_hg0PUM3lp3cYyL71nzsyMx"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=507e4e937c57a98a3f4ddc559bda7c6a274562c99035e2125de13b423ae95e84 bytes=658 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=d77457b3a8adcd393aac472f8b811b3a5b358fb19c285de58254d7038ec77251 bytes=1186 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_HXy4aPsQl65Fbk8gancDk0",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=3721cc7fb98d034ad49cf75d3f847f3d177b898fa9eda98bbc2343cea4926f79 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_HXy4aPsQl65Fbk8gancDk0"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=1cebd07da163ba520fd53d64e5b72bdc6f932b7bca277f72d059fe26558ab850 bytes=576 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_i7hxBsTd0PkxN7ztXia8Tm",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=3721cc7fb98d034ad49cf75d3f847f3d177b898fa9eda98bbc2343cea4926f79 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_i7hxBsTd0PkxN7ztXia8Tm"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7be4adfc4f1ddf0eb3f02a966bf43e8a9ee0e8d83ddd29a4653cf20133813edc bytes=32 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=e8538efbaa306bf05b3f564e74c99b9b5ce35e6fbfcb1c1c488bd9bccb8f231b bytes=33 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_6L7fP4hJ2MTZTkijgKXDXi",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=3721cc7fb98d034ad49cf75d3f847f3d177b898fa9eda98bbc2343cea4926f79 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_6L7fP4hJ2MTZTkijgKXDXi"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=991587eef4239994e48a5a1a63364d584778c4080ececf0a3ce0e69e520a355e bytes=8309 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=5af8382b44f33b63bd5b01e2dc5b83fc662f1b26f3731f5ab7e655dc7964878c bytes=732 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_spwmlNcQTSvSddqne5XaSk",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_spwmlNcQTSvSddqne5XaSk"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

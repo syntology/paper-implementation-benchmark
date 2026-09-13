@@ -1,0 +1,117 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-11T00:48:25+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_substitution.json",
+    "--holdout",
+    "<BENCH>/tasks/holdout_sets.json",
+    "--out",
+    "<BENCH>/runs_v16",
+    "--workers",
+    "2",
+    "--arms",
+    "syntology_ho,code_only_ho",
+    "--only",
+    "in__2505.24844,in__2502.00270,in__2007.06680,in__2205.12679,in__2210.09759,in__2210.01241,in__2110.02544,in__2305.19587,in__2102.03607,in__2009.14794,in__2102.05291,in__2402.03293,off_2306.12360,off_2101.08543,off_2006.06051,off_2302.11002,off_2403.05751,off_2207.04892,off_2402.05367,off_2210.17323,off_2003.01794,off_2209.02257,off_2311.15100,off_2406.04606,sub_2006.09226,sub_2211.09981,sub_2210.05922,sub_2504.13055,sub_2202.02794,sub_2106.09296,sub_2010.02089,sub_2208.04202,sub_2210.08196,sub_2302.10685,sub_2110.03735,sub_2110.06197,sub_2301.09474,sub_2202.08836,sub_2202.00914,sub_2405.16852,sub_2401.06118,sub_2006.05849,sub_2201.09765,sub_2310.16450,sub_2106.03632,sub_2305.14093,sub_2107.00306,sub_2206.06662",
+    "--intent",
+    "v1.6 substitution experiment primary sweep (PREREGISTRATION_SUBSTITUTION.md): 48 tasks x 2 hold-out arms; hold-out verified clean 0 findings on all 72 tasks before any of this spend"
+   ],
+   "git_commit": "c8b117b278237a7614a2cc50a7c3ea95f1921012",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 77302,
+    "mtime": "2026-09-10T23:52:11+00:00",
+    "path": "<BENCH>/tasks/tasks_substitution.json",
+    "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1"
+   }
+  ],
+  "params": {
+   "arm": "syntology_ho",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "syntology_ho",
+ "base_arm": "syntology",
+ "bedrock": {
+  "calls": 8,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 0,
+ "holdout_shas": [
+  "002f73ae336246d8e0ce5ef4d5d3cc99610bbc1793ae6ec164a48e30639a5cc4"
+ ],
+ "method": "Data-SUITE",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "substitution_new",
+ "submitted": true,
+ "syntology_calls": 3,
+ "task_id": "sub_2202.08836",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 23,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 1
+  },
+  {
+   "args_chars": 1326,
+   "tool": "run_python",
+   "turn": 2
+  },
+  {
+   "args_chars": 804,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 508,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 69,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 2230,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 1675,
+   "tool": "submit_solution",
+   "turn": 7
+  }
+ ],
+ "turns": 8,
+ "usage": {
+  "cacheReadInputTokens": 62499,
+  "cacheWriteInputTokens": 9775,
+  "inputTokens": 40,
+  "outputTokens": 2995
+ },
+ "variant": "v14_freeze",
+ "wall_s": 53.1
+}

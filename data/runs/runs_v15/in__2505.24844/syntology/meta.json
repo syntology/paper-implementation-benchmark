@@ -1,0 +1,101 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-10T20:00:34+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_freeze.json",
+    "--out",
+    "<BENCH>/runs_v15",
+    "--workers",
+    "2",
+    "--arms",
+    "none,syntology,code_only",
+    "--only",
+    "in__2505.24844,off_2101.08543",
+    "--intent",
+    "v1.5 smoke: 2 tasks x 3 arms, plumbing + cost projection for the 72-run sweep (PREREGISTRATION_CODE_ONLY.md cost gate)"
+   ],
+   "git_commit": "dd70a42299f8541b98b7532ea42e22440f31d2ab",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 27406,
+    "mtime": "2026-09-02T19:03:42+00:00",
+    "path": "<BENCH>/tasks/tasks_freeze.json",
+    "sha256": "3c35c35d8b38ee3c280108657354c3bb8b3da5545fad51a34c24a20ce1dd19ab"
+   }
+  ],
+  "params": {
+   "arm": "syntology",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "syntology",
+ "bedrock": {
+  "calls": 6,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 0,
+ "method": "CHAMELEON",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 3,
+ "task_id": "in__2505.24844",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 22,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 0
+  },
+  {
+   "args_chars": 37,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 2559,
+   "tool": "run_python",
+   "turn": 2
+  },
+  {
+   "args_chars": 2562,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 244,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 1520,
+   "tool": "submit_solution",
+   "turn": 5
+  }
+ ],
+ "turns": 6,
+ "usage": {
+  "cacheReadInputTokens": 35003,
+  "cacheWriteInputTokens": 10920,
+  "inputTokens": 30,
+  "outputTokens": 3151
+ },
+ "variant": "v14_freeze",
+ "wall_s": 40.7
+}

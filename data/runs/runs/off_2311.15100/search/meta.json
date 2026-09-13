@@ -1,0 +1,153 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T16:27:32+00:00",
+  "generator": {
+   "argv": [
+    "--workers",
+    "2",
+    "--intent",
+    "Measure CLAIMS.md's top open-debt row (agent+Syntology vs agent+search, working output): 24 revalidated tasks x 4 arms, Sonnet subjects on Bedrock, pre-registered in <BENCH>/PREREGISTRATION.md"
+   ],
+   "git_commit": "64479bd6e2690ac50081f00170c8d564b68363da",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "search",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "search",
+ "bedrock": {
+  "calls": 20,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "UOT-FM",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 18,
+ "stop_reason": "tool_use",
+ "stratum": "off_catalog",
+ "submitted": false,
+ "syntology_calls": 0,
+ "task_id": "off_2311.15100",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 97,
+   "tool": "search_arxiv",
+   "turn": 1
+  },
+  {
+   "args_chars": 97,
+   "tool": "search_semantic_scholar",
+   "turn": 2
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 3
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 4
+  },
+  {
+   "args_chars": 62,
+   "tool": "github_search_code",
+   "turn": 5
+  },
+  {
+   "args_chars": 49,
+   "tool": "github_search_code",
+   "turn": 6
+  },
+  {
+   "args_chars": 52,
+   "tool": "github_search_code",
+   "turn": 7
+  },
+  {
+   "args_chars": 105,
+   "tool": "github_fetch_file",
+   "turn": 8
+  },
+  {
+   "args_chars": 58,
+   "tool": "github_search_code",
+   "turn": 9
+  },
+  {
+   "args_chars": 68,
+   "tool": "github_fetch_file",
+   "turn": 10
+  },
+  {
+   "args_chars": 66,
+   "tool": "github_fetch_file",
+   "turn": 11
+  },
+  {
+   "args_chars": 67,
+   "tool": "github_fetch_file",
+   "turn": 12
+  },
+  {
+   "args_chars": 76,
+   "tool": "github_fetch_file",
+   "turn": 13
+  },
+  {
+   "args_chars": 74,
+   "tool": "github_fetch_file",
+   "turn": 14
+  },
+  {
+   "args_chars": 1457,
+   "tool": "run_python",
+   "turn": 15
+  },
+  {
+   "args_chars": 64,
+   "tool": "github_search_code",
+   "turn": 16
+  },
+  {
+   "args_chars": 3725,
+   "tool": "run_python",
+   "turn": 17
+  },
+  {
+   "args_chars": 77,
+   "tool": "github_fetch_file",
+   "turn": 18
+  },
+  {
+   "args_chars": 80,
+   "tool": "github_fetch_file",
+   "turn": 19
+  }
+ ],
+ "turns": 20,
+ "usage": {
+  "cacheReadInputTokens": 421326,
+  "cacheWriteInputTokens": 39725,
+  "inputTokens": 98,
+  "outputTokens": 4289
+ },
+ "wall_s": 143.8
+}

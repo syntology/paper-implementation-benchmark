@@ -1,0 +1,303 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=4d1aaab9f3a77460e0c603f362a9e55f8ede47186954f5e4f7b8ac05abaf0043 bytes=663 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=cb968744a08a26dfe8fcb81ad778e9f111463a47cb5ac11e216baefa9f121545 bytes=228 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2305.19587"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_MWUai6tR97XL8anpHy5YKM",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Towards Omni-generalizable Neural Methods for Vehicle Routing Problems\", \"abstract\": \"<redacted body sha256=5f88acb778ed495f76f0842c9eaa580c3d69d65251fd1e08592e4a4e5107bc07 bytes=971 field=abstract origin=2305.19587>\", \"arxiv_id\": \"2305.19587\", \"source_file\": \"2305.19587v2.tei.xml\", \"conference\": \"icml\", \"venue\": \"ICML\", \"year\": 2023, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Jie Zhang\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Zhiguang Cao\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Wen Song\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Jianan Zhou\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Yaoxin Wu\", \"provenance\": \"deterministic:grobid_header_parse\"}], \"repos\": [{\"provenance\": \"deterministic:regex_extraction\", \"url\": \"https://github.com/RoyalSkye/Omni-VRP\"}, {\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/royalskye/omni-vrp\"}], \"reviews\": [], \"n_reviews\": 0, \"authors_note\": \"all 5 author(s), in no particular order -- this graph does not record author position, so the first name here is not necessarily the first-listed author\"}"
+      }
+     ],
+     "toolUseId": "tooluse_MWUai6tR97XL8anpHy5YKM"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2305.19587"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_j4Ra3rbpZgbeFFQtIlwG2m",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2305.19587\", \"repos\": [{\"url\": \"https://github.com/royalskye/omni-vrp\", \"owner\": \"royalskye\", \"repo\": \"omni-vrp\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": true, \"pwc_mentioned_in_paper\": true, \"pwc_mentioned_in_github\": false, \"link_strength\": \"official\"}, {\"url\": \"https://github.com/RoyalSkye/Omni-VRP\", \"owner\": \"RoyalSkye\", \"repo\": \"Omni-VRP\", \"provenance\": \"deterministic:regex_extraction\", \"pwc_is_official\": null, \"pwc_mentioned_in_paper\": null, \"pwc_mentioned_in_github\": null, \"link_strength\": \"listed_only\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_j4Ra3rbpZgbeFFQtIlwG2m"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=dacd2d011b4e821546808d8c11bc1c4caf49ebee746c892f7e2674c860c97cfd bytes=70 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "meta-learning vehicle routing"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_f8a0Sy2ztuLbQQivaEu2dI",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Adaptive Multi-Distribution Knowledge Distillation (AMDKD)\", \"origin_arxiv_id\": \"2210.07686\", \"paper_title\": \"Learning Generalizable Models for Vehicle Routing Problems via Knowledge Distillation\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 3, \"of_tokens\": 4, \"matched_distinctive\": 2, \"of_distinctive\": 3}, {\"method\": \"PIP-D\", \"origin_arxiv_id\": \"2410.21066\", \"paper_title\": \"Learning to Handle Complex Constraints for Vehicle Routing Problems\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 3, \"of_tokens\": 4, \"matched_distinctive\": 2, \"of_distinctive\": 3}, {\"method\": \"Adaptive Deep Kernel Fitting with Implicit Function Theorem (ADKF-IFT)\", \"origin_arxiv_id\": \"2205.02708\", \"paper_title\": \"Meta-learning Adaptive Deep Kernel Gaussian Processes for Molecular Property Prediction\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Adaptive Learning of hyperparameters for Fast Adaptation (ALFA)\", \"origin_arxiv_id\": \"2011.00209\", \"paper_title\": \"Meta-Learning with Adaptive Hyperparameters\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Adaptive Robust Imitative Planning (AdaRIP)\", \"origin_arxiv_id\": \"2006.14911\", \"paper_title\": \"Can Autonomous Vehicles Identify, Recover From, and Adapt to Distribution Shifts?\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"BOOTSTRAPPED META-LEARNING\", \"origin_arxiv_id\": \"2109.04504\", \"paper_title\": \"Bootstrapped Meta-Learning\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Biased SpiderBoost (BSpiderBoost)\", \"origin_arxiv_id\": \"2002.10790\", \"paper_title\": \"Biased Stochastic First-Order Methods for Conditional Stochastic Optimization and Applications in Meta Learning\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Channel Shuffle\", \"origin_arxiv_id\": \"2007.13040\", \"paper_title\": \"Improving Generalization in Meta-learning via Task Augmentation\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"DIMES\", \"origin_arxiv_id\": \"2210.04123\", \"paper_title\": \"DIMES: A Differentiable Meta Solver for Combinatorial Optimization Problems\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"DREAM\", \"origin_arxiv_id\": \"2008.02790\", \"paper_title\": \"Decoupling Exploration and Exploitation for Meta-Reinforcement Learning without Sacrifices\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Denoising Task Routing (DTR)\", \"origin_arxiv_id\": \"2310.07138\", \"paper_title\": \"Denoising Task Routing for Diffusion Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Dual-Aspect Collaborative Transformer (DACT)\", \"origin_arxiv_id\": \"2110.02544\", \"paper_title\": \"Learning to Iteratively Solve Routing Problems with Dual-Aspect Collaborative Transformer\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"EMPIRICAL BAYES TRANSDUCTIVE META-LEARNING WITH SYNTHETIC GRADIENTS\", \"origin_arxiv_id\": \"2004.12696\", \"paper_title\": \"Empirical Bayes Transductive Meta-Learning with Synthetic Gradients\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"G-META\", \"origin_arxiv_id\": \"2006.07889\", \"paper_title\": \"Graph Meta Learning via Local Subgraphs\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Gradient-EM Bayesian Meta-learning\", \"origin_arxiv_id\": \"2006.11764\", \"paper_title\": \"Gradient-EM Bayesian Meta-learning\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Guided Infeasible Region Exploration (GIRE)\", \"origin_arxiv_id\": \"2310.18264\", \"paper_title\": \"Learning to Search Feasible and Infeasible Regions of Routing Problems with Flexible Neural k-Opt\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"HyperX\", \"origin_arxiv_id\": \"2010.01062\", \"paper_title\": \"Exploration in Approximate Hyper-State Space for Meta Reinforcement Learning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Kernel Inducing Points (KIP)\", \"origin_arxiv_id\": \"2011.00050\", \"paper_title\": \"Dataset Meta-Learning from Kernel Ridge-Regression\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Learning Collaborative Policies (LCP)\", \"origin_arxiv_id\": \"2110.13987\", \"paper_title\": \"Learning Collaborative Policies to Solve NP-hard Routing Problems\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"METAGL\", \"origin_arxiv_id\": \"2206.09280\", \"paper_title\": \"MetaGL: Evaluation-Free Selection of Graph Learning Models via Meta-Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta Flow Matching (MFM)\", \"origin_arxiv_id\": \"2408.14608\", \"paper_title\": \"Meta Flow Matching: Integrating Vector Fields on the Wasserstein Manifold\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta-Actor Critic with Advantage Weighting (MACAW)\", \"origin_arxiv_id\": \"2008.06043\", \"paper_title\": \"Offline Meta-Reinforcement Learning with Advantage Weighting\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta-Learning with Task Interpolation (MLTI)\", \"origin_arxiv_id\": \"2106.02695\", \"paper_title\": \"Meta-Learning with Fewer Tasks through Task Interpolation\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta-SAGE\", \"origin_arxiv_id\": \"2306.02688\", \"paper_title\": \"Meta-SAGE: Scale Meta-Learning Scheduled Adaptation with Guided Exploration for Mitigating Scale Shift on Combinatorial Optimization\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta-learner with Subtask Graph Inference (MSGI)\", \"origin_arxiv_id\": \"2001.00248\", \"paper_title\": \"Meta Reinforcement Learning with Autonomous Inference of Subtask Dependencies\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Meta-learning Sparse Implicit Neural Representations\", \"origin_arxiv_id\": \"2110.14678\", \"paper_title\": \"Meta-learning Sparse Implicit Neural Representations\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"MetaAligner\", \"origin_arxiv_id\": \"2403.17141\", \"paper_title\": \"MetaAligner: Towards Generalizable Multi-Objective Alignment of Language Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"MetaD2A\", \"origin_arxiv_id\": \"2107.00860\", \"paper_title\": \"Rapid Neural Architecture Search by Learning to Generate Graphs from Datasets\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"MetaPoison\", \"origin_arxiv_id\": \"2004.00225\", \"paper_title\": \"MetaPoison: Practical General-purpose Clean-label Data Poisoning\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Model-based Adversarial Meta-Reinforcement Learning (AdMRL)\", \"origin_arxiv_id\": \"2006.08875\", \"paper_title\": \"Model-based Adversarial Meta-Reinforcement Learning\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Neural Context Flow (NCF)\", \"origin_arxiv_id\": \"2405.02154\", \"paper_title\": \"Neural Context Flows for Meta-Learning of Dynamical Systems\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Noether Networks\", \"origin_arxiv_id\": \"2112.03321\", \"paper_title\": \"Noether Networks: Meta-Learning Useful Conserved Quantities\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Personalized Federated Learning\", \"origin_arxiv_id\": \"2002.07948\", \"paper_title\": \"Personalized Federated Learning: A Meta-Learning Approach\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Pseudo-supervised Contrast (PsCo)\", \"origin_arxiv_id\": \"2303.00996\", \"paper_title\": \"Unsupervised Meta-Learning via Few-shot Pseudo-supervised Contrastive Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"RepVerb\", \"origin_arxiv_id\": \"2306.00618\", \"paper_title\": \"Effective Structured Prompting by Meta-Learning and Representative Verbalizer\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Scale Equivariant Graph MetaNetworks\", \"origin_arxiv_id\": \"2406.10685\", \"paper_title\": \"Scale Equivariant Graph Metanetworks\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Self-improving Momentum Target (SiMT)\", \"origin_arxiv_id\": \"2210.05185\", \"paper_title\": \"Meta-Learning with Self-Improving Momentum Target\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Self-supervised Auxiliary Learning with Meta-paths\", \"origin_arxiv_id\": \"2007.08294\", \"paper_title\": \"Self-supervised Auxiliary Learning with Meta-paths for Heterogeneous Graphs\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Stochastic Gradient Meta-Reinforcement Learning (SG-MRL)\", \"origin_arxiv_id\": \"2002.05135\", \"paper_title\": \"On the Convergence Theory of Debiased Model-Agnostic Meta-Reinforcement Learning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Style-Adaptive Layer Normalization (SALN)\", \"origin_arxiv_id\": \"2106.03153\", \"paper_title\": \"Meta-StyleSpeech : Multi-Speaker Adaptive Text-to-Speech Generation\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"TrMRL (Transformers for Meta-Reinforcement Learning)\", \"origin_arxiv_id\": \"2206.06614\", \"paper_title\": \"Transformers are Meta-Reinforcement Learners\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Variable Shared Meta Learning (VSML)\", \"origin_arxiv_id\": \"2012.14905\", \"paper_title\": \"Meta Learning Backpropagation And Improving It\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"a new definition of stability for meta-learning algorithms\", \"origin_arxiv_id\": \"2102.03832\", \"paper_title\": \"Generalization of Model-Agnostic Meta-Learning Algorithms: Recurring and Unseen Tasks\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"a new multimodal meta-learner\", \"origin_arxiv_id\": \"2110.14202\", \"paper_title\": \"Revisit Multimodal Meta-Learning through the Lens of Multi-Task Learning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"contrastive learning framework\", \"origin_arxiv_id\": \"2206.10442\", \"paper_title\": \"Robust Task Representations for Offline Meta-Reinforcement Learning via Contrastive Learning\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"hybrid offline meta-RL algorithm\", \"origin_arxiv_id\": \"2107.03974\", \"paper_title\": \"Offline Meta-Reinforcement Learning with Online Self-Supervision\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"meta-learning for equilibrium finding and learning to play games\", \"origin_arxiv_id\": \"2209.14110\", \"paper_title\": \"Meta-Learning in Games *\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"meta-specific data augmentation\", \"origin_arxiv_id\": \"2010.07092\", \"paper_title\": \"Data Augmentation for Meta-Learning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"regularizer for standard training routines\", \"origin_arxiv_id\": \"2002.06753\", \"paper_title\": \"Unraveling Meta-Learning: Understanding Feature Representations for Few-Shot Tasks\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"two-step meta-algorithm\", \"origin_arxiv_id\": \"2302.03020\", \"paper_title\": \"RLSbench: Domain Adaptation Under Relaxed Label Shift\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 4, \"matched_distinctive\": 1, \"of_distinctive\": 3}], \"note\": \"No entry matched all 4 query tokens, but 71 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_f8a0Sy2ztuLbQQivaEu2dI"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=4cfa12be4ee6cf3dfc9f8ff5e94dc3618a53ab91d53422deb3b8ad742f78a1eb bytes=108 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=211990a1d839e4df9191ea57bd8c9598bb815fa2e0e7dcac86b90a0a6df84c79 bytes=1193 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_Zz9XiYXOMRKSQgt380pZqS",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=a9f83264040772f2a26fb9329621cc6ea74a54883eea3bdf5876b471eb3ec216 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_Zz9XiYXOMRKSQgt380pZqS"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=d13573e527ab7228043c11fc76e7f63b3b061e0cb042beeab2cdac49fb01572f bytes=216 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_JT4U3MoaRdmdvCT3AUXhAW",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=a9f83264040772f2a26fb9329621cc6ea74a54883eea3bdf5876b471eb3ec216 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_JT4U3MoaRdmdvCT3AUXhAW"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=138117ac1b2d3ab4f0dcbf3afd2212f813f0ff53763d17d16be09191978ad223 bytes=109 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_ItLrTvobuHh53ssUFjdrEK",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=a9f83264040772f2a26fb9329621cc6ea74a54883eea3bdf5876b471eb3ec216 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_ItLrTvobuHh53ssUFjdrEK"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7be4adfc4f1ddf0eb3f02a966bf43e8a9ee0e8d83ddd29a4653cf20133813edc bytes=32 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=98085bad59c1a550f97680a42b97fb58c2375aaad7efab24f44a43d1f0bb1e43 bytes=3431 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_NFWMA9TYiS5QB85aKOEyll",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=a9f83264040772f2a26fb9329621cc6ea74a54883eea3bdf5876b471eb3ec216 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_NFWMA9TYiS5QB85aKOEyll"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7a77eb85af34ac7a687d34b359e686c755abd7ba6c12a5465bedd4b936b1c2a9 bytes=109 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=3a76de086323318a5027b731c40f9922bf47950ca61809ee9870d30155b1a551 bytes=1550 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_oyXsahSZJLFwSWtfZLIcbp",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=a9f83264040772f2a26fb9329621cc6ea74a54883eea3bdf5876b471eb3ec216 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_oyXsahSZJLFwSWtfZLIcbp"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e0c37eb1e59922346c7888e405744862b434f7b726ee8cea0d8de9e070bbad87 bytes=646 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=1da32591b99dcdf8c54dfc5a559fb3843c7b391852749288e58bab481ed81fd5 bytes=3211 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_NeAAu4KNkz69hrd2Rw2gpb",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_NeAAu4KNkz69hrd2Rw2gpb"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

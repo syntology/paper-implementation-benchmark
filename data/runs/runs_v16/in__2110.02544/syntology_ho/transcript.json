@@ -1,0 +1,252 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=42df2a476a8b7d2acb60d880b78fec1410602cd6bd25e6623c84e9a28d93f42c bytes=681 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=a5955a954d54b60a4b375d8338ac4fb862c7dd02fb196fd965a06746d4dce736 bytes=155 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2110.02544"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_WiyMr96udGY7bVZ9Icvi8B",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "PPO clip"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_TpMRUxdqNeVoTtQkV5uvK3",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Learning to Iteratively Solve Routing Problems with Dual-Aspect Collaborative Transformer\", \"abstract\": \"<redacted body sha256=09f739153b21403bb6c741f188ec9f7623c2e0f402e657f2c86cdc19d7ec7bb8 bytes=1200 field=abstract origin=2110.02544>\", \"arxiv_id\": \"2110.02544\", \"source_file\": \"2110.02544v3.tei.xml\", \"conference\": \"neurips\", \"venue\": \"NeurIPS\", \"year\": 2021, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Yining Ma\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Jingwen Li\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Zhiguang Cao\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Wen Song\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Le Zhang\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Zhenghua Chen\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Jing Tang\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Dac Encoder\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Dac Decoder\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"\\u00d7\\ud835\\udc73 Decoder\", \"provenance\": \"deterministic:grobid_header_parse\"}], \"repos\": [{\"provenance\": \"deterministic:regex_extraction\", \"url\": \"https://github.com/yining043/VRP-DACT\"}, {\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/yining043/TSP-improve\"}], \"reviews\": [], \"n_reviews\": 0}"
+      }
+     ],
+     "toolUseId": "tooluse_WiyMr96udGY7bVZ9Icvi8B"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Automatic Clipping\", \"origin_arxiv_id\": \"2206.07136\", \"paper_title\": \"Automatic Clipping: Differentially Private Deep Learning Made Easier and Stronger\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Beta Moving Average (BMA)\", \"origin_arxiv_id\": \"2302.00864\", \"paper_title\": \"CLIPood: Generalizing CLIP to Out-of-Distributions\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"E2M1 with supernormal support\", \"origin_arxiv_id\": \"2405.03103\", \"paper_title\": \"Learning from Students: Applying t-Distributions to Explore Accurate and Efficient Formats for LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"EPISODE\", \"origin_arxiv_id\": \"2302.07155\", \"paper_title\": \"EPISODE: Episodic Gradient Clipping with Periodic Resampled Corrections for Federated Learning with Heterogeneous Data\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"FAT-Clipping\", \"origin_arxiv_id\": \"2210.00690\", \"paper_title\": \"Taming Fat-Tailed (\\\"Heavier-Tailed\\\" with Potentially Infinite Variance) Noise in Federated Learning\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"FastIBP\", \"origin_arxiv_id\": \"2002.04783\", \"paper_title\": \"Fixed-Support Wasserstein Barycenters: Computational Hardness and Fast Algorithm\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Gaussian Discriminant Analysis (GDA) for CLIP-based adaptation\", \"origin_arxiv_id\": \"2402.04087\", \"paper_title\": \"A Hard-to-Beat Baseline for Training-free CLIP-based Adaptation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"MaskCLIP\", \"origin_arxiv_id\": \"2208.08984\", \"paper_title\": \"Open-Vocabulary Universal Image Segmentation with MaskCLIP\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Open-VCLIP\", \"origin_arxiv_id\": \"2302.00624\", \"paper_title\": \"Open-VCLIP: Transforming CLIP to an Open-vocabulary Video Model via Interpolated Weight Optimization\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Optimistic Linear Support algorithm extension with Successor Features\", \"origin_arxiv_id\": \"2206.11326\", \"paper_title\": \"Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}], \"note\": \"No entry matched all 2 query tokens, but 30 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_TpMRUxdqNeVoTtQkV5uvK3"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=ca0affcd52f16af9c84ede63142c2077f85ef538e8da1bda824692c3fb58715e bytes=56 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "PPO"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_SjhFuXVHdJeH5i2rJxzN8X",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2110.02544"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_GZ0c0UbYKHOlcydBcitsjw",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 11, \"returned\": 10, \"implementations\": [{\"method\": \"E2M1 with supernormal support\", \"origin_arxiv_id\": \"2405.03103\", \"paper_title\": \"Learning from Students: Applying t-Distributions to Explore Accurate and Efficient Formats for LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"FastIBP\", \"origin_arxiv_id\": \"2002.04783\", \"paper_title\": \"Fixed-Support Wasserstein Barycenters: Computational Hardness and Fast Algorithm\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"Optimistic Linear Support algorithm extension with Successor Features\", \"origin_arxiv_id\": \"2206.11326\", \"paper_title\": \"Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"Proximal Learning With Opponent-Learning Awareness (POLA)\", \"origin_arxiv_id\": \"2210.10125\", \"paper_title\": \"Proximal Learning With Opponent-Learning Awareness\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"Reinforced Token Optimization (RTO)\", \"origin_arxiv_id\": \"2404.18922\", \"paper_title\": \"DPO Meets PPO: Reinforced Token Optimization for RLHF\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"Supported Trust Region optimization\", \"origin_arxiv_id\": \"2311.08935\", \"paper_title\": \"Supported Trust Region Optimization for Offline Reinforcement Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"TypiClust\", \"origin_arxiv_id\": \"2202.02794\", \"paper_title\": \"Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3}, {\"method\": \"ADVERSARIAL SUPPORT ALIGNMENT\", \"origin_arxiv_id\": \"2203.08908\", \"paper_title\": \"Adversarial Support Alignment\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2}, {\"method\": \"Binned Fair Quantile Regression (BFQR)\", \"origin_arxiv_id\": \"2311.02243\", \"paper_title\": \"Equal Opportunity of Coverage in Fair Regression\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 2}, {\"method\": \"Constrained Pessimistic Policy Optimization (CPPO)\", \"origin_arxiv_id\": \"2107.06226\", \"paper_title\": \"Pessimistic Model-based Offline Reinforcement Learning under Partial Coverage\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2}]}"
+      }
+     ],
+     "toolUseId": "tooluse_SjhFuXVHdJeH5i2rJxzN8X"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2110.02544\", \"repos\": [{\"url\": \"https://github.com/yining043/VRP-DACT\", \"owner\": \"yining043\", \"repo\": \"VRP-DACT\", \"provenance\": \"deterministic:regex_extraction\", \"pwc_is_official\": true, \"pwc_mentioned_in_paper\": true, \"pwc_mentioned_in_github\": true, \"link_strength\": \"official\"}, {\"url\": \"https://github.com/yining043/TSP-improve\", \"owner\": \"yining043\", \"repo\": \"TSP-improve\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": false, \"pwc_mentioned_in_paper\": false, \"pwc_mentioned_in_github\": true, \"link_strength\": \"mentioned_in_github\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_GZ0c0UbYKHOlcydBcitsjw"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=444f98925f5f19e840abfd3ba24741d0d1961cb5ef2353c21ea6f105caa8636a bytes=166 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=112a717fca0989f4797dc23060fcc58d4d3b5bd5a8634fc7cc4a12347d5344a5 bytes=1902 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_ZCYMXiJdEtgygUCOLjQVct",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=c49e0750e3c03d3025f1a488d8ad839a2669d6a0fad162374e2b15173a4210f8 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_ZCYMXiJdEtgygUCOLjQVct"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=6ae75bd61727c28a9317f1d0ba19b9c2c93c5edaf0486187ef1c4ecaeee6b09b bytes=1561 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_dY8oUtNW5ayactW96c5yKc",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=c49e0750e3c03d3025f1a488d8ad839a2669d6a0fad162374e2b15173a4210f8 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_dY8oUtNW5ayactW96c5yKc"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=0ad179f0ddcbfcb17c77dbf56afdbeaaead85912af4aec3222c6f5b09831e61e bytes=61 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=06cfbe284a5ad229ac56c03b5847f7ea21b541992af8b4fe6ba0fb399c22c3d7 bytes=56 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_mr9w5MeLeuAy19HMasalMb",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=c49e0750e3c03d3025f1a488d8ad839a2669d6a0fad162374e2b15173a4210f8 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_mr9w5MeLeuAy19HMasalMb"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=c0ff3bb017bacd7a88b4c7bfdee1e27f8e81c455b71aaeee7e8dccbb06c66e11 bytes=880 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=75e9de3a8f4844a0d138a89ffca5bede1a9df5ae1dbdb15970de3bf22d7cb0e8 bytes=1811 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_bQAZpWq5nCRJdqNhtCfweF",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_bQAZpWq5nCRJdqNhtCfweF"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

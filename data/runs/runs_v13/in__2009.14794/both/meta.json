@@ -1,0 +1,110 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T19:57:42+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--variant",
+    "v13",
+    "--out",
+    "<BENCH>/runs_v13",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.3 per ABLATION_V13.md: behavioral measurement of the STRUCTURAL fix (cbc9a69) -- inline verified_reference_implementations in the paper tools, server-level instructions, and the 0bd28b9 get-resolver token fallback. Shim re-lifted from main.py@cbc9a69 by ast extraction. Pre-registered adoption 8-11/24, floor 6, ceiling 12."
+   ],
+   "git_commit": "dd5477db7b693fb08d394deb2b9c05f98158d91a",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 9,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "Performers",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 4,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 3,
+ "task_id": "in__2009.14794",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 45,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 0
+  },
+  {
+   "args_chars": 38,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 2706,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 2070,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 77,
+   "tool": "search_semantic_scholar",
+   "turn": 5
+  },
+  {
+   "args_chars": 93,
+   "tool": "github_search_code",
+   "turn": 6
+  },
+  {
+   "args_chars": 67,
+   "tool": "github_search_code",
+   "turn": 7
+  },
+  {
+   "args_chars": 1561,
+   "tool": "submit_solution",
+   "turn": 8
+  }
+ ],
+ "turns": 9,
+ "usage": {
+  "cacheReadInputTokens": 140652,
+  "cacheWriteInputTokens": 23226,
+  "inputTokens": 45,
+  "outputTokens": 3483
+ },
+ "variant": "v13",
+ "wall_s": 67.4
+}

@@ -1,0 +1,4179 @@
+{
+  "runs": [
+    {
+      "task_id": "in__2007.06680",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 44,
+        "outputTokens": 3816,
+        "cacheReadInputTokens": 117412,
+        "cacheWriteInputTokens": 23995
+      },
+      "turns": 8,
+      "wall_s": 58.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+        "beta_t=1 returns g_current_theta_t",
+        "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+      ],
+      "failure_details": [
+        {
+          "name": "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+          "detail": "Expected [1.215 2.36  3.505], got [0.5 1.5 2.5]"
+        },
+        {
+          "name": "beta_t=1 returns g_current_theta_t",
+          "detail": "Expected [0.5 1.5 2.5], got [1.165 2.26  3.355]"
+        },
+        {
+          "name": "w_ratio=1 and g_current=g_prev simplifies to momentum blend",
+          "detail": "Expected [0.65 1.65 2.65], got [0.85 1.85 2.85]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2007.06680",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3596,
+        "cacheReadInputTokens": 12940,
+        "cacheWriteInputTokens": 4592
+      },
+      "turns": 6,
+      "wall_s": 45.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+        "beta_t=1 returns g_current_theta_t",
+        "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+      ],
+      "failure_details": [
+        {
+          "name": "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+          "detail": "Expected [1.215 2.36  3.505], got [0.215 0.36  0.505]"
+        },
+        {
+          "name": "beta_t=1 returns g_current_theta_t",
+          "detail": "Expected [0.5 1.5 2.5], got [1.215 2.36  3.505]"
+        },
+        {
+          "name": "w_ratio=1 and g_current=g_prev simplifies to momentum blend",
+          "detail": "Expected [0.65 1.65 2.65], got [0.7 1.4 2.1]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2007.06680",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "IS-MBPG*",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3838,
+        "cacheReadInputTokens": 53584,
+        "cacheWriteInputTokens": 10204
+      },
+      "turns": 7,
+      "wall_s": 56.1,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+        "beta_t=1 returns g_current_theta_t",
+        "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+      ],
+      "failure_details": [
+        {
+          "name": "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+          "detail": "Expected [1.215 2.36  3.505], got [0.19  0.285 0.38 ]"
+        },
+        {
+          "name": "beta_t=1 returns g_current_theta_t",
+          "detail": "Expected [0.5 1.5 2.5], got [1.19  2.285 3.38 ]"
+        },
+        {
+          "name": "w_ratio=1 and g_current=g_prev simplifies to momentum blend",
+          "detail": "Expected [0.65 1.65 2.65], got [0.7 1.4 2.1]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 47,
+        "outputTokens": 4863,
+        "cacheReadInputTokens": 98553,
+        "cacheWriteInputTokens": 20276
+      },
+      "turns": 9,
+      "wall_s": 65.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 1026,
+        "outputTokens": 3524,
+        "cacheReadInputTokens": 6128,
+        "cacheWriteInputTokens": 3956
+      },
+      "turns": 4,
+      "wall_s": 39.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Causal masking property",
+        "Single position equivalence",
+        "Uniform keys and values (bidirectional)",
+        "Value scaling property (unidirectional)"
+      ],
+      "failure_details": [
+        {
+          "name": "Causal masking property",
+          "detail": "not enough values to unpack (expected 3, got 2)"
+        },
+        {
+          "name": "Single position equivalence",
+          "detail": "einstein sum subscripts string contains too many subscripts for operand 0"
+        },
+        {
+          "name": "Uniform keys and values (bidirectional)",
+          "detail": "einstein sum subscripts string contains too many subscripts for operand 0"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2009.14794",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Performers",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 6955,
+        "cacheReadInputTokens": 32151,
+        "cacheWriteInputTokens": 8566
+      },
+      "turns": 6,
+      "wall_s": 74.0,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Uniform keys and values (bidirectional)"
+      ],
+      "failure_details": [
+        {
+          "name": "Uniform keys and values (bidirectional)",
+          "detail": "Max diff from uniform: 70735586882.93051"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 2308,
+        "cacheReadInputTokens": 107822,
+        "cacheWriteInputTokens": 18637
+      },
+      "turns": 10,
+      "wall_s": 44.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 1035,
+        "outputTokens": 1336,
+        "cacheReadInputTokens": 3890,
+        "cacheWriteInputTokens": 2433
+      },
+      "turns": 4,
+      "wall_s": 20.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.03607",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "bootstrapping FQE method",
+      "usage": {
+        "inputTokens": 37,
+        "outputTokens": 3414,
+        "cacheReadInputTokens": 32118,
+        "cacheWriteInputTokens": 5576
+      },
+      "turns": 7,
+      "wall_s": 60.9,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 63,
+        "outputTokens": 2676,
+        "cacheReadInputTokens": 172459,
+        "cacheWriteInputTokens": 22350
+      },
+      "turns": 13,
+      "wall_s": 53.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 1701,
+        "cacheReadInputTokens": 10783,
+        "cacheWriteInputTokens": 3127
+      },
+      "turns": 6,
+      "wall_s": 26.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2102.05291",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "clusterability condition",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 3408,
+        "cacheReadInputTokens": 73709,
+        "cacheWriteInputTokens": 10674
+      },
+      "turns": 10,
+      "wall_s": 57.3,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 4273,
+        "cacheReadInputTokens": 61632,
+        "cacheWriteInputTokens": 14663
+      },
+      "turns": 7,
+      "wall_s": 50.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2706,
+        "cacheReadInputTokens": 11650,
+        "cacheWriteInputTokens": 4806
+      },
+      "turns": 6,
+      "wall_s": 34.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2110.02544",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Dual-Aspect Collaborative Transformer (DACT)",
+      "usage": {
+        "inputTokens": 32,
+        "outputTokens": 2713,
+        "cacheReadInputTokens": 29418,
+        "cacheWriteInputTokens": 5781
+      },
+      "turns": 6,
+      "wall_s": 37.2,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 49,
+        "outputTokens": 3550,
+        "cacheReadInputTokens": 134164,
+        "cacheWriteInputTokens": 24005
+      },
+      "turns": 9,
+      "wall_s": 49.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2235,
+        "cacheReadInputTokens": 10414,
+        "cacheWriteInputTokens": 3331
+      },
+      "turns": 6,
+      "wall_s": 33.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2205.12679",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "SUNGEN",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 3283,
+        "cacheReadInputTokens": 30206,
+        "cacheWriteInputTokens": 5028
+      },
+      "turns": 7,
+      "wall_s": 51.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 37,
+        "outputTokens": 3581,
+        "cacheReadInputTokens": 80623,
+        "cacheWriteInputTokens": 17955
+      },
+      "turns": 7,
+      "wall_s": 47.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2574,
+        "cacheReadInputTokens": 6503,
+        "cacheWriteInputTokens": 3309
+      },
+      "turns": 4,
+      "wall_s": 30.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.01241",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "NLPO",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3661,
+        "cacheReadInputTokens": 48123,
+        "cacheWriteInputTokens": 10262
+      },
+      "turns": 7,
+      "wall_s": 47.8,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 52,
+        "outputTokens": 3520,
+        "cacheReadInputTokens": 158532,
+        "cacheWriteInputTokens": 26930
+      },
+      "turns": 10,
+      "wall_s": 58.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "empty_edges_all_tasks_returns_zero",
+        "monotonicity_in_loss_difference",
+        "multiple_identical_edges_averaging",
+        "result_is_finite",
+        "single_edge_equal_losses_returns_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_edges_all_tasks_returns_zero",
+          "detail": "Invalid edge_indices format"
+        },
+        {
+          "name": "monotonicity_in_loss_difference",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part."
+        },
+        {
+          "name": "multiple_identical_edges_averaging",
+          "detail": "Invalid edge_indices format"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1763,
+        "cacheReadInputTokens": 5071,
+        "cacheWriteInputTokens": 2598
+      },
+      "turns": 4,
+      "wall_s": 28.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "empty_edges_all_tasks_returns_zero",
+        "monotonicity_in_loss_difference",
+        "multiple_identical_edges_averaging",
+        "result_is_finite",
+        "single_edge_equal_losses_returns_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_edges_all_tasks_returns_zero",
+          "detail": "index 0 is out of bounds for axis 0 with size 0"
+        },
+        {
+          "name": "monotonicity_in_loss_difference",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part."
+        },
+        {
+          "name": "multiple_identical_edges_averaging",
+          "detail": "only 0-dimensional arrays can be converted to Python scalars"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2210.09759",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Pareto Manifold Learning",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 3364,
+        "cacheReadInputTokens": 29527,
+        "cacheWriteInputTokens": 3900
+      },
+      "turns": 8,
+      "wall_s": 57.0,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "monotonicity_in_loss_difference",
+        "multiple_identical_edges_averaging",
+        "result_is_finite",
+        "single_edge_equal_losses_returns_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "monotonicity_in_loss_difference",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part."
+        },
+        {
+          "name": "multiple_identical_edges_averaging",
+          "detail": "Expected 2.0, got 0.0"
+        },
+        {
+          "name": "result_is_finite",
+          "detail": "setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (3,) + inhomogeneous part."
+        }
+      ]
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 54,
+        "outputTokens": 3529,
+        "cacheReadInputTokens": 151965,
+        "cacheWriteInputTokens": 23078
+      },
+      "turns": 10,
+      "wall_s": 56.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 1798,
+        "cacheReadInputTokens": 8903,
+        "cacheWriteInputTokens": 3969
+      },
+      "turns": 6,
+      "wall_s": 30.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2305.19587",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "generic meta-learning framework",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 3635,
+        "cacheReadInputTokens": 61044,
+        "cacheWriteInputTokens": 10117
+      },
+      "turns": 9,
+      "wall_s": 56.2,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 68,
+        "outputTokens": 3599,
+        "cacheReadInputTokens": 233920,
+        "cacheWriteInputTokens": 29289
+      },
+      "turns": 14,
+      "wall_s": 70.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Beta=0 returns only gradient term",
+        "Beta=1 with zero gradient returns momentum only",
+        "Output shape is n\u00d7r",
+        "Zero inputs yield zero output"
+      ],
+      "failure_details": [
+        {
+          "name": "Beta=0 returns only gradient term",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 5 is different from 3)"
+        },
+        {
+          "name": "Beta=1 with zero gradient returns momentum only",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 5 is different from 3)"
+        },
+        {
+          "name": "Output shape is n\u00d7r",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 6 is different from 4)"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2279,
+        "cacheReadInputTokens": 6330,
+        "cacheWriteInputTokens": 3669
+      },
+      "turns": 5,
+      "wall_s": 35.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Beta=0 returns only gradient term",
+        "Beta=1 with zero gradient returns momentum only",
+        "Linear scaling in gradient G_t",
+        "Output shape is n\u00d7r",
+        "Zero inputs yield zero output"
+      ],
+      "failure_details": [
+        {
+          "name": "Beta=0 returns only gradient term",
+          "detail": "only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices"
+        },
+        {
+          "name": "Beta=1 with zero gradient returns momentum only",
+          "detail": "only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices"
+        },
+        {
+          "name": "Linear scaling in gradient G_t",
+          "detail": "only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2402.03293",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "FLORA",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 2598,
+        "cacheReadInputTokens": 27135,
+        "cacheWriteInputTokens": 3648
+      },
+      "turns": 7,
+      "wall_s": 49.2,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Beta=0 returns only gradient term",
+        "Beta=1 with zero gradient returns momentum only",
+        "Output shape is n\u00d7r",
+        "Zero inputs yield zero output"
+      ],
+      "failure_details": [
+        {
+          "name": "Beta=0 returns only gradient term",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 4 is different from 3)"
+        },
+        {
+          "name": "Beta=1 with zero gradient returns momentum only",
+          "detail": "operands could not be broadcast together with shapes (5,3) (5,4) "
+        },
+        {
+          "name": "Output shape is n\u00d7r",
+          "detail": "matmul: Input operand 1 has a mismatch in its core dimension 0, with gufunc signature (n?,k),(k,m?)->(n?,m?) (size 5 is different from 4)"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 47,
+        "outputTokens": 3455,
+        "cacheReadInputTokens": 94113,
+        "cacheWriteInputTokens": 17579
+      },
+      "turns": 9,
+      "wall_s": 55.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_correctness",
+          "detail": "output=[0.29289322 1.71715729 2.85857864], expected=[0.  1.6 2.8]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1403,
+        "cacheReadInputTokens": 5030,
+        "cacheWriteInputTokens": 2488
+      },
+      "turns": 4,
+      "wall_s": 19.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_correctness",
+          "detail": "output=[0.29289322 1.71715729 2.85857864], expected=[0.  1.6 2.8]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2502.00270",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "DUET",
+      "usage": {
+        "inputTokens": 68,
+        "outputTokens": 5552,
+        "cacheReadInputTokens": 131799,
+        "cacheWriteInputTokens": 18058
+      },
+      "turns": 14,
+      "wall_s": 102.1,
+      "syntology_calls": 9,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_correctness",
+          "detail": "output=[0.29289322 1.71715729 2.85857864], expected=[0.  1.6 2.8]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 58,
+        "outputTokens": 3482,
+        "cacheReadInputTokens": 160619,
+        "cacheWriteInputTokens": 24926
+      },
+      "turns": 12,
+      "wall_s": 63.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "mode_produces_different_results"
+      ],
+      "failure_details": [
+        {
+          "name": "mode_produces_different_results",
+          "detail": "pretrain=[0.33333333 0.33333333 0.33333333], finetune=[0.33333333 0.33333333 0.33333333]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 2542,
+        "cacheReadInputTokens": 8909,
+        "cacheWriteInputTokens": 3979
+      },
+      "turns": 6,
+      "wall_s": 39.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "mode_produces_different_results"
+      ],
+      "failure_details": [
+        {
+          "name": "mode_produces_different_results",
+          "detail": "pretrain=[0.33333333 0.33333333 0.33333333], finetune=[0.33333333 0.33333333 0.33333333]"
+        }
+      ]
+    },
+    {
+      "task_id": "in__2505.24844",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "CHAMELEON",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 8294,
+        "cacheReadInputTokens": 65811,
+        "cacheWriteInputTokens": 14911
+      },
+      "turns": 10,
+      "wall_s": 116.1,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 45,
+        "outputTokens": 3840,
+        "cacheReadInputTokens": 98874,
+        "cacheWriteInputTokens": 17711
+      },
+      "turns": 9,
+      "wall_s": 59.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 6,
+      "properties_failed": [
+        "empty_filter_indices_zeros",
+        "non_negativity_relu",
+        "output_shape_invariant",
+        "selected_filters_identical",
+        "single_filter_relu_match",
+        "unselected_filters_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_filter_indices_zeros",
+          "detail": "operands could not be broadcast together with shapes (3,0) (3,5) "
+        },
+        {
+          "name": "non_negativity_relu",
+          "detail": "Output contains negative values: min=-0.9716969386729847"
+        },
+        {
+          "name": "output_shape_invariant",
+          "detail": "Expected shape (5, 4), got (5, 0)"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 3325,
+        "cacheReadInputTokens": 14771,
+        "cacheWriteInputTokens": 3597
+      },
+      "turns": 7,
+      "wall_s": 50.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 6,
+      "properties_failed": [
+        "empty_filter_indices_zeros",
+        "non_negativity_relu",
+        "output_shape_invariant",
+        "selected_filters_identical",
+        "single_filter_relu_match",
+        "unselected_filters_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_filter_indices_zeros",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        },
+        {
+          "name": "non_negativity_relu",
+          "detail": "Output contains negative values: min=-0.9716969386729847"
+        },
+        {
+          "name": "output_shape_invariant",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2003.01794",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "Greedy Forward Selection",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3307,
+        "cacheReadInputTokens": 36204,
+        "cacheWriteInputTokens": 8514
+      },
+      "turns": 6,
+      "wall_s": 57.0,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 6,
+      "properties_failed": [
+        "empty_filter_indices_zeros",
+        "non_negativity_relu",
+        "output_shape_invariant",
+        "selected_filters_identical",
+        "single_filter_relu_match",
+        "unselected_filters_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "empty_filter_indices_zeros",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        },
+        {
+          "name": "non_negativity_relu",
+          "detail": "Output contains negative values: min=-0.9716969386729847"
+        },
+        {
+          "name": "output_shape_invariant",
+          "detail": "arrays used as indices must be of integer (or boolean) type"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 49,
+        "outputTokens": 3327,
+        "cacheReadInputTokens": 134259,
+        "cacheWriteInputTokens": 23723
+      },
+      "turns": 9,
+      "wall_s": 51.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1160,
+        "cacheReadInputTokens": 4304,
+        "cacheWriteInputTokens": 1991
+      },
+      "turns": 4,
+      "wall_s": 21.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "baseline_translation_invariance",
+        "learning_rate_linear_scaling",
+        "zero_incentives_reproducible",
+        "zero_rewards_incentives_closed_form"
+      ],
+      "failure_details": [
+        {
+          "name": "baseline_translation_invariance",
+          "detail": "Expected diff: -0.027178239541490658, actual diff: [ 0.01125922 -0.01974536 -0.0186921 ]"
+        },
+        {
+          "name": "learning_rate_linear_scaling",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        },
+        {
+          "name": "zero_incentives_reproducible",
+          "detail": "Zero incentives reproducibility: [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05] vs [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05]"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2006.06051",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "learned incentive function",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 4679,
+        "cacheReadInputTokens": 39693,
+        "cacheWriteInputTokens": 4907
+      },
+      "turns": 9,
+      "wall_s": 86.6,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "baseline_translation_invariance",
+        "learning_rate_linear_scaling",
+        "zero_incentives_reproducible",
+        "zero_rewards_incentives_closed_form"
+      ],
+      "failure_details": [
+        {
+          "name": "baseline_translation_invariance",
+          "detail": "Expected diff: -0.027178239541490658, actual diff: [ 0.01125922 -0.01974536 -0.0186921 ]"
+        },
+        {
+          "name": "learning_rate_linear_scaling",
+          "detail": "The truth value of an array with more than one element is ambiguous. Use a.any() or a.all()"
+        },
+        {
+          "name": "zero_incentives_reproducible",
+          "detail": "Zero incentives reproducibility: [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05] vs [-3.64656217e-03 -1.49216606e-03  1.73214409e-03 -1.47653843e-02\n -9.96557783e-05]"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 49,
+        "outputTokens": 2891,
+        "cacheReadInputTokens": 139607,
+        "cacheWriteInputTokens": 22936
+      },
+      "turns": 9,
+      "wall_s": 48.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1380,
+        "cacheReadInputTokens": 7493,
+        "cacheWriteInputTokens": 2723
+      },
+      "turns": 5,
+      "wall_s": 24.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2101.08543",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "BOOST THEN CONVOLVE",
+      "usage": {
+        "inputTokens": 50,
+        "outputTokens": 4114,
+        "cacheReadInputTokens": 61505,
+        "cacheWriteInputTokens": 7796
+      },
+      "turns": 10,
+      "wall_s": 79.9,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_subtraction_correctness",
+        "zero_residual_when_equal"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_subtraction_correctness",
+          "detail": "Max difference from expected: 1.913280244657798"
+        },
+        {
+          "name": "zero_residual_when_equal",
+          "detail": "Max absolute value in output: 2.426679243393074"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 80,
+        "outputTokens": 4736,
+        "cacheReadInputTokens": 277454,
+        "cacheWriteInputTokens": 33808
+      },
+      "turns": 16,
+      "wall_s": 87.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2004,
+        "cacheReadInputTokens": 12724,
+        "cacheWriteInputTokens": 3154
+      },
+      "turns": 7,
+      "wall_s": 33.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2207.04892",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Adversarial Style Augmentation (AdvStyle)",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 3096,
+        "cacheReadInputTokens": 59841,
+        "cacheWriteInputTokens": 9049
+      },
+      "turns": 9,
+      "wall_s": 61.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 54,
+        "outputTokens": 5302,
+        "cacheReadInputTokens": 168666,
+        "cacheWriteInputTokens": 27330
+      },
+      "turns": 10,
+      "wall_s": 93.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "correctness_subtraction",
+        "negation_on_swap",
+        "zero_correction_identical_gradients"
+      ],
+      "failure_details": [
+        {
+          "name": "correctness_subtraction",
+          "detail": "Max difference: 1.421001717561288"
+        },
+        {
+          "name": "negation_on_swap",
+          "detail": "Max difference: 1.7478312905601396"
+        },
+        {
+          "name": "zero_correction_identical_gradients",
+          "detail": "Max absolute value in result: 2.596878630257014"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 3282,
+        "cacheReadInputTokens": 9579,
+        "cacheWriteInputTokens": 4999
+      },
+      "turns": 6,
+      "wall_s": 47.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "correctness_subtraction",
+        "negation_on_swap",
+        "zero_correction_identical_gradients"
+      ],
+      "failure_details": [
+        {
+          "name": "correctness_subtraction",
+          "detail": "Max difference: 1.421001717561288"
+        },
+        {
+          "name": "negation_on_swap",
+          "detail": "Max difference: 1.7478312905601396"
+        },
+        {
+          "name": "zero_correction_identical_gradients",
+          "detail": "Max absolute value in result: 2.596878630257014"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2209.02257",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "Catalyzed SVRP",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 4185,
+        "cacheReadInputTokens": 39708,
+        "cacheWriteInputTokens": 7396
+      },
+      "turns": 7,
+      "wall_s": 141.2,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 3922,
+        "cacheReadInputTokens": 76138,
+        "cacheWriteInputTokens": 16233
+      },
+      "turns": 8,
+      "wall_s": 53.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2280,
+        "cacheReadInputTokens": 5888,
+        "cacheWriteInputTokens": 3057
+      },
+      "turns": 4,
+      "wall_s": 27.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "identity_hessian",
+        "output_bounds",
+        "uniform_scaling",
+        "zero_weight"
+      ],
+      "failure_details": [
+        {
+          "name": "identity_hessian",
+          "detail": "non-broadcastable output operand with shape (3,) doesn't match the broadcast shape (3,3)"
+        },
+        {
+          "name": "output_bounds",
+          "detail": "non-broadcastable output operand with shape (4,) doesn't match the broadcast shape (4,4)"
+        },
+        {
+          "name": "uniform_scaling",
+          "detail": "non-broadcastable output operand with shape (3,) doesn't match the broadcast shape (3,3)"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2210.17323",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "GPTQ",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 1897,
+        "cacheReadInputTokens": 29369,
+        "cacheWriteInputTokens": 5654
+      },
+      "turns": 6,
+      "wall_s": 35.9,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 4,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 63,
+        "outputTokens": 4700,
+        "cacheReadInputTokens": 193886,
+        "cacheWriteInputTokens": 27253
+      },
+      "turns": 13,
+      "wall_s": 77.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2672,
+        "cacheReadInputTokens": 6266,
+        "cacheWriteInputTokens": 4448
+      },
+      "turns": 5,
+      "wall_s": 39.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2302.11002",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "ProbConserv",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3014,
+        "cacheReadInputTokens": 20084,
+        "cacheWriteInputTokens": 3686
+      },
+      "turns": 6,
+      "wall_s": 48.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 56,
+        "outputTokens": 4784,
+        "cacheReadInputTokens": 155903,
+        "cacheWriteInputTokens": 28403
+      },
+      "turns": 10,
+      "wall_s": 72.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gradient_linearity",
+        "zero_noise_recovers_drift"
+      ],
+      "failure_details": [
+        {
+          "name": "gradient_linearity",
+          "detail": "Max diff: 0.060000000000000026"
+        },
+        {
+          "name": "zero_noise_recovers_drift",
+          "detail": "Max diff: 0.10000000000000009"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 1038,
+        "outputTokens": 1865,
+        "cacheReadInputTokens": 4242,
+        "cacheWriteInputTokens": 2691
+      },
+      "turns": 4,
+      "wall_s": 24.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gradient_linearity",
+        "step_size_scaling",
+        "zero_gradient_recovers_diffusion",
+        "zero_noise_recovers_drift"
+      ],
+      "failure_details": [
+        {
+          "name": "gradient_linearity",
+          "detail": "Max diff: 0.03"
+        },
+        {
+          "name": "step_size_scaling",
+          "detail": "Ratio: 0.0, expected 2.0"
+        },
+        {
+          "name": "zero_gradient_recovers_diffusion",
+          "detail": "Max diff: nan"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2306.12360",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Discrete Walk-Jump Sampling",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2246,
+        "cacheReadInputTokens": 55905,
+        "cacheWriteInputTokens": 12152
+      },
+      "turns": 6,
+      "wall_s": 39.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gradient_linearity",
+        "step_size_scaling",
+        "zero_gradient_recovers_diffusion",
+        "zero_noise_recovers_drift"
+      ],
+      "failure_details": [
+        {
+          "name": "gradient_linearity",
+          "detail": "Max diff: 0.03"
+        },
+        {
+          "name": "step_size_scaling",
+          "detail": "Ratio: 0.0, expected 2.0"
+        },
+        {
+          "name": "zero_gradient_recovers_diffusion",
+          "detail": "Max diff: nan"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 47,
+        "outputTokens": 3561,
+        "cacheReadInputTokens": 115676,
+        "cacheWriteInputTokens": 18198
+      },
+      "turns": 9,
+      "wall_s": 50.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "batch_averaging"
+      ],
+      "failure_details": [
+        {
+          "name": "batch_averaging",
+          "detail": "Mismatch: 8.904614160008366 vs 1.4841023600013943"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1705,
+        "cacheReadInputTokens": 5175,
+        "cacheWriteInputTokens": 2659
+      },
+      "turns": 4,
+      "wall_s": 24.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2311.15100",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "UOT-FM",
+      "usage": {
+        "inputTokens": 50,
+        "outputTokens": 4119,
+        "cacheReadInputTokens": 81957,
+        "cacheWriteInputTokens": 11923
+      },
+      "turns": 10,
+      "wall_s": 76.9,
+      "syntology_calls": 6,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 52,
+        "outputTokens": 4328,
+        "cacheReadInputTokens": 172685,
+        "cacheWriteInputTokens": 24851
+      },
+      "turns": 10,
+      "wall_s": 63.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 1737,
+        "cacheReadInputTokens": 11784,
+        "cacheWriteInputTokens": 4206
+      },
+      "turns": 7,
+      "wall_s": 32.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gain_is_max_of_differences",
+        "invariant_to_x_xref_values",
+        "result_is_maximum_gain",
+        "scaling_invariance",
+        "single_sample_returns_gain"
+      ],
+      "failure_details": [
+        {
+          "name": "gain_is_max_of_differences",
+          "detail": "Expected 1.6914250694080897, got -2.0"
+        },
+        {
+          "name": "invariant_to_x_xref_values",
+          "detail": "Results: -2.0, -20.0, 2.0"
+        },
+        {
+          "name": "result_is_maximum_gain",
+          "detail": "Result -1.0, max gain 1.5, all gains [ 0.5  1.  -0.3  1.5]"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2402.05367",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "Principled Preferential Bayesian Optimization",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 1810,
+        "cacheReadInputTokens": 35738,
+        "cacheWriteInputTokens": 7885
+      },
+      "turns": 6,
+      "wall_s": 34.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "gain_is_max_of_differences",
+        "single_sample_returns_gain"
+      ],
+      "failure_details": [
+        {
+          "name": "gain_is_max_of_differences",
+          "detail": "Expected 1.6914250694080897, got 1.8522781845089378"
+        },
+        {
+          "name": "single_sample_returns_gain",
+          "detail": "Expected 3.0, got 999.0"
+        }
+      ]
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "code_only_ho",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 61,
+        "outputTokens": 4430,
+        "cacheReadInputTokens": 191295,
+        "cacheWriteInputTokens": 29329
+      },
+      "turns": 11,
+      "wall_s": 70.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 3,
+      "properties_failed": [
+        "Loss invariant to compensating h_t_g and theta_g scaling",
+        "Loss is non-negative"
+      ],
+      "failure_details": [
+        {
+          "name": "Loss invariant to compensating h_t_g and theta_g scaling",
+          "detail": "Loss1 = 1.0023986748890183, Loss2 = 0.6951573690138697; expected equal"
+        },
+        {
+          "name": "Loss is non-negative",
+          "detail": "operands could not be broadcast together with shapes (3,5) (3,4,5) "
+        }
+      ]
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "none",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 28,
+        "outputTokens": 1887,
+        "cacheReadInputTokens": 10247,
+        "cacheWriteInputTokens": 3014
+      },
+      "turns": 6,
+      "wall_s": 32.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 3,
+      "properties_failed": [
+        "Loss invariant to compensating h_t_g and theta_g scaling",
+        "Loss is non-negative"
+      ],
+      "failure_details": [
+        {
+          "name": "Loss invariant to compensating h_t_g and theta_g scaling",
+          "detail": "Loss1 = 1.0023986748890183, Loss2 = 0.6951573690138697; expected equal"
+        },
+        {
+          "name": "Loss is non-negative",
+          "detail": "operands could not be broadcast together with shapes (3,5) (3,4,5) "
+        }
+      ]
+    },
+    {
+      "task_id": "off_2403.05751",
+      "arm": "syntology_ho",
+      "stratum": "off_catalog",
+      "method": "MG-TSD",
+      "usage": {
+        "inputTokens": 45,
+        "outputTokens": 3449,
+        "cacheReadInputTokens": 58327,
+        "cacheWriteInputTokens": 7594
+      },
+      "turns": 9,
+      "wall_s": 59.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 3,
+      "properties_failed": [
+        "Loss invariant to compensating h_t_g and theta_g scaling",
+        "Loss is non-negative"
+      ],
+      "failure_details": [
+        {
+          "name": "Loss invariant to compensating h_t_g and theta_g scaling",
+          "detail": "Loss1 = 1.0023986748890183, Loss2 = 0.6951573690138697; expected equal"
+        },
+        {
+          "name": "Loss is non-negative",
+          "detail": "operands could not be broadcast together with shapes (3,5) (3,4,5) "
+        }
+      ]
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "code_only_ho",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 52,
+        "outputTokens": 3165,
+        "cacheReadInputTokens": 126583,
+        "cacheWriteInputTokens": 19364
+      },
+      "turns": 10,
+      "wall_s": 47.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "none",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1834,
+        "cacheReadInputTokens": 5521,
+        "cacheWriteInputTokens": 2840
+      },
+      "turns": 4,
+      "wall_s": 22.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "off_2406.04606",
+      "arm": "syntology_ho",
+      "stratum": "in_catalog",
+      "method": "FreeShap",
+      "usage": {
+        "inputTokens": 37,
+        "outputTokens": 1983,
+        "cacheReadInputTokens": 28031,
+        "cacheWriteInputTokens": 3991
+      },
+      "turns": 7,
+      "wall_s": 32.1,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2006.05849",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Self-Supervised Relational Reasoning",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3059,
+        "cacheReadInputTokens": 57954,
+        "cacheWriteInputTokens": 13286
+      },
+      "turns": 7,
+      "wall_s": 44.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "perfect_predictions_near_zero_loss",
+        "uniform_predictions_symmetric_loss",
+        "worst_case_high_loss"
+      ],
+      "failure_details": [
+        {
+          "name": "perfect_predictions_near_zero_loss",
+          "detail": "Loss for perfect predictions: 0.5032044724861562, expected < 1e-5"
+        },
+        {
+          "name": "uniform_predictions_symmetric_loss",
+          "detail": "Loss: 0.7240769841801067, expected: 0.6931471805599453, diff: 0.0309298036201614"
+        },
+        {
+          "name": "worst_case_high_loss",
+          "detail": "Loss for opposite predictions: 1.0032043724861563, expected > 10.0"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2006.05849",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Self-Supervised Relational Reasoning",
+      "usage": {
+        "inputTokens": 1045,
+        "outputTokens": 2136,
+        "cacheReadInputTokens": 10676,
+        "cacheWriteInputTokens": 3454
+      },
+      "turns": 6,
+      "wall_s": 27.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2006.05849",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Self-Supervised Relational Reasoning",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2073,
+        "cacheReadInputTokens": 36725,
+        "cacheWriteInputTokens": 8526
+      },
+      "turns": 6,
+      "wall_s": 33.4,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2006.09226",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Parameter-Based Value Functions (PBVFs)",
+      "usage": {
+        "inputTokens": 59,
+        "outputTokens": 3235,
+        "cacheReadInputTokens": 151026,
+        "cacheWriteInputTokens": 27053
+      },
+      "turns": 11,
+      "wall_s": 57.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2006.09226",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Parameter-Based Value Functions (PBVFs)",
+      "usage": {
+        "inputTokens": 1050,
+        "outputTokens": 1883,
+        "cacheReadInputTokens": 12871,
+        "cacheWriteInputTokens": 3368
+      },
+      "turns": 7,
+      "wall_s": 30.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2006.09226",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Parameter-Based Value Functions (PBVFs)",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 1921,
+        "cacheReadInputTokens": 38543,
+        "cacheWriteInputTokens": 9034
+      },
+      "turns": 6,
+      "wall_s": 30.4,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2010.02089",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "CopulaGNN",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 2987,
+        "cacheReadInputTokens": 86047,
+        "cacheWriteInputTokens": 16421
+      },
+      "turns": 8,
+      "wall_s": 43.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Degenerate case: all nodes observed (k=0)"
+      ],
+      "failure_details": [
+        {
+          "name": "Degenerate case: all nodes observed (k=0)",
+          "detail": "Number of observations must be less than total dimension"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2010.02089",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "CopulaGNN",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2192,
+        "cacheReadInputTokens": 11785,
+        "cacheWriteInputTokens": 4222
+      },
+      "turns": 7,
+      "wall_s": 37.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2010.02089",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "CopulaGNN",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 3088,
+        "cacheReadInputTokens": 23798,
+        "cacheWriteInputTokens": 4205
+      },
+      "turns": 6,
+      "wall_s": 45.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.03632",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "a new algorithm for learning transferable features",
+      "usage": {
+        "inputTokens": 32,
+        "outputTokens": 3723,
+        "cacheReadInputTokens": 51365,
+        "cacheWriteInputTokens": 13770
+      },
+      "turns": 6,
+      "wall_s": 43.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.03632",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "a new algorithm for learning transferable features",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1922,
+        "cacheReadInputTokens": 7994,
+        "cacheWriteInputTokens": 3013
+      },
+      "turns": 5,
+      "wall_s": 25.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.03632",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "a new algorithm for learning transferable features",
+      "usage": {
+        "inputTokens": 38,
+        "outputTokens": 2055,
+        "cacheReadInputTokens": 48313,
+        "cacheWriteInputTokens": 7865
+      },
+      "turns": 8,
+      "wall_s": 34.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.09296",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Voice2Series",
+      "usage": {
+        "inputTokens": 58,
+        "outputTokens": 2867,
+        "cacheReadInputTokens": 133512,
+        "cacheWriteInputTokens": 19244
+      },
+      "turns": 12,
+      "wall_s": 55.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.09296",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Voice2Series",
+      "usage": {
+        "inputTokens": 1036,
+        "outputTokens": 1571,
+        "cacheReadInputTokens": 7096,
+        "cacheWriteInputTokens": 4223
+      },
+      "turns": 6,
+      "wall_s": 28.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2106.09296",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Voice2Series",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 2313,
+        "cacheReadInputTokens": 34348,
+        "cacheWriteInputTokens": 3988
+      },
+      "turns": 9,
+      "wall_s": 47.0,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2107.00306",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "MHER",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2092,
+        "cacheReadInputTokens": 49230,
+        "cacheWriteInputTokens": 10338
+      },
+      "turns": 7,
+      "wall_s": 31.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2107.00306",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "MHER",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1542,
+        "cacheReadInputTokens": 4083,
+        "cacheWriteInputTokens": 3626
+      },
+      "turns": 4,
+      "wall_s": 22.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2107.00306",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "MHER",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2396,
+        "cacheReadInputTokens": 21279,
+        "cacheWriteInputTokens": 3541
+      },
+      "turns": 6,
+      "wall_s": 34.2,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2110.03735",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Implicit Backdoor Adversarial Unlearning (I-BAU)",
+      "usage": {
+        "inputTokens": 60,
+        "outputTokens": 3943,
+        "cacheReadInputTokens": 137615,
+        "cacheWriteInputTokens": 19165
+      },
+      "turns": 12,
+      "wall_s": 63.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2110.03735",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Implicit Backdoor Adversarial Unlearning (I-BAU)",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 1823,
+        "cacheReadInputTokens": 5517,
+        "cacheWriteInputTokens": 2829
+      },
+      "turns": 4,
+      "wall_s": 24.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2110.03735",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Implicit Backdoor Adversarial Unlearning (I-BAU)",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 3520,
+        "cacheReadInputTokens": 80955,
+        "cacheWriteInputTokens": 11606
+      },
+      "turns": 10,
+      "wall_s": 54.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2110.06197",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Crystal Diffusion Variational Autoencoder (CDVAE)",
+      "usage": {
+        "inputTokens": 50,
+        "outputTokens": 4894,
+        "cacheReadInputTokens": 132919,
+        "cacheWriteInputTokens": 23095
+      },
+      "turns": 10,
+      "wall_s": 65.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "deterministic_update",
+        "fractional_coordinate_bounds",
+        "lattice_scaling_invariance",
+        "periodicity_invariance",
+        "zero_step_identity"
+      ],
+      "failure_details": [
+        {
+          "name": "deterministic_update",
+          "detail": "operands could not be broadcast together with shapes (3,3) (7,3) "
+        },
+        {
+          "name": "fractional_coordinate_bounds",
+          "detail": "operands could not be broadcast together with shapes (3,3) (10,3) "
+        },
+        {
+          "name": "lattice_scaling_invariance",
+          "detail": "operands could not be broadcast together with shapes (3,3) (6,3) "
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2110.06197",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Crystal Diffusion Variational Autoencoder (CDVAE)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2068,
+        "cacheReadInputTokens": 8682,
+        "cacheWriteInputTokens": 3190
+      },
+      "turns": 5,
+      "wall_s": 27.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2110.06197",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Crystal Diffusion Variational Autoencoder (CDVAE)",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3247,
+        "cacheReadInputTokens": 38276,
+        "cacheWriteInputTokens": 6480
+      },
+      "turns": 7,
+      "wall_s": 50.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "deterministic_update",
+        "fractional_coordinate_bounds",
+        "lattice_scaling_invariance",
+        "periodicity_invariance",
+        "zero_step_identity"
+      ],
+      "failure_details": [
+        {
+          "name": "deterministic_update",
+          "detail": "operands could not be broadcast together with shapes (7,3) (3,3) "
+        },
+        {
+          "name": "fractional_coordinate_bounds",
+          "detail": "operands could not be broadcast together with shapes (10,3) (3,3) "
+        },
+        {
+          "name": "lattice_scaling_invariance",
+          "detail": "operands could not be broadcast together with shapes (6,3) (3,3) "
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2201.09765",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Generative Planning method (GPM)",
+      "usage": {
+        "inputTokens": 66,
+        "outputTokens": 3593,
+        "cacheReadInputTokens": 237465,
+        "cacheWriteInputTokens": 34127
+      },
+      "turns": 12,
+      "wall_s": 62.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "equal_q_values_closed_form",
+        "high_q_new_advantage_approaches_one",
+        "low_q_new_advantage_approaches_zero",
+        "monotonicity_in_q_difference",
+        "output_in_unit_interval"
+      ],
+      "failure_details": [
+        {
+          "name": "equal_q_values_closed_form",
+          "detail": "When q_new == q_old, m=[0.5 0.5] should equal 1/(exp(epsilon)+1)=0.3775406687981454, diff=[0.12245933 0.12245933]"
+        },
+        {
+          "name": "high_q_new_advantage_approaches_one",
+          "detail": "When q_new >> q_old, m=[1.38389653e-87 1.00000000e+00] should be > 0.9999"
+        },
+        {
+          "name": "low_q_new_advantage_approaches_zero",
+          "detail": "When q_new << q_old, m=[1.00000000e+00 1.38389653e-87] should be < 0.0001"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2201.09765",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Generative Planning method (GPM)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1894,
+        "cacheReadInputTokens": 8059,
+        "cacheWriteInputTokens": 2973
+      },
+      "turns": 5,
+      "wall_s": 27.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "equal_q_values_closed_form",
+        "output_in_unit_interval"
+      ],
+      "failure_details": [
+        {
+          "name": "equal_q_values_closed_form",
+          "detail": "When q_new == q_old, m=0.5 should equal 1/(exp(epsilon)+1)=0.3775406687981454, diff=0.1224593312018546"
+        },
+        {
+          "name": "output_in_unit_interval",
+          "detail": "division by zero"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2201.09765",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Generative Planning method (GPM)",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 2477,
+        "cacheReadInputTokens": 56367,
+        "cacheWriteInputTokens": 9586
+      },
+      "turns": 7,
+      "wall_s": 45.1,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "equal_q_values_closed_form",
+        "high_q_new_advantage_approaches_one",
+        "low_q_new_advantage_approaches_zero",
+        "monotonicity_in_q_difference",
+        "output_in_unit_interval"
+      ],
+      "failure_details": [
+        {
+          "name": "equal_q_values_closed_form",
+          "detail": "When q_new == q_old, m=[0.5 0.5] should equal 1/(exp(epsilon)+1)=0.3775406687981454, diff=[0.12245933 0.12245933]"
+        },
+        {
+          "name": "high_q_new_advantage_approaches_one",
+          "detail": "When q_new >> q_old, m=[0.25 0.75] should be > 0.9999"
+        },
+        {
+          "name": "low_q_new_advantage_approaches_zero",
+          "detail": "When q_new << q_old, m=[0.75 0.25] should be < 0.0001"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2202.00914",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Lipschitz-constrained Skill Discovery (LSD)",
+      "usage": {
+        "inputTokens": 60,
+        "outputTokens": 3189,
+        "cacheReadInputTokens": 177067,
+        "cacheWriteInputTokens": 23263
+      },
+      "turns": 12,
+      "wall_s": 56.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.00914",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Lipschitz-constrained Skill Discovery (LSD)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2119,
+        "cacheReadInputTokens": 5729,
+        "cacheWriteInputTokens": 4242
+      },
+      "turns": 5,
+      "wall_s": 31.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.00914",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Lipschitz-constrained Skill Discovery (LSD)",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 3566,
+        "cacheReadInputTokens": 60777,
+        "cacheWriteInputTokens": 9602
+      },
+      "turns": 9,
+      "wall_s": 67.7,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.02794",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "TypiClust",
+      "usage": {
+        "inputTokens": 65,
+        "outputTokens": 4672,
+        "cacheReadInputTokens": 204928,
+        "cacheWriteInputTokens": 30778
+      },
+      "turns": 13,
+      "wall_s": 83.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.02794",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "TypiClust",
+      "usage": {
+        "inputTokens": 1033,
+        "outputTokens": 2047,
+        "cacheReadInputTokens": 4632,
+        "cacheWriteInputTokens": 2955
+      },
+      "turns": 4,
+      "wall_s": 26.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.02794",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "TypiClust",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 2278,
+        "cacheReadInputTokens": 32223,
+        "cacheWriteInputTokens": 3891
+      },
+      "turns": 8,
+      "wall_s": 36.6,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.08836",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Data-SUITE",
+      "usage": {
+        "inputTokens": 52,
+        "outputTokens": 3628,
+        "cacheReadInputTokens": 138094,
+        "cacheWriteInputTokens": 20103
+      },
+      "turns": 10,
+      "wall_s": 54.7,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.08836",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Data-SUITE",
+      "usage": {
+        "inputTokens": 1048,
+        "outputTokens": 1878,
+        "cacheReadInputTokens": 9393,
+        "cacheWriteInputTokens": 3069
+      },
+      "turns": 6,
+      "wall_s": 31.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2202.08836",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Data-SUITE",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 2995,
+        "cacheReadInputTokens": 62499,
+        "cacheWriteInputTokens": 9775
+      },
+      "turns": 8,
+      "wall_s": 53.1,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "permutation_invariance",
+        "small_alpha_returns_max"
+      ],
+      "failure_details": [
+        {
+          "name": "permutation_invariance",
+          "detail": "Original: inf, Permuted: inf, diff: nan"
+        },
+        {
+          "name": "small_alpha_returns_max",
+          "detail": "epsilon=inf, max=5.0, diff=inf"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2206.06662",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Learning Best Combination (LBC)",
+      "usage": {
+        "inputTokens": 53,
+        "outputTokens": 4400,
+        "cacheReadInputTokens": 125871,
+        "cacheWriteInputTokens": 20777
+      },
+      "turns": 11,
+      "wall_s": 69.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Degenerate case: initial_epoch == final_epoch",
+        "Linear interpolation: formula correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "Degenerate case: initial_epoch == final_epoch",
+          "detail": "At degenerate epoch, expected 1, got 7"
+        },
+        {
+          "name": "Linear interpolation: formula correctness",
+          "detail": "At midpoint epoch 10, expected 6, got 2"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2206.06662",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Learning Best Combination (LBC)",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2447,
+        "cacheReadInputTokens": 8090,
+        "cacheWriteInputTokens": 4426
+      },
+      "turns": 5,
+      "wall_s": 31.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Degenerate case: initial_epoch == final_epoch",
+        "Linear interpolation: formula correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "Degenerate case: initial_epoch == final_epoch",
+          "detail": "At degenerate epoch, expected 1, got 7"
+        },
+        {
+          "name": "Linear interpolation: formula correctness",
+          "detail": "At midpoint epoch 10, expected 6, got 2"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2206.06662",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Learning Best Combination (LBC)",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3071,
+        "cacheReadInputTokens": 38089,
+        "cacheWriteInputTokens": 6529
+      },
+      "turns": 7,
+      "wall_s": 47.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "Degenerate case: initial_epoch == final_epoch",
+        "Linear interpolation: formula correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "Degenerate case: initial_epoch == final_epoch",
+          "detail": "At degenerate epoch, expected 1, got 7"
+        },
+        {
+          "name": "Linear interpolation: formula correctness",
+          "detail": "At midpoint epoch 10, expected 6, got 2"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2208.04202",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Asymmetric Time Intervals",
+      "usage": {
+        "inputTokens": 47,
+        "outputTokens": 3742,
+        "cacheReadInputTokens": 108741,
+        "cacheWriteInputTokens": 20247
+      },
+      "turns": 9,
+      "wall_s": 65.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Clipping bounds enforced",
+        "Correct computation with unclipped x_pred"
+      ],
+      "failure_details": [
+        {
+          "name": "Clipping bounds enforced",
+          "detail": "max diff: 5.049984366005507"
+        },
+        {
+          "name": "Correct computation with unclipped x_pred",
+          "detail": "max diff: 0.7935140081888279"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2208.04202",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Asymmetric Time Intervals",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2340,
+        "cacheReadInputTokens": 5302,
+        "cacheWriteInputTokens": 2898
+      },
+      "turns": 4,
+      "wall_s": 29.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Clipping bounds enforced",
+        "Correct computation with unclipped x_pred"
+      ],
+      "failure_details": [
+        {
+          "name": "Clipping bounds enforced",
+          "detail": "max diff: 0.4500156339944926"
+        },
+        {
+          "name": "Correct computation with unclipped x_pred",
+          "detail": "max diff: 0.26378648247309794"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2208.04202",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Asymmetric Time Intervals",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 3505,
+        "cacheReadInputTokens": 70291,
+        "cacheWriteInputTokens": 11253
+      },
+      "turns": 9,
+      "wall_s": 51.6,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "Clipping bounds enforced",
+        "Correct computation with unclipped x_pred"
+      ],
+      "failure_details": [
+        {
+          "name": "Clipping bounds enforced",
+          "detail": "max diff: nan"
+        },
+        {
+          "name": "Correct computation with unclipped x_pred",
+          "detail": "max diff: nan"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2210.05922",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "A Unified Framework for Alternating Offline Model Training and Policy Learning",
+      "usage": {
+        "inputTokens": 73,
+        "outputTokens": 5580,
+        "cacheReadInputTokens": 250194,
+        "cacheWriteInputTokens": 29667
+      },
+      "turns": 15,
+      "wall_s": 96.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "element_wise_formula_correctness",
+        "monotonicity_in_q_difference"
+      ],
+      "failure_details": [
+        {
+          "name": "element_wise_formula_correctness",
+          "detail": "Expected [1.28402542 1.64872127 1.28402542], got [0.77880078 0.60653066 0.77880078]"
+        },
+        {
+          "name": "monotonicity_in_q_difference",
+          "detail": "Weights not monotonic: [0.01831564 0.04978707 0.13533528]"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2210.05922",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "A Unified Framework for Alternating Offline Model Training and Policy Learning",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1974,
+        "cacheReadInputTokens": 6901,
+        "cacheWriteInputTokens": 3931
+      },
+      "turns": 5,
+      "wall_s": 30.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2210.05922",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "A Unified Framework for Alternating Offline Model Training and Policy Learning",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 2617,
+        "cacheReadInputTokens": 61549,
+        "cacheWriteInputTokens": 7384
+      },
+      "turns": 10,
+      "wall_s": 52.2,
+      "syntology_calls": 5,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2210.08196",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Gaussian fine tuning method",
+      "usage": {
+        "inputTokens": 49,
+        "outputTokens": 2536,
+        "cacheReadInputTokens": 121331,
+        "cacheWriteInputTokens": 23262
+      },
+      "turns": 9,
+      "wall_s": 44.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2210.08196",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Gaussian fine tuning method",
+      "usage": {
+        "inputTokens": 1022,
+        "outputTokens": 1269,
+        "cacheReadInputTokens": 5885,
+        "cacheWriteInputTokens": 2493
+      },
+      "turns": 5,
+      "wall_s": 21.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2210.08196",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Gaussian fine tuning method",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2175,
+        "cacheReadInputTokens": 40381,
+        "cacheWriteInputTokens": 8716
+      },
+      "turns": 7,
+      "wall_s": 36.1,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2211.09981",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "WEIGHTED ENSEMBLE SELF-SUPERVISED LEARNING",
+      "usage": {
+        "inputTokens": 63,
+        "outputTokens": 3614,
+        "cacheReadInputTokens": 208522,
+        "cacheWriteInputTokens": 29302
+      },
+      "turns": 13,
+      "wall_s": 62.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "test_max_strategy_selection"
+      ],
+      "failure_details": [
+        {
+          "name": "test_max_strategy_selection",
+          "detail": "Max loss -18.786003881917917 != expected -112.59962970878584"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2211.09981",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "WEIGHTED ENSEMBLE SELF-SUPERVISED LEARNING",
+      "usage": {
+        "inputTokens": 1034,
+        "outputTokens": 3209,
+        "cacheReadInputTokens": 7073,
+        "cacheWriteInputTokens": 3783
+      },
+      "turns": 5,
+      "wall_s": 45.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "test_max_strategy_selection"
+      ],
+      "failure_details": [
+        {
+          "name": "test_max_strategy_selection",
+          "detail": "Max loss -37.41409808112608 != expected -112.59962970878584"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2211.09981",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "WEIGHTED ENSEMBLE SELF-SUPERVISED LEARNING",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3873,
+        "cacheReadInputTokens": 49510,
+        "cacheWriteInputTokens": 10238
+      },
+      "turns": 7,
+      "wall_s": 56.1,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "test_max_strategy_selection",
+        "test_uniform_identical"
+      ],
+      "failure_details": [
+        {
+          "name": "test_max_strategy_selection",
+          "detail": "Max loss -12.471366027042022 != expected -112.59962970878584"
+        },
+        {
+          "name": "test_uniform_identical",
+          "detail": "Expected 1.3862943611198906, got 0.6931471805599453"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2301.09474",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "DIFFORMER",
+      "usage": {
+        "inputTokens": 102,
+        "outputTokens": 4877,
+        "cacheReadInputTokens": 501119,
+        "cacheWriteInputTokens": 41559
+      },
+      "turns": 20,
+      "wall_s": 101.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "tool_use",
+      "passed": false,
+      "reason": "no_submission"
+    },
+    {
+      "task_id": "sub_2301.09474",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "DIFFORMER",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 1783,
+        "cacheReadInputTokens": 5374,
+        "cacheWriteInputTokens": 3899
+      },
+      "turns": 5,
+      "wall_s": 28.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "affine_combination_property",
+        "limiting_case_tau_0",
+        "limiting_case_tau_1"
+      ],
+      "failure_details": [
+        {
+          "name": "affine_combination_property",
+          "detail": "max_diff=1.0620604463896068"
+        },
+        {
+          "name": "limiting_case_tau_0",
+          "detail": "max_diff=3.829040032088288"
+        },
+        {
+          "name": "limiting_case_tau_1",
+          "detail": "max_diff=2.9893918420274628"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2301.09474",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "DIFFORMER",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 1642,
+        "cacheReadInputTokens": 28624,
+        "cacheWriteInputTokens": 3867
+      },
+      "turns": 7,
+      "wall_s": 34.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "affine_combination_property",
+        "limiting_case_tau_0",
+        "limiting_case_tau_1"
+      ],
+      "failure_details": [
+        {
+          "name": "affine_combination_property",
+          "detail": "max_diff=1.0620604463896068"
+        },
+        {
+          "name": "limiting_case_tau_0",
+          "detail": "max_diff=3.829040032088288"
+        },
+        {
+          "name": "limiting_case_tau_1",
+          "detail": "max_diff=2.9893918420274628"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2302.10685",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "calibrating offset spikes",
+      "usage": {
+        "inputTokens": 63,
+        "outputTokens": 4109,
+        "cacheReadInputTokens": 211378,
+        "cacheWriteInputTokens": 33470
+      },
+      "turns": 13,
+      "wall_s": 79.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "all_spikes_one_returns_theta",
+        "epsilon_large_returns_formula",
+        "epsilon_small_returns_theta",
+        "shift_lower_bound_theta",
+        "single_element_spike_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "all_spikes_one_returns_theta",
+          "detail": "shift=5.0, theta=3.5, all_spikes_1: False"
+        },
+        {
+          "name": "epsilon_large_returns_formula",
+          "detail": "shift=0.0, expected=12.0, epsilon_large_case: False"
+        },
+        {
+          "name": "epsilon_small_returns_theta",
+          "detail": "shift=3.0, theta=10.0, epsilon_small_case: False"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2302.10685",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "calibrating offset spikes",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2123,
+        "cacheReadInputTokens": 13848,
+        "cacheWriteInputTokens": 3379
+      },
+      "turns": 7,
+      "wall_s": 37.2,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "all_spikes_one_returns_theta",
+        "epsilon_large_returns_formula",
+        "epsilon_small_returns_theta",
+        "shift_lower_bound_theta",
+        "single_element_spike_zero"
+      ],
+      "failure_details": [
+        {
+          "name": "all_spikes_one_returns_theta",
+          "detail": "shift=0.0, theta=3.5, all_spikes_1: False"
+        },
+        {
+          "name": "epsilon_large_returns_formula",
+          "detail": "shift=0.0, expected=12.0, epsilon_large_case: False"
+        },
+        {
+          "name": "epsilon_small_returns_theta",
+          "detail": "shift=0.0, theta=10.0, epsilon_small_case: False"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2302.10685",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "calibrating offset spikes",
+      "usage": {
+        "inputTokens": 48,
+        "outputTokens": 3270,
+        "cacheReadInputTokens": 48538,
+        "cacheWriteInputTokens": 4514
+      },
+      "turns": 10,
+      "wall_s": 120.3,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "all_spikes_one_returns_theta",
+        "epsilon_small_returns_theta",
+        "shift_lower_bound_theta"
+      ],
+      "failure_details": [
+        {
+          "name": "all_spikes_one_returns_theta",
+          "detail": "shift=0.0, theta=3.5, all_spikes_1: False"
+        },
+        {
+          "name": "epsilon_small_returns_theta",
+          "detail": "shift=4.0, theta=10.0, epsilon_small_case: False"
+        },
+        {
+          "name": "shift_lower_bound_theta",
+          "detail": "shift=0.0, theta=5.0, shift >= theta: False"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2304.03274",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "DiffMimic",
+      "usage": {
+        "inputTokens": 49,
+        "outputTokens": 3286,
+        "cacheReadInputTokens": 130548,
+        "cacheWriteInputTokens": 23436
+      },
+      "turns": 9,
+      "wall_s": 47.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2304.03274",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "DiffMimic",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 1462,
+        "cacheReadInputTokens": 28332,
+        "cacheWriteInputTokens": 3807
+      },
+      "turns": 7,
+      "wall_s": 26.5,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": true,
+      "properties_required": 5,
+      "properties_failed": [],
+      "failure_details": []
+    },
+    {
+      "task_id": "sub_2305.14093",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "Weakly Supervised 3D Open-vocabulary Segmentation",
+      "usage": {
+        "inputTokens": 50,
+        "outputTokens": 3724,
+        "cacheReadInputTokens": 99400,
+        "cacheWriteInputTokens": 16078
+      },
+      "turns": 10,
+      "wall_s": 57.6,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "identical_overlapping_patches",
+        "non_overlapping_patches",
+        "output_shape_and_dtype",
+        "single_full_patch"
+      ],
+      "failure_details": [
+        {
+          "name": "identical_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "non_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "output_shape_and_dtype",
+          "detail": "Shape: (12, 15, 5), dtype: float64"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2305.14093",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "Weakly Supervised 3D Open-vocabulary Segmentation",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2788,
+        "cacheReadInputTokens": 10045,
+        "cacheWriteInputTokens": 3768
+      },
+      "turns": 5,
+      "wall_s": 31.8,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "identical_overlapping_patches",
+        "non_overlapping_patches",
+        "output_shape_and_dtype",
+        "single_full_patch"
+      ],
+      "failure_details": [
+        {
+          "name": "identical_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "non_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "output_shape_and_dtype",
+          "detail": "Shape: (12, 15, 5), dtype: float32"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2305.14093",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "Weakly Supervised 3D Open-vocabulary Segmentation",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 4675,
+        "cacheReadInputTokens": 69224,
+        "cacheWriteInputTokens": 11614
+      },
+      "turns": 8,
+      "wall_s": 56.1,
+      "syntology_calls": 2,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "identical_overlapping_patches",
+        "non_overlapping_patches",
+        "output_shape_and_dtype"
+      ],
+      "failure_details": [
+        {
+          "name": "identical_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "non_overlapping_patches",
+          "detail": "too many indices for array: array is 3-dimensional, but 4 were indexed"
+        },
+        {
+          "name": "output_shape_and_dtype",
+          "detail": "Shape: (5, 12, 15), dtype: float32"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2310.16450",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "CLEX",
+      "usage": {
+        "inputTokens": 38,
+        "outputTokens": 1841,
+        "cacheReadInputTokens": 67266,
+        "cacheWriteInputTokens": 12493
+      },
+      "turns": 8,
+      "wall_s": 39.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "boundary_condition_t_prime_equals_1",
+        "monotonicity_increasing_with_t_prime",
+        "ode_solution_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "boundary_condition_t_prime_equals_1",
+          "detail": "Max diff: 9.0"
+        },
+        {
+          "name": "monotonicity_increasing_with_t_prime",
+          "detail": "Min ratio t2/t1: 0.44721359549995787"
+        },
+        {
+          "name": "ode_solution_correctness",
+          "detail": "Max relative error: 0.8151565162792198"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2310.16450",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "CLEX",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2090,
+        "cacheReadInputTokens": 4568,
+        "cacheWriteInputTokens": 3930
+      },
+      "turns": 4,
+      "wall_s": 32.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "monotonicity_increasing_with_t_prime",
+        "ode_solution_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "monotonicity_increasing_with_t_prime",
+          "detail": "Min ratio t2/t1: 1.0"
+        },
+        {
+          "name": "ode_solution_correctness",
+          "detail": "Max relative error: 0.878048780487805"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2310.16450",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "CLEX",
+      "usage": {
+        "inputTokens": 33,
+        "outputTokens": 2555,
+        "cacheReadInputTokens": 40798,
+        "cacheWriteInputTokens": 6724
+      },
+      "turns": 7,
+      "wall_s": 48.3,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "boundary_condition_t_prime_equals_1",
+        "monotonicity_increasing_with_t_prime",
+        "ode_solution_correctness"
+      ],
+      "failure_details": [
+        {
+          "name": "boundary_condition_t_prime_equals_1",
+          "detail": "Max diff: 9.0"
+        },
+        {
+          "name": "monotonicity_increasing_with_t_prime",
+          "detail": "Min ratio t2/t1: 0.44721359549995787"
+        },
+        {
+          "name": "ode_solution_correctness",
+          "detail": "Max relative error: 0.8151565162792198"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2401.06118",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "AQLM",
+      "usage": {
+        "inputTokens": 40,
+        "outputTokens": 3168,
+        "cacheReadInputTokens": 83815,
+        "cacheWriteInputTokens": 19392
+      },
+      "turns": 8,
+      "wall_s": 47.9,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "non_negativity",
+        "perfect_reconstruction_zero_loss",
+        "scaling_factors_linearity",
+        "x_gram_scaling_property",
+        "zero_x_gram_zero_loss"
+      ],
+      "failure_details": [
+        {
+          "name": "non_negativity",
+          "detail": "Unexpected scale shape: (3, 4, 2)"
+        },
+        {
+          "name": "perfect_reconstruction_zero_loss",
+          "detail": "Unexpected scale shape: (3, 4, 2)"
+        },
+        {
+          "name": "scaling_factors_linearity",
+          "detail": "Unexpected scale shape: (3, 4, 2)"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2401.06118",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "AQLM",
+      "usage": {
+        "inputTokens": 1040,
+        "outputTokens": 2441,
+        "cacheReadInputTokens": 6887,
+        "cacheWriteInputTokens": 2969
+      },
+      "turns": 5,
+      "wall_s": 37.0,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "non_negativity",
+        "perfect_reconstruction_zero_loss",
+        "scaling_factors_linearity",
+        "x_gram_scaling_property",
+        "zero_x_gram_zero_loss"
+      ],
+      "failure_details": [
+        {
+          "name": "non_negativity",
+          "detail": "operands could not be broadcast together with shapes (3,) (3,4) (3,) "
+        },
+        {
+          "name": "perfect_reconstruction_zero_loss",
+          "detail": "operands could not be broadcast together with shapes (3,) (3,4) (3,) "
+        },
+        {
+          "name": "scaling_factors_linearity",
+          "detail": "operands could not be broadcast together with shapes (3,) (3,4) (3,) "
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2401.06118",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "AQLM",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 1894,
+        "cacheReadInputTokens": 20181,
+        "cacheWriteInputTokens": 2664
+      },
+      "turns": 6,
+      "wall_s": 35.8,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 5,
+      "properties_failed": [
+        "non_negativity",
+        "perfect_reconstruction_zero_loss",
+        "scaling_factors_linearity",
+        "x_gram_scaling_property",
+        "zero_x_gram_zero_loss"
+      ],
+      "failure_details": [
+        {
+          "name": "non_negativity",
+          "detail": "operands could not be broadcast together with shapes (2,) (2,4) (2,) "
+        },
+        {
+          "name": "perfect_reconstruction_zero_loss",
+          "detail": "operands could not be broadcast together with shapes (2,) (2,4) (2,) "
+        },
+        {
+          "name": "scaling_factors_linearity",
+          "detail": "operands could not be broadcast together with shapes (2,) (2,4) (2,) "
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2405.16852",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "EM Distillation (EMD)",
+      "usage": {
+        "inputTokens": 52,
+        "outputTokens": 3658,
+        "cacheReadInputTokens": 161819,
+        "cacheWriteInputTokens": 23497
+      },
+      "turns": 10,
+      "wall_s": 60.4,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "single_langevin_step",
+        "zero_noise_input"
+      ],
+      "failure_details": [
+        {
+          "name": "single_langevin_step",
+          "detail": "max diff: 0.3432894988955333"
+        },
+        {
+          "name": "zero_noise_input",
+          "detail": "max diff: 0.0985197648145606"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2405.16852",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "EM Distillation (EMD)",
+      "usage": {
+        "inputTokens": 18,
+        "outputTokens": 2120,
+        "cacheReadInputTokens": 5642,
+        "cacheWriteInputTokens": 2877
+      },
+      "turns": 4,
+      "wall_s": 28.1,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "single_langevin_step",
+        "zero_noise_input",
+        "zero_step_size_deterministic"
+      ],
+      "failure_details": [
+        {
+          "name": "single_langevin_step",
+          "detail": "max diff: 2.202073190408088"
+        },
+        {
+          "name": "zero_noise_input",
+          "detail": "max diff: 1.911679482757425"
+        },
+        {
+          "name": "zero_step_size_deterministic",
+          "detail": "max diff: 1.5792128155073915"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2405.16852",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "EM Distillation (EMD)",
+      "usage": {
+        "inputTokens": 30,
+        "outputTokens": 2700,
+        "cacheReadInputTokens": 38259,
+        "cacheWriteInputTokens": 7800
+      },
+      "turns": 6,
+      "wall_s": 44.0,
+      "syntology_calls": 3,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "single_langevin_step",
+        "zero_noise_input"
+      ],
+      "failure_details": [
+        {
+          "name": "single_langevin_step",
+          "detail": "max diff: 0.3432894988955333"
+        },
+        {
+          "name": "zero_noise_input",
+          "detail": "max diff: 0.0985197648145606"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2504.13055",
+      "arm": "code_only_ho",
+      "stratum": "substitution_new",
+      "method": "NoisyRollout",
+      "usage": {
+        "inputTokens": 35,
+        "outputTokens": 3540,
+        "cacheReadInputTokens": 57942,
+        "cacheWriteInputTokens": 14265
+      },
+      "turns": 7,
+      "wall_s": 50.3,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "clipping_bounds_with_constant_rewards",
+        "constant_rewards_zero_objective",
+        "identical_policies_zero_objective",
+        "reward_translation_invariance"
+      ],
+      "failure_details": [
+        {
+          "name": "clipping_bounds_with_constant_rewards",
+          "detail": "Result: 12.0, expected 0 or nan/inf for constant rewards with clipping"
+        },
+        {
+          "name": "constant_rewards_zero_objective",
+          "detail": "Result: 6.817773733798146, expected 0 or nan/inf for constant rewards"
+        },
+        {
+          "name": "identical_policies_zero_objective",
+          "detail": "Result: 5.223045870499238, expected ~0"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2504.13055",
+      "arm": "none",
+      "stratum": "substitution_new",
+      "method": "NoisyRollout",
+      "usage": {
+        "inputTokens": 23,
+        "outputTokens": 2295,
+        "cacheReadInputTokens": 9016,
+        "cacheWriteInputTokens": 3327
+      },
+      "turns": 5,
+      "wall_s": 28.5,
+      "syntology_calls": 0,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "clipping_bounds_with_constant_rewards",
+        "constant_rewards_zero_objective",
+        "identical_policies_zero_objective",
+        "reward_translation_invariance"
+      ],
+      "failure_details": [
+        {
+          "name": "clipping_bounds_with_constant_rewards",
+          "detail": "Result: 12.0, expected 0 or nan/inf for constant rewards with clipping"
+        },
+        {
+          "name": "constant_rewards_zero_objective",
+          "detail": "Result: 6.817773733798146, expected 0 or nan/inf for constant rewards"
+        },
+        {
+          "name": "identical_policies_zero_objective",
+          "detail": "Result: 5.223045870499238, expected ~0"
+        }
+      ]
+    },
+    {
+      "task_id": "sub_2504.13055",
+      "arm": "syntology_ho",
+      "stratum": "substitution_new",
+      "method": "NoisyRollout",
+      "usage": {
+        "inputTokens": 43,
+        "outputTokens": 3316,
+        "cacheReadInputTokens": 58486,
+        "cacheWriteInputTokens": 8690
+      },
+      "turns": 9,
+      "wall_s": 48.8,
+      "syntology_calls": 4,
+      "search_calls": 0,
+      "stop_reason": "submitted",
+      "passed": false,
+      "properties_required": 4,
+      "properties_failed": [
+        "clipping_bounds_with_constant_rewards",
+        "constant_rewards_zero_objective",
+        "identical_policies_zero_objective",
+        "reward_translation_invariance"
+      ],
+      "failure_details": [
+        {
+          "name": "clipping_bounds_with_constant_rewards",
+          "detail": "Result: 12.0, expected 0 or nan/inf for constant rewards with clipping"
+        },
+        {
+          "name": "constant_rewards_zero_objective",
+          "detail": "Result: 6.817773733798146, expected 0 or nan/inf for constant rewards"
+        },
+        {
+          "name": "identical_policies_zero_objective",
+          "detail": "Result: 5.223045870499238, expected ~0"
+        }
+      ]
+    }
+  ],
+  "_provenance": {
+    "schema": "syntology-provenance/1",
+    "created_at": "2026-09-11T00:57:34+00:00",
+    "generator": {
+      "script": "<BENCH>/verify_solutions.py",
+      "argv": [
+        "--tasks",
+        "<BENCH>/tasks/tasks_substitution.json",
+        "--runs",
+        "<BENCH>/runs_v16"
+      ],
+      "git_commit": "c08309d8fe2344f9a88b9547d7311ba5adae1adc",
+      "git_dirty": true
+    },
+    "inputs": [
+      {
+        "path": "<BENCH>/tasks/tasks_substitution.json",
+        "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1",
+        "bytes": 77302,
+        "mtime": "2026-09-10T23:52:11+00:00"
+      }
+    ],
+    "params": {
+      "tasks": "<BENCH>/tasks/tasks_substitution.json",
+      "runs": "<BENCH>/runs_v16",
+      "out": "<REPO>/<BENCH>/results_v16.json"
+    },
+    "exclusions": {
+      "examined": 146,
+      "processed": 146,
+      "excluded": {}
+    }
+  }
+}

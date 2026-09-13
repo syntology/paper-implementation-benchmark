@@ -1,0 +1,495 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-11T13:48:35+00:00",
+  "exclusions": {
+   "examined": 22,
+   "excluded": {},
+   "processed": 22
+  },
+  "generator": {
+   "argv": [
+    "--mode",
+    "validate",
+    "--concurrency",
+    "6"
+   ],
+   "git_commit": "ee78dd1de7c56a513b1bbc66ce970e4ffd5a02fb",
+   "git_dirty": true,
+   "script": "<INTERNAL>/audit_refimpl_fidelity.py"
+  },
+  "inputs": [
+   {
+    "bytes": 92561,
+    "mtime": "2026-09-11T13:48:35+00:00",
+    "path": "<REPO>/<INTERNAL>/rows_validate.jsonl",
+    "sha256": "5169994482683611c36e45c65c31b90a4b9fee1fbdc08dcdbf4aea13ada4e8fd"
+   }
+  ],
+  "params": {
+   "accept_exclusions": "",
+   "cache_dir": "<TMPDIR>",
+   "concurrency": 6,
+   "coverage": false,
+   "dry_run": false,
+   "mode": "validate",
+   "models": "mistral,deepseek",
+   "n": 400,
+   "refresh_index": false,
+   "seed": 20260911
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "adjudicators": {
+  "deepseek": "deepseek.v3.2",
+  "mistral": "mistral.mistral-large-3-675b-instruct"
+ },
+ "agreement_all_pairs": {
+  "mistral|deepseek": {
+   "both_say_correct": 3,
+   "conservative_floor_rate": 0.1364,
+   "conservative_floor_wilson_lower_95": 0.0475,
+   "either_says_incorrect": 19,
+   "n_both": 22,
+   "n_both_decided": 22,
+   "note": "conservative floor = a row counts correct only when BOTH independent families call it correct; a floor, not the estimate, because a family that errs toward INCORRECT drags it",
+   "pair": [
+    "mistral",
+    "deepseek"
+   ],
+   "raw_agreement": 0.3182
+  }
+ },
+ "bars": {
+  "sensitivity": 0.5,
+  "severe_cases": [
+   "compute_guidance_gradient",
+   "corrector_step_ve",
+   "s4_convolution_kernel"
+  ],
+  "specificity": 0.5
+ },
+ "bedrock": {
+  "deepseek": {
+   "bedrock_calls": 22,
+   "bedrock_retries": 0,
+   "bedrock_throttled": 0
+  },
+  "mistral": {
+   "bedrock_calls": 22,
+   "bedrock_retries": 0,
+   "bedrock_throttled": 0
+  }
+ },
+ "claim_under_test": "does this code implement the method it is attached to, as that method's paper defines it -- NOT whether it runs (V0-V3 measure that and their evidence is on the node), NOT whether the maths is correct in isolation",
+ "day_capped_models": [],
+ "estimated_spend_usd": {
+  "deepseek": 0.1894,
+  "mistral": 0.0693
+ },
+ "evidence": {
+  "adjudicator_saw": "title + abstract + deterministically selected body sections + the served code itself",
+  "fulltext_index": {
+   "listing": "<TMPDIR>",
+   "listing_sha256": "66b0b3e460af97d800efb478d523fb3e76b52f6789c135dc873a98af73dc87e4",
+   "n_s3_objects": 25046
+  },
+  "producer_saw": "one algorithm block from the paper's LaTeX + a drafted spec (generate_reference_impl.py / run_batch_cycles.py)",
+  "rows_with_body_text": 22,
+  "rows_with_method_name_in_body": 19,
+  "withheld_from_adjudicators": [
+   "spec.json spec_text",
+   "spec_review",
+   "review_note",
+   "verification_level",
+   "verification_report",
+   "generated_by",
+   "spec_source"
+  ]
+ },
+ "excluded_adjudicator": {
+  "model": "global.anthropic.claude-sonnet-4-5-20250929-v1:0",
+  "why": "cross_checked_by on all 2,831 edges -- its independent implementation IS the V2 evidence -- plus spec drafting and the repairs recorded in spec_review_ledger.json. A participant in the artifact's production cannot be its auditor."
+ },
+ "instrument_validation": {
+  "deepseek": {
+   "bars": {
+    "sensitivity": true,
+    "severe_gate": true,
+    "specificity": false
+   },
+   "by_gold_verdict": {
+    "fidelity_flag": "11/13",
+    "hard_error": "1/1",
+    "label_fix": "1/1",
+    "note_only": "2/3",
+    "pulled_not_the_method": "1/1",
+    "repaired_pending_re_review": "3/3"
+   },
+   "clears_all_bars": false,
+   "missed_negatives": [
+    {
+     "entry": "compute_apt_reward",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code computes Euclidean distances to k-nearest neighbors, which matches the paper's description of the particle-based entropy estimator."
+    },
+    {
+     "entry": "compute_gflownet_reward",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The paper explicitly defines using R(x)^\u03b2 as the reward function for GFlowNet training, which the code implements directly."
+    }
+   ],
+   "model_id": "deepseek.v3.2",
+   "n_negatives": 16,
+   "n_positives": 6,
+   "negatives_caught": 14,
+   "positives_kept": 1,
+   "sensitivity": 0.875,
+   "sensitivity_wilson_lower_95": 0.6398,
+   "severe_cases": {
+    "compute_guidance_gradient": "INCORRECT",
+    "corrector_step_ve": "INCORRECT",
+    "s4_convolution_kernel": "INCORRECT"
+   },
+   "severe_gate_3_of_3": true,
+   "specificity": 0.1667
+  },
+  "mistral": {
+   "bars": {
+    "sensitivity": false,
+    "severe_gate": false,
+    "specificity": true
+   },
+   "by_gold_verdict": {
+    "fidelity_flag": "2/13",
+    "hard_error": "1/1",
+    "label_fix": "0/1",
+    "note_only": "0/3",
+    "pulled_not_the_method": "1/1",
+    "repaired_pending_re_review": "0/3"
+   },
+   "clears_all_bars": false,
+   "missed_negatives": [
+    {
+     "entry": "compute_apt_reward",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code computes the k-th smallest Euclidean distance for each state embedding, which matches the paper's description of the particle-based entropy estimator used in APT."
+    },
+    {
+     "entry": "compute_expert_return_logits",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the expert-biased return logits computation exactly as described in the paper, using the preference strength \u03ba to bias returns toward higher values."
+    },
+    {
+     "entry": "compute_foreground_weights",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The function computes normalized weights for foreground components based on depth and attention masks as specified in the paper's description of combining foreground objects using z_depth and masks."
+    },
+    {
+     "entry": "compute_gflownet_reward",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the paper's specified reward function for GFlowNet, which is the proxy score raised to the power beta, matching the paper's description."
+    },
+    {
+     "entry": "construct_euler_transition_density",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the Euler transition density as specified in the paper's denoising score entropy framework, matching the mathematical formulation given in the paper."
+    },
+    {
+     "entry": "corrector_step_ve",
+     "gold": "label_fix",
+     "verdict": "CORRECT",
+     "why": "The code implements the corrector step for the VE SDE as described in Algorithm 4 of the paper, matching the update rule for annealed Langevin dynamics with the specified signal-to-noise ratio parameterization."
+    },
+    {
+     "entry": "deis_rho_rk_midpoint_step",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the \u03c1RK-DEIS midpoint step as specified in the paper, using the DDIM update formula within the \u03c1RK-DEIS framework."
+    },
+    {
+     "entry": "dps_gradient_step",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the gradient step specified in the paper's Gaussian noise case for Diffusion Posterior Sampling, matching the derived gradient formula."
+    },
+    {
+     "entry": "feddr_server_aggregation",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code directly implements the server aggregation step as described in Algorithm 1 and the dynamic regularization update equations from the paper."
+    },
+    {
+     "entry": "geometric_vector_perceptron",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code faithfully implements the geometric vector perceptron as specified in Algorithm 1 of the paper, including the linear transformations, L2 norms, concatenation, and nonlinearities."
+    },
+    {
+     "entry": "gptq_quantize_weight_matrix",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the block-wise quantization and lazy batch-updates described in the paper, including the Cholesky reformulation and block-wise updates of the Hessian inverse and weight matrix."
+    },
+    {
+     "entry": "vip_loss",
+     "gold": "fidelity_flag",
+     "verdict": "CORRECT",
+     "why": "The code implements the VIP loss as specified in the paper, matching the described objective and the implicit time contrastive learning formulation."
+    }
+   ],
+   "model_id": "mistral.mistral-large-3-675b-instruct",
+   "n_negatives": 16,
+   "n_positives": 6,
+   "negatives_caught": 4,
+   "positives_kept": 6,
+   "sensitivity": 0.25,
+   "sensitivity_wilson_lower_95": 0.1018,
+   "severe_cases": {
+    "compute_guidance_gradient": "INCORRECT",
+    "corrector_step_ve": "CORRECT",
+    "s4_convolution_kernel": "INCORRECT"
+   },
+   "severe_gate_3_of_3": false,
+   "specificity": 1.0
+  }
+ },
+ "mode": "validate",
+ "per_model": {
+  "deepseek": {
+   "by_body_text_held": {
+    "True": {
+     "adjudicable": 22,
+     "correct": 3,
+     "rate": 0.1364,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0475
+    }
+   },
+   "by_method_in_body": {
+    "False": {
+     "adjudicable": 3,
+     "correct": 0,
+     "rate": 0.0,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0
+    },
+    "True": {
+     "adjudicable": 19,
+     "correct": 3,
+     "rate": 0.1579,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0552
+    }
+   },
+   "by_spec_review": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 3,
+     "rate": 0.1364,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0475
+    }
+   },
+   "by_spec_source": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 3,
+     "rate": 0.1364,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0475
+    }
+   },
+   "by_verification_level": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 3,
+     "rate": 0.1364,
+     "undetermined": 0,
+     "wilson_lower_95": 0.0475
+    }
+   },
+   "failure_modes": {
+    "fidelity_flag": 7,
+    "hard_error": 1,
+    "not_in_paper": 1,
+    "not_the_method": 10
+   },
+   "is_defining_true": 18,
+   "model_id": "deepseek.v3.2",
+   "n_adjudicable": 22,
+   "n_correct": 3,
+   "n_rows": 22,
+   "never_serve_n": 11,
+   "never_serve_rate": 0.5,
+   "never_serve_wilson_upper_note": "hard_error + not_the_method -- the two verdicts spec_review.NEVER_VERIFIED says must not be served as verified",
+   "partial": false,
+   "rate": 0.1364,
+   "strict_defining_correct": 1,
+   "strict_rate": 0.0455,
+   "strict_wilson_lower_95": 0.0081,
+   "undetermined": 0,
+   "verdict_counts": {
+    "CORRECT": 3,
+    "INCORRECT": 19
+   },
+   "wilson_lower_95": 0.0475
+  },
+  "mistral": {
+   "by_body_text_held": {
+    "True": {
+     "adjudicable": 22,
+     "correct": 18,
+     "rate": 0.8182,
+     "undetermined": 0,
+     "wilson_lower_95": 0.6148
+    }
+   },
+   "by_method_in_body": {
+    "False": {
+     "adjudicable": 3,
+     "correct": 3,
+     "rate": 1.0,
+     "undetermined": 0,
+     "wilson_lower_95": 0.4385
+    },
+    "True": {
+     "adjudicable": 19,
+     "correct": 15,
+     "rate": 0.7895,
+     "undetermined": 0,
+     "wilson_lower_95": 0.5667
+    }
+   },
+   "by_spec_review": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 18,
+     "rate": 0.8182,
+     "undetermined": 0,
+     "wilson_lower_95": 0.6148
+    }
+   },
+   "by_spec_source": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 18,
+     "rate": 0.8182,
+     "undetermined": 0,
+     "wilson_lower_95": 0.6148
+    }
+   },
+   "by_verification_level": {
+    "None": {
+     "adjudicable": 22,
+     "correct": 18,
+     "rate": 0.8182,
+     "undetermined": 0,
+     "wilson_lower_95": 0.6148
+    }
+   },
+   "failure_modes": {
+    "fidelity_flag": 3,
+    "not_the_method": 1
+   },
+   "is_defining_true": 21,
+   "model_id": "mistral.mistral-large-3-675b-instruct",
+   "n_adjudicable": 22,
+   "n_correct": 18,
+   "n_rows": 22,
+   "never_serve_n": 1,
+   "never_serve_rate": 0.0455,
+   "never_serve_wilson_upper_note": "hard_error + not_the_method -- the two verdicts spec_review.NEVER_VERIFIED says must not be served as verified",
+   "partial": false,
+   "rate": 0.8182,
+   "strict_defining_correct": 17,
+   "strict_rate": 0.7727,
+   "strict_wilson_lower_95": 0.5656,
+   "undetermined": 0,
+   "verdict_counts": {
+    "CORRECT": 18,
+    "INCORRECT": 4
+   },
+   "wilson_lower_95": 0.6148
+  }
+ },
+ "producer_model": "us.meta.llama3-3-70b-instruct-v1:0 (NOT used here)",
+ "sampling": {
+  "design": "simple random sample over EDGES (not clustered, not stratified) -- the Wilson interval's own assumption",
+  "drawn_keys": [
+   "2103.04551||compute_apt_reward||0",
+   "2205.15241||compute_expert_return_logits||0",
+   "2001.02407||compute_foreground_weights||0",
+   "2106.04399||compute_gflownet_reward||0",
+   "2301.10226||compute_greenlist_decision||0",
+   "2209.14734||compute_guidance_gradient||0",
+   "2110.11309||compute_mend_loss||0",
+   "2310.16834||construct_euler_transition_density||0",
+   "2011.13456||corrector_step_ve||0",
+   "2204.13902||deis_rho_rk_midpoint_step||0",
+   "2206.00927||dpm_solver_2_step||0",
+   "2209.14687||dps_gradient_step||0",
+   "2110.01548||edac_ensemble_similarity_loss||0",
+   "2111.04263||feddr_server_aggregation||0",
+   "2009.01411||geometric_vector_perceptron||0",
+   "2210.17323||gptq_quantize_weight_matrix||0",
+   "2304.14997||kl_divergence_subgraph||0",
+   "2201.12740||moving_average_decomposition||0",
+   "2202.00512||progressive_distillation_loss||0",
+   "2111.00396||s4_convolution_kernel||0",
+   "2106.04156||spectral_contrastive_loss||0",
+   "2210.00030||vip_loss||0"
+  ],
+  "finite_population_correction": "NOT applied -- Wilson without FPC is conservative at a 14% sampling fraction, and erring wide keeps this bound comparable to the ledger's others",
+  "frame_histograms": {
+   "prov": {
+    "llm:us.meta.llama3-3-70b-instruct-v1:0+crosscheck:llm:us.anthropic.claude-sonnet-4-5-20250929-v1:0+contract:settle_at_scale_2026-08-27": 313,
+    "llm:us.meta.llama3-3-70b-instruct-v1:0+crosscheck:llm:us.anthropic.claude-sonnet-4-5-20250929-v1:0+spec_review:2026-08-26": 2518
+   },
+   "source_kind": {
+    "generated": 2831
+   },
+   "spec_review": {
+    "None": 203,
+    "clean": 967,
+    "label_fix": 1,
+    "note_only": 3,
+    "repaired_pending_re_review": 3,
+    "unreviewed": 1654
+   },
+   "spec_source": {
+    "None": 203,
+    "human": 3,
+    "llm_drafted+gate_reviewed_2026-09-01": 598,
+    "llm_drafted+reviewed_2026-08-26": 373,
+    "llm_drafted:run_batch_cycles": 1654
+   },
+   "verification_level": {
+    "0": 25,
+    "1": 15,
+    "2": 965,
+    "3": 1826
+   }
+  },
+  "frame_sha256": "5e803d00033de4877c60772e65dc5584ab3434428b139c575397be32346beeca",
+  "frame_size": 2831,
+  "n_drawn": 22,
+  "sampling_fraction": 0.0078,
+  "seed": 20260911
+ },
+ "serving_threshold": 0.8,
+ "stratum": "HAS_REFERENCE_IMPL/llm-generated",
+ "strict_threshold_reported_beside_it": 0.95,
+ "total_estimated_spend_usd": 0.2587,
+ "validation_set": {
+  "n_ledger_entries": 22,
+  "problems": []
+ },
+ "wall_seconds": 17.9
+}

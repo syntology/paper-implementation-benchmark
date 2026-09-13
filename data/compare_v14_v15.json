@@ -1,0 +1,155 @@
+{
+  "arms": {
+    "none|in_catalog": {
+      "n": 18,
+      "pass_a": 11,
+      "pass_b": 8,
+      "gained": 0,
+      "lost": 3,
+      "sign_p": 0.25,
+      "fetch_a": 0,
+      "fetch_b": 0,
+      "cost_med_a": 0.04913580000000001,
+      "cost_med_b": 0.044737425,
+      "wall_med_a": 30.75,
+      "wall_med_b": 28.45
+    },
+    "none|off_catalog": {
+      "n": 6,
+      "pass_a": 2,
+      "pass_b": 2,
+      "gained": 1,
+      "lost": 1,
+      "sign_p": 1.0,
+      "fetch_a": 0,
+      "fetch_b": 0,
+      "cost_med_a": 0.045807749999999994,
+      "cost_med_b": 0.047997675000000004,
+      "wall_med_a": 33.3,
+      "wall_med_b": 33.4
+    },
+    "none|ALL": {
+      "n": 24,
+      "pass_a": 13,
+      "pass_b": 10,
+      "gained": 1,
+      "lost": 4,
+      "sign_p": 0.375,
+      "fetch_a": 0,
+      "fetch_b": 0,
+      "cost_med_a": 0.04885155,
+      "cost_med_b": 0.044737425,
+      "wall_med_a": 31.35,
+      "wall_med_b": 28.45
+    },
+    "syntology|in_catalog": {
+      "n": 18,
+      "pass_a": 18,
+      "pass_b": 18,
+      "gained": 0,
+      "lost": 0,
+      "sign_p": 1.0,
+      "fetch_a": 18,
+      "fetch_b": 18,
+      "cost_med_a": 0.07159147499999999,
+      "cost_med_b": 0.08135999999999999,
+      "wall_med_a": 33.3,
+      "wall_med_b": 37.95
+    },
+    "syntology|off_catalog": {
+      "n": 6,
+      "pass_a": 3,
+      "pass_b": 6,
+      "gained": 3,
+      "lost": 0,
+      "sign_p": 0.25,
+      "fetch_a": 1,
+      "fetch_b": 6,
+      "cost_med_a": 0.06675465,
+      "cost_med_b": 0.07245689999999999,
+      "wall_med_a": 40.65,
+      "wall_med_b": 32.5
+    },
+    "syntology|ALL": {
+      "n": 24,
+      "pass_a": 21,
+      "pass_b": 24,
+      "gained": 3,
+      "lost": 0,
+      "sign_p": 0.25,
+      "fetch_a": 19,
+      "fetch_b": 24,
+      "cost_med_a": 0.070193325,
+      "cost_med_b": 0.08072062499999999,
+      "wall_med_a": 36.7,
+      "wall_med_b": 36.8
+    }
+  },
+  "conditional": {
+    "v14freeze": {
+      "fetched": 37,
+      "passed": 37
+    },
+    "v15": {
+      "fetched": 24,
+      "passed": 24
+    }
+  },
+  "_provenance": {
+    "schema": "syntology-provenance/1",
+    "created_at": "2026-09-10T20:22:54+00:00",
+    "generator": {
+      "script": "compare_runs.py",
+      "argv": [
+        "--a",
+        "results_v14.json",
+        "--a-runs",
+        "runs_v14",
+        "--b",
+        "results_v15.json",
+        "--b-runs",
+        "runs_v15",
+        "--tasks",
+        "tasks/tasks_freeze.json",
+        "--label-a",
+        "v14freeze",
+        "--label-b",
+        "v15",
+        "--out",
+        "compare_v14_v15.json"
+      ],
+      "git_commit": "01bf41ea18e987b6ecfe648f2c79e4d29d2e6b62",
+      "git_dirty": true
+    },
+    "inputs": [
+      {
+        "path": "<REPO>/<BENCH>/results_v14.json",
+        "sha256": "1a547bdab10d4ed3d8bf5eaa619f2b9dc2551ecf4aedd745ab36a29c74f409fa",
+        "bytes": 63265,
+        "mtime": "2026-09-03T01:32:48+00:00"
+      },
+      {
+        "path": "<REPO>/<BENCH>/results_v15.json",
+        "sha256": "f9d8bede73d942cfcd84abfd717316220405c2cc24cebca2b02d69ce7909c8ee",
+        "bytes": 47782,
+        "mtime": "2026-09-10T20:22:31+00:00"
+      },
+      {
+        "path": "tasks/tasks_freeze.json",
+        "sha256": "3c35c35d8b38ee3c280108657354c3bb8b3da5545fad51a34c24a20ce1dd19ab",
+        "bytes": 27406,
+        "mtime": "2026-09-02T19:03:42+00:00"
+      }
+    ],
+    "params": {
+      "a": "results_v14.json",
+      "a_runs": "runs_v14",
+      "b": "results_v15.json",
+      "b_runs": "runs_v15",
+      "tasks": "tasks/tasks_freeze.json",
+      "label_a": "v14freeze",
+      "label_b": "v15",
+      "out": "compare_v14_v15.json"
+    }
+  }
+}

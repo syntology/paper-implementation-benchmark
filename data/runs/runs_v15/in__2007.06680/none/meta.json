@@ -1,0 +1,84 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-10T20:03:36+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_freeze.json",
+    "--out",
+    "<BENCH>/runs_v15",
+    "--workers",
+    "2",
+    "--arms",
+    "none,syntology,code_only",
+    "--intent",
+    "v1.5 code_only ablation (PREREGISTRATION_CODE_ONLY.md): is the graph load-bearing GIVEN the CodeSamples; 3 arms x 24 tasks, none+syntology re-run as in-execution controls; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "eacf9143b600ee6bde527721ed6d8895c16230d1",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 27406,
+    "mtime": "2026-09-02T19:03:42+00:00",
+    "path": "<BENCH>/tasks/tasks_freeze.json",
+    "sha256": "3c35c35d8b38ee3c280108657354c3bb8b3da5545fad51a34c24a20ce1dd19ab"
+   }
+  ],
+  "params": {
+   "arm": "none",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "none",
+ "bedrock": {
+  "calls": 4,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 0,
+ "method": "IS-MBPG*",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 0,
+ "task_id": "in__2007.06680",
+ "tool_calls": [
+  {
+   "args_chars": 2255,
+   "tool": "run_python",
+   "turn": 0
+  },
+  {
+   "args_chars": 1510,
+   "tool": "run_python",
+   "turn": 1
+  },
+  {
+   "args_chars": 81,
+   "tool": "run_python",
+   "turn": 2
+  },
+  {
+   "args_chars": 1110,
+   "tool": "submit_solution",
+   "turn": 3
+  }
+ ],
+ "turns": 4,
+ "usage": {
+  "cacheReadInputTokens": 5877,
+  "cacheWriteInputTokens": 3036,
+  "inputTokens": 18,
+  "outputTokens": 2131
+ },
+ "variant": "v14_freeze",
+ "wall_s": 29.5
+}

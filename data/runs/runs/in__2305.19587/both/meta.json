@@ -1,0 +1,158 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T15:18:59+00:00",
+  "generator": {
+   "argv": [
+    "--workers",
+    "2",
+    "--intent",
+    "Measure CLAIMS.md's top open-debt row (agent+Syntology vs agent+search, working output): 24 revalidated tasks x 4 arms, Sonnet subjects on Bedrock, pre-registered in <BENCH>/PREREGISTRATION.md"
+   ],
+   "git_commit": "64479bd6e2690ac50081f00170c8d564b68363da",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 19,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "generic meta-learning framework",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 14,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 2,
+ "task_id": "in__2305.19587",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 1
+  },
+  {
+   "args_chars": 60,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 72,
+   "tool": "github_search_code",
+   "turn": 3
+  },
+  {
+   "args_chars": 75,
+   "tool": "github_search_code",
+   "turn": 4
+  },
+  {
+   "args_chars": 42,
+   "tool": "github_fetch_file",
+   "turn": 5
+  },
+  {
+   "args_chars": 46,
+   "tool": "github_fetch_file",
+   "turn": 6
+  },
+  {
+   "args_chars": 50,
+   "tool": "github_fetch_file",
+   "turn": 7
+  },
+  {
+   "args_chars": 69,
+   "tool": "github_fetch_file",
+   "turn": 8
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 9
+  },
+  {
+   "args_chars": 56,
+   "tool": "github_search_code",
+   "turn": 10
+  },
+  {
+   "args_chars": 64,
+   "tool": "github_search_code",
+   "turn": 11
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 12
+  },
+  {
+   "args_chars": 3983,
+   "tool": "run_python",
+   "turn": 13
+  },
+  {
+   "args_chars": 3926,
+   "tool": "run_python",
+   "turn": 14
+  },
+  {
+   "args_chars": 6150,
+   "tool": "run_python",
+   "turn": 15
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 16
+  },
+  {
+   "args_chars": 9509,
+   "tool": "run_python",
+   "turn": 17
+  },
+  {
+   "args_chars": 3410,
+   "tool": "submit_solution",
+   "turn": 18
+  }
+ ],
+ "turns": 19,
+ "usage": {
+  "cacheReadInputTokens": 409378,
+  "cacheWriteInputTokens": 57612,
+  "inputTokens": 97,
+  "outputTokens": 10913
+ },
+ "wall_s": 142.7
+}

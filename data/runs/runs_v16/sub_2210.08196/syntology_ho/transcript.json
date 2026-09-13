@@ -1,0 +1,240 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=c7d977a103c4e22a66659004217c5028b578093a061b9d5f2f9796f3a3da561f bytes=516 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=f7472aa2b322e774e0af0274679de1ab568eb331be7eed606cfa582540754b51 bytes=112 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2210.08196"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_7TjlcDcBDTU4qAafhMk2VU",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Deep Regression Unlearning\", \"abstract\": \"<redacted body sha256=947944a55562f7d9cdee135aa9679729cb4eac36ccea023406e6d3ec57b51300 bytes=1606 field=abstract origin=2210.08196>\", \"arxiv_id\": \"2210.08196\", \"source_file\": \"2210.08196v2.tei.xml\", \"conference\": \"icml\", \"venue\": \"ICML\", \"year\": 2023, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Mohan Kankanhalli\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Ayush Tarun\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Vikram Chundawat\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Murari Mandal\", \"provenance\": \"deterministic:grobid_header_parse\"}], \"repos\": [{\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/ayu987/deep-regression-unlearning\"}], \"reviews\": [], \"n_reviews\": 0, \"authors_note\": \"all 4 author(s), in no particular order -- this graph does not record author position, so the first name here is not necessarily the first-listed author\"}"
+      }
+     ],
+     "toolUseId": "tooluse_7TjlcDcBDTU4qAafhMk2VU"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2210.08196"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_C2GQqKnsPCzUQ692TalOic",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2210.08196\", \"repos\": [{\"url\": \"https://github.com/ayu987/deep-regression-unlearning\", \"owner\": \"ayu987\", \"repo\": \"deep-regression-unlearning\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": true, \"pwc_mentioned_in_paper\": true, \"pwc_mentioned_in_github\": true, \"link_strength\": \"official\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_C2GQqKnsPCzUQ692TalOic"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=88b8111b54ac73abfae70e68caccaaaed4c6c4684342f19596fcb1e2be6de820 bytes=65 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "Gaussian fine tuning deep regression unlearning"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_f7dPIakOIHKnjqUiUjiRyF",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"AdaLoRA\", \"origin_arxiv_id\": \"2303.10512\", \"paper_title\": \"AdaLoRA: Adaptive Budget Allocation for Parameter-Efficient Fine-Tuning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"CHAMELEON\", \"origin_arxiv_id\": \"2505.24844\", \"paper_title\": \"CHAMELEON: A Flexible Data-mixing Framework for Language Model Pretraining and Finetuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Cal-QL\", \"origin_arxiv_id\": \"2303.05479\", \"paper_title\": \"Cal-QL: Calibrated Offline RL Pre-Training for Efficient Online Fine-Tuning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Contrast-regularized tuning (Core-tuning)\", \"origin_arxiv_id\": \"2102.06605\", \"paper_title\": \"Unleashing the Power of Contrastive Self-Supervised Visual Models via Contrast-Regularized Fine-Tuning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"DPZero\", \"origin_arxiv_id\": \"2310.09639\", \"paper_title\": \"DPZero: Private Fine-Tuning of Language Models without Backpropagation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Differentially Private Bias-Term Fine-tuning (DP-BiTFiT)\", \"origin_arxiv_id\": \"2210.00036\", \"paper_title\": \"Differentially Private Bias-Term Fine-tuning of Foundation Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Dynamic Sparse No Training (DS\\u25cbT)\", \"origin_arxiv_id\": \"2310.08915\", \"paper_title\": \"Dynamic Sparse No Training: Training-Free Fine-tuning for Sparse LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Explained Variance Adaptation (EVA)\", \"origin_arxiv_id\": \"2410.07170\", \"paper_title\": \"Parameter Efficient Fine-tuning via Explained Variance Adaptation\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"FINESSL\", \"origin_arxiv_id\": \"2405.11756\", \"paper_title\": \"Erasing the Bias: Fine-Tuning Foundation Models for Semi-Supervised Learning\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"FairTune\", \"origin_arxiv_id\": \"2310.05055\", \"paper_title\": \"FairTune: Optimizing Parameter Efficient Fine Tuning for Fairness in Medical Image Analysis\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Fast Trainable Projection (FTP)\", \"origin_arxiv_id\": \"2310.19182\", \"paper_title\": \"Fast Trainable Projection for Robust Fine-Tuning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"FourierFT\", \"origin_arxiv_id\": \"2405.03003\", \"paper_title\": \"Parameter-Efficient Fine-Tuning with Discrete Fourier Transform\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"FreeShap\", \"origin_arxiv_id\": \"2406.04606\", \"paper_title\": \"Helpful or Harmful Data? Fine-tuning-free Shapley Attribution for Explaining Language Model Predictions\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"GFlowNet fine-tuning\", \"origin_arxiv_id\": \"2405.18540\", \"paper_title\": \"Learning diverse attacks on large language models for robust red-teaming and safety tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"GPTAQ\", \"origin_arxiv_id\": \"2504.02692\", \"paper_title\": \"GPTAQ: Efficient Finetuning-Free Quantization for Asymmetric Calibration\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Hessian-based distance measure\", \"origin_arxiv_id\": \"2206.02659\", \"paper_title\": \"Robust Fine-Tuning of Deep Neural Networks with Hessian-based Generalization Guarantees\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 3, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"LIFT\", \"origin_arxiv_id\": \"2309.10019\", \"paper_title\": \"Long-Tail Learning with Foundation Model: Heavy Fine-Tuning Hurts\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"LoRA-One\", \"origin_arxiv_id\": \"2502.01235\", \"paper_title\": \"LoRA-One: One-Step Full Gradient Could Suffice for Fine-Tuning Large Language Models, Provably and Efficiently\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"LyCORIS\", \"origin_arxiv_id\": \"2309.14859\", \"paper_title\": \"Navigating Text-To-Image Customization: From LyCORIS Fine-Tuning to Model Evaluation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"MCMC-EM fine-tuning technique\", \"origin_arxiv_id\": \"2312.02179\", \"paper_title\": \"Training Chain-of-Thought via Latent-Variable Inference\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"MULTIAGENT FINETUNING\", \"origin_arxiv_id\": \"2501.05707\", \"paper_title\": \"Multiagent Finetuning: Self Improvement with Diverse Reasoning Chains\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"MeZO\", \"origin_arxiv_id\": \"2305.17333\", \"paper_title\": \"Fine-Tuning Language Models with Just Forward Passes\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"POUF\", \"origin_arxiv_id\": \"2305.00350\", \"paper_title\": \"POUF: Prompt-oriented unsupervised fine-tuning for large pre-trained models\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Preference-grounded Token-level Guidance\", \"origin_arxiv_id\": \"2306.00398\", \"paper_title\": \"Preference-grounded Token-level Guidance for Language Model Fine-tuning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Representation Noising\", \"origin_arxiv_id\": \"2405.14577\", \"paper_title\": \"Representation Noising: A Defence Mechanism Against Harmful Finetuning\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"SFT-PG\", \"origin_arxiv_id\": \"2301.13362\", \"paper_title\": \"Optimizing DDPM Sampling with Shortcut Fine-Tuning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Safety-Aware Fine-Tuning (SAFT)\", \"origin_arxiv_id\": \"2410.10014\", \"paper_title\": \"Safety-Aware Fine-Tuning of Large Language Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Self-Play fIne-tuNing (SPIN)\", \"origin_arxiv_id\": \"2401.01335\", \"paper_title\": \"Self-Play Fine-Tuning Converts Weak Language Models to Strong Language Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Sparse MeZO\", \"origin_arxiv_id\": \"2402.15751\", \"paper_title\": \"Sparse MeZO: Less Parameters for Better Performance in Zeroth-Order LLM Fine-Tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Spectral DeTuning\", \"origin_arxiv_id\": \"2402.10208\", \"paper_title\": \"Recovering the Pre-Fine-Tuning Weights of Generative Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"distributional alignment loss\", \"origin_arxiv_id\": \"2311.07604\", \"paper_title\": \"Finetuning Text-to-Image Diffusion Models for Fairness\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"novel reinforcement learning procedure\", \"origin_arxiv_id\": \"2402.16359\", \"paper_title\": \"Feedback Efficient Online Fine-Tuning of Diffusion Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"regularized self-labeling\", \"origin_arxiv_id\": \"2111.04578\", \"paper_title\": \"Improved Regularization and Robustness for Fine-tuning in Neural Networks\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"uncertainty-calibrated fine-tuning\", \"origin_arxiv_id\": \"2412.02904\", \"paper_title\": \"Enhancing Trust in Large Language Models via Uncertainty-Calibrated Fine-Tuning\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"DRaFT-LV\", \"origin_arxiv_id\": \"2309.17400\", \"paper_title\": \"Directly Fine-Tuning Diffusion Models on Differentiable Rewards\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Direct Reward Fine-Tuning (DRaFT)\", \"origin_arxiv_id\": \"2309.17400\", \"paper_title\": \"Directly Fine-Tuning Diffusion Models on Differentiable Rewards\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Dynamic Parameter Selection (DPS)\", \"origin_arxiv_id\": \"2211.01642\", \"paper_title\": \"Fine-Tuning Pre-Trained Language Models Effectively by Optimizing Subnetworks Adaptively\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Follow-Your-Motion\", \"origin_arxiv_id\": \"2506.05207\", \"paper_title\": \"Follow-Your-Motion: Video Motion Transfer via Efficient Spatial-Temporal Decoupled Finetuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"LIFT\", \"origin_arxiv_id\": \"2506.00772\", \"paper_title\": \"LIFT the Veil for the Truth: Principal Weights Emerge after Rank Reduction for Reasoning-Focused Supervised Fine-Tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"UDS\", \"origin_arxiv_id\": \"2510.16882\", \"paper_title\": \"Utility-Diversity Aware Online Batch Selection for LLM Supervised Fine-tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"Vulnerability-Aware Alignment (VAA)\", \"origin_arxiv_id\": \"2506.03850\", \"paper_title\": \"Vulnerability-Aware Alignment: Mitigating Uneven Forgetting in Harmful Fine-Tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"unsupervised fine-tuning\", \"origin_arxiv_id\": \"2504.02349\", \"paper_title\": \"Large (Vision) Language Models are Unsupervised In-Context Learners\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 1, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 2, \"of_distinctive\": 5}, {\"method\": \"AdaP-UCB\", \"origin_arxiv_id\": \"2209.02570\", \"paper_title\": \"When Privacy Meets Partial Information: A Refined Analysis of Differentially Private Bandits\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"Adaptive Deep Kernel Fitting with Implicit Function Theorem (ADKF-IFT)\", \"origin_arxiv_id\": \"2205.02708\", \"paper_title\": \"Meta-learning Adaptive Deep Kernel Gaussian Processes for Molecular Property Prediction\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 2, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"AdvUnlearn\", \"origin_arxiv_id\": \"2405.15234\", \"paper_title\": \"Defensive Unlearning with Adversarial Training for Robust Concept Erasure in Diffusion Models\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"BatchTopK loss\", \"origin_arxiv_id\": \"2504.02922\", \"paper_title\": \"Overcoming Sparsity Artifacts in Crosscoders to Interpret Chat-Tuning\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"Bayesian Few-Shot Classification with One-vs-Each P\\u00f3lya-Gamma Augmented Gaussian Processes\", \"origin_arxiv_id\": \"2007.10417\", \"paper_title\": \"Bayesian Few-Shot Classification with One-vs-Each P\\u00f3lya-Gamma Augmented Gaussian Processes\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"BetterDepth\", \"origin_arxiv_id\": \"2407.17952\", \"paper_title\": \"BetterDepth: Plug-and-Play Diffusion Refiner for Zero-Shot Monocular Depth Estimation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"C-Mixup\", \"origin_arxiv_id\": \"2210.05775\", \"paper_title\": \"C-Mixup: Improving Generalization in Regression\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}, {\"method\": \"C-TPT\", \"origin_arxiv_id\": \"2403.14119\", \"paper_title\": \"C-TPT: Calibrated Test-Time Prompt Tuning for Vision-Language Models via Text Feature Dispersion\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 6, \"matched_distinctive\": 1, \"of_distinctive\": 5}], \"note\": \"No entry matched all 6 query tokens, but 141 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_f7dPIakOIHKnjqUiUjiRyF"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=04ada6156fd9ff28d6e27b4a09de2ac0c793cd1ac1f5eafc917b5bb964497db7 bytes=602 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=d321fb4696ac6c241631557bf974c1b08b76d8d40a5b0d7589be4bb74e68fdd5 bytes=1319 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_AbWbQLfXp7Z3dJ2ynUV7tq",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=40c6939288e8362b84f0f2e4ce1cbe8a4718ebd15149f0e25716a286cd090499 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_AbWbQLfXp7Z3dJ2ynUV7tq"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=097e2e81616a4aa5dcc31508442dd2b98c1af006c499277f9b1192d0bbef3f0f bytes=1010 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_BSXkTfIg5IuPsywqQGsSnU",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=40c6939288e8362b84f0f2e4ce1cbe8a4718ebd15149f0e25716a286cd090499 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_BSXkTfIg5IuPsywqQGsSnU"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7be4adfc4f1ddf0eb3f02a966bf43e8a9ee0e8d83ddd29a4653cf20133813edc bytes=32 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=17cd1f6e79e49f55fd47c76896592ff43fab4aac18fc56bae9abad6d90f3ccc3 bytes=190 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_mPWRqfaqpu2u4Q7jyZ1nql",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=40c6939288e8362b84f0f2e4ce1cbe8a4718ebd15149f0e25716a286cd090499 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_mPWRqfaqpu2u4Q7jyZ1nql"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=6f687d50e205748a98ad8ff644f45aae5a6798f007ceeeb52f56750a0acfc5f1 bytes=1565 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=ff6f2a29a07534a3e25fd90183c7b6b7f220e79810ac258e9eba689a7036484f bytes=864 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_PvqE1nUkwYZDvbzbwtaCKQ",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_PvqE1nUkwYZDvbzbwtaCKQ"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

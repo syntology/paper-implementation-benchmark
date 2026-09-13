@@ -1,0 +1,265 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=18d61343b45be137c1f1d6e34d7144fc5572d241cc9d57837435b4219cb40e14 bytes=641 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e7ee97d915897198ea61f4eb63452f55633bf9ee8e396bfc54fcb93cc7ba7e60 bytes=78 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2210.01241"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_quXEASsFGQGrQmV7Y1XETV",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "min_level": 0,
+      "query": "NLPO PPO"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_xwu0KYzgoWHUcVgM5YxdI6",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Is Reinforcement Learning (Not) for Natural Language Processing?: Benchmarks, Baselines, and Building Blocks for Natural Language Policy Optimization\", \"abstract\": \"<redacted body sha256=b6ef843ff3c6ec52f03df74ca493180c030026ad9465936e22d85700a56d630c bytes=1691 field=abstract origin=2210.01241>\", \"arxiv_id\": \"2210.01241\", \"source_file\": \"2210.01241v3.tei.xml\", \"conference\": \"iclr\", \"venue\": \"ICLR\", \"year\": 2023, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Prithviraj Ammanabrolu\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"Yejin Choi\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"Kiant\\u00e9 Brantley\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"Hannaneh Hajishirzi\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"Rajkumar Ramamurthy\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"Jack Hessel\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"R. Sifa\", \"provenance\": \"deterministic:s2_author_correction\"}, {\"name\": \"C. Bauckhage\", \"provenance\": \"deterministic:s2_author_correction\"}], \"repos\": [{\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/debjitpaul/refiner\"}, {\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/tedmoskovitz/constrainedrl4lms\"}, {\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/allenai/rl4lms\"}], \"reviews\": [{\"confidence\": \"4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.\", \"contribution\": null, \"link_provenance\": \"deterministic:openreview_title_match\", \"presentation\": null, \"questions\": null, \"rating\": null, \"review_id\": \"s8wG_fiWKp\", \"review_provenance\": \"deterministic:openreview_title_match\", \"soundness\": null, \"strengths\": null, \"summary\": null, \"weaknesses\": null}, {\"confidence\": \"3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.\", \"contribution\": null, \"link_provenance\": \"deterministic:openreview_title_match\", \"presentation\": null, \"questions\": null, \"rating\": null, \"review_id\": \"4LxL40awo1\", \"review_provenance\": \"deterministic:openreview_title_match\", \"soundness\": null, \"strengths\": null, \"summary\": null, \"weaknesses\": null}, {\"confidence\": \"3: You are fairly confident in your assessment. It is possible that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work. Math/other details were not carefully checked.\", \"contribution\": null, \"link_provenance\": \"deterministic:openreview_title_match\", \"presentation\": null, \"questions\": null, \"rating\": null, \"review_id\": \"0FjLw98tDvX\", \"review_provenance\": \"deterministic:openreview_title_match\", \"soundness\": null, \"strengths\": null, \"summary\": null, \"weaknesses\": null}, {\"confidence\": \"4: You are confident in your assessment, but not absolutely certain. It is unlikely, but not impossible, that you did not understand some parts of the submission or that you are unfamiliar with some pieces of related work.\", \"contribution\": null, \"link_provenance\": \"deterministic:openreview_title_match\", \"presentation\": null, \"questions\": null, \"rating\": null, \"review_id\": \"G2YiJCQtIm\", \"review_provenance\": \"deterministic:openreview_title_match\", \"soundness\": null, \"strengths\": null, \"summary\": null, \"weaknesses\": null}], \"n_reviews\": 4, \"authors_note\": \"all 8 author(s), in no particular order -- this graph does not record author position, so the first name here is not necessarily the first-listed author\"}"
+      }
+     ],
+     "toolUseId": "tooluse_quXEASsFGQGrQmV7Y1XETV"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"E2M1 with supernormal support\", \"origin_arxiv_id\": \"2405.03103\", \"paper_title\": \"Learning from Students: Applying t-Distributions to Explore Accurate and Efficient Formats for LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"FastIBP\", \"origin_arxiv_id\": \"2002.04783\", \"paper_title\": \"Fixed-Support Wasserstein Barycenters: Computational Hardness and Fast Algorithm\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Optimistic Linear Support algorithm extension with Successor Features\", \"origin_arxiv_id\": \"2206.11326\", \"paper_title\": \"Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Proximal Learning With Opponent-Learning Awareness (POLA)\", \"origin_arxiv_id\": \"2210.10125\", \"paper_title\": \"Proximal Learning With Opponent-Learning Awareness\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Reinforced Token Optimization (RTO)\", \"origin_arxiv_id\": \"2404.18922\", \"paper_title\": \"DPO Meets PPO: Reinforced Token Optimization for RLHF\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Supported Trust Region optimization\", \"origin_arxiv_id\": \"2311.08935\", \"paper_title\": \"Supported Trust Region Optimization for Offline Reinforcement Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"TypiClust\", \"origin_arxiv_id\": \"2202.02794\", \"paper_title\": \"Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"ADVERSARIAL SUPPORT ALIGNMENT\", \"origin_arxiv_id\": \"2203.08908\", \"paper_title\": \"Adversarial Support Alignment\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Binned Fair Quantile Regression (BFQR)\", \"origin_arxiv_id\": \"2311.02243\", \"paper_title\": \"Equal Opportunity of Coverage in Fair Regression\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Constrained Pessimistic Policy Optimization (CPPO)\", \"origin_arxiv_id\": \"2107.06226\", \"paper_title\": \"Pessimistic Model-based Offline Reinforcement Learning under Partial Coverage\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"M-CVTS\", \"origin_arxiv_id\": \"2012.05754\", \"paper_title\": \"Optimal Thompson Sampling strategies for support-aware CVaR bandits\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}], \"note\": \"No entry matched all 2 query tokens, but 11 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_xwu0KYzgoWHUcVgM5YxdI6"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=36063d56a0cfafbeede07ea68ad00c17c92ed71023e98abff27593d7ac947a85 bytes=54 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2210.01241"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_SIc6u5oojZCe17KRdBPort",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2210.01241\", \"repos\": [{\"url\": \"https://github.com/allenai/rl4lms\", \"owner\": \"allenai\", \"repo\": \"rl4lms\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": true, \"pwc_mentioned_in_paper\": true, \"pwc_mentioned_in_github\": true, \"link_strength\": \"official\"}, {\"url\": \"https://github.com/debjitpaul/refiner\", \"owner\": \"debjitpaul\", \"repo\": \"refiner\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": false, \"pwc_mentioned_in_paper\": false, \"pwc_mentioned_in_github\": true, \"link_strength\": \"mentioned_in_github\"}, {\"url\": \"https://github.com/tedmoskovitz/constrainedrl4lms\", \"owner\": \"tedmoskovitz\", \"repo\": \"constrainedrl4lms\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"pwc_is_official\": false, \"pwc_mentioned_in_paper\": false, \"pwc_mentioned_in_github\": true, \"link_strength\": \"mentioned_in_github\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_SIc6u5oojZCe17KRdBPort"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=206e69f0db2af9ca407f32a0060743cc18cb70866f941efc3020edbc3f869c6a bytes=45 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "min_level": 0,
+      "query": "PPO clip"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_YkuvPDDHSNd3inBUJvgSYn",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Automatic Clipping\", \"origin_arxiv_id\": \"2206.07136\", \"paper_title\": \"Automatic Clipping: Differentially Private Deep Learning Made Easier and Stronger\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Beta Moving Average (BMA)\", \"origin_arxiv_id\": \"2302.00864\", \"paper_title\": \"CLIPood: Generalizing CLIP to Out-of-Distributions\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"E2M1 with supernormal support\", \"origin_arxiv_id\": \"2405.03103\", \"paper_title\": \"Learning from Students: Applying t-Distributions to Explore Accurate and Efficient Formats for LLMs\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"EPISODE\", \"origin_arxiv_id\": \"2302.07155\", \"paper_title\": \"EPISODE: Episodic Gradient Clipping with Periodic Resampled Corrections for Federated Learning with Heterogeneous Data\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"FAT-Clipping\", \"origin_arxiv_id\": \"2210.00690\", \"paper_title\": \"Taming Fat-Tailed (\\\"Heavier-Tailed\\\" with Potentially Infinite Variance) Noise in Federated Learning\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"FastIBP\", \"origin_arxiv_id\": \"2002.04783\", \"paper_title\": \"Fixed-Support Wasserstein Barycenters: Computational Hardness and Fast Algorithm\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Gaussian Discriminant Analysis (GDA) for CLIP-based adaptation\", \"origin_arxiv_id\": \"2402.04087\", \"paper_title\": \"A Hard-to-Beat Baseline for Training-free CLIP-based Adaptation\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"MaskCLIP\", \"origin_arxiv_id\": \"2208.08984\", \"paper_title\": \"Open-Vocabulary Universal Image Segmentation with MaskCLIP\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Open-VCLIP\", \"origin_arxiv_id\": \"2302.00624\", \"paper_title\": \"Open-VCLIP: Transforming CLIP to an Open-vocabulary Video Model via Interpolated Weight Optimization\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Optimistic Linear Support algorithm extension with Successor Features\", \"origin_arxiv_id\": \"2206.11326\", \"paper_title\": \"Optimistic Linear Support and Successor Features as a Basis for Optimal Policy Transfer\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Proximal Learning With Opponent-Learning Awareness (POLA)\", \"origin_arxiv_id\": \"2210.10125\", \"paper_title\": \"Proximal Learning With Opponent-Learning Awareness\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Reinforced Token Optimization (RTO)\", \"origin_arxiv_id\": \"2404.18922\", \"paper_title\": \"DPO Meets PPO: Reinforced Token Optimization for RLHF\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Supported Trust Region optimization\", \"origin_arxiv_id\": \"2311.08935\", \"paper_title\": \"Supported Trust Region Optimization for Offline Reinforcement Learning\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Token-Wise Clipping\", \"origin_arxiv_id\": \"2209.13325\", \"paper_title\": \"Outlier Suppression: Pushing the Limit of Low-bit Transformer Language Models\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"TypiClust\", \"origin_arxiv_id\": \"2202.02794\", \"paper_title\": \"Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"a novel scoring function\", \"origin_arxiv_id\": \"2406.01583\", \"paper_title\": \"Decomposing and Interpreting Image Representations via Text in ViTs Beyond CLIP\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"clipped-SSTM\", \"origin_arxiv_id\": \"2005.10785\", \"paper_title\": \"Stochastic Optimization with Heavy-Tailed Noise via Accelerated Gradient Clipping\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"general framework to study the clipping algorithms\", \"origin_arxiv_id\": \"2010.02519\", \"paper_title\": \"Improved Analysis of Clipping Algorithms for Non-convex Optimization\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"heuristic privacy analysis of noisy clipped stochastic gradient descent\", \"origin_arxiv_id\": \"2410.06186\", \"paper_title\": \"The Last Iterate Advantage: Empirical Auditing and Principled Heuristic Analysis of Differentially Private SGD\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"mixed ghost clipping\", \"origin_arxiv_id\": \"2205.10683\", \"paper_title\": \"Scalable & Efficient Training of Large Convolutional Neural Networks with Differential Privacy\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"variational GAN training framework\", \"origin_arxiv_id\": \"2006.06900\", \"paper_title\": \"Improving GAN Training with Probability Ratio Clipping and Sample Reweighting\", \"year\": 2020, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"ADVERSARIAL SUPPORT ALIGNMENT\", \"origin_arxiv_id\": \"2203.08908\", \"paper_title\": \"Adversarial Support Alignment\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Bi 2 Clip\", \"origin_arxiv_id\": \"2502.04164\", \"paper_title\": \"Efficient Distributed Optimization under Heavy-Tailed Noise\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Binned Fair Quantile Regression (BFQR)\", \"origin_arxiv_id\": \"2311.02243\", \"paper_title\": \"Equal Opportunity of Coverage in Fair Regression\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"CLIPure-Cos\", \"origin_arxiv_id\": \"2502.18176\", \"paper_title\": \"CLIPure: Purification in Latent Space via CLIP for Adversarially Robust Zero-Shot Classification\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Constrained Pessimistic Policy Optimization (CPPO)\", \"origin_arxiv_id\": \"2107.06226\", \"paper_title\": \"Pessimistic Model-based Offline Reinforcement Learning under Partial Coverage\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"Lipschitz constrained networks\", \"origin_arxiv_id\": \"2305.16202\", \"paper_title\": \"DP-SGD Without Clipping: The Lipschitz Neural Network Way\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"M-CVTS\", \"origin_arxiv_id\": \"2012.05754\", \"paper_title\": \"Optimal Thompson Sampling strategies for support-aware CVaR bandits\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"PerceptionCLIP\", \"origin_arxiv_id\": \"2308.01313\", \"paper_title\": \"PerceptionCLIP: Visual Classification by Inferring and Conditioning on Contexts\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}, {\"method\": \"UniCLIP\", \"origin_arxiv_id\": \"2209.13430\", \"paper_title\": \"UniCLIP: Unified Framework for Contrastive Language-Image Pre-training\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 2, \"matched_distinctive\": 1, \"of_distinctive\": 2}], \"note\": \"No entry matched all 2 query tokens, but 30 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_YkuvPDDHSNd3inBUJvgSYn"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=785d7379d0bfb82cfaebedea814973a52355bcfdcdcd8f778bffdfbb502809aa bytes=701 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=45c8fede38d8219a2a2355044a6dfbee32aa37b644a52c92a4073360446c0554 bytes=2745 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_l45GDI3l4gZTRIoLVrRtUA",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=76b8774f71c8bb07baac7477e728ef547342f2af196b0f9d73dbb2fe1782f2d6 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_l45GDI3l4gZTRIoLVrRtUA"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=45c8fede38d8219a2a2355044a6dfbee32aa37b644a52c92a4073360446c0554 bytes=2745 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_QZrfCVoJ4UCFjuEf8Os4SE",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=76b8774f71c8bb07baac7477e728ef547342f2af196b0f9d73dbb2fe1782f2d6 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_QZrfCVoJ4UCFjuEf8Os4SE"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=f6fd89c9db2c30ca8714742a266d17397d805e580e72631f3638e12c7c9d5c81 bytes=57 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=c7b5ebf4ed2041b18ebf82e3873ea9b52fc7794aea1a737168044ca3da779477 bytes=37 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_pkPLGsnfWnPKU7lvA0rt5i",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=76b8774f71c8bb07baac7477e728ef547342f2af196b0f9d73dbb2fe1782f2d6 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_pkPLGsnfWnPKU7lvA0rt5i"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=20333327eb661b8c22c219035b06b3121ec8dab5a536592be5606a1b0cb02d08 bytes=859 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=f513b7ecb8ffdc788bce516bb65fff8635c23c06e2f247dd5c8a8f625a0de9df bytes=1502 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_XWmjwxXR9DanfHRB0j8pRC",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_XWmjwxXR9DanfHRB0j8pRC"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

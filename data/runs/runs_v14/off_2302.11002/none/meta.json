@@ -1,0 +1,80 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-03T01:07:03+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_freeze.json",
+    "--out",
+    "<BENCH>/runs_v14",
+    "--workers",
+    "2",
+    "--intent",
+    "v1 freeze sweep (FREEZE_RUN.md): 4 arms x 24 tasks against serving@bc87485a; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "7d8f68e5d3b68cef761b40c17f4a51f73ed6f23f",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "none",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "none",
+ "bedrock": {
+  "calls": 4,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "ProbConserv",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 0,
+ "task_id": "off_2302.11002",
+ "tool_calls": [
+  {
+   "args_chars": 3310,
+   "tool": "run_python",
+   "turn": 0
+  },
+  {
+   "args_chars": 2740,
+   "tool": "run_python",
+   "turn": 1
+  },
+  {
+   "args_chars": 102,
+   "tool": "run_python",
+   "turn": 2
+  },
+  {
+   "args_chars": 3040,
+   "tool": "submit_solution",
+   "turn": 3
+  }
+ ],
+ "turns": 4,
+ "usage": {
+  "cacheReadInputTokens": 6934,
+  "cacheWriteInputTokens": 3790,
+  "inputTokens": 18,
+  "outputTokens": 3517
+ },
+ "variant": "v14_freeze",
+ "wall_s": 45.8
+}

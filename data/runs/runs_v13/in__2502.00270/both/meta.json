@@ -1,0 +1,100 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T19:53:06+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--variant",
+    "v13",
+    "--out",
+    "<BENCH>/runs_v13",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.3 per ABLATION_V13.md: behavioral measurement of the STRUCTURAL fix (cbc9a69) -- inline verified_reference_implementations in the paper tools, server-level instructions, and the 0bd28b9 get-resolver token fallback. Shim re-lifted from main.py@cbc9a69 by ast extraction. Pre-registered adoption 8-11/24, floor 6, ceiling 12."
+   ],
+   "git_commit": "dd5477db7b693fb08d394deb2b9c05f98158d91a",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 8,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "DUET",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 1,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 2,
+ "task_id": "in__2502.00270",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 32,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 1981,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 2050,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 438,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 143,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 2369,
+   "tool": "submit_solution",
+   "turn": 7
+  }
+ ],
+ "turns": 8,
+ "usage": {
+  "cacheReadInputTokens": 98433,
+  "cacheWriteInputTokens": 22930,
+  "inputTokens": 38,
+  "outputTokens": 3231
+ },
+ "variant": "v13",
+ "wall_s": 48.3
+}

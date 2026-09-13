@@ -1,0 +1,2398 @@
+{
+ "note": "Referee = property_tests.py, an LLM-drafted paper-derived property suite. impl_sonnet.py is the implementation used only to revalidate that the suite is satisfiable. impl_llama.py is the artifact the graph served to the `syntology` arm. NONE of the three carries a correctness claim, none is the paper authors' code, and passing the suite does not establish fidelity to the paper -- see README.md, 'What is NOT claimed'.",
+ "n_tasks": 72,
+ "tasks": {
+  "in__2505.24844": {
+   "task_id": "in__2505.24844",
+   "arxiv_id": "2505.24844",
+   "method": "CHAMELEON",
+   "paper_title": "CHAMELEON: A Flexible Data-mixing Framework for Language Model Pretraining and Finetuning",
+   "entry": "compute_chameleon_domain_weights",
+   "signature": "def compute_chameleon_domain_weights(K, lambda_reg, mode):",
+   "pass_both": [
+    "identity_matrix_uniform",
+    "mode_produces_different_results",
+    "output_non_negative",
+    "output_shape_and_dtype",
+    "output_sums_to_one"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2505.24844/property_tests.py",
+     "sha256": "5c77d7e5b4e5e66e3361feb0374fc7c0b8a4c803713466901c9c10a505c95b60",
+     "internal_source": "<REFIMPL>/batch_runs/2505.24844/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2505.24844/impl_sonnet.py",
+     "sha256": "19848c2e14285b4f6debc96ea8b185c0e6c47d1c3b1ca1a7eb7e65cce08398cb",
+     "internal_source": "<REFIMPL>/batch_runs/2505.24844/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2505.24844/impl_llama.py",
+     "sha256": "f384d74ebbbc1e3982d2babbe7a9f0805795161d5ef31653b1c25750f31422bc",
+     "internal_source": "<REFIMPL>/batch_runs/2505.24844/impl_llama.py"
+    }
+   }
+  },
+  "in__2502.00270": {
+   "task_id": "in__2502.00270",
+   "arxiv_id": "2502.00270",
+   "method": "DUET",
+   "paper_title": "DUET: OPTIMIZING LLM TRAINING DATA MIXTURES VIA NOISY FEEDBACK FROM UNSEEN EVALUATION TASKS",
+   "entry": "gp_lower_confidence_bound",
+   "signature": "def gp_lower_confidence_bound(mu_t, sigma_t, beta_t):",
+   "pass_both": [
+    "element_wise_correctness",
+    "increasing_beta_decreases_lcb",
+    "output_shape_and_type",
+    "zero_beta_returns_mu",
+    "zero_sigma_returns_mu"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2502.00270/property_tests.py",
+     "sha256": "cd8bf38bab77386f93afb32096005b216746c30ca53caefc9ae7f21b8cb25dfc",
+     "internal_source": "<REFIMPL>/batch_runs/2502.00270/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2502.00270/impl_sonnet.py",
+     "sha256": "20edb4e410d7b1d6aa40c56b9972c49c2b9867aaa79852a0324e3b9f471b256c",
+     "internal_source": "<REFIMPL>/batch_runs/2502.00270/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2502.00270/impl_llama.py",
+     "sha256": "e7f5855d539fa9a469bf4f6f7b0ffd0e50f2dfd13b94e007c20c2271df998b84",
+     "internal_source": "<REFIMPL>/batch_runs/2502.00270/impl_llama.py"
+    }
+   }
+  },
+  "in__2007.06680": {
+   "task_id": "in__2007.06680",
+   "arxiv_id": "2007.06680",
+   "method": "IS-MBPG*",
+   "paper_title": "Momentum-Based Policy Gradient Methods",
+   "entry": "is_mbpg_momentum_update",
+   "signature": "def is_mbpg_momentum_update(u_prev, g_current_theta_t, g_current_theta_prev, w_ratio, beta_t):",
+   "pass_both": [
+    "Output is 1-D numpy array with correct shape",
+    "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+    "beta_t=1 returns g_current_theta_t",
+    "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+   ],
+   "suspect_tests": [
+    "Linearity in u_prev when beta_t=0"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2007.06680/property_tests.py",
+     "sha256": "9b799936741dfd1e05463b5d7d7c8d32ba72a00b12a39b80d40558402b86c97e",
+     "internal_source": "<REFIMPL>/batch_runs/2007.06680/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2007.06680/impl_sonnet.py",
+     "sha256": "c637c6d54cb9012ab18c2133f43ebc987e2ec7300c6068238c5ae90b8bf35eb8",
+     "internal_source": "<REFIMPL>/batch_runs/2007.06680/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2007.06680/impl_llama.py",
+     "sha256": "745796a5d141c7e1e755c718b1ca03faee5e9d7816f14e85302f505546ca3d06",
+     "internal_source": "<REFIMPL>/batch_runs/2007.06680/impl_llama.py"
+    }
+   }
+  },
+  "in__2205.12679": {
+   "task_id": "in__2205.12679",
+   "arxiv_id": "2205.12679",
+   "method": "SUNGEN",
+   "paper_title": "SELF-GUIDED NOISE-FREE DATA GENERATION FOR EFFICIENT ZERO-SHOT LEARNING",
+   "entry": "compute_meta_gradient_for_sample_weights",
+   "signature": "def compute_meta_gradient_for_sample_weights(val_loss_grad_theta, train_loss_hessian_theta, train_loss_grad_theta_grad_w):",
+   "pass_both": [
+    "Consistency with explicit formula",
+    "Linearity in mixed partials",
+    "Linearity in validation gradient",
+    "Orthogonal vectors with identity Hessian",
+    "Output shape and type"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2205.12679/property_tests.py",
+     "sha256": "6564cb2a751e553d6c7a865ec16047e64b56bfa66d7d8b3dbe286090116b824b",
+     "internal_source": "<REFIMPL>/batch_runs/2205.12679/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2205.12679/impl_sonnet.py",
+     "sha256": "da01248f62dfa0c6da6259c1b9347c7dd573664a2d9b1db84776d5236d8b747c",
+     "internal_source": "<REFIMPL>/batch_runs/2205.12679/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2205.12679/impl_llama.py",
+     "sha256": "e9a438786806796060d7207d24892c97baaf8ba5f0a8fcb57fe3def47f2409c8",
+     "internal_source": "<REFIMPL>/batch_runs/2205.12679/impl_llama.py"
+    }
+   }
+  },
+  "in__2210.09759": {
+   "task_id": "in__2210.09759",
+   "arxiv_id": "2210.09759",
+   "method": "Pareto Manifold Learning",
+   "paper_title": "Pareto Manifold Learning: Tackling multiple tasks via ensembles of single-task models",
+   "entry": "compute_multiforward_regularization",
+   "signature": "def compute_multiforward_regularization(losses, edge_indices):",
+   "pass_both": [
+    "empty_edges_all_tasks_returns_zero",
+    "monotonicity_in_loss_difference",
+    "multiple_identical_edges_averaging",
+    "result_is_finite",
+    "single_edge_equal_losses_returns_zero"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2210.09759/property_tests.py",
+     "sha256": "5319a3aa6093250c3fc8ef579d6dc75334babaaf7eb5b431594b8087043a317a",
+     "internal_source": "<REFIMPL>/batch_runs/2210.09759/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2210.09759/impl_sonnet.py",
+     "sha256": "774a4570a9226a80fc573523275b2c3c47686020c25e996bc3afc64f5bf45547",
+     "internal_source": "<REFIMPL>/batch_runs/2210.09759/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2210.09759/impl_llama.py",
+     "sha256": "2803245af8888159f5dece13ae596213524edd97e270e8af326ee419f348b6c8",
+     "internal_source": "<REFIMPL>/batch_runs/2210.09759/impl_llama.py"
+    }
+   }
+  },
+  "in__2210.01241": {
+   "task_id": "in__2210.01241",
+   "arxiv_id": "2210.01241",
+   "method": "NLPO",
+   "paper_title": "IS REINFORCEMENT LEARNING (NOT) FOR NATURAL LANGUAGE PROCESSING: BENCHMARKS, BASELINES, AND BUILDING BLOCKS FOR NATURAL LANGUAGE POLICY OPTIMIZATION",
+   "entry": "ppo_clip_objective",
+   "signature": "def ppo_clip_objective(log_probs_new, log_probs_old, advantages, epsilon):",
+   "pass_both": [
+    "Advantage scaling linearity",
+    "Clipping upper bound with positive advantages",
+    "Identity case (ratio=1)",
+    "Permutation invariance",
+    "Zero advantages"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2210.01241/property_tests.py",
+     "sha256": "41244ee010a00dc2f62c0a8566593a7c66d4e7bd59cb5e385628cc82328c1928",
+     "internal_source": "<REFIMPL>/batch_runs/2210.01241/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2210.01241/impl_sonnet.py",
+     "sha256": "d2dec5c6b44f17d4bdcee6908118fe762ab9ec4b344b91270f11236e50833ad3",
+     "internal_source": "<REFIMPL>/batch_runs/2210.01241/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2210.01241/impl_llama.py",
+     "sha256": "0385a2f7384cb25949685505b639ecab100112660126e6236897f62c04344fc3",
+     "internal_source": "<REFIMPL>/batch_runs/2210.01241/impl_llama.py"
+    }
+   }
+  },
+  "in__2110.02544": {
+   "task_id": "in__2110.02544",
+   "arxiv_id": "2110.02544",
+   "method": "Dual-Aspect Collaborative Transformer (DACT)",
+   "paper_title": "Learning to Iteratively Solve Routing Problems with Dual-Aspect Collaborative Transformer",
+   "entry": "ppo_clip_objective_gradient_step",
+   "signature": "def ppo_clip_objective_gradient_step(log_probs_old, log_probs_new, advantages, epsilon):",
+   "pass_both": [
+    "advantage_scaling_linearity",
+    "identity_policy_equals_mean_advantages",
+    "lower_clipping_bound",
+    "permutation_invariance",
+    "upper_clipping_bound"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2110.02544/property_tests.py",
+     "sha256": "5b141adedb4cd707b72ac4394e13118b5f88fe5df35f3306e4f7e23fa5779099",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02544/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2110.02544/impl_sonnet.py",
+     "sha256": "5c4f7621bb242783a3d08b016a7547de6d78eef7f2709d273568a65df9c10d46",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02544/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2110.02544/impl_llama.py",
+     "sha256": "4822786f826bcb45b66d0648856d85e75f158f728eedc637648107376050d66d",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02544/impl_llama.py"
+    }
+   }
+  },
+  "in__2305.19587": {
+   "task_id": "in__2305.19587",
+   "arxiv_id": "2305.19587",
+   "method": "generic meta-learning framework",
+   "paper_title": "Towards Omni-generalizable Neural Methods for Vehicle Routing Problems",
+   "entry": "weighted_meta_gradient_aggregation",
+   "signature": "def weighted_meta_gradient_aggregation(task_gradients, task_weights):",
+   "pass_both": [
+    "one_hot_weight_selection",
+    "single_task_identity",
+    "uniform_weights_arithmetic_mean",
+    "weight_scaling_linearity",
+    "zero_weights_zero_output"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2305.19587/property_tests.py",
+     "sha256": "25afce16571d8dbf13da2cca7a7ccafbcf5998067d67252eb6d2e6efe49d33e1",
+     "internal_source": "<REFIMPL>/batch_runs/2305.19587/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2305.19587/impl_sonnet.py",
+     "sha256": "21a8228c89e228422426459b07fc8d73b9e1f9663d12fc07e6029d4a07d8ffa4",
+     "internal_source": "<REFIMPL>/batch_runs/2305.19587/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2305.19587/impl_llama.py",
+     "sha256": "426b0d8ea31957d77676faae82c8fc6626c1f92264a9e96ccfd1cf29ac826884",
+     "internal_source": "<REFIMPL>/batch_runs/2305.19587/impl_llama.py"
+    }
+   }
+  },
+  "in__2102.03607": {
+   "task_id": "in__2102.03607",
+   "arxiv_id": "2102.03607",
+   "method": "bootstrapping FQE method",
+   "paper_title": "Bootstrapping Fitted Q-Evaluation for Off-Policy Inference",
+   "entry": "compute_bootstrap_deviation",
+   "signature": "def compute_bootstrap_deviation(v_resampled, v_subset):",
+   "pass_both": [
+    "linearity_in_v_resampled",
+    "negative_linearity_in_v_subset",
+    "output_is_exact_difference",
+    "sign_consistency",
+    "zero_deviation_when_equal"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2102.03607/property_tests.py",
+     "sha256": "126076398b741388f50f33ded6841d9e53fe60e612d789576a31934d72e14ac2",
+     "internal_source": "<REFIMPL>/batch_runs/2102.03607/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2102.03607/impl_sonnet.py",
+     "sha256": "755b50f54d0c51e458d01ced3846f4fb6ec12f2857d45b4a44e217c4a3eb0cb6",
+     "internal_source": "<REFIMPL>/batch_runs/2102.03607/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2102.03607/impl_llama.py",
+     "sha256": "7efe34b01d6700c28771c063db927f7226f476198c07db743069dd69a57f72a3",
+     "internal_source": "<REFIMPL>/batch_runs/2102.03607/impl_llama.py"
+    }
+   }
+  },
+  "in__2009.14794": {
+   "task_id": "in__2009.14794",
+   "arxiv_id": "2009.14794",
+   "method": "Performers",
+   "paper_title": "RETHINKING ATTENTION WITH PERFORMERS",
+   "entry": "favor_plus_attention",
+   "signature": "def favor_plus_attention(Q_prime, K_prime, V, is_bidirectional):",
+   "pass_both": [
+    "Causal masking property",
+    "Single position equivalence",
+    "Uniform keys and values (bidirectional)",
+    "Value scaling property (unidirectional)"
+   ],
+   "suspect_tests": [
+    "Query scaling property (bidirectional)"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2009.14794/property_tests.py",
+     "sha256": "777ef5583c9a74a2f649ac0a072dba88c49c536e6fd4b2e7cc0b2751ec9fbabe",
+     "internal_source": "<REFIMPL>/batch_runs/2009.14794/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2009.14794/impl_sonnet.py",
+     "sha256": "306dac1476bc6079a641a4f9f5341e008290f451796ab69763fa14117dc83fbe",
+     "internal_source": "<REFIMPL>/batch_runs/2009.14794/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2009.14794/impl_llama.py",
+     "sha256": "e664f618d7ad2e34b95331d87e37369a14f66d016279b05d7fc555b9622c54aa",
+     "internal_source": "<REFIMPL>/batch_runs/2009.14794/impl_llama.py"
+    }
+   }
+  },
+  "in__2102.05291": {
+   "task_id": "in__2102.05291",
+   "arxiv_id": "2102.05291",
+   "method": "clusterability condition",
+   "paper_title": "Clusterability as an Alternative to Anchor Points When Learning with Noisy Labels",
+   "entry": "select_by_dist",
+   "signature": "def select_by_dist(features, selected_idx, L):",
+   "pass_both": [
+    "L_greater_than_N_returns_all",
+    "output_length_and_selected_idx_inclusion",
+    "output_sorted_by_distance",
+    "translation_invariance",
+    "uniform_scaling_invariance"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2102.05291/property_tests.py",
+     "sha256": "25f1e2f480c50f4a1ec64996d694fb7e58fd38649a16a7c9d4b634948fff9e5f",
+     "internal_source": "<REFIMPL>/batch_runs/2102.05291/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2102.05291/impl_sonnet.py",
+     "sha256": "b897a1cc90dbee346c50d37db41c4dd802a3e6da670488e595ea13d58b9f769d",
+     "internal_source": "<REFIMPL>/batch_runs/2102.05291/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2102.05291/impl_llama.py",
+     "sha256": "b1ef2eb64f0105d0301ec1f8ecb05dfcd1b05eec391982dd4cde1c0f34715383",
+     "internal_source": "<REFIMPL>/batch_runs/2102.05291/impl_llama.py"
+    }
+   }
+  },
+  "in__2402.03293": {
+   "task_id": "in__2402.03293",
+   "arxiv_id": "2402.03293",
+   "method": "FLORA",
+   "paper_title": "FLORA: Low-Rank Adapters Are Secretly Gradient Compressors",
+   "entry": "flora_momentum_update",
+   "signature": "def flora_momentum_update(M_t, G_t, A_current, A_next, beta, is_reseed_step):",
+   "pass_both": [
+    "Beta=0 returns only gradient term",
+    "Beta=1 with zero gradient returns momentum only",
+    "Linear scaling in gradient G_t",
+    "Output shape is n\u00d7r",
+    "Zero inputs yield zero output"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/in__2402.03293/property_tests.py",
+     "sha256": "70aca9053f37779e1f47a55a17ad2661273e3ec1800d8e004ab46ca9c3cccf39",
+     "internal_source": "<REFIMPL>/batch_runs/2402.03293/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/in__2402.03293/impl_sonnet.py",
+     "sha256": "9999ba048110c8c51bc8c29b6622fac1bf07c7864556d5e29416ed7ec8c44ee1",
+     "internal_source": "<REFIMPL>/batch_runs/2402.03293/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/in__2402.03293/impl_llama.py",
+     "sha256": "34675c6849d6804efc082c0d3cd4e2e3a04fa8bed9b21b67ba7cc387c7be76b7",
+     "internal_source": "<REFIMPL>/batch_runs/2402.03293/impl_llama.py"
+    }
+   }
+  },
+  "off_2306.12360": {
+   "task_id": "off_2306.12360",
+   "arxiv_id": "2306.12360",
+   "method": "Discrete Walk-Jump Sampling",
+   "paper_title": "PROTEIN DISCOVERY WITH DISCRETE WALK-JUMP SAMPLING",
+   "entry": "langevin_step",
+   "signature": "def langevin_step(y_t, grad_f_theta, epsilon_t, delta):",
+   "pass_both": [
+    "gradient_linearity",
+    "output_shape_matches_input",
+    "step_size_scaling",
+    "zero_gradient_recovers_diffusion",
+    "zero_noise_recovers_drift"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2306.12360/property_tests.py",
+     "sha256": "6cfda8e4123525bdc513176ced168cdb29ab8615a27e750cd1a98b7294510589",
+     "internal_source": "<REFIMPL>/batch_runs/2306.12360/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2306.12360/impl_sonnet.py",
+     "sha256": "f62a265e66911b4e28c1e8c7ce5a6ba2cd65a982087aac80656b3c8a280cbdd3",
+     "internal_source": "<REFIMPL>/batch_runs/2306.12360/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2306.12360/impl_llama.py",
+     "sha256": "5922da0f1d32572b8c8eab5171a96458763658168f617b5519f63565f2e66d4b",
+     "internal_source": "<REFIMPL>/batch_runs/2306.12360/impl_llama.py"
+    }
+   }
+  },
+  "off_2101.08543": {
+   "task_id": "off_2101.08543",
+   "arxiv_id": "2101.08543",
+   "method": "BOOST THEN CONVOLVE",
+   "paper_title": "BOOST THEN CONVOLVE: GRADIENT BOOSTING MEETS GRAPH NEURAL NETWORKS",
+   "entry": "compute_gbdt_residual_targets",
+   "signature": "def compute_gbdt_residual_targets(x_prime, f_x):",
+   "pass_both": [
+    "element_wise_subtraction_correctness",
+    "linearity_under_scaling",
+    "output_dtype_is_float64",
+    "output_shape_matches_inputs",
+    "zero_residual_when_equal"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2101.08543/property_tests.py",
+     "sha256": "0fd4d747fbe8368cdc63058284ebe6107970e5a6d18cb4d2a3d08dc7a3783bdd",
+     "internal_source": "<REFIMPL>/batch_runs/2101.08543/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2101.08543/impl_sonnet.py",
+     "sha256": "46fb2f48c0f34bf7eb7ceed0f46ad57f7cc65921a1edc560d57366e11a698770",
+     "internal_source": "<REFIMPL>/batch_runs/2101.08543/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2101.08543/impl_llama.py",
+     "sha256": "fa5b8ae9452d57d80745c2ef1b023a793410ae43851c8f1453a1e4dacf35597e",
+     "internal_source": "<REFIMPL>/batch_runs/2101.08543/impl_llama.py"
+    }
+   }
+  },
+  "off_2006.06051": {
+   "task_id": "off_2006.06051",
+   "arxiv_id": "2006.06051",
+   "method": "learned incentive function",
+   "paper_title": "Learning to Incentivize Other Learning Agents",
+   "entry": "compute_recipient_policy_gradient_update",
+   "signature": "def compute_recipient_policy_gradient_update(log_probs, rewards, incentives, baseline, learning_rate):",
+   "pass_both": [
+    "baseline_translation_invariance",
+    "learning_rate_linear_scaling",
+    "single_timestep_closed_form",
+    "zero_incentives_reproducible",
+    "zero_rewards_incentives_closed_form"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2006.06051/property_tests.py",
+     "sha256": "38fb26731890057dc2aac49ad5e7195a22689659d2d6ce52f1b0c256afb0077e",
+     "internal_source": "<REFIMPL>/batch_runs/2006.06051/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2006.06051/impl_sonnet.py",
+     "sha256": "d56f7abc6d78c353bef93b2d566b9bd8e7bd88616793036a5864b0f66bae03bc",
+     "internal_source": "<REFIMPL>/batch_runs/2006.06051/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2006.06051/impl_llama.py",
+     "sha256": "1741e1a8af0ed6f217715a3ee8541b13455d6581e805273a670deb32b204b924",
+     "internal_source": "<REFIMPL>/batch_runs/2006.06051/impl_llama.py"
+    }
+   }
+  },
+  "off_2302.11002": {
+   "task_id": "off_2302.11002",
+   "arxiv_id": "2302.11002",
+   "method": "ProbConserv",
+   "paper_title": "Learning Physical Models that Can Respect Conservation Laws",
+   "entry": "probconserv_update",
+   "signature": "def probconserv_update(mu, Sigma, G, b, sigma_G):",
+   "pass_both": [
+    "test_covariance_properties",
+    "test_covariance_reduction",
+    "test_no_constraints",
+    "test_output_shapes",
+    "test_zero_noise_limit"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2302.11002/property_tests.py",
+     "sha256": "6ca561c4f491c7f01f7e81cba8d3f9ed8f764f74a33aac19aa08ee1cbbdea662",
+     "internal_source": "<REFIMPL>/batch_runs/2302.11002/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2302.11002/impl_sonnet.py",
+     "sha256": "11663b7f302cfc7df8e96d2f45887ab96cfc68b416a55be3936871721fba7ccf",
+     "internal_source": "<REFIMPL>/batch_runs/2302.11002/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2302.11002/impl_llama.py",
+     "sha256": "61f9e4766362478d90b47bbc348de5966cd55b85ecd917d1a7c79d409351a802",
+     "internal_source": "<REFIMPL>/batch_runs/2302.11002/impl_llama.py"
+    }
+   }
+  },
+  "off_2403.05751": {
+   "task_id": "off_2403.05751",
+   "arxiv_id": "2403.05751",
+   "method": "MG-TSD",
+   "paper_title": "MG-TSD: MULTI-GRANULARITY TIME SERIES DIF-FUSION MODELS WITH GUIDED LEARNING PROCESS",
+   "entry": "compute_diffusion_loss_step",
+   "signature": "def compute_diffusion_loss_step(x_t_g, epsilon, alpha_bar_n_g, h_t_g, theta_g):",
+   "pass_both": [
+    "Loss invariant to compensating h_t_g and theta_g scaling",
+    "Loss is non-negative",
+    "Loss scales quadratically with epsilon magnitude"
+   ],
+   "suspect_tests": [
+    "Loss is mean over granularities",
+    "Loss is zero when epsilon equals epsilon_pred"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2403.05751/property_tests.py",
+     "sha256": "1d7c45ed65b0bff377a379457b05d896a7af0ff8cfb08965ecaeeb716c494219",
+     "internal_source": "<REFIMPL>/batch_runs/2403.05751/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2403.05751/impl_sonnet.py",
+     "sha256": "2e489b37b07a5c13d15e1d95a4333dc6f1b9528cbb317a44749ecdc1ef69eb2f",
+     "internal_source": "<REFIMPL>/batch_runs/2403.05751/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2403.05751/impl_llama.py",
+     "sha256": "b523bd61b5842e17e7326374379fe3825a9f68d8f81f0075f0e919e026cd8e0d",
+     "internal_source": "<REFIMPL>/batch_runs/2403.05751/impl_llama.py"
+    }
+   }
+  },
+  "off_2207.04892": {
+   "task_id": "off_2207.04892",
+   "arxiv_id": "2207.04892",
+   "method": "Adversarial Style Augmentation (AdvStyle)",
+   "paper_title": "Adversarial Style Augmentation for Domain Generalized Urban-Scene Segmentation",
+   "entry": "adversarial_style_update",
+   "signature": "def adversarial_style_update(mu, sigma, grad_mu, grad_sigma, gamma):",
+   "pass_both": [
+    "linearity_in_gradient_ascent",
+    "output_shape_and_type",
+    "superposition_of_updates",
+    "zero_gradient_identity",
+    "zero_learning_rate_identity"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2207.04892/property_tests.py",
+     "sha256": "be7151bc7076e60f7e401ee3e73bc5822996bb568ab0bb306b584269c3bf7f6e",
+     "internal_source": "<REFIMPL>/batch_runs/2207.04892/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2207.04892/impl_sonnet.py",
+     "sha256": "c23716e5642b99f8e2ee07a33787c8e7c97379ab0ed33e27ebe97fb16fad1a6f",
+     "internal_source": "<REFIMPL>/batch_runs/2207.04892/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2207.04892/impl_llama.py",
+     "sha256": "7499161923a8383bb958bdb9f6959d70f34ac832f1df018caf36214c24a947c3",
+     "internal_source": "<REFIMPL>/batch_runs/2207.04892/impl_llama.py"
+    }
+   }
+  },
+  "off_2402.05367": {
+   "task_id": "off_2402.05367",
+   "arxiv_id": "2402.05367",
+   "method": "Principled Preferential Bayesian Optimization",
+   "paper_title": "Principled Preferential Bayesian Optimization",
+   "entry": "compute_optimistic_preference_gain",
+   "signature": "def compute_optimistic_preference_gain(x, x_ref, f_samples):",
+   "pass_both": [
+    "gain_is_max_of_differences",
+    "invariant_to_x_xref_values",
+    "result_is_maximum_gain",
+    "scaling_invariance",
+    "single_sample_returns_gain"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2402.05367/property_tests.py",
+     "sha256": "e21e77d63b75daf53d39d4338215999c51736c85031d45f7825e2b2fda3fbe3b",
+     "internal_source": "<REFIMPL>/batch_runs/2402.05367/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2402.05367/impl_sonnet.py",
+     "sha256": "64af46d99553cbd572bbbf9b712971ecbe337bedfb1ba3cad50b132abf757604",
+     "internal_source": "<REFIMPL>/batch_runs/2402.05367/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2402.05367/impl_llama.py",
+     "sha256": "f7ceaad7248231110cd56427be29fa0f7f326fba596724dec84f8d6ba61e3a7c",
+     "internal_source": "<REFIMPL>/batch_runs/2402.05367/impl_llama.py"
+    }
+   }
+  },
+  "off_2210.17323": {
+   "task_id": "off_2210.17323",
+   "arxiv_id": "2210.17323",
+   "method": "GPTQ",
+   "paper_title": "GPTQ: ACCURATE POST-TRAINING QUANTIZATION FOR GENERATIVE PRE-TRAINED TRANSFORMERS",
+   "entry": "gptq_quantize_weight_matrix",
+   "signature": "def gptq_quantize_weight_matrix(W, H_inv, B, quant_min, quant_max):",
+   "pass_both": [
+    "identity_hessian",
+    "output_bounds",
+    "uniform_scaling",
+    "zero_weight"
+   ],
+   "suspect_tests": [
+    "block_column_permutation"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2210.17323/property_tests.py",
+     "sha256": "74a0dd353ae1cae2e0c2e686a49692fbd10d26324ad05c96b31820225f51f191",
+     "internal_source": "<REFIMPL>/batch_runs/2210.17323/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2210.17323/impl_sonnet.py",
+     "sha256": "4148e1c7ab6eac22d1460b6ee4c01edbd73e1963a16c504f9cfb82d04ec052b8",
+     "internal_source": "<REFIMPL>/batch_runs/2210.17323/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2210.17323/impl_llama.py",
+     "sha256": "d24cbeb42e6a79e27450da4d28ff43a50e4ab5fb6bca6f7cac9a44aa4626b0ae",
+     "internal_source": "<REFIMPL>/batch_runs/2210.17323/impl_llama.py"
+    }
+   }
+  },
+  "off_2003.01794": {
+   "task_id": "off_2003.01794",
+   "arxiv_id": "2003.01794",
+   "method": "Greedy Forward Selection",
+   "paper_title": "Good Subnetworks Provably Exist: Pruning via Greedy Forward Selection",
+   "entry": "compute_layer_output_with_filter_subset",
+   "signature": "def compute_layer_output_with_filter_subset(z_in, theta, filter_indices):",
+   "pass_both": [
+    "empty_filter_indices_zeros",
+    "non_negativity_relu",
+    "output_shape_invariant",
+    "selected_filters_identical",
+    "single_filter_relu_match",
+    "unselected_filters_zero"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2003.01794/property_tests.py",
+     "sha256": "d89466e09a3719f401740d27466d9d921888ad28559e9234782333bbd3c4ad0c",
+     "internal_source": "<REFIMPL>/batch_runs/2003.01794/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2003.01794/impl_sonnet.py",
+     "sha256": "548ec25f4d990204a219cd625a64cc88c643aa815a585afceb3e81f3ad09473a",
+     "internal_source": "<REFIMPL>/batch_runs/2003.01794/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2003.01794/impl_llama.py",
+     "sha256": "a419b6ec8ef003bb36b72a2312ff75a6191c92fb455ced70e7f465698f050f96",
+     "internal_source": "<REFIMPL>/batch_runs/2003.01794/impl_llama.py"
+    }
+   }
+  },
+  "off_2209.02257": {
+   "task_id": "off_2209.02257",
+   "arxiv_id": "2209.02257",
+   "method": "Catalyzed SVRP",
+   "paper_title": "Faster federated optimization under second-order similarity",
+   "entry": "compute_variance_reduced_gradient",
+   "signature": "def compute_variance_reduced_gradient(full_grad_at_w, local_grad_at_w):",
+   "pass_both": [
+    "correctness_subtraction",
+    "negation_on_swap",
+    "output_dimension_matches_input",
+    "zero_correction_identical_gradients"
+   ],
+   "suspect_tests": [
+    "linearity_in_full_grad"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2209.02257/property_tests.py",
+     "sha256": "4203b4f4df35f81e7beb730457a36024ab1c71f9e4e4fc1350f91dc1addb2267",
+     "internal_source": "<REFIMPL>/batch_runs/2209.02257/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2209.02257/impl_sonnet.py",
+     "sha256": "2b186665efcb068dbb6f9a88ab79d6d7f75f99f664e1032277f58757f3e94bd1",
+     "internal_source": "<REFIMPL>/batch_runs/2209.02257/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2209.02257/impl_llama.py",
+     "sha256": "294705c1e7e5bef279db629f5f00b37e193069a1a1c6a4131ce37283041415ac",
+     "internal_source": "<REFIMPL>/batch_runs/2209.02257/impl_llama.py"
+    }
+   }
+  },
+  "off_2311.15100": {
+   "task_id": "off_2311.15100",
+   "arxiv_id": "2311.15100",
+   "method": "UOT-FM",
+   "paper_title": "UNBALANCEDNESS IN NEURAL MONGE MAPS IMPROVES UNPAIRED DOMAIN TRANSLATION",
+   "entry": "uot_fm_loss",
+   "signature": "def uot_fm_loss(v_theta, t, x_t, u_t):",
+   "pass_both": [
+    "batch_averaging",
+    "non_negativity",
+    "scaling_invariance",
+    "time_invariance",
+    "zero_loss_perfect_match"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2311.15100/property_tests.py",
+     "sha256": "149f8550622f11090aef76c22dfe77177860bb26a43af268ce268ceba220d9a4",
+     "internal_source": "<REFIMPL>/batch_runs/2311.15100/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2311.15100/impl_sonnet.py",
+     "sha256": "af8c277ddd55cf9c7baf7dbc57242f21bee62a36d087458cb312305d53532e89",
+     "internal_source": "<REFIMPL>/batch_runs/2311.15100/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2311.15100/impl_llama.py",
+     "sha256": "15f53245d3bcf5e3c7ced89b19b48d338e1f24324bfcffb66fa7b3a0a3b7fa40",
+     "internal_source": "<REFIMPL>/batch_runs/2311.15100/impl_llama.py"
+    }
+   }
+  },
+  "off_2406.04606": {
+   "task_id": "off_2406.04606",
+   "arxiv_id": "2406.04606",
+   "method": "FreeShap",
+   "paper_title": "Helpful or Harmful Data? Fine-tuning-free Shapley Attribution for Explaining Language Model Predictions",
+   "entry": "entk_predict",
+   "signature": "def entk_predict(K_test_train, K_train_train, Y_train):",
+   "pass_both": [
+    "identity_kernel",
+    "output_shape_type",
+    "scaling_invariance",
+    "single_point_case",
+    "zero_labels"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/off_2406.04606/property_tests.py",
+     "sha256": "393245a3024d6193ce295cd5214fb4dd5c7c7daa110d2291d52e7bce39a8d2db",
+     "internal_source": "<REFIMPL>/batch_runs/2406.04606/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/off_2406.04606/impl_sonnet.py",
+     "sha256": "15ba33e203683dc2b5101c9704567b363cb43c5858dda3b070525c835b76d6fb",
+     "internal_source": "<REFIMPL>/batch_runs/2406.04606/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/off_2406.04606/impl_llama.py",
+     "sha256": "ab68cf76146d22b7e2ef2fca93409f075c2ced182da50d20ba134f0f43f7241c",
+     "internal_source": "<REFIMPL>/batch_runs/2406.04606/impl_llama.py"
+    }
+   }
+  },
+  "sub_2006.09226": {
+   "task_id": "sub_2006.09226",
+   "arxiv_id": "2006.09226",
+   "method": "Parameter-Based Value Functions (PBVFs)",
+   "paper_title": "Parameter-based Value Functions",
+   "entry": "pbvf_critic_loss",
+   "signature": "def pbvf_critic_loss(q_values, rewards, next_q_values, gamma):",
+   "pass_both": [
+    "Gamma=0 case: loss = MSE(q_values, rewards)",
+    "MSE loss is non-negative",
+    "Scaling invariance: loss scales by c^2",
+    "Single element batch computes correct MSE",
+    "Zero loss when predictions match targets"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2006.09226/property_tests.py",
+     "sha256": "40ea6728de6e280327c3268e9400ce7a27612a6d1bf5c6a65d2d0d276d91fd7b",
+     "internal_source": "<REFIMPL>/batch_runs/2006.09226/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2006.09226/impl_sonnet.py",
+     "sha256": "3e2779531355cee840dc7b242e8dc22524a6879def3d61dd16166dbfe86341f4",
+     "internal_source": "<REFIMPL>/batch_runs/2006.09226/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2006.09226/impl_llama.py",
+     "sha256": "eec22cac24d95587abfbae07fc3066378fefa0b4181b33ed8ac9629817cae850",
+     "internal_source": "<REFIMPL>/batch_runs/2006.09226/impl_llama.py"
+    }
+   }
+  },
+  "sub_2211.09981": {
+   "task_id": "sub_2211.09981",
+   "arxiv_id": "2211.09981",
+   "method": "WEIGHTED ENSEMBLE SELF-SUPERVISED LEARNING",
+   "paper_title": "Weighted Ensemble Self-Supervised Learning",
+   "entry": "ensemble_loss",
+   "signature": "def ensemble_loss(log_ps, log_pt, strategy):",
+   "pass_both": [
+    "test_entropy_weighted_normalization",
+    "test_max_strategy_selection",
+    "test_mean_head_permutation_invariant",
+    "test_non_negative",
+    "test_uniform_identical"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2211.09981/property_tests.py",
+     "sha256": "de381696463ccdd162181e061998104eacc507a10bd7b5915cd7a53ffb86fc12",
+     "internal_source": "<REFIMPL>/batch_runs/2211.09981/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2211.09981/impl_sonnet.py",
+     "sha256": "0fb02d4924e61b5ee3bdeeb5b5893e13c67b17bc486c7878ad3f46300636b7ea",
+     "internal_source": "<REFIMPL>/batch_runs/2211.09981/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2211.09981/impl_llama.py",
+     "sha256": "d9c1da56fe609b21e88e968e0e7b2b0eb0d9210bb31faacd01ccb498e3a00b01",
+     "internal_source": "<REFIMPL>/batch_runs/2211.09981/impl_llama.py"
+    }
+   }
+  },
+  "sub_2210.05922": {
+   "task_id": "sub_2210.05922",
+   "arxiv_id": "2210.05922",
+   "method": "A Unified Framework for Alternating Offline Model Training and Policy Learning",
+   "paper_title": "A Unified Framework for Alternating Offline Model Training and Policy Learning",
+   "entry": "compute_model_importance_weight",
+   "signature": "def compute_model_importance_weight(q_values_real, q_values_model, alpha):",
+   "pass_both": [
+    "all_weights_positive",
+    "element_wise_formula_correctness",
+    "equal_qvalues_gives_unit_weights",
+    "monotonicity_in_q_difference",
+    "output_shape_matches_input"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2210.05922/property_tests.py",
+     "sha256": "62b0d5bba204253214b7d49809506db7e23bbb6acd81116e2f69408349b9b575",
+     "internal_source": "<REFIMPL>/batch_runs/2210.05922/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2210.05922/impl_sonnet.py",
+     "sha256": "fca645ab713fbe1d2b0bdfa9c1b5d4beac8b7414e67185bd9636811e00264b28",
+     "internal_source": "<REFIMPL>/batch_runs/2210.05922/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2210.05922/impl_llama.py",
+     "sha256": "02de331c2ee336d2e9a5ad7c4e838827a841212ffbe63fcefd4120d20032aeb3",
+     "internal_source": "<REFIMPL>/batch_runs/2210.05922/impl_llama.py"
+    }
+   }
+  },
+  "sub_2504.13055": {
+   "task_id": "sub_2504.13055",
+   "arxiv_id": "2504.13055",
+   "method": "NoisyRollout",
+   "paper_title": "NoisyRollout: Reinforcing Visual Reasoning with Data Augmentation",
+   "entry": "compute_ppo_clipped_objective",
+   "signature": "def compute_ppo_clipped_objective(log_probs_current, log_probs_old, rewards, epsilon):",
+   "pass_both": [
+    "clipping_bounds_with_constant_rewards",
+    "constant_rewards_zero_objective",
+    "identical_policies_zero_objective",
+    "reward_translation_invariance"
+   ],
+   "suspect_tests": [
+    "reward_scaling_linearity"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2504.13055/property_tests.py",
+     "sha256": "d2dae4043c02069ee5b91ab338afb68fe738ad8e802b09e9056c81a3c6e44071",
+     "internal_source": "<REFIMPL>/batch_runs/2504.13055/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2504.13055/impl_sonnet.py",
+     "sha256": "667d49ff05386d48582f6614dd592b45b5508612c5a3da7179aaaed7c767a6e8",
+     "internal_source": "<REFIMPL>/batch_runs/2504.13055/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2504.13055/impl_llama.py",
+     "sha256": "d39fc84190d5dc256908867ee4c77563c85efae10be38cbc363594214a2b52e2",
+     "internal_source": "<REFIMPL>/batch_runs/2504.13055/impl_llama.py"
+    }
+   }
+  },
+  "sub_2202.02794": {
+   "task_id": "sub_2202.02794",
+   "arxiv_id": "2202.02794",
+   "method": "TypiClust",
+   "paper_title": "Active Learning on a Budget: Opposite Strategies Suit High and Low Budgets",
+   "entry": "compute_typicality",
+   "signature": "def compute_typicality(embeddings, cluster_assignments, point_index):",
+   "pass_both": [
+    "euclidean_distance_correctness",
+    "identical_points_same_typicality",
+    "point_at_centroid_zero_typicality",
+    "single_point_cluster_typicality_zero",
+    "typicality_non_positive"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2202.02794/property_tests.py",
+     "sha256": "69b5923c56120e2c5511d2f98429eca9bfa2a21fa0bbcbcb389040241e142342",
+     "internal_source": "<REFIMPL>/batch_runs/2202.02794/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2202.02794/impl_sonnet.py",
+     "sha256": "fa7ca42350d7cb59098c84b51c5c460e184d3f1f841273744792ca49045e541a",
+     "internal_source": "<REFIMPL>/batch_runs/2202.02794/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2202.02794/impl_llama.py",
+     "sha256": "1770e8df7f6d09c9d71d3e0546cb90906a92f5bf04f8092c0e314693645d79fe",
+     "internal_source": "<REFIMPL>/batch_runs/2202.02794/impl_llama.py"
+    }
+   }
+  },
+  "sub_2106.09296": {
+   "task_id": "sub_2106.09296",
+   "arxiv_id": "2106.09296",
+   "method": "Voice2Series",
+   "paper_title": "Voice2Series: Reprogramming Acoustic Models for Time Series Classification",
+   "entry": "voice2series_loss",
+   "signature": "def voice2series_loss(log_probs, target_labels):",
+   "pass_both": [
+    "linearity_of_expectation",
+    "non_negativity",
+    "perfect_prediction_zero_loss",
+    "sample_permutation_invariance",
+    "uniform_log_prob_closed_form"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2106.09296/property_tests.py",
+     "sha256": "40fc3228dc6a49acc7ebc611818b25313c993e8db1b6803974ec34a2dd16ab7a",
+     "internal_source": "<REFIMPL>/batch_runs/2106.09296/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2106.09296/impl_sonnet.py",
+     "sha256": "208a2a87f8266ef5d3038b34c8a76b5e69f6fceef727fe81886aa280b711308b",
+     "internal_source": "<REFIMPL>/batch_runs/2106.09296/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2106.09296/impl_llama.py",
+     "sha256": "ff9dc8c3ce8147a6049425ccf7b6f54bc27ed964f2a916cefc5ffaa1321e7a91",
+     "internal_source": "<REFIMPL>/batch_runs/2106.09296/impl_llama.py"
+    }
+   }
+  },
+  "sub_2010.02089": {
+   "task_id": "sub_2010.02089",
+   "arxiv_id": "2010.02089",
+   "method": "CopulaGNN",
+   "paper_title": "CopulaGNN: Towards Integrating Representational and Correlational Roles of Graphs in Graph Neural Networks",
+   "entry": "copulagnn_conditional_mean_covariance",
+   "signature": "def copulagnn_conditional_mean_covariance(R, z_obs):",
+   "pass_both": [
+    "Conditional covariance is positive semi-definite",
+    "Degenerate case: all nodes observed (k=0)",
+    "Independence: R_01=0 implies mu_cond=0, Sigma_cond=R_11",
+    "Perfect correlation: analytical verification",
+    "Scaling: mu_cond scales linearly, Sigma_cond unchanged"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2010.02089/property_tests.py",
+     "sha256": "5f3b3f0efa5839d555fcfa40cc634eb965e2e3c49008947801425448a2df4113",
+     "internal_source": "<REFIMPL>/batch_runs/2010.02089/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2010.02089/impl_sonnet.py",
+     "sha256": "3f7302ad4f223b1593d6f06c417234b30479f884459ef4d868915b888136da64",
+     "internal_source": "<REFIMPL>/batch_runs/2010.02089/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2010.02089/impl_llama.py",
+     "sha256": "1bfbd0313261f6b199820722c32fecf428bb12c054af2d4d66c3a8d1db5006b6",
+     "internal_source": "<REFIMPL>/batch_runs/2010.02089/impl_llama.py"
+    }
+   }
+  },
+  "sub_2208.04202": {
+   "task_id": "sub_2208.04202",
+   "arxiv_id": "2208.04202",
+   "method": "Asymmetric Time Intervals",
+   "paper_title": "Analog Bits: Generating Discrete Data using Diffusion Models with Self-Conditioning",
+   "entry": "ddim_step",
+   "signature": "def ddim_step(x_t, x_pred, t_now, t_next, ns=0.0002, ds=0.00025, scale=1.0):",
+   "pass_both": [
+    "Clipping bounds enforced",
+    "Correct computation with unclipped x_pred",
+    "Identity when t_now == t_next",
+    "Shape preservation"
+   ],
+   "suspect_tests": [
+    "Degenerate case t=0"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2208.04202/property_tests.py",
+     "sha256": "c81d30ef919fd73a1cec161ee05ec5de92ee9412938a0a59f6cdf36f8d4f58be",
+     "internal_source": "<REFIMPL>/batch_runs/2208.04202/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2208.04202/impl_sonnet.py",
+     "sha256": "7bc47cd339724503b80c8216200611dd19b41985fe3ca9fe100202aeba9e9604",
+     "internal_source": "<REFIMPL>/batch_runs/2208.04202/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2208.04202/impl_llama.py",
+     "sha256": "98af57f1413160d2a95f5fc1717792fb74dec08ac26aca66952c93ba0ffe24a1",
+     "internal_source": "<REFIMPL>/batch_runs/2208.04202/impl_llama.py"
+    }
+   }
+  },
+  "sub_2210.08196": {
+   "task_id": "sub_2210.08196",
+   "arxiv_id": "2210.08196",
+   "method": "Gaussian fine tuning method",
+   "paper_title": "Deep Regression Unlearning",
+   "entry": "gaussian_label_loss",
+   "signature": "def gaussian_label_loss(y_pred, y_true):",
+   "pass_both": [
+    "closed_form_single_sample",
+    "non_negativity",
+    "perfect_prediction_zero_loss",
+    "permutation_invariance",
+    "scaling_invariance"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2210.08196/property_tests.py",
+     "sha256": "9f447d5520c07ca2866d9253b33e0de8396ec77b44ef5ddc4a5e2a59b7894bea",
+     "internal_source": "<REFIMPL>/batch_runs/2210.08196/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2210.08196/impl_sonnet.py",
+     "sha256": "01f65972c20676836d0f562efcfbe9ce575651043d976359f454b854224e8e6d",
+     "internal_source": "<REFIMPL>/batch_runs/2210.08196/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2210.08196/impl_llama.py",
+     "sha256": "85714f3742b6634b3e8318b310528e470db8a8cf949a2230de8f015ecb2bcae1",
+     "internal_source": "<REFIMPL>/batch_runs/2210.08196/impl_llama.py"
+    }
+   }
+  },
+  "sub_2302.10685": {
+   "task_id": "sub_2302.10685",
+   "arxiv_id": "2302.10685",
+   "method": "calibrating offset spikes",
+   "paper_title": "Bridging the Gap between ANNs and SNNs by Calibrating Offset Spikes",
+   "entry": "compute_optimal_shift_up",
+   "signature": "def compute_optimal_shift_up(membrane_potentials, spikes, theta, epsilon):",
+   "pass_both": [
+    "all_spikes_one_returns_theta",
+    "epsilon_large_returns_formula",
+    "epsilon_small_returns_theta",
+    "shift_lower_bound_theta",
+    "single_element_spike_zero"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2302.10685/property_tests.py",
+     "sha256": "cc8759a9876fa637df23df410e9299cf2e79a76e0ce8b98d86a058cd55aa2896",
+     "internal_source": "<REFIMPL>/batch_runs/2302.10685/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2302.10685/impl_sonnet.py",
+     "sha256": "41d79d33f8f815cc1f3dfd5f065c50bd481b61ac40dffda6fbf84cd69344e009",
+     "internal_source": "<REFIMPL>/batch_runs/2302.10685/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2302.10685/impl_llama.py",
+     "sha256": "3aced69079865199b54a413bc87ff05237814a9c52721cc958ff1e5b8f3b0144",
+     "internal_source": "<REFIMPL>/batch_runs/2302.10685/impl_llama.py"
+    }
+   }
+  },
+  "sub_2110.03735": {
+   "task_id": "sub_2110.03735",
+   "arxiv_id": "2110.03735",
+   "method": "Implicit Backdoor Adversarial Unlearning (I-BAU)",
+   "paper_title": "Adversarial Unlearning of Backdoors via Implicit Hypergradient",
+   "entry": "project_delta_to_l2_ball",
+   "signature": "def project_delta_to_l2_ball(delta, c_delta):",
+   "pass_both": [
+    "direction_preservation",
+    "idempotence",
+    "norm_preservation_within_ball",
+    "projection_to_boundary",
+    "scaling_invariance"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2110.03735/property_tests.py",
+     "sha256": "06b28b9ccf6fdbe0f7d41d122e7f4024bccdc7341980e75f3cb43b1105666674",
+     "internal_source": "<REFIMPL>/batch_runs/2110.03735/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2110.03735/impl_sonnet.py",
+     "sha256": "518656bf56d0057905b1c586e7d340cbaa3c6ab4b58994189616e04be04a376c",
+     "internal_source": "<REFIMPL>/batch_runs/2110.03735/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2110.03735/impl_llama.py",
+     "sha256": "a815a4ba793cd8c675cd7ec0bf8fe1a79108c45eae9a752745d8e9a8e222f3d5",
+     "internal_source": "<REFIMPL>/batch_runs/2110.03735/impl_llama.py"
+    }
+   }
+  },
+  "sub_2110.06197": {
+   "task_id": "sub_2110.06197",
+   "arxiv_id": "2110.06197",
+   "method": "Crystal Diffusion Variational Autoencoder (CDVAE)",
+   "paper_title": "Crystal Diffusion Variational Autoencoder for Periodic Material Generation",
+   "entry": "langevin_coordinate_update",
+   "signature": "def langevin_coordinate_update(X_prev, score, alpha, epsilon_noise, L):",
+   "pass_both": [
+    "deterministic_update",
+    "fractional_coordinate_bounds",
+    "lattice_scaling_invariance",
+    "periodicity_invariance",
+    "zero_step_identity"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2110.06197/property_tests.py",
+     "sha256": "0bfb8d2a71c0a7f7f161e9bfd12c3be1b06a69691a8b28bd71c51d9bb0fd30ad",
+     "internal_source": "<REFIMPL>/batch_runs/2110.06197/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2110.06197/impl_sonnet.py",
+     "sha256": "b74b3c9ae56cdc3d2096e3550b73642d5c9f77ab2beec024c57b5c5fcf45a288",
+     "internal_source": "<REFIMPL>/batch_runs/2110.06197/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2110.06197/impl_llama.py",
+     "sha256": "a895de13bb8e54d3aa9d9eab62c3e6353190585f4858bca60f565ed297752e04",
+     "internal_source": "<REFIMPL>/batch_runs/2110.06197/impl_llama.py"
+    }
+   }
+  },
+  "sub_2301.09474": {
+   "task_id": "sub_2301.09474",
+   "arxiv_id": "2301.09474",
+   "method": "DIFFORMER",
+   "paper_title": "DIFFormer: Scalable (Graph) Transformers Induced by Energy Constrained Diffusion",
+   "entry": "difformer_update_step",
+   "signature": "def difformer_update_step(x_current, x_residual, tau):",
+   "pass_both": [
+    "affine_combination_property",
+    "identical_inputs_invariance",
+    "limiting_case_tau_0",
+    "limiting_case_tau_1",
+    "scaling_linearity"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2301.09474/property_tests.py",
+     "sha256": "336478ac5e801014c6d4e98f1909aa33a7db26a523e8cfafce8244159614e63e",
+     "internal_source": "<REFIMPL>/batch_runs/2301.09474/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2301.09474/impl_sonnet.py",
+     "sha256": "9e790e1bf23b33b71c346127e54642add410dbe20cc8fdd7cfa3b2c853ff5600",
+     "internal_source": "<REFIMPL>/batch_runs/2301.09474/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2301.09474/impl_llama.py",
+     "sha256": "5ea303260d853959d9368904305fa96a8bb126a71ccc8bbb22bdd04a6366ed50",
+     "internal_source": "<REFIMPL>/batch_runs/2301.09474/impl_llama.py"
+    }
+   }
+  },
+  "sub_2202.08836": {
+   "task_id": "sub_2202.08836",
+   "arxiv_id": "2202.08836",
+   "method": "Data-SUITE",
+   "paper_title": "Data-SUITE: Data-centric identification of in-distribution incongruous examples",
+   "entry": "compute_conformal_epsilon",
+   "signature": "def compute_conformal_epsilon(nonconformity_scores, alpha):",
+   "pass_both": [
+    "exact_known_case",
+    "monotonicity_alpha",
+    "permutation_invariance",
+    "result_within_bounds",
+    "small_alpha_returns_max"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2202.08836/property_tests.py",
+     "sha256": "b1d53b81daaed9102c26569880a1eded701490c395c6875224e96e97607d3315",
+     "internal_source": "<REFIMPL>/batch_runs/2202.08836/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2202.08836/impl_sonnet.py",
+     "sha256": "f27e1f30c99af1bfa03fdb93c6daa271874d7372d2178243b0acb4407160c46d",
+     "internal_source": "<REFIMPL>/batch_runs/2202.08836/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2202.08836/impl_llama.py",
+     "sha256": "002f73ae336246d8e0ce5ef4d5d3cc99610bbc1793ae6ec164a48e30639a5cc4",
+     "internal_source": "<REFIMPL>/batch_runs/2202.08836/impl_llama.py"
+    }
+   }
+  },
+  "sub_2202.00914": {
+   "task_id": "sub_2202.00914",
+   "arxiv_id": "2202.00914",
+   "method": "Lipschitz-constrained Skill Discovery (LSD)",
+   "paper_title": "Lipschitz-constrained Unsupervised Skill Discovery",
+   "entry": "compute_lsd_reward",
+   "signature": "def compute_lsd_reward(phi_s_t, phi_s_t_plus_1, z):",
+   "pass_both": [
+    "anti_symmetry",
+    "skill_scaling",
+    "translation_invariance",
+    "zero_displacement",
+    "zero_skill"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2202.00914/property_tests.py",
+     "sha256": "e2ddeb800694e9abdc2bb88d76bb21267e4e690f22f2ad2fd34ac11dce68c10c",
+     "internal_source": "<REFIMPL>/batch_runs/2202.00914/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2202.00914/impl_sonnet.py",
+     "sha256": "437b37334a971eff7a0dd6d016428880ae016c9f73813ad30975f6ffa6b824cb",
+     "internal_source": "<REFIMPL>/batch_runs/2202.00914/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2202.00914/impl_llama.py",
+     "sha256": "5e6bc2ac9af2bb8e34a12f0c4f6a188292f66a825427307f5bb80ee26ba1302c",
+     "internal_source": "<REFIMPL>/batch_runs/2202.00914/impl_llama.py"
+    }
+   }
+  },
+  "sub_2405.16852": {
+   "task_id": "sub_2405.16852",
+   "arxiv_id": "2405.16852",
+   "method": "EM Distillation (EMD)",
+   "paper_title": "EM Distillation for One-step Diffusion Models",
+   "entry": "noise_cancellation_correction",
+   "signature": "def noise_cancellation_correction(eps_hat, eps_init, eps_noises, eps_step_size, ld_steps):",
+   "pass_both": [
+    "output_shape_preservation",
+    "single_langevin_step",
+    "zero_noise_input",
+    "zero_step_size_deterministic"
+   ],
+   "suspect_tests": [
+    "linearity_in_eps_hat"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2405.16852/property_tests.py",
+     "sha256": "f4d86eff5002abac10674d45366b17054f47a15e7a5c67e3738c6fdaa7918a68",
+     "internal_source": "<REFIMPL>/batch_runs/2405.16852/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2405.16852/impl_sonnet.py",
+     "sha256": "e7c6dca449aeec445394bac705f6305249b1c4a79f46c1a23f58d4a6f788fdcb",
+     "internal_source": "<REFIMPL>/batch_runs/2405.16852/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2405.16852/impl_llama.py",
+     "sha256": "d943dbdf71176b797789636c50793c4389ceb1e03f1be23bb3b4a7bbcc51aae5",
+     "internal_source": "<REFIMPL>/batch_runs/2405.16852/impl_llama.py"
+    }
+   }
+  },
+  "sub_2401.06118": {
+   "task_id": "sub_2401.06118",
+   "arxiv_id": "2401.06118",
+   "method": "AQLM",
+   "paper_title": "Extreme Compression of Large Language Models via Additive Quantization",
+   "entry": "aqlm_reconstruction_loss",
+   "signature": "def aqlm_reconstruction_loss(X_gram, W, C, b, s):",
+   "pass_both": [
+    "non_negativity",
+    "perfect_reconstruction_zero_loss",
+    "scaling_factors_linearity",
+    "x_gram_scaling_property",
+    "zero_x_gram_zero_loss"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2401.06118/property_tests.py",
+     "sha256": "b800e07c30845eebb01b19fe5992dd62cb0a6d1c3ba898a3832302ce62ef1e11",
+     "internal_source": "<REFIMPL>/batch_runs/2401.06118/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2401.06118/impl_sonnet.py",
+     "sha256": "b17c2205c5daca747fe6b2e028a4979470f29bd31411d418e34db36b0bb8998d",
+     "internal_source": "<REFIMPL>/batch_runs/2401.06118/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2401.06118/impl_llama.py",
+     "sha256": "be66fee5af6deca763db4f0b3ff50095d3e097ea5c96482b5844370c1261eae1",
+     "internal_source": "<REFIMPL>/batch_runs/2401.06118/impl_llama.py"
+    }
+   }
+  },
+  "sub_2006.05849": {
+   "task_id": "sub_2006.05849",
+   "arxiv_id": "2006.05849",
+   "method": "Self-Supervised Relational Reasoning",
+   "paper_title": "Self-Supervised Relational Reasoning for Representation Learning",
+   "entry": "binary_cross_entropy_loss",
+   "signature": "def binary_cross_entropy_loss(y_pred, y_target):",
+   "pass_both": [
+    "loss_non_negative",
+    "perfect_predictions_near_zero_loss",
+    "permutation_invariance",
+    "uniform_predictions_symmetric_loss",
+    "worst_case_high_loss"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2006.05849/property_tests.py",
+     "sha256": "e110d2e0e4c41b633ebd6ab13ac8965edc34de9537d940bfdfb9b4de52cc2915",
+     "internal_source": "<REFIMPL>/batch_runs/2006.05849/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2006.05849/impl_sonnet.py",
+     "sha256": "898f064c18c560a62429c7c499d6a51ab59181ba426441722ec425a881171944",
+     "internal_source": "<REFIMPL>/batch_runs/2006.05849/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2006.05849/impl_llama.py",
+     "sha256": "e6c8456daa7532e438eb145f5ec1a0ce4a1e92e9628dcf77c40937398a5ccb0a",
+     "internal_source": "<REFIMPL>/batch_runs/2006.05849/impl_llama.py"
+    }
+   }
+  },
+  "sub_2201.09765": {
+   "task_id": "sub_2201.09765",
+   "arxiv_id": "2201.09765",
+   "method": "Generative Planning method (GPM)",
+   "paper_title": "Generative Planning for Temporally Coordinated Exploration in Reinforcement Learning",
+   "entry": "compute_replan_probability",
+   "signature": "def compute_replan_probability(epsilon, q_old, q_new):",
+   "pass_both": [
+    "equal_q_values_closed_form",
+    "high_q_new_advantage_approaches_one",
+    "low_q_new_advantage_approaches_zero",
+    "monotonicity_in_q_difference",
+    "output_in_unit_interval"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2201.09765/property_tests.py",
+     "sha256": "bf92f32dc92d74ffc916e6ac95f978da762db730cee148fa552939b66c96021d",
+     "internal_source": "<REFIMPL>/batch_runs/2201.09765/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2201.09765/impl_sonnet.py",
+     "sha256": "abcf8227d45ff5190f4481be77aba6928903a563d4293322876716f64b183b4a",
+     "internal_source": "<REFIMPL>/batch_runs/2201.09765/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2201.09765/impl_llama.py",
+     "sha256": "8c57c753897653e206a4d82aeb03d89a6fd7b7f7e9f3726008f49dc2b8db6c5b",
+     "internal_source": "<REFIMPL>/batch_runs/2201.09765/impl_llama.py"
+    }
+   }
+  },
+  "sub_2310.16450": {
+   "task_id": "sub_2310.16450",
+   "arxiv_id": "2310.16450",
+   "method": "CLEX",
+   "paper_title": "CLEX: Continuous Length Extrapolation for Large Language Models",
+   "entry": "calculate_clex_theta",
+   "signature": "def calculate_clex_theta(t_prime, t_train, d_model, lambda_factor):",
+   "pass_both": [
+    "boundary_condition_t_prime_equals_1",
+    "monotonicity_increasing_with_t_prime",
+    "ode_solution_correctness",
+    "output_shape_and_dtype",
+    "positivity_of_theta"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2310.16450/property_tests.py",
+     "sha256": "8e2e56c37a5bc8a21726e2a16eda239e80ba92a529826e8fa4ac2303e1ac0edd",
+     "internal_source": "<REFIMPL>/batch_runs/2310.16450/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2310.16450/impl_sonnet.py",
+     "sha256": "19b6e2e865e5ccf71868e04fd0dbb9da91a2af7e61f282250ec8e35621386211",
+     "internal_source": "<REFIMPL>/batch_runs/2310.16450/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2310.16450/impl_llama.py",
+     "sha256": "c93162c6561b908815d17c1c241c290bbc9846ab8d23b49f3de74afacf4aeb46",
+     "internal_source": "<REFIMPL>/batch_runs/2310.16450/impl_llama.py"
+    }
+   }
+  },
+  "sub_2106.03632": {
+   "task_id": "sub_2106.03632",
+   "arxiv_id": "2106.03632",
+   "method": "a new algorithm for learning transferable features",
+   "paper_title": "Quantifying and Improving Transferability in Domain Generalization",
+   "entry": "project_onto_euclidean_ball",
+   "signature": "def project_onto_euclidean_ball(theta, theta_star, delta):",
+   "pass_both": [
+    "direction_preserved",
+    "inside_ball_unchanged",
+    "on_boundary_unchanged",
+    "output_shape_matches_input",
+    "outside_projects_to_boundary"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2106.03632/property_tests.py",
+     "sha256": "06fde2e8a773832e45e7bcaca0dc14e9e0c8150ad4c9f833020d26e24f429051",
+     "internal_source": "<REFIMPL>/batch_runs/2106.03632/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2106.03632/impl_sonnet.py",
+     "sha256": "9fbe62bd33b035d0312b3256e34497a0bd94b582ee1714838493061c558d548c",
+     "internal_source": "<REFIMPL>/batch_runs/2106.03632/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2106.03632/impl_llama.py",
+     "sha256": "1750dd6bd0b0b7673a345c66c2220905bdc1456e959c3d31fc0f77e0ff373d0c",
+     "internal_source": "<REFIMPL>/batch_runs/2106.03632/impl_llama.py"
+    }
+   }
+  },
+  "sub_2305.14093": {
+   "task_id": "sub_2305.14093",
+   "arxiv_id": "2305.14093",
+   "method": "Weakly Supervised 3D Open-vocabulary Segmentation",
+   "paper_title": "Weakly Supervised 3D Open-vocabulary Segmentation",
+   "entry": "aggregate_multiscale_patch_features",
+   "signature": "def aggregate_multiscale_patch_features(patch_features, patch_coords, image_height, image_width, feature_dim):",
+   "pass_both": [
+    "identical_overlapping_patches",
+    "non_overlapping_patches",
+    "output_shape_and_dtype",
+    "permutation_invariance",
+    "single_full_patch"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2305.14093/property_tests.py",
+     "sha256": "7e48bb17007f3107fcfcec435c2fcc9c82f4ec8ab1849cf2b6db8e16526c2ae5",
+     "internal_source": "<REFIMPL>/batch_runs/2305.14093/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2305.14093/impl_sonnet.py",
+     "sha256": "199b2087741c2c23a6df2a36cb3fbeb6feb51e3173c886dc73dffee60b6d3611",
+     "internal_source": "<REFIMPL>/batch_runs/2305.14093/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2305.14093/impl_llama.py",
+     "sha256": "8fb3fd5d8addeb6814bd69f80b892eaf2c6f871604611b9ad7e16c2b65a47a70",
+     "internal_source": "<REFIMPL>/batch_runs/2305.14093/impl_llama.py"
+    }
+   }
+  },
+  "sub_2107.00306": {
+   "task_id": "sub_2107.00306",
+   "arxiv_id": "2107.00306",
+   "method": "MHER",
+   "paper_title": "MHER: Model-based Hindsight Experience Replay",
+   "entry": "model_based_next_state_prediction",
+   "signature": "def model_based_next_state_prediction(s_t, a_t, delta_pred):",
+   "pass_both": [
+    "element_wise_addition",
+    "linearity_in_delta",
+    "output_shape_matches_state_dim",
+    "translation_invariance_state",
+    "zero_delta_identity"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2107.00306/property_tests.py",
+     "sha256": "d6a78d3c26c52eb7e34ef455da8673ecf7e8625111dda23b3b16f7b73d7b534b",
+     "internal_source": "<REFIMPL>/batch_runs/2107.00306/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2107.00306/impl_sonnet.py",
+     "sha256": "2406123d4d89f30c0c89483449f3bfef607edfced0d431754457cba5087aac60",
+     "internal_source": "<REFIMPL>/batch_runs/2107.00306/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2107.00306/impl_llama.py",
+     "sha256": "bc563be39a41f7c0628a93e60b5c1bbea05e9cb4e355226b5d9a23735ac5b47a",
+     "internal_source": "<REFIMPL>/batch_runs/2107.00306/impl_llama.py"
+    }
+   }
+  },
+  "sub_2206.06662": {
+   "task_id": "sub_2206.06662",
+   "arxiv_id": "2206.06662",
+   "method": "Learning Best Combination (LBC)",
+   "paper_title": "Learning Best Combination for Efficient N:M Sparsity",
+   "entry": "compute_candidate_cardinality",
+   "signature": "def compute_candidate_cardinality(current_epoch, initial_epoch, final_epoch, initial_cardinality):",
+   "pass_both": [
+    "Boundary: at or after final_epoch returns 1",
+    "Boundary: before initial_epoch returns initial_cardinality",
+    "Degenerate case: initial_epoch == final_epoch",
+    "Linear interpolation: formula correctness",
+    "Monotonicity: cardinality non-increasing with epoch"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2206.06662/property_tests.py",
+     "sha256": "6ca8acab0975310f9e2b60bbcee79166c45fa2ca9796790056cc4cd3fcc4cdab",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06662/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2206.06662/impl_sonnet.py",
+     "sha256": "984f67691303328adfa31b0726318c8666392facfc11f0eb4c434b159d86bae6",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06662/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2206.06662/impl_llama.py",
+     "sha256": "e1aaba434f4f478e1cf2420bda9c6ee118b38023a7bba0d6fda76b1378fdb357",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06662/impl_llama.py"
+    }
+   }
+  },
+  "sub_2111.06881": {
+   "task_id": "sub_2111.06881",
+   "arxiv_id": "2111.06881",
+   "method": "Multimodal Virtual Point 3D Detection",
+   "paper_title": "Multimodal Virtual Point 3D Detection",
+   "entry": "unproject_2d_point_with_depth",
+   "signature": "def unproject_2d_point_with_depth(point_2d, depth, projection_matrix, transform_matrix):",
+   "pass_both": [
+    "Determinism",
+    "Identity transformation recovery",
+    "Inverse matrix consistency",
+    "Output shape and type"
+   ],
+   "suspect_tests": [
+    "Depth scaling homogeneity"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2111.06881/property_tests.py",
+     "sha256": "bee0fa7fbfe6485569d97c55ba193c45d118b5b36b19a961a95c1a6ce0b5695f",
+     "internal_source": "<REFIMPL>/batch_runs/2111.06881/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2111.06881/impl_sonnet.py",
+     "sha256": "bcd123980751c7696d0ae16acdf0d5678f8e4989047356d8b5aa643c166a28aa",
+     "internal_source": "<REFIMPL>/batch_runs/2111.06881/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2111.06881/impl_llama.py",
+     "sha256": "d8dfc4a8134c8073edad02eb00cd257e7fc8f6fc0a09c02962ed2ffadb1e7386",
+     "internal_source": "<REFIMPL>/batch_runs/2111.06881/impl_llama.py"
+    }
+   }
+  },
+  "sub_2209.14734": {
+   "task_id": "sub_2209.14734",
+   "arxiv_id": "2209.14734",
+   "method": "DiGress",
+   "paper_title": "DiGress: Discrete Denoising diffusion for graph generation",
+   "entry": "compute_guidance_gradient",
+   "signature": "def compute_guidance_gradient(g_t, y_hat, y_target, lambda_scale):",
+   "pass_both": [
+    "output_shape",
+    "scaling_property",
+    "zero_gradient_at_max",
+    "zero_gradient_at_target",
+    "zero_lambda_zero_gradient"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2209.14734/property_tests.py",
+     "sha256": "51af65a9dbe2c8622bbb4c0f8574a6db344926bfdeea48fb7c84d820f5278440",
+     "internal_source": "<REFIMPL>/batch_runs/2209.14734/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2209.14734/impl_sonnet.py",
+     "sha256": "5ce7955b8fac2604510b2cd77624b76cdd364a59d3f42495ebcaf4a5a1afb3e9",
+     "internal_source": "<REFIMPL>/batch_runs/2209.14734/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2209.14734/impl_llama.py",
+     "sha256": "598051785dc28042cf2f41208fd0a8382d2a4db4286b9cfd56e7d6a746e3d61c",
+     "internal_source": "<REFIMPL>/batch_runs/2209.14734/impl_llama.py"
+    }
+   }
+  },
+  "sub_2006.07556": {
+   "task_id": "sub_2006.07556",
+   "arxiv_id": "2006.07556",
+   "method": "Bayesian optimisation approach for NAS with Weisfeiler-Lehman graph kernel",
+   "paper_title": "INTERPRETABLE NEURAL ARCHITECTURE SEARCH VIA BAYESIAN OPTIMISATION WITH WEISFEILER-LEHMAN KERNELS",
+   "entry": "weisfeiler_lehman_kernel",
+   "signature": "def weisfeiler_lehman_kernel(adj_matrix_1, node_labels_1, adj_matrix_2, node_labels_2, h_max):",
+   "pass_both": [
+    "Identical graphs positive kernel",
+    "Kernel non-negativity",
+    "Kernel symmetry",
+    "h_max=0 initial labels only"
+   ],
+   "suspect_tests": [
+    "Isolated nodes with unique labels"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2006.07556/property_tests.py",
+     "sha256": "5bccdb46fbd6350b0c312181623dac0c98087d95381897018ef72adc386345e2",
+     "internal_source": "<REFIMPL>/batch_runs/2006.07556/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2006.07556/impl_sonnet.py",
+     "sha256": "4578cf0d11795c4b162a5f3f844696f6f620c6d905f7eecb8693f8169a67306d",
+     "internal_source": "<REFIMPL>/batch_runs/2006.07556/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2006.07556/impl_llama.py",
+     "sha256": "e876c768addcbc917e4cd818db227fba82b3a02c1ae2edba3c889988ca262414",
+     "internal_source": "<REFIMPL>/batch_runs/2006.07556/impl_llama.py"
+    }
+   }
+  },
+  "sub_2310.09192": {
+   "task_id": "sub_2310.09192",
+   "arxiv_id": "2310.09192",
+   "method": "Structure-broadcasting Graph Dataset Distillation (SGDD)",
+   "paper_title": "Does Graph Distillation See Like Vision Dataset Counterpart?",
+   "entry": "compute_structure_loss",
+   "signature": "def compute_structure_loss(A_c, A_c_prime):",
+   "pass_both": [
+    "closed_form_verification",
+    "empty_matrix_handling",
+    "identity_property",
+    "non_negativity",
+    "size_mismatch_overlap"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2310.09192/property_tests.py",
+     "sha256": "0cc4a1b967203a4a344b19232b9f9afef52079f23bb88351b4dacaa8b5b9d400",
+     "internal_source": "<REFIMPL>/batch_runs/2310.09192/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2310.09192/impl_sonnet.py",
+     "sha256": "e37cfacfa13d51cadbc39ae5b0b4710f9bfddb49c082b1303fcb6041e2b98c0f",
+     "internal_source": "<REFIMPL>/batch_runs/2310.09192/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2310.09192/impl_llama.py",
+     "sha256": "47885c14dd81f0dcee19f3b1eab1a2dff7b7df1719ef80e4915471b3efcaf5df",
+     "internal_source": "<REFIMPL>/batch_runs/2310.09192/impl_llama.py"
+    }
+   }
+  },
+  "sub_2110.15355": {
+   "task_id": "sub_2110.15355",
+   "arxiv_id": "2110.15355",
+   "method": "SimplEx",
+   "paper_title": "Explaining Latent Representations with a Corpus of Examples",
+   "entry": "simplex_projected_jacobian",
+   "signature": "def simplex_projected_jacobian(x_test, h_test, x_corpus, h_corpus, x_baseline, h_baseline, jacobian_g, n_bins):",
+   "pass_both": [
+    "corpus_equals_baseline_zero_projection",
+    "output_shape_and_dtype",
+    "zero_jacobian_zero_projection"
+   ],
+   "suspect_tests": [
+    "n_bins_scaling_property",
+    "scaling_invariance_h_test"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2110.15355/property_tests.py",
+     "sha256": "e14979225cd0f03baa52ce1be0852c824f4e4d556d56c49992efe9f4b29477c6",
+     "internal_source": "<REFIMPL>/batch_runs/2110.15355/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2110.15355/impl_sonnet.py",
+     "sha256": "c5dcb922e5002975b6489600ed8957baaa7b4d1ba2c5eae1246bfcafc8529266",
+     "internal_source": "<REFIMPL>/batch_runs/2110.15355/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2110.15355/impl_llama.py",
+     "sha256": "31a2f8a1514a889f3c4aa611ac3eda5489cb6ee534f9eefd674a53e53c54ca4f",
+     "internal_source": "<REFIMPL>/batch_runs/2110.15355/impl_llama.py"
+    }
+   }
+  },
+  "sub_2302.00670": {
+   "task_id": "sub_2302.00670",
+   "arxiv_id": "2302.00670",
+   "method": "STABLE TARGET FIELD",
+   "paper_title": "Stable Target Field for Reduced Variance Score Estimation in Diffusion Models",
+   "entry": "stable_target_field",
+   "signature": "def stable_target_field(x_t, B_L, t, alpha_bar_t):",
+   "pass_both": [
+    "convex_combination",
+    "identical_reference_samples",
+    "output_shape",
+    "permutation_invariance",
+    "single_reference_sample"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2302.00670/property_tests.py",
+     "sha256": "fe39d794dda2d77341c7bf2a63971296579a4bede28359f4ca08193e3cbd3047",
+     "internal_source": "<REFIMPL>/batch_runs/2302.00670/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2302.00670/impl_sonnet.py",
+     "sha256": "042f9ec749fc546358e7865f69103116c99d1f6edd4ab91f5a290b4fa000c85e",
+     "internal_source": "<REFIMPL>/batch_runs/2302.00670/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2302.00670/impl_llama.py",
+     "sha256": "8007eb84fd2d6d0f8e9cbf4d3f6d3cfc472ca314a820b4409502eef25dac42ee",
+     "internal_source": "<REFIMPL>/batch_runs/2302.00670/impl_llama.py"
+    }
+   }
+  },
+  "sub_2412.07298": {
+   "task_id": "sub_2412.07298",
+   "arxiv_id": "2412.07298",
+   "method": "Babel Tower Hypothesis",
+   "paper_title": "The Rise and Down of Babel Tower: Investigating the Evolution Process of Multilingual Code Large Language Model",
+   "entry": "estimate_python_proportion",
+   "signature": "def estimate_python_proportion(loss_j, alpha, beta):",
+   "pass_both": [
+    "Bounds: proportion in [0, 1] for beta <= loss_j <= alpha",
+    "Limiting case: loss_j = alpha => proportion = 0",
+    "Limiting case: loss_j = beta => proportion = 1",
+    "Scaling invariance: P(\u2113_j) unchanged by multiplying all inputs by positive constant",
+    "Translation invariance: P(\u2113_j) unchanged by adding constant to all inputs"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2412.07298/property_tests.py",
+     "sha256": "ed86125750fcd0b0b99197609c27c85a4db06b0ac7db7d36d748a17a173283d3",
+     "internal_source": "<REFIMPL>/batch_runs/2412.07298/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2412.07298/impl_sonnet.py",
+     "sha256": "e7f8cfdc6f0d1f6c4b1a5057ba9d2322966f639464ca4ea0bbce9e95e35a7b61",
+     "internal_source": "<REFIMPL>/batch_runs/2412.07298/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2412.07298/impl_llama.py",
+     "sha256": "53216c262ce5c522291906e474d1bc817f0c5714c5a719e50416035a6822d561",
+     "internal_source": "<REFIMPL>/batch_runs/2412.07298/impl_llama.py"
+    }
+   }
+  },
+  "sub_2010.08138": {
+   "task_id": "sub_2010.08138",
+   "arxiv_id": "2010.08138",
+   "method": "Input-Aware Dynamic Backdoor Attack",
+   "paper_title": "Input-Aware Dynamic Backdoor Attack",
+   "entry": "compute_diversity_loss",
+   "signature": "def compute_diversity_loss(x, x_prime, t, t_prime):",
+   "pass_both": [
+    "Non-negativity property",
+    "Numerator scaling property",
+    "Symmetry property",
+    "Zero denominator returns inf",
+    "Zero numerator returns zero"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2010.08138/property_tests.py",
+     "sha256": "0a31a872299a85107aa784dc21657a9c9edbefb74aeacb307ce429e7e9ead285",
+     "internal_source": "<REFIMPL>/batch_runs/2010.08138/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2010.08138/impl_sonnet.py",
+     "sha256": "0d09be92df13c8d28875d86e173156d13f53ce2df137691d8d121844cd5b467a",
+     "internal_source": "<REFIMPL>/batch_runs/2010.08138/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2010.08138/impl_llama.py",
+     "sha256": "a9eedb93a7cad5150129963aa5a542a0ba470ec208cb130166e82126f1de00c0",
+     "internal_source": "<REFIMPL>/batch_runs/2010.08138/impl_llama.py"
+    }
+   }
+  },
+  "sub_2207.06343": {
+   "task_id": "sub_2207.06343",
+   "arxiv_id": "2207.06343",
+   "method": "TCT",
+   "paper_title": "TCT: Convexifying Federated Learning using Bootstrapped Neural Tangent Kernels",
+   "entry": "compute_entk_features",
+   "signature": "def compute_entk_features(x, phi_B, omega_r, mask):",
+   "pass_both": [
+    "all_false_mask_zero",
+    "all_true_mask_identity",
+    "gradient_masking_correctness",
+    "masked_positions_zero",
+    "output_shape_and_dtype"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2207.06343/property_tests.py",
+     "sha256": "ad77479d91c04900899fc4155d2324302ae8905af14eb6b747ee51ac6561b91b",
+     "internal_source": "<REFIMPL>/batch_runs/2207.06343/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2207.06343/impl_sonnet.py",
+     "sha256": "94837228ee6996304796979831f53d11077c125aec813e2c90191fa7c7bb3047",
+     "internal_source": "<REFIMPL>/batch_runs/2207.06343/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2207.06343/impl_llama.py",
+     "sha256": "b28eb8b8cc8328eb6bed0ee08112d40efde0e79b59d7c9d7c1a73bbccfd72a89",
+     "internal_source": "<REFIMPL>/batch_runs/2207.06343/impl_llama.py"
+    }
+   }
+  },
+  "sub_2106.14806": {
+   "task_id": "sub_2106.14806",
+   "arxiv_id": "2106.14806",
+   "method": "laplace",
+   "paper_title": "Laplace Redux -Effortless Bayesian Deep Learning",
+   "entry": "laplace_marginal_likelihood_gradient",
+   "signature": "def laplace_marginal_likelihood_gradient(hessian_diag, prior_precision, n_data):",
+   "pass_both": [
+    "limiting_case_large_prior_precision",
+    "permutation_invariance",
+    "single_parameter_exact",
+    "uniform_hessian_closed_form",
+    "uniform_scaling_property"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2106.14806/property_tests.py",
+     "sha256": "aafde574fc33887b14d2ae3b4b0b3b08936b90a91c19730bd025e36a8b8e19ef",
+     "internal_source": "<REFIMPL>/batch_runs/2106.14806/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2106.14806/impl_sonnet.py",
+     "sha256": "7ada46086479aceb2e98dbb9bacb41835da9ccd325c0bd4c79e1e4fca392879c",
+     "internal_source": "<REFIMPL>/batch_runs/2106.14806/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2106.14806/impl_llama.py",
+     "sha256": "e70a7e38e51f34319ad07dab5fd274ded130ccacc0e1f437cc29f5280a8b6e38",
+     "internal_source": "<REFIMPL>/batch_runs/2106.14806/impl_llama.py"
+    }
+   }
+  },
+  "sub_2010.14496": {
+   "task_id": "sub_2010.14496",
+   "arxiv_id": "2010.14496",
+   "method": "\u03b3-model",
+   "paper_title": "Generative Temporal Difference Learning for Infinite-Horizon Prediction",
+   "entry": "gamma_mve_q_loss",
+   "signature": "def gamma_mve_q_loss(q_current, reward, gamma_v, v_mve_next):",
+   "pass_both": [
+    "gamma_zero_case",
+    "non_negative_loss",
+    "scalar_array_consistency",
+    "scaling_invariance",
+    "zero_loss_at_target"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2010.14496/property_tests.py",
+     "sha256": "d723256d1af860b93718c3c6f2208a80b569b9b1ac10a6d3a0ab8d973a1fad0a",
+     "internal_source": "<REFIMPL>/batch_runs/2010.14496/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2010.14496/impl_sonnet.py",
+     "sha256": "65aeceb4e3801cb3e94d50f1deacb4fb7650b5eae93e442748734427ee45f94a",
+     "internal_source": "<REFIMPL>/batch_runs/2010.14496/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2010.14496/impl_llama.py",
+     "sha256": "ae9ccd807bc560b522405f374132c89f7ed3f69a6e06784b94feccef9a350a3b",
+     "internal_source": "<REFIMPL>/batch_runs/2010.14496/impl_llama.py"
+    }
+   }
+  },
+  "sub_2110.02619": {
+   "task_id": "sub_2110.02619",
+   "arxiv_id": "2110.02619",
+   "method": "a new and simple algorithm",
+   "paper_title": "Focus on the Common Good: Group Distributional Robustness Follows",
+   "entry": "update_alpha_weights",
+   "signature": "def update_alpha_weights(alpha_current, grad_losses, eta_alpha):",
+   "pass_both": [
+    "output_non_negative",
+    "output_shape_matches_input",
+    "output_sums_to_one",
+    "small_eta_near_input",
+    "uniform_zero_gradients"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2110.02619/property_tests.py",
+     "sha256": "ce3aa81f480a03a1d9f97ba04a334f47f64dd7a704b3eef8fc2ae8af7f7374a9",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02619/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2110.02619/impl_sonnet.py",
+     "sha256": "b686f94d2f794245ec3eb33d336afa76313e36ef92655ad883191e7dd9f1843a",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02619/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2110.02619/impl_llama.py",
+     "sha256": "34c76e0e8fc9143dab93f6157a12249d7af78678a266bf6b2933001932e633a0",
+     "internal_source": "<REFIMPL>/batch_runs/2110.02619/impl_llama.py"
+    }
+   }
+  },
+  "sub_2304.03274": {
+   "task_id": "sub_2304.03274",
+   "arxiv_id": "2304.03274",
+   "method": "DiffMimic",
+   "paper_title": "DiffMimic: Efficient Motion Mimicking with Differentiable Physics",
+   "entry": "compute_diffmimic_loss",
+   "signature": "def compute_diffmimic_loss(states, reference_states):",
+   "pass_both": [
+    "known_closed_form",
+    "non_negativity",
+    "quadratic_scaling",
+    "translation_invariance",
+    "zero_loss_identical"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2304.03274/property_tests.py",
+     "sha256": "54fb9e0638189f342b390ae128d63c578a58c198d60bba0374aa455b131e9f4f",
+     "internal_source": "<REFIMPL>/batch_runs/2304.03274/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2304.03274/impl_sonnet.py",
+     "sha256": "70d8460ca294cacd334796d2968eabf9796234bfa691728f603dd4e583555191",
+     "internal_source": "<REFIMPL>/batch_runs/2304.03274/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2304.03274/impl_llama.py",
+     "sha256": "782155816058eab16aaef93bd0968ae013118ff460faccc65b425bcdb05d14cc",
+     "internal_source": "<REFIMPL>/batch_runs/2304.03274/impl_llama.py"
+    }
+   }
+  },
+  "sub_2206.06270": {
+   "task_id": "sub_2206.06270",
+   "arxiv_id": "2206.06270",
+   "method": "model-based algorithm",
+   "paper_title": "Near-Optimal Sample Complexity Bounds for Constrained MDPs",
+   "entry": "dual_variable_update",
+   "signature": "def dual_variable_update(lambda_t, eta, constraint_value, b_prime, U, epsilon):",
+   "pass_both": [
+    "constraint_satisfied_no_update",
+    "output_in_valid_epsilon_net",
+    "upper_bound_clipping",
+    "zero_step_size_identity"
+   ],
+   "suspect_tests": [
+    "lower_bound_clipping"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2206.06270/property_tests.py",
+     "sha256": "4d74db961dbcfb0b8318c86dbec0515582bec9e1743abfbdb4c1e783b0bcf7a5",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06270/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2206.06270/impl_sonnet.py",
+     "sha256": "025d7f9b25aca41aaaf2a3144f8bf49f7414aa8e55d08e8c907060316a5c9689",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06270/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2206.06270/impl_llama.py",
+     "sha256": "db26e311445510677994dd01a55ec7bdb27d435bb7bdbd82058fb382195a2870",
+     "internal_source": "<REFIMPL>/batch_runs/2206.06270/impl_llama.py"
+    }
+   }
+  },
+  "sub_2411.03990": {
+   "task_id": "sub_2411.03990",
+   "arxiv_id": "2411.03990",
+   "method": "ET-SEED",
+   "paper_title": "ET-SEED: Efficient Trajectory-Level SE(3) Equivariant Diffusion Policy",
+   "entry": "se3_diffusion_step",
+   "signature": "def se3_diffusion_step(H_k, H_hat_k_to_0, lambda_0, lambda_1):",
+   "pass_both": [
+    "test_identity_input",
+    "test_lambda_weighting",
+    "test_output_rotation_determinant",
+    "test_output_se3_structure",
+    "test_output_shape"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2411.03990/property_tests.py",
+     "sha256": "247aa0f3c09ce90713041c994739b9155c6ebb644bfe116550c646047c8d5251",
+     "internal_source": "<REFIMPL>/batch_runs/2411.03990/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2411.03990/impl_sonnet.py",
+     "sha256": "093d8495bf49a9b987e83a7d749812a38ed74aaed994710ab29dbcc62fa6b164",
+     "internal_source": "<REFIMPL>/batch_runs/2411.03990/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2411.03990/impl_llama.py",
+     "sha256": "558d824154708664bda690f088298e695305511e0856a34b4c71a0042009569b",
+     "internal_source": "<REFIMPL>/batch_runs/2411.03990/impl_llama.py"
+    }
+   }
+  },
+  "sub_2402.10009": {
+   "task_id": "sub_2402.10009",
+   "arxiv_id": "2402.10009",
+   "method": "ZEUS",
+   "paper_title": "Zero-Shot Unsupervised and Text-Based Audio Editing Using DDPM Inversion",
+   "entry": "compute_shifted_x0_prediction",
+   "signature": "def compute_shifted_x0_prediction(x_t, f_t_x_t_shifted, alpha_bar_t):",
+   "pass_both": [
+    "Linearity in denoiser output",
+    "Permutation invariance",
+    "Zero denoiser output"
+   ],
+   "suspect_tests": [
+    "Limiting case: alpha_bar_t \u2192 1",
+    "Scaling with alpha_bar_t"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2402.10009/property_tests.py",
+     "sha256": "4aed29827acc08f58e302267f684651b914024f04dfff256192883fa52e0e2d1",
+     "internal_source": "<REFIMPL>/batch_runs/2402.10009/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2402.10009/impl_sonnet.py",
+     "sha256": "c2ef5ed0936b9d8a8fa128d76ce3ca33c2571a9b30862f61188e1b6e7191109c",
+     "internal_source": "<REFIMPL>/batch_runs/2402.10009/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2402.10009/impl_llama.py",
+     "sha256": "f66ac383bc8b454ece6eec6de1665cfe3c3b6f94a0bf5d09b63e2ec12a399e0e",
+     "internal_source": "<REFIMPL>/batch_runs/2402.10009/impl_llama.py"
+    }
+   }
+  },
+  "sub_2202.03576": {
+   "task_id": "sub_2202.03576",
+   "arxiv_id": "2202.03576",
+   "method": "learnability lock",
+   "paper_title": "Learnability Lock: Authorized Learnability Control Through Adversarial Invertible Transformations",
+   "entry": "linear_transform_and_clip",
+   "signature": "def linear_transform_and_clip(x_prime, W, B, epsilon):",
+   "pass_both": [
+    "clipping_bounds_enforced",
+    "input_scaling_property",
+    "input_translation_property",
+    "no_clipping_when_within_bounds",
+    "zero_epsilon_identity"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2202.03576/property_tests.py",
+     "sha256": "1e36e51de2580952dfabb051451b58976a8a410e660c47447e67ddf49d7d87b5",
+     "internal_source": "<REFIMPL>/batch_runs/2202.03576/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2202.03576/impl_sonnet.py",
+     "sha256": "0bfe271b73b65b1699ba676aa15064cf30fe7883a6a597c715606c7708902d78",
+     "internal_source": "<REFIMPL>/batch_runs/2202.03576/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2202.03576/impl_llama.py",
+     "sha256": "ea70a1ab202e9c65ce3a07cbc50cd78437918fe766b84c179ba6ca6b1fa9ab79",
+     "internal_source": "<REFIMPL>/batch_runs/2202.03576/impl_llama.py"
+    }
+   }
+  },
+  "sub_2010.09133": {
+   "task_id": "sub_2010.09133",
+   "arxiv_id": "2010.09133",
+   "method": "local search post-processing algorithm",
+   "paper_title": "DAGs with No Fears: A Closer Look at Continuous Optimization for Learning Bayesian Networks",
+   "entry": "gradient_acyclicity_constraint",
+   "signature": "def gradient_acyclicity_constraint(W):",
+   "pass_both": [
+    "Diagonal matrix gives diagonal gradient",
+    "Permutation invariance",
+    "Scaling produces valid output",
+    "Symmetric input produces valid gradient",
+    "Zero matrix gives zero gradient"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2010.09133/property_tests.py",
+     "sha256": "909920f6fe1644144424ef492a9870d65fb7a82df1c10c95c54d312132c54c3f",
+     "internal_source": "<REFIMPL>/batch_runs/2010.09133/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2010.09133/impl_sonnet.py",
+     "sha256": "a24ac05f5d788e77ee863d763b5037c0e4037113c4b753365a00a02eb5582171",
+     "internal_source": "<REFIMPL>/batch_runs/2010.09133/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2010.09133/impl_llama.py",
+     "sha256": "7e02fefc481aa7e4113fbb537d495c1232e8aa17bd486bdf3bf859540b247b2d",
+     "internal_source": "<REFIMPL>/batch_runs/2010.09133/impl_llama.py"
+    }
+   }
+  },
+  "sub_2208.06193": {
+   "task_id": "sub_2208.06193",
+   "arxiv_id": "2208.06193",
+   "method": "Diffusion Qlearning (Diffusion-QL)",
+   "paper_title": "Diffusion Policies as an Expressive Policy Class for Offline Reinforcement Learning",
+   "entry": "polyak_average_update",
+   "signature": "def polyak_average_update(target_params, online_params, rho):",
+   "pass_both": [
+    "convex_combination_bounds",
+    "explicit_formula_verification",
+    "identical_params_invariance",
+    "limiting_case_rho_0",
+    "limiting_case_rho_1"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2208.06193/property_tests.py",
+     "sha256": "817aee86001130e40223862284f09a6af59a5aad5bea7b74d37b3cc853c9e137",
+     "internal_source": "<REFIMPL>/batch_runs/2208.06193/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2208.06193/impl_sonnet.py",
+     "sha256": "86b4cdd3f3a305837a905ca8fcfb1fa7a31339aaf6aeb014da28e8c868ea9afc",
+     "internal_source": "<REFIMPL>/batch_runs/2208.06193/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2208.06193/impl_llama.py",
+     "sha256": "21e738aa59fdd95c2ece78a0411be6a997984f01518494d5c71ab169bbcc260f",
+     "internal_source": "<REFIMPL>/batch_runs/2208.06193/impl_llama.py"
+    }
+   }
+  },
+  "sub_2107.07436": {
+   "task_id": "sub_2107.07436",
+   "arxiv_id": "2107.07436",
+   "method": "FastSHAP",
+   "paper_title": "FastSHAP: Real-Time Shapley Value Estimation",
+   "entry": "fastshap_loss",
+   "signature": "def fastshap_loss(phi_hat, v_all, v_empty, v_samples, s_samples, gamma, normalize):",
+   "pass_both": [
+    "efficiency_constraint_satisfied",
+    "gamma_scaling_property",
+    "non_negativity_of_loss",
+    "perfect_prediction_zero_loss"
+   ],
+   "suspect_tests": [
+    "normalization_reduces_penalty"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2107.07436/property_tests.py",
+     "sha256": "1a11091aed1dc09ffe371d15bb32550a0b1df126f34279e2065db3896fc53b84",
+     "internal_source": "<REFIMPL>/batch_runs/2107.07436/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2107.07436/impl_sonnet.py",
+     "sha256": "3e12d85ae51a4dca90865a8c7a016e3d848950a13848120704dafbf171c3b906",
+     "internal_source": "<REFIMPL>/batch_runs/2107.07436/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2107.07436/impl_llama.py",
+     "sha256": "cf76ed8934aa1ffdd90e92c8da29c3444a5fc9dee851ecc7e33524165a71af74",
+     "internal_source": "<REFIMPL>/batch_runs/2107.07436/impl_llama.py"
+    }
+   }
+  },
+  "sub_2106.06406": {
+   "task_id": "sub_2106.06406",
+   "arxiv_id": "2106.06406",
+   "method": "PRIORGRAD",
+   "paper_title": "PriorGrad: Improving Conditional Denoising Diffusion Models with Data-Dependent Adaptive Prior",
+   "entry": "priorgrad_loss",
+   "signature": "def priorgrad_loss(epsilon, epsilon_theta, sigma):",
+   "pass_both": [
+    "closed_form_simple",
+    "non_negativity",
+    "sigma_scaling_inverse",
+    "translation_invariance",
+    "zero_loss_perfect_prediction"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2106.06406/property_tests.py",
+     "sha256": "d49b0fd9e349ffb6fec7dcf34bde93dd5cda0cb08b19633707ea5b5504074ac6",
+     "internal_source": "<REFIMPL>/batch_runs/2106.06406/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2106.06406/impl_sonnet.py",
+     "sha256": "b15e6d3e8b53617a9208312a4e8943b9bf114c001703d52def2b4f29a5c1b159",
+     "internal_source": "<REFIMPL>/batch_runs/2106.06406/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2106.06406/impl_llama.py",
+     "sha256": "4970db77563433eff51f94e76751c8bbe0e5fcba27c35716329bec9a81ddbd76",
+     "internal_source": "<REFIMPL>/batch_runs/2106.06406/impl_llama.py"
+    }
+   }
+  },
+  "sub_2411.12078": {
+   "task_id": "sub_2411.12078",
+   "arxiv_id": "2411.12078",
+   "method": "Fragment Retrieval-Augmented Generation (f-RAG)",
+   "paper_title": "Molecule Generation with Fragment Retrieval Augmentation",
+   "entry": "fragment_score",
+   "signature": "def fragment_score(fragment_counts, fragment_properties):",
+   "pass_both": [
+    "non_negativity",
+    "property_scaling_invariance",
+    "zero_count_zero_score",
+    "zero_properties_mean_one"
+   ],
+   "suspect_tests": [
+    "mean_computation"
+   ],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2411.12078/property_tests.py",
+     "sha256": "34602269857720da870c31b6c808d310d10df90fa98af0709fbadf7d0be2441d",
+     "internal_source": "<REFIMPL>/batch_runs/2411.12078/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2411.12078/impl_sonnet.py",
+     "sha256": "f7be64637742dd0cbda588713d9950f0858ad9ede7354ae08713b40daabd5525",
+     "internal_source": "<REFIMPL>/batch_runs/2411.12078/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2411.12078/impl_llama.py",
+     "sha256": "6db757e407a130cef48d67bed05ee4bece54d97afb80f4dd8520e1170629d46d",
+     "internal_source": "<REFIMPL>/batch_runs/2411.12078/impl_llama.py"
+    }
+   }
+  },
+  "sub_2305.13795": {
+   "task_id": "sub_2305.13795",
+   "arxiv_id": "2305.13795",
+   "method": "Proximal Policy Gradient Arborescence",
+   "paper_title": "Proximal Policy Gradient Arborescence for Quality Diversity Reinforcement Learning",
+   "entry": "combine_gradients_with_coefficients",
+   "signature": "def combine_gradients_with_coefficients(grad_f, grad_m, c):",
+   "pass_both": [
+    "coefficient_scaling",
+    "fitness_only",
+    "manual_k1",
+    "superposition",
+    "zero_coefficients"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2305.13795/property_tests.py",
+     "sha256": "93066369958a85dace61ad444e6f09380ce55323ad3d3572ab76e5b2adac6691",
+     "internal_source": "<REFIMPL>/batch_runs/2305.13795/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2305.13795/impl_sonnet.py",
+     "sha256": "a9bb0ec0c6535df6f1ebeba39091f0567f1ddaef4ba5c84bb76b5a9805c15d35",
+     "internal_source": "<REFIMPL>/batch_runs/2305.13795/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2305.13795/impl_llama.py",
+     "sha256": "6b4d2938cfbe5c0c795bcc97ce230fac53e9819c13f0553860e1f78ae8583174",
+     "internal_source": "<REFIMPL>/batch_runs/2305.13795/impl_llama.py"
+    }
+   }
+  },
+  "sub_2007.04202": {
+   "task_id": "sub_2007.04202",
+   "arxiv_id": "2007.04202",
+   "method": "stochastic variance reduced Hamiltonian method",
+   "paper_title": "Stochastic Hamiltonian Gradient Methods for Smooth Games",
+   "entry": "variance_reduced_gradient_step",
+   "signature": "def variance_reduced_gradient_step(grad_H_ij_xk, grad_H_ij_wk, grad_H_wk):",
+   "pass_both": [
+    "Arithmetic formula correctness",
+    "Cancellation property",
+    "Linearity in components",
+    "Output dimension matches input",
+    "Zero input produces zero output"
+   ],
+   "suspect_tests": [],
+   "files": {
+    "property_tests.py": {
+     "path": "referees/sub_2007.04202/property_tests.py",
+     "sha256": "02a5eea76d4e9ba8faac5d2de0ad3e8a71a5fc32fcf11e0f30887957aa548109",
+     "internal_source": "<REFIMPL>/batch_runs/2007.04202/property_tests.py"
+    },
+    "impl_sonnet.py": {
+     "path": "referees/sub_2007.04202/impl_sonnet.py",
+     "sha256": "5f3ac46d156a2fa0e1d5adce7f75d562eb881d0d5377d1a7a091674fa2801441",
+     "internal_source": "<REFIMPL>/batch_runs/2007.04202/impl_sonnet.py"
+    },
+    "impl_llama.py": {
+     "path": "referees/sub_2007.04202/impl_llama.py",
+     "sha256": "31a9ed5ce4d2439c3fd9ad963b857b7eff987734479819f429ee71b3361e7fa8",
+     "internal_source": "<REFIMPL>/batch_runs/2007.04202/impl_llama.py"
+    }
+   }
+  }
+ }
+}

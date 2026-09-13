@@ -1,0 +1,609 @@
+{
+ "tasks": [
+  {
+   "task_id": "in__2505.24844",
+   "stratum": "in_catalog",
+   "method": "CHAMELEON",
+   "arxiv_id": "2505.24844",
+   "paper_title": "CHAMELEON: A Flexible Data-mixing Framework for Language Model Pretraining and Finetuning",
+   "served_level": 3,
+   "entry": "compute_chameleon_domain_weights",
+   "signature": "def compute_chameleon_domain_weights(K, lambda_reg, mode):",
+   "first_sentence": "Compute CHAMELEON domain weights from a domain affinity matrix K.",
+   "pass_both": [
+    "identity_matrix_uniform",
+    "mode_produces_different_results",
+    "output_non_negative",
+    "output_shape_and_dtype",
+    "output_sums_to_one"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2505.24844/impl_sonnet.py",
+   "property_tests": "referees/in__2505.24844/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2502.00270",
+   "stratum": "in_catalog",
+   "method": "DUET",
+   "arxiv_id": "2502.00270",
+   "paper_title": "DUET: OPTIMIZING LLM TRAINING DATA MIXTURES VIA NOISY FEEDBACK FROM UNSEEN EVALUATION TASKS",
+   "served_level": 3,
+   "entry": "gp_lower_confidence_bound",
+   "signature": "def gp_lower_confidence_bound(mu_t, sigma_t, beta_t):",
+   "first_sentence": "Compute the Lower Confidence Bound (LCB) acquisition function for Bayesian Optimization as used in DUET algorithm step 2.",
+   "pass_both": [
+    "element_wise_correctness",
+    "increasing_beta_decreases_lcb",
+    "output_shape_and_type",
+    "zero_beta_returns_mu",
+    "zero_sigma_returns_mu"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2502.00270/impl_sonnet.py",
+   "property_tests": "referees/in__2502.00270/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2007.06680",
+   "stratum": "in_catalog",
+   "method": "IS-MBPG*",
+   "arxiv_id": "2007.06680",
+   "paper_title": "Momentum-Based Policy Gradient Methods",
+   "served_level": 3,
+   "entry": "is_mbpg_momentum_update",
+   "signature": "def is_mbpg_momentum_update(u_prev, g_current_theta_t, g_current_theta_prev, w_ratio, beta_t):",
+   "first_sentence": "Compute the momentum update for IS-MBPG* algorithm at iteration t > 1.",
+   "pass_both": [
+    "Output is 1-D numpy array with correct shape",
+    "beta_t=0 returns u_prev + g_current - w_ratio*g_prev",
+    "beta_t=1 returns g_current_theta_t",
+    "w_ratio=1 and g_current=g_prev simplifies to momentum blend"
+   ],
+   "suspect_tests": [
+    "Linearity in u_prev when beta_t=0"
+   ],
+   "impl_for_validation": "referees/in__2007.06680/impl_sonnet.py",
+   "property_tests": "referees/in__2007.06680/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2205.12679",
+   "stratum": "in_catalog",
+   "method": "SUNGEN",
+   "arxiv_id": "2205.12679",
+   "paper_title": "SELF-GUIDED NOISE-FREE DATA GENERATION FOR EFFICIENT ZERO-SHOT LEARNING",
+   "served_level": 3,
+   "entry": "compute_meta_gradient_for_sample_weights",
+   "signature": "def compute_meta_gradient_for_sample_weights(val_loss_grad_theta, train_loss_hessian_theta, train_loss_grad_theta_grad_w):",
+   "first_sentence": "Compute the meta-gradient of the robust loss with respect to sample weights using implicit differentiation (Equation 3 from the paper).",
+   "pass_both": [
+    "Consistency with explicit formula",
+    "Linearity in mixed partials",
+    "Linearity in validation gradient",
+    "Orthogonal vectors with identity Hessian",
+    "Output shape and type"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2205.12679/impl_sonnet.py",
+   "property_tests": "referees/in__2205.12679/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2210.09759",
+   "stratum": "in_catalog",
+   "method": "Pareto Manifold Learning",
+   "arxiv_id": "2210.09759",
+   "paper_title": "Pareto Manifold Learning: Tackling multiple tasks via ensembles of single-task models",
+   "served_level": 3,
+   "entry": "compute_multiforward_regularization",
+   "signature": "def compute_multiforward_regularization(losses, edge_indices):",
+   "first_sentence": "Compute the multi-forward regularization term from Pareto Manifold Learning (line 12 of algorithm).",
+   "pass_both": [
+    "empty_edges_all_tasks_returns_zero",
+    "monotonicity_in_loss_difference",
+    "multiple_identical_edges_averaging",
+    "result_is_finite",
+    "single_edge_equal_losses_returns_zero"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2210.09759/impl_sonnet.py",
+   "property_tests": "referees/in__2210.09759/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2210.01241",
+   "stratum": "in_catalog",
+   "method": "NLPO",
+   "arxiv_id": "2210.01241",
+   "paper_title": "IS REINFORCEMENT LEARNING (NOT) FOR NATURAL LANGUAGE PROCESSING: BENCHMARKS, BASELINES, AND BUILDING BLOCKS FOR NATURAL LANGUAGE POLICY OPTIMIZATION",
+   "served_level": 3,
+   "entry": "ppo_clip_objective",
+   "signature": "def ppo_clip_objective(log_probs_new, log_probs_old, advantages, epsilon):",
+   "first_sentence": "Compute the PPO-Clip objective for a batch of timesteps.",
+   "pass_both": [
+    "Advantage scaling linearity",
+    "Clipping upper bound with positive advantages",
+    "Identity case (ratio=1)",
+    "Permutation invariance",
+    "Zero advantages"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2210.01241/impl_sonnet.py",
+   "property_tests": "referees/in__2210.01241/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2110.02544",
+   "stratum": "in_catalog",
+   "method": "Dual-Aspect Collaborative Transformer (DACT)",
+   "arxiv_id": "2110.02544",
+   "paper_title": "Learning to Iteratively Solve Routing Problems with Dual-Aspect Collaborative Transformer",
+   "served_level": 3,
+   "entry": "ppo_clip_objective_gradient_step",
+   "signature": "def ppo_clip_objective_gradient_step(log_probs_old, log_probs_new, advantages, epsilon):",
+   "first_sentence": "Compute the PPO-Clip objective function value for a batch of experiences.",
+   "pass_both": [
+    "advantage_scaling_linearity",
+    "identity_policy_equals_mean_advantages",
+    "lower_clipping_bound",
+    "permutation_invariance",
+    "upper_clipping_bound"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2110.02544/impl_sonnet.py",
+   "property_tests": "referees/in__2110.02544/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2305.19587",
+   "stratum": "in_catalog",
+   "method": "generic meta-learning framework",
+   "arxiv_id": "2305.19587",
+   "paper_title": "Towards Omni-generalizable Neural Methods for Vehicle Routing Problems",
+   "served_level": 3,
+   "entry": "weighted_meta_gradient_aggregation",
+   "signature": "def weighted_meta_gradient_aggregation(task_gradients, task_weights):",
+   "first_sentence": "Compute the weighted sum of task-specific meta-gradients for outer-loop optimization in meta-learning.",
+   "pass_both": [
+    "one_hot_weight_selection",
+    "single_task_identity",
+    "uniform_weights_arithmetic_mean",
+    "weight_scaling_linearity",
+    "zero_weights_zero_output"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2305.19587/impl_sonnet.py",
+   "property_tests": "referees/in__2305.19587/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2102.03607",
+   "stratum": "in_catalog",
+   "method": "bootstrapping FQE method",
+   "arxiv_id": "2102.03607",
+   "paper_title": "Bootstrapping Fitted Q-Evaluation for Off-Policy Inference",
+   "served_level": 3,
+   "entry": "compute_bootstrap_deviation",
+   "signature": "def compute_bootstrap_deviation(v_resampled, v_subset):",
+   "first_sentence": "Compute the bootstrap deviation epsilon for a single bootstrap iteration in the Bootstrapping FQE algorithm.",
+   "pass_both": [
+    "linearity_in_v_resampled",
+    "negative_linearity_in_v_subset",
+    "output_is_exact_difference",
+    "sign_consistency",
+    "zero_deviation_when_equal"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2102.03607/impl_sonnet.py",
+   "property_tests": "referees/in__2102.03607/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2009.14794",
+   "stratum": "in_catalog",
+   "method": "Performers",
+   "arxiv_id": "2009.14794",
+   "paper_title": "RETHINKING ATTENTION WITH PERFORMERS",
+   "served_level": 3,
+   "entry": "favor_plus_attention",
+   "signature": "def favor_plus_attention(Q_prime, K_prime, V, is_bidirectional):",
+   "first_sentence": "Compute the FAVOR+ attention mechanism as described in the Performers paper.",
+   "pass_both": [
+    "Causal masking property",
+    "Single position equivalence",
+    "Uniform keys and values (bidirectional)",
+    "Value scaling property (unidirectional)"
+   ],
+   "suspect_tests": [
+    "Query scaling property (bidirectional)"
+   ],
+   "impl_for_validation": "referees/in__2009.14794/impl_sonnet.py",
+   "property_tests": "referees/in__2009.14794/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2102.05291",
+   "stratum": "in_catalog",
+   "method": "clusterability condition",
+   "arxiv_id": "2102.05291",
+   "paper_title": "Clusterability as an Alternative to Anchor Points When Learning with Noisy Labels",
+   "served_level": 3,
+   "entry": "select_by_dist",
+   "signature": "def select_by_dist(features, selected_idx, L):",
+   "first_sentence": "Given a feature matrix `features` of shape (N, D) where N is the number of samples and D is the feature dimension, a scalar integer `selected_idx` (0-indexed) indicating the index of the selected center sample, and an integer `L` indicating the number of samples to select, return",
+   "pass_both": [
+    "L_greater_than_N_returns_all",
+    "output_length_and_selected_idx_inclusion",
+    "output_sorted_by_distance",
+    "translation_invariance",
+    "uniform_scaling_invariance"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2102.05291/impl_sonnet.py",
+   "property_tests": "referees/in__2102.05291/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "in__2402.03293",
+   "stratum": "in_catalog",
+   "method": "FLORA",
+   "arxiv_id": "2402.03293",
+   "paper_title": "FLORA: Low-Rank Adapters Are Secretly Gradient Compressors",
+   "served_level": 3,
+   "entry": "flora_momentum_update",
+   "signature": "def flora_momentum_update(M_t, G_t, A_current, A_next, beta, is_reseed_step):",
+   "first_sentence": "Compute the FLORA momentum update for a single weight matrix at timestep t.",
+   "pass_both": [
+    "Beta=0 returns only gradient term",
+    "Beta=1 with zero gradient returns momentum only",
+    "Linear scaling in gradient G_t",
+    "Output shape is n\u00d7r",
+    "Zero inputs yield zero output"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/in__2402.03293/impl_sonnet.py",
+   "property_tests": "referees/in__2402.03293/property_tests.py",
+   "stratum_run1": "in_catalog",
+   "served_level_run1": 3,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2306.12360",
+   "stratum": "in_catalog",
+   "method": "Discrete Walk-Jump Sampling",
+   "arxiv_id": "2306.12360",
+   "paper_title": "PROTEIN DISCOVERY WITH DISCRETE WALK-JUMP SAMPLING",
+   "served_level": -1,
+   "entry": "langevin_step",
+   "signature": "def langevin_step(y_t, grad_f_theta, epsilon_t, delta):",
+   "first_sentence": "Compute one step of Langevin dynamics for the Walk-Jump sampling algorithm.",
+   "pass_both": [
+    "gradient_linearity",
+    "output_shape_matches_input",
+    "step_size_scaling",
+    "zero_gradient_recovers_diffusion",
+    "zero_noise_recovers_drift"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2306.12360/impl_sonnet.py",
+   "property_tests": "referees/off_2306.12360/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2101.08543",
+   "stratum": "off_catalog",
+   "method": "BOOST THEN CONVOLVE",
+   "arxiv_id": "2101.08543",
+   "paper_title": "BOOST THEN CONVOLVE: GRADIENT BOOSTING MEETS GRAPH NEURAL NETWORKS",
+   "served_level": -1,
+   "entry": "compute_gbdt_residual_targets",
+   "signature": "def compute_gbdt_residual_targets(x_prime, f_x):",
+   "first_sentence": "Compute the residual targets for the next GBDT iteration in the BGNN algorithm.",
+   "pass_both": [
+    "element_wise_subtraction_correctness",
+    "linearity_under_scaling",
+    "output_dtype_is_float64",
+    "output_shape_matches_inputs",
+    "zero_residual_when_equal"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2101.08543/impl_sonnet.py",
+   "property_tests": "referees/off_2101.08543/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2006.06051",
+   "stratum": "off_catalog",
+   "method": "learned incentive function",
+   "arxiv_id": "2006.06051",
+   "paper_title": "Learning to Incentivize Other Learning Agents",
+   "served_level": -1,
+   "entry": "compute_recipient_policy_gradient_update",
+   "signature": "def compute_recipient_policy_gradient_update(log_probs, rewards, incentives, baseline, learning_rate):",
+   "first_sentence": "Compute the policy gradient update for a reward-recipient agent in the LIO framework (equation 'recipient-update' from the paper).",
+   "pass_both": [
+    "baseline_translation_invariance",
+    "learning_rate_linear_scaling",
+    "single_timestep_closed_form",
+    "zero_incentives_reproducible",
+    "zero_rewards_incentives_closed_form"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2006.06051/impl_sonnet.py",
+   "property_tests": "referees/off_2006.06051/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2302.11002",
+   "stratum": "in_catalog",
+   "method": "ProbConserv",
+   "arxiv_id": "2302.11002",
+   "paper_title": "Learning Physical Models that Can Respect Conservation Laws",
+   "served_level": -1,
+   "entry": "probconserv_update",
+   "signature": "def probconserv_update(mu, Sigma, G, b, sigma_G):",
+   "first_sentence": "Implements the ProbConserv constraint update from equation (updated_mean_var) in arXiv:2302.11002.",
+   "pass_both": [
+    "test_covariance_properties",
+    "test_covariance_reduction",
+    "test_no_constraints",
+    "test_output_shapes",
+    "test_zero_noise_limit"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2302.11002/impl_sonnet.py",
+   "property_tests": "referees/off_2302.11002/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2403.05751",
+   "stratum": "off_catalog",
+   "method": "MG-TSD",
+   "arxiv_id": "2403.05751",
+   "paper_title": "MG-TSD: MULTI-GRANULARITY TIME SERIES DIF-FUSION MODELS WITH GUIDED LEARNING PROCESS",
+   "served_level": -1,
+   "entry": "compute_diffusion_loss_step",
+   "signature": "def compute_diffusion_loss_step(x_t_g, epsilon, alpha_bar_n_g, h_t_g, theta_g):",
+   "first_sentence": "Compute the diffusion loss for a single time step t and diffusion step n across G granularities.",
+   "pass_both": [
+    "Loss invariant to compensating h_t_g and theta_g scaling",
+    "Loss is non-negative",
+    "Loss scales quadratically with epsilon magnitude"
+   ],
+   "suspect_tests": [
+    "Loss is mean over granularities",
+    "Loss is zero when epsilon equals epsilon_pred"
+   ],
+   "impl_for_validation": "referees/off_2403.05751/impl_sonnet.py",
+   "property_tests": "referees/off_2403.05751/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2207.04892",
+   "stratum": "in_catalog",
+   "method": "Adversarial Style Augmentation (AdvStyle)",
+   "arxiv_id": "2207.04892",
+   "paper_title": "Adversarial Style Augmentation for Domain Generalized Urban-Scene Segmentation",
+   "served_level": -1,
+   "entry": "adversarial_style_update",
+   "signature": "def adversarial_style_update(mu, sigma, grad_mu, grad_sigma, gamma):",
+   "first_sentence": "Performs one step of adversarial style feature optimization as described in Eq.",
+   "pass_both": [
+    "linearity_in_gradient_ascent",
+    "output_shape_and_type",
+    "superposition_of_updates",
+    "zero_gradient_identity",
+    "zero_learning_rate_identity"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2207.04892/impl_sonnet.py",
+   "property_tests": "referees/off_2207.04892/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2402.05367",
+   "stratum": "in_catalog",
+   "method": "Principled Preferential Bayesian Optimization",
+   "arxiv_id": "2402.05367",
+   "paper_title": "Principled Preferential Bayesian Optimization",
+   "served_level": -1,
+   "entry": "compute_optimistic_preference_gain",
+   "signature": "def compute_optimistic_preference_gain(x, x_ref, f_samples):",
+   "first_sentence": "Compute the optimistic preferential gain for candidate point x relative to reference point x_ref over a set of function samples from the posterior confidence set.",
+   "pass_both": [
+    "gain_is_max_of_differences",
+    "invariant_to_x_xref_values",
+    "result_is_maximum_gain",
+    "scaling_invariance",
+    "single_sample_returns_gain"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2402.05367/impl_sonnet.py",
+   "property_tests": "referees/off_2402.05367/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2210.17323",
+   "stratum": "in_catalog",
+   "method": "GPTQ",
+   "arxiv_id": "2210.17323",
+   "paper_title": "GPTQ: ACCURATE POST-TRAINING QUANTIZATION FOR GENERATIVE PRE-TRAINED TRANSFORMERS",
+   "served_level": 0,
+   "entry": "gptq_quantize_weight_matrix",
+   "signature": "def gptq_quantize_weight_matrix(W, H_inv, B, quant_min, quant_max):",
+   "first_sentence": "Quantize weight matrix W using GPTQ algorithm with inverse Hessian H_inv and blocksize B.",
+   "pass_both": [
+    "identity_hessian",
+    "output_bounds",
+    "uniform_scaling",
+    "zero_weight"
+   ],
+   "suspect_tests": [
+    "block_column_permutation"
+   ],
+   "impl_for_validation": "referees/off_2210.17323/impl_sonnet.py",
+   "property_tests": "referees/off_2210.17323/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": 0,
+   "served_level_today": 3
+  },
+  {
+   "task_id": "off_2003.01794",
+   "stratum": "off_catalog",
+   "method": "Greedy Forward Selection",
+   "arxiv_id": "2003.01794",
+   "paper_title": "Good Subnetworks Provably Exist: Pruning via Greedy Forward Selection",
+   "served_level": -1,
+   "entry": "compute_layer_output_with_filter_subset",
+   "signature": "def compute_layer_output_with_filter_subset(z_in, theta, filter_indices):",
+   "first_sentence": "Compute the output of a neural network layer using only a subset of filters (or neurons), averaged by the subset size.",
+   "pass_both": [
+    "empty_filter_indices_zeros",
+    "non_negativity_relu",
+    "output_shape_invariant",
+    "selected_filters_identical",
+    "single_filter_relu_match",
+    "unselected_filters_zero"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2003.01794/impl_sonnet.py",
+   "property_tests": "referees/off_2003.01794/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2209.02257",
+   "stratum": "off_catalog",
+   "method": "Catalyzed SVRP",
+   "arxiv_id": "2209.02257",
+   "paper_title": "Faster federated optimization under second-order similarity",
+   "served_level": -1,
+   "entry": "compute_variance_reduced_gradient",
+   "signature": "def compute_variance_reduced_gradient(full_grad_at_w, local_grad_at_w):",
+   "first_sentence": "Compute the variance-reduced gradient correction term g_k as defined in the SVRP algorithm.",
+   "pass_both": [
+    "correctness_subtraction",
+    "negation_on_swap",
+    "output_dimension_matches_input",
+    "zero_correction_identical_gradients"
+   ],
+   "suspect_tests": [
+    "linearity_in_full_grad"
+   ],
+   "impl_for_validation": "referees/off_2209.02257/impl_sonnet.py",
+   "property_tests": "referees/off_2209.02257/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2311.15100",
+   "stratum": "off_catalog",
+   "method": "UOT-FM",
+   "arxiv_id": "2311.15100",
+   "paper_title": "UNBALANCEDNESS IN NEURAL MONGE MAPS IMPROVES UNPAIRED DOMAIN TRANSLATION",
+   "served_level": -1,
+   "entry": "uot_fm_loss",
+   "signature": "def uot_fm_loss(v_theta, t, x_t, u_t):",
+   "first_sentence": "Compute the Flow Matching loss for Unbalanced Optimal Transport as defined in equation ||v_\u03b8(t, x_t) - u_t(x_t|x_1)||^2.",
+   "pass_both": [
+    "batch_averaging",
+    "non_negativity",
+    "scaling_invariance",
+    "time_invariance",
+    "zero_loss_perfect_match"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2311.15100/impl_sonnet.py",
+   "property_tests": "referees/off_2311.15100/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": -1
+  },
+  {
+   "task_id": "off_2406.04606",
+   "stratum": "in_catalog",
+   "method": "FreeShap",
+   "arxiv_id": "2406.04606",
+   "paper_title": "Helpful or Harmful Data? Fine-tuning-free Shapley Attribution for Explaining Language Model Predictions",
+   "served_level": -1,
+   "entry": "entk_predict",
+   "signature": "def entk_predict(K_test_train, K_train_train, Y_train):",
+   "first_sentence": "Compute empirical Neural Tangent Kernel (eNTK) predictions for test examples given a subset of training data.",
+   "pass_both": [
+    "identity_kernel",
+    "output_shape_type",
+    "scaling_invariance",
+    "single_point_case",
+    "zero_labels"
+   ],
+   "suspect_tests": [],
+   "impl_for_validation": "referees/off_2406.04606/impl_sonnet.py",
+   "property_tests": "referees/off_2406.04606/property_tests.py",
+   "stratum_run1": "off_catalog",
+   "served_level_run1": -1,
+   "served_level_today": 3
+  }
+ ],
+ "served_v3_today": 1028,
+ "note": "same 24 tasks/referees as tasks.json; stratum re-derived against the live catalog on 2026-09-02, run-1 labels preserved in stratum_run1",
+ "_provenance": {
+  "schema": "syntology-provenance/1",
+  "created_at": "2026-09-02T19:03:42+00:00",
+  "generator": {
+   "script": "-",
+   "argv": [],
+   "git_commit": "bc87485ac6d86d74e1bc40ab3697246de61ef750",
+   "git_dirty": true
+  },
+  "inputs": [
+   {
+    "path": "<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140",
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00"
+   }
+  ],
+  "params": {
+   "date": "2026-09-02"
+  }
+ }
+}

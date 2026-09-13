@@ -1,0 +1,130 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-03T01:01:08+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_freeze.json",
+    "--out",
+    "<BENCH>/runs_v14",
+    "--workers",
+    "2",
+    "--intent",
+    "v1 freeze sweep (FREEZE_RUN.md): 4 arms x 24 tasks against serving@bc87485a; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "7d8f68e5d3b68cef761b40c17f4a51f73ed6f23f",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 13,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "Discrete Walk-Jump Sampling",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 8,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 2,
+ "task_id": "off_2306.12360",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 55,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 3
+  },
+  {
+   "args_chars": 3189,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 1471,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 365,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 59,
+   "tool": "github_fetch_file",
+   "turn": 7
+  },
+  {
+   "args_chars": 70,
+   "tool": "github_search_code",
+   "turn": 8
+  },
+  {
+   "args_chars": 65,
+   "tool": "github_search_code",
+   "turn": 9
+  },
+  {
+   "args_chars": 84,
+   "tool": "github_fetch_file",
+   "turn": 10
+  },
+  {
+   "args_chars": 84,
+   "tool": "github_fetch_file",
+   "turn": 11
+  },
+  {
+   "args_chars": 876,
+   "tool": "submit_solution",
+   "turn": 12
+  }
+ ],
+ "turns": 13,
+ "usage": {
+  "cacheReadInputTokens": 338282,
+  "cacheWriteInputTokens": 38495,
+  "inputTokens": 65,
+  "outputTokens": 3691
+ },
+ "variant": "v14_freeze",
+ "wall_s": 89.2
+}

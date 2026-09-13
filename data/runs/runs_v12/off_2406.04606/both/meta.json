@@ -1,0 +1,168 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T18:35:13+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--out",
+    "<BENCH>/runs_v12",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.2 backfill: complete the 2 runs (off_2311.15100, off_2406.04606) the Sonnet day cap aborted at run 23. Same frozen shim (c70c1ea), harness skips existing metas, so only the missing runs execute and the denominator closes at 24/24."
+   ],
+   "git_commit": "a328541e93771ff9f023caae3cc7b8c1655fbad6",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 20,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "FreeShap",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 17,
+ "stop_reason": "tool_use",
+ "stratum": "off_catalog",
+ "submitted": false,
+ "syntology_calls": 2,
+ "task_id": "off_2406.04606",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 1
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 60,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 52,
+   "tool": "github_fetch_file",
+   "turn": 3
+  },
+  {
+   "args_chars": 63,
+   "tool": "github_search_code",
+   "turn": 4
+  },
+  {
+   "args_chars": 55,
+   "tool": "github_search_code",
+   "turn": 5
+  },
+  {
+   "args_chars": 54,
+   "tool": "github_search_code",
+   "turn": 6
+  },
+  {
+   "args_chars": 76,
+   "tool": "github_search_code",
+   "turn": 7
+  },
+  {
+   "args_chars": 65,
+   "tool": "github_fetch_file",
+   "turn": 8
+  },
+  {
+   "args_chars": 59,
+   "tool": "github_search_code",
+   "turn": 9
+  },
+  {
+   "args_chars": 53,
+   "tool": "github_search_code",
+   "turn": 10
+  },
+  {
+   "args_chars": 56,
+   "tool": "github_search_code",
+   "turn": 11
+  },
+  {
+   "args_chars": 70,
+   "tool": "github_search_code",
+   "turn": 12
+  },
+  {
+   "args_chars": 66,
+   "tool": "github_search_code",
+   "turn": 13
+  },
+  {
+   "args_chars": 84,
+   "tool": "github_search_code",
+   "turn": 14
+  },
+  {
+   "args_chars": 73,
+   "tool": "github_search_code",
+   "turn": 15
+  },
+  {
+   "args_chars": 70,
+   "tool": "github_search_code",
+   "turn": 16
+  },
+  {
+   "args_chars": 2064,
+   "tool": "run_python",
+   "turn": 17
+  },
+  {
+   "args_chars": 1226,
+   "tool": "run_python",
+   "turn": 18
+  },
+  {
+   "args_chars": 103,
+   "tool": "run_python",
+   "turn": 19
+  }
+ ],
+ "turns": 20,
+ "usage": {
+  "cacheReadInputTokens": 292110,
+  "cacheWriteInputTokens": 21689,
+  "inputTokens": 102,
+  "outputTokens": 3282
+ },
+ "variant": null,
+ "wall_s": 77.4
+}

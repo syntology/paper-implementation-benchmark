@@ -1,0 +1,138 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T15:45:42+00:00",
+  "generator": {
+   "argv": [
+    "--workers",
+    "2",
+    "--intent",
+    "Measure CLAIMS.md's top open-debt row (agent+Syntology vs agent+search, working output): 24 revalidated tasks x 4 arms, Sonnet subjects on Bedrock, pre-registered in <BENCH>/PREREGISTRATION.md"
+   ],
+   "git_commit": "64479bd6e2690ac50081f00170c8d564b68363da",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "search",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "search",
+ "bedrock": {
+  "calls": 17,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "learned incentive function",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 8,
+ "stop_reason": "submitted",
+ "stratum": "off_catalog",
+ "submitted": true,
+ "syntology_calls": 0,
+ "task_id": "off_2006.06051",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 47,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 3
+  },
+  {
+   "args_chars": 2762,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 3013,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 3524,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 4221,
+   "tool": "run_python",
+   "turn": 7
+  },
+  {
+   "args_chars": 97,
+   "tool": "github_search_code",
+   "turn": 8
+  },
+  {
+   "args_chars": 60,
+   "tool": "github_search_code",
+   "turn": 9
+  },
+  {
+   "args_chars": 80,
+   "tool": "github_fetch_file",
+   "turn": 10
+  },
+  {
+   "args_chars": 74,
+   "tool": "github_fetch_file",
+   "turn": 11
+  },
+  {
+   "args_chars": 4094,
+   "tool": "run_python",
+   "turn": 12
+  },
+  {
+   "args_chars": 607,
+   "tool": "run_python",
+   "turn": 13
+  },
+  {
+   "args_chars": 4071,
+   "tool": "run_python",
+   "turn": 14
+  },
+  {
+   "args_chars": 4183,
+   "tool": "run_python",
+   "turn": 15
+  },
+  {
+   "args_chars": 3233,
+   "tool": "submit_solution",
+   "turn": 16
+  }
+ ],
+ "turns": 17,
+ "usage": {
+  "cacheReadInputTokens": 591301,
+  "cacheWriteInputTokens": 58240,
+  "inputTokens": 83,
+  "outputTokens": 13019
+ },
+ "wall_s": 192.1
+}

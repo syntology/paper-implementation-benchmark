@@ -1,0 +1,184 @@
+{
+  "pass_table": {
+    "none": {
+      "in_catalog": [
+        7,
+        12
+      ],
+      "off_catalog": [
+        6,
+        12
+      ],
+      "all": [
+        13,
+        24
+      ]
+    },
+    "search": {
+      "in_catalog": [
+        10,
+        12
+      ],
+      "off_catalog": [
+        4,
+        12
+      ],
+      "all": [
+        14,
+        24
+      ]
+    },
+    "syntology": {
+      "in_catalog": [
+        9,
+        12
+      ],
+      "off_catalog": [
+        5,
+        12
+      ],
+      "all": [
+        14,
+        24
+      ]
+    },
+    "both": {
+      "in_catalog": [
+        9,
+        12
+      ],
+      "off_catalog": [
+        6,
+        12
+      ],
+      "all": [
+        15,
+        24
+      ]
+    }
+  },
+  "paired_comparisons": [
+    {
+      "comparison": "both vs search [all]",
+      "wins": 4,
+      "losses": 3,
+      "p": 1.0
+    },
+    {
+      "comparison": "syntology vs search [all]",
+      "wins": 6,
+      "losses": 6,
+      "p": 1.0
+    },
+    {
+      "comparison": "both vs search [in_catalog]",
+      "wins": 0,
+      "losses": 1,
+      "p": 1.0
+    },
+    {
+      "comparison": "syntology vs search [in_catalog]",
+      "wins": 2,
+      "losses": 3,
+      "p": 1.0
+    },
+    {
+      "comparison": "both vs search [off_catalog]",
+      "wins": 4,
+      "losses": 2,
+      "p": 0.6875
+    },
+    {
+      "comparison": "syntology vs search [off_catalog]",
+      "wins": 4,
+      "losses": 3,
+      "p": 1.0
+    },
+    {
+      "comparison": "syntology vs none [all]",
+      "wins": 4,
+      "losses": 3,
+      "p": 1.0
+    },
+    {
+      "comparison": "search vs none [all]",
+      "wins": 5,
+      "losses": 4,
+      "p": 1.0
+    },
+    {
+      "comparison": "both vs none [all]",
+      "wins": 6,
+      "losses": 4,
+      "p": 0.75390625
+    }
+  ],
+  "effort": {
+    "none": {
+      "median_cost": 0.264,
+      "total_cost": 6.84,
+      "median_turns": 13.0,
+      "median_wall_s": 138.60000000000002
+    },
+    "search": {
+      "median_cost": 0.458,
+      "total_cost": 11.76,
+      "median_turns": 17.0,
+      "median_wall_s": 133.2
+    },
+    "syntology": {
+      "median_cost": 0.223,
+      "total_cost": 5.71,
+      "median_turns": 13.5,
+      "median_wall_s": 113.2
+    },
+    "both": {
+      "median_cost": 0.491,
+      "total_cost": 12.94,
+      "median_turns": 18.0,
+      "median_wall_s": 140.8
+    }
+  },
+  "adoption": {
+    "syntology": {
+      "runs": 24,
+      "any_syntology_call": 24,
+      "called_get_reference_implementation": 11
+    },
+    "both": {
+      "runs": 24,
+      "any_syntology_call": 24,
+      "called_get_reference_implementation": 0
+    }
+  },
+  "failure_taxonomy": {
+    "none|properties_failed": 9,
+    "syntology|no_submission": 7,
+    "both|no_submission": 5,
+    "search|no_submission": 8,
+    "both|properties_failed": 4,
+    "none|no_submission": 2,
+    "search|properties_failed": 2,
+    "syntology|referee_crash": 1,
+    "syntology|properties_failed": 2
+  },
+  "_provenance": {
+    "schema": "syntology-provenance/1",
+    "created_at": "2026-08-31T16:36:58+00:00",
+    "generator": {
+      "script": "<BENCH>/analyze.py",
+      "argv": [],
+      "git_commit": "b98f900ef50a5bc2e1704467db78d1c7cc2a3e86",
+      "git_dirty": true
+    },
+    "inputs": [
+      {
+        "path": "<REPO>/<BENCH>/results.json",
+        "sha256": "3e17cf3bed24d58fae8b4ab221c146875e05bb80c5974fad0a8f79b0735d3621",
+        "bytes": 60443,
+        "mtime": "2026-08-31T16:36:49+00:00"
+      }
+    ],
+    "params": {}
+  }
+}

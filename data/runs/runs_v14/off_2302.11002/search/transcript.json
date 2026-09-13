@@ -1,0 +1,654 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e6f2b153869d89dd6d0b1c4e4af966a27143c6ce49f87e1e4901f7b3602c27c6 bytes=576 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=171ef744f3835f157e2faaf7be78f9ae430dadd8fe731e2e60e7bb390191a51a bytes=123 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "arxiv_id": "2302.11002"
+     },
+     "name": "get_arxiv_abstract",
+     "toolUseId": "tooluse_hlYXwKtuyNOB7M0kuLEHF3",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2302.11002\", \"title\": \"Learning Physical Models that Can Respect Conservation Laws\", \"abstract\": \"<redacted body sha256=8222c14f3481ab40436a40d648cf7600951076436b9ac818a9be5f0292ce60b9 bytes=1526 field=abstract origin=2302.11002>\", \"html_url\": \"https://arxiv.org/abs/2302.11002\", \"hint\": \"fetch_url can read https://arxiv.org/abs/<id> or the ar5iv full-text rendering at https://ar5iv.org/abs/<id>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_hlYXwKtuyNOB7M0kuLEHF3"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "url": "https://ar5iv.org/abs/2302.11002"
+     },
+     "name": "fetch_url",
+     "toolUseId": "tooluse_L7AoDN12RnN2OSapp3yLCX",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"url\": \"https://ar5iv.org/abs/2302.11002\", \"start\": 0, \"total_chars\": 165521, \"truncated\": true, \"content\": \"<redacted body sha256=eef791e9a2ede14784ddcadfd674335bc33a6dbf5acad51435b3f1ac37c5eccc bytes=18000 field=content origin=https://ar5iv.org/abs/2302.11002>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_L7AoDN12RnN2OSapp3yLCX"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "start": 165521,
+      "url": "https://ar5iv.org/abs/2302.11002"
+     },
+     "name": "fetch_url",
+     "toolUseId": "tooluse_mAYThtB2hrz6lbZT2iPPlt",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"url\": \"https://ar5iv.org/abs/2302.11002\", \"start\": 165521, \"total_chars\": 165521, \"truncated\": false, \"content\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=content origin=https://ar5iv.org/abs/2302.11002>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_mAYThtB2hrz6lbZT2iPPlt"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=55907924b16bb92f1c0061e1257ba8ae585f3a2dbe5a6ce039e46c17062950ec bytes=59 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "start": 40000,
+      "url": "https://ar5iv.org/abs/2302.11002"
+     },
+     "name": "fetch_url",
+     "toolUseId": "tooluse_wDfj7y64iqK9OiE19uk3W4",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"url\": \"https://ar5iv.org/abs/2302.11002\", \"start\": 40000, \"total_chars\": 165521, \"truncated\": true, \"content\": \"<redacted body sha256=789eb3efe1aca9f5131dede3f1dc9ecd3b067c2e1909e0fb167c7f797f935619 bytes=18000 field=content origin=https://ar5iv.org/abs/2302.11002>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_wDfj7y64iqK9OiE19uk3W4"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=a68434a0b276882fbcc99c7720586e81eaed184cbfe05e7e39c6fbefea6d5ee1 bytes=79 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "start": 20000,
+      "url": "https://ar5iv.org/abs/2302.11002"
+     },
+     "name": "fetch_url",
+     "toolUseId": "tooluse_9Pe4TxIxUjrWTwXRh56M2w",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"url\": \"https://ar5iv.org/abs/2302.11002\", \"start\": 20000, \"total_chars\": 165521, \"truncated\": true, \"content\": \"<redacted body sha256=af8dda055205ebdf05042b85c27e8b7392fb9fe603bc4061a06eb61bfa175dbd bytes=18000 field=content origin=https://ar5iv.org/abs/2302.11002>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_9Pe4TxIxUjrWTwXRh56M2w"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=1cb211663ad9b5297e258fc9c4b1a742fac2bb5dbd31a3c5f17115b1a29d95d0 bytes=62 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "start": 15000,
+      "url": "https://ar5iv.org/abs/2302.11002"
+     },
+     "name": "fetch_url",
+     "toolUseId": "tooluse_kEMposbqxeNoXSCnI9Ps9P",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"url\": \"https://ar5iv.org/abs/2302.11002\", \"start\": 15000, \"total_chars\": 165521, \"truncated\": true, \"content\": \"<redacted body sha256=30df9936e8b5ea8ced2bd44b3ab9ca1a14118fdf2dfaa0cd028a071a3bb81cb3 bytes=18000 field=content origin=https://ar5iv.org/abs/2302.11002>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_kEMposbqxeNoXSCnI9Ps9P"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=cab531e1076545f43aa9b96fe6ba805fea3a64a742333023e9ca383004d6d0d9 bytes=119 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=d92e2772f627df8acee023feff2ffdce07a4d43a95c107c9fad17a5db6068794 bytes=3002 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_fSFd86j7SiKyIUje01pNy7",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=db5a1e9912c627ca9bd963d363f70dbd965c563c644ceccb34e3fa72093c5432 bytes=372 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_fSFd86j7SiKyIUje01pNy7"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=d92e2772f627df8acee023feff2ffdce07a4d43a95c107c9fad17a5db6068794 bytes=3002 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_ccxxks9wCIdn3pxfyTlX6B",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=db5a1e9912c627ca9bd963d363f70dbd965c563c644ceccb34e3fa72093c5432 bytes=372 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_ccxxks9wCIdn3pxfyTlX6B"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=2602565e26b8ad353ad62637a02de36d412a2b11f94a71ead0c7a0826a5495cb bytes=442 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_09djcLYccSryejj8x0EShm",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=db5a1e9912c627ca9bd963d363f70dbd965c563c644ceccb34e3fa72093c5432 bytes=372 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_09djcLYccSryejj8x0EShm"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7be4adfc4f1ddf0eb3f02a966bf43e8a9ee0e8d83ddd29a4653cf20133813edc bytes=32 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=5fef1f751d310f35294f73fd3fc695b9306d7c96319537750ea1581c109855d8 bytes=115 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_uHhF0riJO3O5kFGgFToffe",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=db5a1e9912c627ca9bd963d363f70dbd965c563c644ceccb34e3fa72093c5432 bytes=372 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_uHhF0riJO3O5kFGgFToffe"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=40256c4d6bcb039fa4d87ba5db76979f3f06c8146d9ebbb056368b81f6bb45b6 bytes=64 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "repo:amazon-science/probconserv probconserv_update"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_icGSA0hYN38Habuaiy9XQH",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"repo:amazon-science/probconserv probconserv_update\", \"total_count\": 0, \"results\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_icGSA0hYN38Habuaiy9XQH"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "repo:amazon-science/probconserv equation 8"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_sAD7VdjNOJvPVN5Okjcn3S",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"repo:amazon-science/probconserv equation 8\", \"total_count\": 0, \"results\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_sAD7VdjNOJvPVN5Okjcn3S"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "org:amazon-science probconserv"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_uGrozr0qB0a1Nwt9ThvVsw",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"org:amazon-science probconserv\", \"total_count\": 15, \"results\": [{\"repo\": \"amazon-science/operator-probconserv\", \"path\": \"probconserv.py\", \"fragments\": [\"<redacted body sha256=807910994ba5063aa0de90258246ef4da3500a91c4a127119dcfc82872da230b bytes=231 field=results[].fragments[] origin=amazon-science/operator-probconserv>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"probconserv.py\", \"fragments\": [\"<redacted body sha256=dfc30857db670b53a2930f424232aed5e22f8eb3cf66ea93dc8a841b6f3fce38 bytes=189 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}, {\"repo\": \"amazon-science/operator-probconserv\", \"path\": \"README.md\", \"fragments\": [\"<redacted body sha256=7ae4507ba0ae422a239bb29a830991526dd0a45c10f7b40c08b3745ecf220db7 bytes=300 field=results[].fragments[] origin=amazon-science/operator-probconserv>\", \"<redacted body sha256=c5e79de0cd357c889d9af56a063e286f8af5c9768a1ac3ba3d60d838276a2247 bytes=103 field=results[].fragments[] origin=amazon-science/operator-probconserv>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"README.md\", \"fragments\": [\"<redacted body sha256=ada62513b7a810e9f33846cdaf142fb6fa0692d2bb8c52ae81bcda716a6d48ed bytes=62 field=results[].fragments[] origin=amazon-science/probharde2e>\", \"<redacted body sha256=338bb1d3249c02213d9bf2904949956d787af8ec7d777eb8d3947f864eb52ccb bytes=112 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"utils.py\", \"fragments\": [\"<redacted body sha256=f0cada13dd6532f5c00801cab97571105161f2aa7b3a690e8badd903f2e1e01c bytes=65 field=results[].fragments[] origin=amazon-science/probharde2e>\", \"<redacted body sha256=de58dee120e6d4f0454279bccf65c56581cbb6c594583b57a4114f4ca2aae559 bytes=75 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}, {\"repo\": \"amazon-science/operator-probconserv\", \"path\": \"experiment_ood_params.py\", \"fragments\": [\"<redacted body sha256=794b3d011e661246653e2bf779bfd73da4a1a66d7155055dc18aff68ffb10636 bytes=47 field=results[].fragments[] origin=amazon-science/operator-probconserv>\", \"<redacted body sha256=1a0cdf3c2262570b546d5ab769d792c375e2e5a355d4a4f00067b9999a1811c6 bytes=187 field=results[].fragments[] origin=amazon-science/operator-probconserv>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"models/FNO2d.py\", \"fragments\": [\"<redacted body sha256=7daae1a81ab4d77f19f5e84b59b57b10f75ab83e1465507bd7fcb9b0ac114462 bytes=128 field=results[].fragments[] origin=amazon-science/probharde2e>\", \"<redacted body sha256=a46212fc4bcacc7fc0d17e84eff52d2c5f4ccd527e7898f7ee8847c12c89919b bytes=103 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}, {\"repo\": \"amazon-science/operator-probconserv\", \"path\": \"THIRD-PARTY.md\", \"fragments\": [\"<redacted body sha256=12df7c0d7365bd39e52be25e55651f7f5afaff9aeb144e880204c3d087551c37 bytes=159 field=results[].fragments[] origin=amazon-science/operator-probconserv>\", \"<redacted body sha256=202dc118bde72f9a30e4c90c34c239027c28441a15f1f35d94e11c4d17d0a05a bytes=64 field=results[].fragments[] origin=amazon-science/operator-probconserv>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"THIRD-PARTY.md\", \"fragments\": [\"<redacted body sha256=90b524f259c9aa786e62b0bae4a39acf4a08223a37f06d3f84ba074a62c14092 bytes=161 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}, {\"repo\": \"amazon-science/probharde2e\", \"path\": \"models/UncertainNO.py\", \"fragments\": [\"<redacted body sha256=863fc7d46518f493f485287acb4b9127556026906f2601d1b7a54591f6ef5017 bytes=114 field=results[].fragments[] origin=amazon-science/probharde2e>\", \"<redacted body sha256=ec050424be7033469b8b39774e2a3c5507ae65418de34fc35537daa65dd6f250 bytes=172 field=results[].fragments[] origin=amazon-science/probharde2e>\"]}]}"
+      }
+     ],
+     "toolUseId": "tooluse_uGrozr0qB0a1Nwt9ThvVsw"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "path": ".",
+      "ref": "main",
+      "repo": "amazon-science/probconserv"
+     },
+     "name": "github_fetch_file",
+     "toolUseId": "tooluse_Bf5UK3ZCcbHA79PuVJyLUl",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"repo\": \"amazon-science/probconserv\", \"path\": \".\", \"directory\": true, \"entries\": [{\"name\": \"CODE_OF_CONDUCT.md\", \"type\": \"file\"}, {\"name\": \"CONTRIBUTING.md\", \"type\": \"file\"}, {\"name\": \"LICENSE\", \"type\": \"file\"}, {\"name\": \"NOTICE\", \"type\": \"file\"}, {\"name\": \"README.md\", \"type\": \"file\"}, {\"name\": \"deep_pdes\", \"type\": \"dir\"}, {\"name\": \"mypy.ini\", \"type\": \"file\"}, {\"name\": \"poetry.lock\", \"type\": \"file\"}, {\"name\": \"py.typed\", \"type\": \"file\"}, {\"name\": \"pyproject.toml\", \"type\": \"file\"}, {\"name\": \"resources\", \"type\": \"dir\"}, {\"name\": \"tests\", \"type\": \"dir\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_Bf5UK3ZCcbHA79PuVJyLUl"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "path": "deep_pdes",
+      "ref": "main",
+      "repo": "amazon-science/probconserv"
+     },
+     "name": "github_fetch_file",
+     "toolUseId": "tooluse_szsuDCKSm8Yq1SBnUa7EFF",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"repo\": \"amazon-science/probconserv\", \"path\": \"deep_pdes\", \"directory\": true, \"entries\": [{\"name\": \"__init__.py\", \"type\": \"file\"}, {\"name\": \"attentive_neural_process\", \"type\": \"dir\"}, {\"name\": \"datasets\", \"type\": \"dir\"}, {\"name\": \"experiments\", \"type\": \"dir\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_szsuDCKSm8Yq1SBnUa7EFF"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "repo:amazon-science/probconserv Sigma G.T"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_JhR9Q3SfmQHbFi4BRR2Gml",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"repo:amazon-science/probconserv Sigma G.T\", \"total_count\": 0, \"results\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_JhR9Q3SfmQHbFi4BRR2Gml"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "repo:amazon-science/probconserv mu_tilde"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_8P3z1M7Wt055DjlTA2X7MU",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"repo:amazon-science/probconserv mu_tilde\", \"total_count\": 0, \"results\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_8P3z1M7Wt055DjlTA2X7MU"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "limit": 10,
+      "query": "repo:amazon-science/probconserv constraint language:python"
+     },
+     "name": "github_search_code",
+     "toolUseId": "tooluse_h2dzD3H3JgyuZRwyRYfOnB",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"repo:amazon-science/probconserv constraint language:python\", \"total_count\": 0, \"results\": []}"
+      }
+     ],
+     "toolUseId": "tooluse_h2dzD3H3JgyuZRwyRYfOnB"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "path": "deep_pdes/attentive_neural_process",
+      "ref": "main",
+      "repo": "amazon-science/probconserv"
+     },
+     "name": "github_fetch_file",
+     "toolUseId": "tooluse_IUygCJoFancRTSghybHYpu",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"repo\": \"amazon-science/probconserv\", \"path\": \"deep_pdes/attentive_neural_process\", \"directory\": true, \"entries\": [{\"name\": \".gitignore\", \"type\": \"file\"}, {\"name\": \"LICENSE\", \"type\": \"file\"}, {\"name\": \"anp.py\", \"type\": \"file\"}, {\"name\": \"module.py\", \"type\": \"file\"}, {\"name\": \"probconserv.py\", \"type\": \"file\"}, {\"name\": \"softc.py\", \"type\": \"file\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_IUygCJoFancRTSghybHYpu"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "path": "deep_pdes/attentive_neural_process/probconserv.py",
+      "ref": "main",
+      "repo": "amazon-science/probconserv"
+     },
+     "name": "github_fetch_file",
+     "toolUseId": "tooluse_NgUd2cHXJI1LQoXGJEqzQJ",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"repo\": \"amazon-science/probconserv\", \"path\": \"deep_pdes/attentive_neural_process/probconserv.py\", \"truncated\": false, \"content\": \"<redacted body sha256=77cb1e056f2685fb08ea4993e0a241b914834b9b581ca843dd021537c5e796d3 bytes=16662 field=content origin=amazon-science/probconserv>\"}"
+      }
+     ],
+     "toolUseId": "tooluse_NgUd2cHXJI1LQoXGJEqzQJ"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

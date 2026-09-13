@@ -1,0 +1,109 @@
+{
+ "_provenance": {
+  "created_at": "2026-09-11T00:05:45+00:00",
+  "generator": {
+   "argv": [
+    "--variant",
+    "v14_freeze",
+    "--tasks",
+    "<BENCH>/tasks/tasks_substitution.json",
+    "--holdout",
+    "<BENCH>/tasks/holdout_sets.json",
+    "--out",
+    "<BENCH>/runs_v16",
+    "--workers",
+    "2",
+    "--arms",
+    "syntology_ho,code_only_ho",
+    "--only",
+    "in__2505.24844,in__2110.02544,off_2402.05367,sub_2006.09226,sub_2301.09474,sub_2304.03274",
+    "--intent",
+    "v1.6 substitution experiment (PREREGISTRATION_SUBSTITUTION.md): hold each task's own code out of BOTH arms and measure what each offers instead; tests proximity, which no version of this benchmark has ever tested; attempt 1, resumes past completed metas"
+   ],
+   "git_commit": "1cc0d2d73a2768b25449c398f0afc1c5fb746868",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 77302,
+    "mtime": "2026-09-10T23:52:11+00:00",
+    "path": "<BENCH>/tasks/tasks_substitution.json",
+    "sha256": "af58dcdd2f0de05e3e0b54203c31facbe5b83b40fa3ddcb544e2213d6023dba1"
+   }
+  ],
+  "params": {
+   "arm": "syntology_ho",
+   "max_turns": 20,
+   "variant": "v14_freeze"
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "syntology_ho",
+ "base_arm": "syntology",
+ "bedrock": {
+  "calls": 6,
+  "retries": 0,
+  "throttled": 0
+ },
+ "code_only_calls": 0,
+ "holdout_shas": [
+  "02fb91412d9cd763",
+  "4366465b1a650fa1",
+  "f7ceaad7248231110cd56427be29fa0f7f326fba596724dec84f8d6ba61e3a7c"
+ ],
+ "method": "Principled Preferential Bayesian Optimization",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 0,
+ "stop_reason": "submitted",
+ "stratum": "in_catalog",
+ "submitted": true,
+ "syntology_calls": 3,
+ "task_id": "off_2402.05367",
+ "tool_calls": [
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 0
+  },
+  {
+   "args_chars": 58,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 1
+  },
+  {
+   "args_chars": 593,
+   "tool": "run_python",
+   "turn": 2
+  },
+  {
+   "args_chars": 855,
+   "tool": "run_python",
+   "turn": 3
+  },
+  {
+   "args_chars": 41,
+   "tool": "run_python",
+   "turn": 4
+  },
+  {
+   "args_chars": 2761,
+   "tool": "submit_solution",
+   "turn": 5
+  }
+ ],
+ "turns": 6,
+ "usage": {
+  "cacheReadInputTokens": 35738,
+  "cacheWriteInputTokens": 7885,
+  "inputTokens": 30,
+  "outputTokens": 1810
+ },
+ "variant": "v14_freeze",
+ "wall_s": 34.8
+}

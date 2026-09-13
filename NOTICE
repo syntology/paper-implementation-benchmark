@@ -1,0 +1,84 @@
+Can an agent implement a method from its paper?
+A pre-registered benchmark of retrieval conditions for code-implementation agents.
+
+Copyright 2026 Syntology
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+--------------------------------------------------------------------------
+
+WHAT THE LICENCE COVERS, AND WHAT IT CANNOT
+
+The single Apache-2.0 grant above covers everything in this repository: the
+harness and the four arm modules, the referee, the analyzers, the probes, the
+gates and the tools; the pre-registrations and results documents; the task
+metadata; the run metadata and redacted transcripts; the analyses and audit
+rows; and -- deliberately, after considering them separately -- the 72
+property-test suites in referees/*/property_tests.py and the 144 generated
+implementations in referees/*/impl_sonnet.py and referees/*/impl_llama.py.
+LICENSE_QUESTION.md records the decision and its reasoning.
+
+Two things this grant is NOT, stated because a permissive licence is easy to
+read as a warranty:
+
+1. It is not a claim that anything here is correct. No implementation in this
+   repository carries a correctness claim, and none is the paper authors' code.
+   An audit of the population these were drawn from put fidelity to the paper
+   in a bracket of 0.29-0.80; the rows are published under
+   data/fidelity_audit/ and tools/recompute_fidelity_bracket.py re-derives the
+   figure. See README.md, "What is NOT claimed".
+
+2. It cannot grant rights Syntology does not hold. The generated
+   implementations were produced through AWS Bedrock using Anthropic's Claude
+   Sonnet 4.5 (impl_sonnet.py, and the property suites) and Meta's Llama 3.3
+   70B (impl_llama.py); each provider's terms govern its own output, and where
+   they impose conditions this grant neither overrides nor restates them. The
+   algorithms implemented are described in published papers -- algorithms are
+   not copyrightable, particular expression is, and these were drafted from a
+   restatement of each algorithm rather than copied from any implementation.
+
+PER-FILE HEADERS
+
+Files authored for this repository carry the short Apache header. Files copied
+verbatim from Syntology's working repository -- everything in src/ except the
+query_engine stand-in -- deliberately do not: they are byte-identical to the
+code that produced the published numbers, and MANIFEST.json records each one's
+sha256 so that can be checked. Apache-2.0 does not require a per-file header,
+and buying one here would cost the property that makes the tree auditable.
+src/PORTABILITY_PATCHES.md lists the 18 files that are not byte-identical and
+exactly what was changed in each.
+
+ATTRIBUTION TO THE PAPERS
+
+Each of the 72 tasks names an arXiv paper by identifier and title -- 72
+distinct papers, 72 distinct methods -- and describes one of its methods;
+referees/INDEX.json is the machine-readable list, and
+tasks/*.json carries the same for each task set. That is citation, not
+licensed reuse. The attribution string the tools return with any served
+implementation is: "Reference implementation attributed to arXiv:<id>;
+reference code, not audited production code."
+
+WHAT IS NOT IN THIS REPOSITORY, AND SO IS NOT LICENSED BY IT
+
+- The 118,400-row flat code index. 115,574 rows were harvested from public
+  GitHub repositories and 71.0% of those carry no licence that permits
+  redistribution (data/corpus/license_census.json).
+- Raw transcripts and submitted solutions, for the same reason: they contain
+  fetched third-party source. data/runs/**/transcript.json ships the redacted
+  form instead -- structure kept, every retrieved body replaced by a digest.
+- query_engine, Syntology's production serving package. src/vendor/query_engine
+  is a stand-in written for this repository.
+- Any snapshot of the Syntology graph.
+
+If a licence-filtered index is ever published, every row in it carries its own
+upstream licence and needs its own attribution. Nothing here extends to it.

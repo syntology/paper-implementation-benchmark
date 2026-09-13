@@ -1,0 +1,138 @@
+{
+ "_provenance": {
+  "created_at": "2026-08-31T17:18:22+00:00",
+  "generator": {
+   "argv": [
+    "--arms",
+    "both",
+    "--out",
+    "<BENCH>/runs_v12",
+    "--workers",
+    "2",
+    "--intent",
+    "v1.2 per ABLATION_V12.md: behavioral measurement of the shipped c70c1ea discovery fixes (token matching + trigger-first description) in the both arm"
+   ],
+   "git_commit": "09a4554ba00d0506a7ee61353ec8ae4061b1a61b",
+   "git_dirty": true,
+   "script": "<BENCH>/agent_harness.py"
+  },
+  "inputs": [
+   {
+    "bytes": 25358,
+    "mtime": "2026-08-31T14:38:33+00:00",
+    "path": "<REPO>/<BENCH>/tasks/tasks.json",
+    "sha256": "d71a72aa755ddb36a068114800da6bb0a10d34a684ea1379079debb5eb1ec140"
+   }
+  ],
+  "params": {
+   "arm": "both",
+   "max_turns": 20
+  },
+  "schema": "syntology-provenance/1"
+ },
+ "arm": "both",
+ "bedrock": {
+  "calls": 13,
+  "retries": 0,
+  "throttled": 0
+ },
+ "method": "GPTQ",
+ "model_id": "us.anthropic.claude-sonnet-4-5-20250929-v1:0",
+ "search_calls": 8,
+ "stop_reason": "submitted",
+ "stratum": "off_catalog",
+ "submitted": true,
+ "syntology_calls": 3,
+ "task_id": "off_2210.17323",
+ "tool_calls": [
+  {
+   "args_chars": 26,
+   "tool": "get_arxiv_abstract",
+   "turn": 0
+  },
+  {
+   "args_chars": 30,
+   "tool": "syntology_list_reference_implementations",
+   "turn": 0
+  },
+  {
+   "args_chars": 32,
+   "tool": "syntology_get_reference_implementation",
+   "turn": 1
+  },
+  {
+   "args_chars": 43,
+   "tool": "fetch_url",
+   "turn": 1
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 2
+  },
+  {
+   "args_chars": 29,
+   "tool": "syntology_get_code_for_paper",
+   "turn": 2
+  },
+  {
+   "args_chars": 46,
+   "tool": "github_fetch_file",
+   "turn": 3
+  },
+  {
+   "args_chars": 47,
+   "tool": "github_fetch_file",
+   "turn": 4
+  },
+  {
+   "args_chars": 2369,
+   "tool": "run_python",
+   "turn": 5
+  },
+  {
+   "args_chars": 2014,
+   "tool": "run_python",
+   "turn": 6
+  },
+  {
+   "args_chars": 274,
+   "tool": "run_python",
+   "turn": 7
+  },
+  {
+   "args_chars": 31,
+   "tool": "run_python",
+   "turn": 8
+  },
+  {
+   "args_chars": 67,
+   "tool": "github_search_code",
+   "turn": 9
+  },
+  {
+   "args_chars": 59,
+   "tool": "fetch_url",
+   "turn": 10
+  },
+  {
+   "args_chars": 62,
+   "tool": "github_search_code",
+   "turn": 11
+  },
+  {
+   "args_chars": 2347,
+   "tool": "submit_solution",
+   "turn": 12
+  }
+ ],
+ "turns": 13,
+ "usage": {
+  "cacheReadInputTokens": 191791,
+  "cacheWriteInputTokens": 27850,
+  "inputTokens": 69,
+  "outputTokens": 5786
+ },
+ "variant": null,
+ "wall_s": 106.3
+}

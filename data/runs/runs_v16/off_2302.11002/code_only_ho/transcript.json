@@ -1,0 +1,453 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e6f2b153869d89dd6d0b1c4e4af966a27143c6ce49f87e1e4901f7b3602c27c6 bytes=576 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=6bf574ce3b52550cea7043580a898e3ab91ca05c6531ea14285528a6a745d2b6 bytes=138 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 20,
+      "min_level": 0,
+      "query": "ProbConserv conservation laws arXiv:2302.11002"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_p7YMRGMuuBZ01TTSiKZA2a",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"ProbConserv conservation laws arXiv:2302.11002\", \"total_ranked\": 397, \"returned\": 20, \"results\": [{\"code_sha256\": \"89615aa0d1fe1d48b99c1888bc43d0309931cd01a6dca0fe30b8d25a698a609f\", \"entry\": \"compute_flow_conservation_violation\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2302.04496\", \"code_chars\": 1362, \"matched_by\": [\"keyword\", \"origin_id\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='89615aa0d1fe1d48b99c1888bc43d0309931cd01a6dca0fe30b8d25a698a609f')\"}, {\"code_sha256\": \"4b04c5d178561f3d\", \"entry\": \"conservation_check_wrap\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2310.01188\", \"code_chars\": 1153, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='4b04c5d178561f3d')\"}, {\"code_sha256\": \"f35f2aeda5fc8c92264475bbf28b48e62063fbe56f1816080e2be34a4951122c\", \"entry\": \"noether_loss\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2112.03321\", \"code_chars\": 976, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f35f2aeda5fc8c92264475bbf28b48e62063fbe56f1816080e2be34a4951122c')\"}, {\"code_sha256\": \"f0fc0ac7590a2d39\", \"entry\": \"FLOP\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2005.14165\", \"code_chars\": 1295, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='f0fc0ac7590a2d39')\"}, {\"code_sha256\": \"16f8f780d4b4a642\", \"entry\": \"ProbRun\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2608.08588\", \"code_chars\": 6862, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='16f8f780d4b4a642')\"}, {\"code_sha256\": \"746963c6a9e9b2b0\", \"entry\": \"add_gumbel_noise\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2605.02263\", \"code_chars\": 525, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='746963c6a9e9b2b0')\"}, {\"code_sha256\": \"a5334721ab55f48f\", \"entry\": \"add_gumbel_noise\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2502.09992\", \"code_chars\": 532, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='a5334721ab55f48f')\"}, {\"code_sha256\": \"990cdbb7b7b9c54c\", \"entry\": \"add_gumbel_noise\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2604.08302\", \"code_chars\": 558, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='990cdbb7b7b9c54c')\"}, {\"code_sha256\": \"ff94237e7f7393ab\", \"entry\": \"ProbCtx\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2106.10238\", \"code_chars\": 4200, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='ff94237e7f7393ab')\"}, {\"code_sha256\": \"919aae7a4c5d1c1a\", \"entry\": \"swish\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1710.05941\", \"code_chars\": 553, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='919aae7a4c5d1c1a')\"}, {\"code_sha256\": \"39c29a03698ae55c\", \"entry\": \"ProbRun\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2106.10238\", \"code_chars\": 5487, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='39c29a03698ae55c')\"}, {\"code_sha256\": \"f6c7f4c8b3c43d19\", \"entry\": \"ProbCtx\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2608.08588\", \"code_chars\": 5430, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='f6c7f4c8b3c43d19')\"}, {\"code_sha256\": \"36741a983d72bd68\", \"entry\": \"MagnitudePolicy\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1904.12848\", \"code_chars\": 1378, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='36741a983d72bd68')\"}, {\"code_sha256\": \"40dde77f7b44cf0a\", \"entry\": \"ProbabilisticRequirement\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2411.11520\", \"code_chars\": 2011, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='40dde77f7b44cf0a')\"}, {\"code_sha256\": \"5722c1e755019115\", \"entry\": \"RandAugment\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1904.12848\", \"code_chars\": 5982, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='5722c1e755019115')\"}, {\"code_sha256\": \"68c352586edf0684\", \"entry\": \"np_dhmc\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2106.10238\", \"code_chars\": 11697, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='68c352586edf0684')\"}, {\"code_sha256\": \"e095c65a3cc5a361\", \"entry\": \"CTLPETimeEncoding\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2606.05700\", \"code_chars\": 615, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='e095c65a3cc5a361')\"}, {\"code_sha256\": \"a1fe4187bdb5158a\", \"entry\": \"get_transfer_index_uniform\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2604.08302\", \"code_chars\": 2229, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='a1fe4187bdb5158a')\"}, {\"code_sha256\": \"230bc021c96a7314\", \"entry\": \"coord_integrator\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2608.08588\", \"code_chars\": 10055, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='230bc021c96a7314')\"}, {\"code_sha256\": \"c65e558a970ba300\", \"entry\": \"axe_loss\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2004.07437\", \"code_chars\": 5864, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='c65e558a970ba300')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 118400}, \"verified_matches\": [{\"code_sha256\": \"89615aa0d1fe1d48b99c1888bc43d0309931cd01a6dca0fe30b8d25a698a609f\", \"entry\": \"compute_flow_conservation_violation\", \"verification_level\": 3, \"origin_arxiv_id\": \"2302.04496\", \"matched_by\": [\"keyword\", \"origin_id\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='89615aa0d1fe1d48b99c1888bc43d0309931cd01a6dca0fe30b8d25a698a609f')\"}, {\"code_sha256\": \"f35f2aeda5fc8c92264475bbf28b48e62063fbe56f1816080e2be34a4951122c\", \"entry\": \"noether_loss\", \"verification_level\": 3, \"origin_arxiv_id\": \"2112.03321\", \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f35f2aeda5fc8c92264475bbf28b48e62063fbe56f1816080e2be34a4951122c')\"}, {\"code_sha256\": \"da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd\", \"entry\": \"rc_loss_and_update_probabilities\", \"verification_level\": 3, \"origin_arxiv_id\": \"2007.08929\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd')\"}, {\"code_sha256\": \"46e96d397b9ad28fbf2540fcd422bde943281d2d481232fb6288142613a14c51\", \"entry\": \"protoclr_loss\", \"verification_level\": 3, \"origin_arxiv_id\": \"2006.11325\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='46e96d397b9ad28fbf2540fcd422bde943281d2d481232fb6288142613a14c51')\"}, {\"code_sha256\": \"3189955190904526c517f76532690d06c07292e0147559d54840850cdf8c2d05\", \"entry\": \"reinmax\", \"verification_level\": 3, \"origin_arxiv_id\": \"2304.08612\", \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='3189955190904526c517f76532690d06c07292e0147559d54840850cdf8c2d05')\"}], \"verified_note\": \"5 of the ranked matches are machine-verified (level 2 or 3: executed against held-out tests, report attached). They are listed separately because 115275 of the 118400 samples here are unverified harvested code and can outrank them on wording alone.\"}"
+      }
+     ],
+     "toolUseId": "tooluse_p7YMRGMuuBZ01TTSiKZA2a"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7f8f19e309474fb5fd4bee8e2c6b6a09cf5549a6f9e381c94551d190cbba5600 bytes=48 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 20,
+      "min_level": 0,
+      "query": "probconserv_update"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_981eTzLcAjvqMzoRqJ5th3",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"probconserv_update\", \"total_ranked\": 200, \"returned\": 20, \"results\": [{\"code_sha256\": \"da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd\", \"entry\": \"rc_loss_and_update_probabilities\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2007.08929\", \"code_chars\": 1702, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd')\"}, {\"code_sha256\": \"8a1599bccdd2a405\", \"entry\": \"update_model_probs\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2604.15609\", \"code_chars\": 509, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='8a1599bccdd2a405')\"}, {\"code_sha256\": \"662233292898d011\", \"entry\": \"update_model_probs\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 1, \"origin_arxiv_id\": \"2204.02610\", \"code_chars\": 633, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='662233292898d011')\"}, {\"code_sha256\": \"f4a71b97346fb88d\", \"entry\": \"update_model_probs\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 1, \"origin_arxiv_id\": \"2402.17316\", \"code_chars\": 473, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='f4a71b97346fb88d')\"}, {\"code_sha256\": \"94ccab2d12942c7b\", \"entry\": \"update_running_conf\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2409.04409\", \"code_chars\": 486, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='94ccab2d12942c7b')\"}, {\"code_sha256\": \"de9f735f773a7c0c\", \"entry\": \"update_model\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2604.01173\", \"code_chars\": 521, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='de9f735f773a7c0c')\"}, {\"code_sha256\": \"e0429f278829698dbff57336b3915415b3575a02e98474cb7cc82d27355124ab\", \"entry\": \"optimistic_policy_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2002.08243\", \"code_chars\": 1368, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='e0429f278829698dbff57336b3915415b3575a02e98474cb7cc82d27355124ab')\"}, {\"code_sha256\": \"ccd56fe8b29699d8\", \"entry\": \"update_z\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2204.01668\", \"code_chars\": 459, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='ccd56fe8b29699d8')\"}, {\"code_sha256\": \"f20ab80cf000ba69\", \"entry\": \"ppo_update\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1707.06347\", \"code_chars\": 2305, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='f20ab80cf000ba69')\"}, {\"code_sha256\": \"03733ecb5029b01e\", \"entry\": \"Update\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2310.18534\", \"code_chars\": 6855, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='03733ecb5029b01e')\"}, {\"code_sha256\": \"c2d1bacb305037cd\", \"entry\": \"UpdateStrategy\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2311.02061\", \"code_chars\": 4246, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='c2d1bacb305037cd')\"}, {\"code_sha256\": \"e3d6afe3155be045\", \"entry\": \"update_cov\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2501.03729\", \"code_chars\": 918, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='e3d6afe3155be045')\"}, {\"code_sha256\": \"dfc18c1a7fb85dceb984067d5b0ad880039e881c7ac12b5d058324ae56be60cb\", \"entry\": \"prediction_powered_e_value_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2502.04294\", \"code_chars\": 1009, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='dfc18c1a7fb85dceb984067d5b0ad880039e881c7ac12b5d058324ae56be60cb')\"}, {\"code_sha256\": \"4ac29c0d003237dff9fb7d0935a15430ca33e09c14ce1e7483b5d4d6ea0c98b8\", \"entry\": \"pc_sampler_corrector_step\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2203.14206\", \"code_chars\": 775, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='4ac29c0d003237dff9fb7d0935a15430ca33e09c14ce1e7483b5d4d6ea0c98b8')\"}, {\"code_sha256\": \"5adefd109f2e4926f25675a7fdb270776c3d5a14a192a02ebfda4172470846e0\", \"entry\": \"pcgrad_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2001.06782\", \"code_chars\": 1925, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='5adefd109f2e4926f25675a7fdb270776c3d5a14a192a02ebfda4172470846e0')\"}, {\"code_sha256\": \"0baf3c3fd33582c4\", \"entry\": \"update_model_probs\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2306.00650\", \"code_chars\": 128, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='0baf3c3fd33582c4')\"}, {\"code_sha256\": \"61cf2d533cff0590\", \"entry\": \"bayesian_update\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2105.02344\", \"code_chars\": 462, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='61cf2d533cff0590')\"}, {\"code_sha256\": \"f46b250f03d53df9ea5416111985f3a6c9a6538571db0355d2a9cfc559fd6368\", \"entry\": \"confidence_aware_moving_average_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2403.07548\", \"code_chars\": 805, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='f46b250f03d53df9ea5416111985f3a6c9a6538571db0355d2a9cfc559fd6368')\"}, {\"code_sha256\": \"5aa99e73486cea56\", \"entry\": \"BOCDm\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"0710.3742\", \"code_chars\": 835, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='5aa99e73486cea56')\"}, {\"code_sha256\": \"177935d965c04c2878ea78b020791e38ab7c171174848a46aa6263609f5d44e6\", \"entry\": \"update_stored_empirical_average\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2206.04646\", \"code_chars\": 841, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='177935d965c04c2878ea78b020791e38ab7c171174848a46aa6263609f5d44e6')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 118400}, \"verified_matches\": [{\"code_sha256\": \"da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd\", \"entry\": \"rc_loss_and_update_probabilities\", \"verification_level\": 3, \"origin_arxiv_id\": \"2007.08929\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='da970305aa1259d5b4f7f4a40c0d3ea8fedc3968e3c267525358a0f302e2a0cd')\"}, {\"code_sha256\": \"e0429f278829698dbff57336b3915415b3575a02e98474cb7cc82d27355124ab\", \"entry\": \"optimistic_policy_update\", \"verification_level\": 3, \"origin_arxiv_id\": \"2002.08243\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='e0429f278829698dbff57336b3915415b3575a02e98474cb7cc82d27355124ab')\"}, {\"code_sha256\": \"dfc18c1a7fb85dceb984067d5b0ad880039e881c7ac12b5d058324ae56be60cb\", \"entry\": \"prediction_powered_e_value_update\", \"verification_level\": 2, \"origin_arxiv_id\": \"2502.04294\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='dfc18c1a7fb85dceb984067d5b0ad880039e881c7ac12b5d058324ae56be60cb')\"}, {\"code_sha256\": \"4ac29c0d003237dff9fb7d0935a15430ca33e09c14ce1e7483b5d4d6ea0c98b8\", \"entry\": \"pc_sampler_corrector_step\", \"verification_level\": 3, \"origin_arxiv_id\": \"2203.14206\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='4ac29c0d003237dff9fb7d0935a15430ca33e09c14ce1e7483b5d4d6ea0c98b8')\"}, {\"code_sha256\": \"5adefd109f2e4926f25675a7fdb270776c3d5a14a192a02ebfda4172470846e0\", \"entry\": \"pcgrad_update\", \"verification_level\": 3, \"origin_arxiv_id\": \"2001.06782\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='5adefd109f2e4926f25675a7fdb270776c3d5a14a192a02ebfda4172470846e0')\"}], \"verified_note\": \"5 of the ranked matches are machine-verified (level 2 or 3: executed against held-out tests, report attached). They are listed separately because 115275 of the 118400 samples here are unverified harvested code and can outrank them on wording alone.\"}"
+      }
+     ],
+     "toolUseId": "tooluse_981eTzLcAjvqMzoRqJ5th3"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=df6475e627508c69f5750fae5f6f7f58ece2356cdbd2f1c9e585af8f9eb98329 bytes=95 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 20,
+      "min_level": 0,
+      "query": "Bayesian constraint update mean covariance linear constraint"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_VW7gY1DMwV4aXUnBGBLmoJ",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"Bayesian constraint update mean covariance linear constraint\", \"total_ranked\": 369, \"returned\": 20, \"results\": [{\"code_sha256\": \"2dc41514d7c8bde7\", \"entry\": \"avg_loss_constraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2110.09192\", \"code_chars\": 594, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='2dc41514d7c8bde7')\"}, {\"code_sha256\": \"27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00\", \"entry\": \"posterior_update_linear_model\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2012.09613\", \"code_chars\": 1544, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00')\"}, {\"code_sha256\": \"61cf2d533cff0590\", \"entry\": \"bayesian_update\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2105.02344\", \"code_chars\": 462, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='61cf2d533cff0590')\"}, {\"code_sha256\": \"09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e\", \"entry\": \"update_covariance_and_vector\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2110.06394\", \"code_chars\": 820, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e')\"}, {\"code_sha256\": \"d2b0f06445cc2179\", \"entry\": \"relaxed_penalty_constraint_interp_linear_detached\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2506.04171\", \"code_chars\": 1232, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='d2b0f06445cc2179')\"}, {\"code_sha256\": \"6554dec0d53a6a92\", \"entry\": \"ConstraintScheduler\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2208.04425\", \"code_chars\": 2191, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='6554dec0d53a6a92')\"}, {\"code_sha256\": \"d3de8bb0f13f3e15\", \"entry\": \"constraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2110.02550\", \"code_chars\": 1792, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='d3de8bb0f13f3e15')\"}, {\"code_sha256\": \"1bfbd0313261f6b199820722c32fecf428bb12c054af2d4d66c3a8d1db5006b6\", \"entry\": \"copulagnn_conditional_mean_covariance\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2010.02089\", \"code_chars\": 1067, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='1bfbd0313261f6b199820722c32fecf428bb12c054af2d4d66c3a8d1db5006b6')\"}, {\"code_sha256\": \"f7be596b58d2637e\", \"entry\": \"gaussian_linear_transform\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2310.18534\", \"code_chars\": 2706, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f7be596b58d2637e')\"}, {\"code_sha256\": \"fbcb81fd2645b872\", \"entry\": \"TDBayesianLinear\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2410.07812\", \"code_chars\": 5493, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='fbcb81fd2645b872')\"}, {\"code_sha256\": \"df530ba8e40002bc\", \"entry\": \"cov_linear_transform\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2310.18534\", \"code_chars\": 1476, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='df530ba8e40002bc')\"}, {\"code_sha256\": \"410c70b574276262\", \"entry\": \"BayesianLinear\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2107.10161\", \"code_chars\": 2938, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='410c70b574276262')\"}, {\"code_sha256\": \"ddf970467b201f00\", \"entry\": \"std_update\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2311.09058\", \"code_chars\": 576, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='ddf970467b201f00')\"}, {\"code_sha256\": \"4288c0336b99d805\", \"entry\": \"run_constraints\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2009.07360\", \"code_chars\": 2409, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='4288c0336b99d805')\"}, {\"code_sha256\": \"c5587ce1944f0767\", \"entry\": \"hard_constraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2201.05057\", \"code_chars\": 2177, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='c5587ce1944f0767')\"}, {\"code_sha256\": \"d8a1e8a4520acf9a\", \"entry\": \"BayesianLinear\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2605.20989\", \"code_chars\": 2810, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='d8a1e8a4520acf9a')\"}, {\"code_sha256\": \"080747068ddd7af7\", \"entry\": \"constraints_linear\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2301.11113\", \"code_chars\": 992, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='080747068ddd7af7')\"}, {\"code_sha256\": \"fbcd88c48e6bee65\", \"entry\": \"BeliefInfo\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2505.16732\", \"code_chars\": 986, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='fbcd88c48e6bee65')\"}, {\"code_sha256\": \"a21ac1f169e5e7e1\", \"entry\": \"smc\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2505.16732\", \"code_chars\": 33389, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='a21ac1f169e5e7e1')\"}, {\"code_sha256\": \"3e1fb6c489494efc\", \"entry\": \"smc_init\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2505.16732\", \"code_chars\": 15744, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='3e1fb6c489494efc')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 118400}, \"verified_matches\": [{\"code_sha256\": \"27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00\", \"entry\": \"posterior_update_linear_model\", \"verification_level\": 3, \"origin_arxiv_id\": \"2012.09613\", \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00')\"}, {\"code_sha256\": \"09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e\", \"entry\": \"update_covariance_and_vector\", \"verification_level\": 2, \"origin_arxiv_id\": \"2110.06394\", \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e')\"}, {\"code_sha256\": \"1bfbd0313261f6b199820722c32fecf428bb12c054af2d4d66c3a8d1db5006b6\", \"entry\": \"copulagnn_conditional_mean_covariance\", \"verification_level\": 3, \"origin_arxiv_id\": \"2010.02089\", \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='1bfbd0313261f6b199820722c32fecf428bb12c054af2d4d66c3a8d1db5006b6')\"}, {\"code_sha256\": \"05bc5435e09de4ce85e9113bfba0d03f0babbffaaa6b2a3f90a987b6a6ff6b01\", \"entry\": \"bam_update_covariance\", \"verification_level\": 2, \"origin_arxiv_id\": \"2402.14758\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='05bc5435e09de4ce85e9113bfba0d03f0babbffaaa6b2a3f90a987b6a6ff6b01')\"}, {\"code_sha256\": \"f54b71ebb1bf4e3052d48a65d2afd04f56add5d776b4c19e3920864b595fa2e1\", \"entry\": \"update_prior_closed_form\", \"verification_level\": 3, \"origin_arxiv_id\": \"2305.19185\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='f54b71ebb1bf4e3052d48a65d2afd04f56add5d776b4c19e3920864b595fa2e1')\"}], \"verified_note\": \"5 of the ranked matches are machine-verified (level 2 or 3: executed against held-out tests, report attached). They are listed separately because 115275 of the 118400 samples here are unverified harvested code and can outrank them on wording alone.\"}"
+      }
+     ],
+     "toolUseId": "tooluse_VW7gY1DMwV4aXUnBGBLmoJ"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=6e44d1f787ec2fc3d60de69b2e4c13f2c39fc2d9dd12d242a23dd150b4f2511c bytes=79 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code_sha256": "27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00"
+     },
+     "name": "code_get",
+     "toolUseId": "tooluse_Q7HaxaLPneVlkzLrSRTcnd",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"samples\": [{\"code_sha256\": \"27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00\", \"entry\": \"posterior_update_linear_model\", \"signature\": \"<redacted body sha256=cc8263e90af620c920113d44088918db1f01df8a62b7706bd16b3c07c94c7e39 bytes=88 field=samples[].signature origin=2012.09613>\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"verification_report\": {\"method_name\": \"<redacted body sha256=f8f0e01ec5ae7117e23de8cbaaab7fbb2b682a6fe271f6225ead008d7a21a015 bytes=8 field=samples[].verification_report.method_name origin=2012.09613>\", \"origin_arxiv_id\": \"2012.09613\", \"impl_sha256\": \"<redacted body sha256=92ae162f1d9fa834c0622d394e39b5f510cdc1c7625213094ea616b26b7c7626 bytes=16 field=samples[].verification_report.impl_sha256 origin=2012.09613>\", \"checks\": [{\"level\": 0, \"passed\": true, \"evidence\": {}}, {\"level\": 1, \"passed\": true, \"evidence\": {\"n_inputs\": 5}}, {\"level\": 2, \"passed\": true, \"evidence\": {\"n_peers\": 1, \"tol\": 1e-06}}], \"verification_level\": 2, \"v3\": {\"passed_both_sides\": [\"<redacted body sha256=e98cabc48a94bc7da1f012bca5e8d805f51f0a00debb8332a9836014055e728a bytes=32 field=samples[].verification_report.v3.passed_both_sides[] origin=->\", \"<redacted body sha256=0c77939f1bb8bfc773f6a1374c95f6a740fa8c87e7764343083fd6ed5baf286f bytes=42 field=samples[].verification_report.v3.passed_both_sides[] origin=->\", \"<redacted body sha256=17d9006e71fdc20032cffaaed6da2f77e2661a22fc3ae51343475e5fc922fc69 bytes=44 field=samples[].verification_report.v3.passed_both_sides[] origin=->\", \"<redacted body sha256=fdb0d5e37d4ce5c83983eaab48c8269151b496e3a34e8702c263856ca827f490 bytes=50 field=samples[].verification_report.v3.passed_both_sides[] origin=->\", \"<redacted body sha256=f245a135ca07823b12aeb1c42d83634e1623919bf3d02dcfa718fe02e946f9a8 bytes=35 field=samples[].verification_report.v3.passed_both_sides[] origin=->\"], \"one_side_divergence\": [], \"suspect_tests\": [], \"source\": \"<redacted body sha256=cfa66bdbfa2fc463f97ae13bc452a8e8a41c5080c235ec4f32cb0788f5f9de35 bytes=16 field=samples[].verification_report.v3.source origin=->\", \"folded_by\": \"<redacted body sha256=9c16ea3174d3e418719ab9fd78ad26be37e0017da3993a5b00d58153f8fdd19f bytes=21 field=samples[].verification_report.v3.folded_by origin=->\"}}, \"test_cases\": [{\"phi\": [[1.0, 0.0], [0.0, 1.0], [1.0, 1.0]], \"y\": [1.0, 2.0, 3.0], \"prior_mean\": [0.0, 0.0], \"prior_precision\": [[1.0, 0.0], [0.0, 1.0]], \"noise_precision\": 1.0}, {\"phi\": [[1.0, 2.0], [3.0, 4.0]], \"y\": [5.0, 6.0], \"prior_mean\": [1.0, 1.0], \"prior_precision\": [[2.0, 0.0], [0.0, 2.0]], \"noise_precision\": 0.5}, {\"phi\": [[0.5, 0.5], [0.5, -0.5], [-0.5, 0.5], [-0.5, -0.5]], \"y\": [1.0, 0.0, 0.0, -1.0], \"prior_mean\": [0.5, -0.5], \"prior_precision\": [[1.0, 0.2], [0.2, 1.0]], \"noise_precision\": 2.0}, {\"phi\": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]], \"y\": [1.0, 2.0, 3.0], \"prior_mean\": [0.0, 0.0, 0.0], \"prior_precision\": [[1.0, 0.0, 0.0], [0.0, 1.0, 0.0], [0.0, 0.0, 1.0]], \"noise_precision\": 1.0}, {\"phi\": [[2.0, 1.0], [1.0, 2.0], [1.0, 1.0]], \"y\": [3.0, 4.0, 2.5], \"prior_mean\": [0.5, 0.5], \"prior_precision\": [[0.5, 0.0], [0.0, 0.5]], \"noise_precision\": 0.8}], \"test_cases_provenance\": \"spec:batch_runs/spec.json:test_cases_v1\", \"env\": {\"python\": \"<redacted body sha256=2efff1261c25d94dd6698ea1047f5c0a7107ca98b0a6c2427ee6614143500215 bytes=4 field=samples[].env.python origin=->\", \"numpy\": \"<redacted body sha256=8811c41ed7e8de0fadf07c2df0c51b2523a12194b42b0a8311f369945068ae74 bytes=3 field=samples[].env.numpy origin=->\"}, \"generated_by\": \"llm:us.meta.llama3-3-70b-instruct-v1:0\", \"cross_checked_by\": \"llm:us.anthropic.claude-sonnet-4-5-20250929-v1:0\", \"spec_review\": \"unreviewed\", \"review_note\": null, \"origin_arxiv_id\": \"2012.09613\", \"code\": \"<redacted body sha256=27d0f363f7abc2d96f6f8dd172915daf882c43483874afe562ddc3348b5f3c00 bytes=1544 field=samples[].code origin=2012.09613>\", \"attribution\": \"Reference implementation attributed to arXiv:2012.09613; reference code, not audited production code.\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_Q7HaxaLPneVlkzLrSRTcnd"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=2eeaf4fbbce25d21c779316e69d514f073511de725f9fb691b47ed3c58549863 bytes=350 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 20,
+      "min_level": 0,
+      "query": "Gaussian conditioning linear equality constraint"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_vRVz6kdCoa4XyzSV9iAB9z",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"Gaussian conditioning linear equality constraint\", \"total_ranked\": 353, \"returned\": 20, \"results\": [{\"code_sha256\": \"3675e481e23792fa\", \"entry\": \"ManifoldConstraintGradient\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2405.16749\", \"code_chars\": 2084, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='3675e481e23792fa')\"}, {\"code_sha256\": \"5d8f2eceb10e18ef\", \"entry\": \"ConditionalGaussianPrior\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2603.09288\", \"code_chars\": 926, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='5d8f2eceb10e18ef')\"}, {\"code_sha256\": \"45abc6d9d49d023d\", \"entry\": \"ConditioningMethod\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2405.16749\", \"code_chars\": 1190, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='45abc6d9d49d023d')\"}, {\"code_sha256\": \"424173e3f369bf65\", \"entry\": \"ConditioningMethod\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2405.16749\", \"code_chars\": 1316, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='424173e3f369bf65')\"}, {\"code_sha256\": \"c021d021cff53be6\", \"entry\": \"getEqualityConstraintsLarge\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2206.03234\", \"code_chars\": 776, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='c021d021cff53be6')\"}, {\"code_sha256\": \"080747068ddd7af7\", \"entry\": \"constraints_linear\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2301.11113\", \"code_chars\": 992, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='080747068ddd7af7')\"}, {\"code_sha256\": \"acfd9932e6c42de1\", \"entry\": \"OurConditioning\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2603.06685\", \"code_chars\": 4310, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='acfd9932e6c42de1')\"}, {\"code_sha256\": \"7236e74d015f0256\", \"entry\": \"linearize_constraints\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2605.00260\", \"code_chars\": 964, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='7236e74d015f0256')\"}, {\"code_sha256\": \"f723bf01040101db\", \"entry\": \"apply_conditioning\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2405.16907\", \"code_chars\": 178, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f723bf01040101db')\"}, {\"code_sha256\": \"4288c0336b99d805\", \"entry\": \"run_constraints\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2009.07360\", \"code_chars\": 2409, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='4288c0336b99d805')\"}, {\"code_sha256\": \"484f39b895878415\", \"entry\": \"QNetworkConstraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2108.01846\", \"code_chars\": 1159, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='484f39b895878415')\"}, {\"code_sha256\": \"88fd137d35c48073\", \"entry\": \"equality_saturation\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2511.05849\", \"code_chars\": 406, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='88fd137d35c48073')\"}, {\"code_sha256\": \"f25cb05933a07e3a\", \"entry\": \"filter_by_constraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2210.11287\", \"code_chars\": 402, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f25cb05933a07e3a')\"}, {\"code_sha256\": \"d2b0f06445cc2179\", \"entry\": \"relaxed_penalty_constraint_interp_linear_detached\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2506.04171\", \"code_chars\": 1232, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='d2b0f06445cc2179')\"}, {\"code_sha256\": \"b3d593fb33f79ac5\", \"entry\": \"apply_conditioning\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2602.02722\", \"code_chars\": 145, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='b3d593fb33f79ac5')\"}, {\"code_sha256\": \"6e985a21ec9fa940\", \"entry\": \"GaborConstraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2101.08596\", \"code_chars\": 575, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='6e985a21ec9fa940')\"}, {\"code_sha256\": \"54ce963ef29f6495343353d3fa44ad10117d3d6b2adbfa0fa188cf75156754e6\", \"entry\": \"dc3_soft_loss\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2104.12225\", \"code_chars\": 1813, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='54ce963ef29f6495343353d3fa44ad10117d3d6b2adbfa0fa188cf75156754e6')\"}, {\"code_sha256\": \"d4ec6c6df72cb4b0\", \"entry\": \"solve\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 1, \"origin_arxiv_id\": \"2501.07018\", \"code_chars\": 23846, \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='d4ec6c6df72cb4b0')\"}, {\"code_sha256\": \"d3de8bb0f13f3e15\", \"entry\": \"constraint\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2110.02550\", \"code_chars\": 1792, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='d3de8bb0f13f3e15')\"}, {\"code_sha256\": \"6554dec0d53a6a92\", \"entry\": \"ConstraintScheduler\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2208.04425\", \"code_chars\": 2191, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='6554dec0d53a6a92')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 118400}, \"verified_matches\": [{\"code_sha256\": \"54ce963ef29f6495343353d3fa44ad10117d3d6b2adbfa0fa188cf75156754e6\", \"entry\": \"dc3_soft_loss\", \"verification_level\": 3, \"origin_arxiv_id\": \"2104.12225\", \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='54ce963ef29f6495343353d3fa44ad10117d3d6b2adbfa0fa188cf75156754e6')\"}, {\"code_sha256\": \"589eaeda70f46a7c5ad86adb0611740269e1ceb0a4e8d1ef7409acb2261205fd\", \"entry\": \"adaptive_step_of_pdhg\", \"verification_level\": 3, \"origin_arxiv_id\": \"2106.04756\", \"matched_by\": [\"keyword\"], \"fetch_with\": \"code_get(code_sha256='589eaeda70f46a7c5ad86adb0611740269e1ceb0a4e8d1ef7409acb2261205fd')\"}, {\"code_sha256\": \"fb56fa56c90b8e4f1408bf73cda62281ed07fca1eaa03a3372280b78ed46379b\", \"entry\": \"gaussian_copula_conditional_mean\", \"verification_level\": 2, \"origin_arxiv_id\": \"2006.10829\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='fb56fa56c90b8e4f1408bf73cda62281ed07fca1eaa03a3372280b78ed46379b')\"}, {\"code_sha256\": \"1988792d09c65323c47a99193ce6203dc9eaa0c5d462a875786cc6047dcb12f0\", \"entry\": \"conditional_gmm_sample\", \"verification_level\": 3, \"origin_arxiv_id\": \"2210.11287\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='1988792d09c65323c47a99193ce6203dc9eaa0c5d462a875786cc6047dcb12f0')\"}, {\"code_sha256\": \"6c90ccfd0277a1eae829411b88552a5d1669eb4439ddca1e1811aba3b192135f\", \"entry\": \"dual_gp_fast_condition\", \"verification_level\": 2, \"origin_arxiv_id\": \"2211.01053\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='6c90ccfd0277a1eae829411b88552a5d1669eb4439ddca1e1811aba3b192135f')\"}], \"verified_note\": \"5 of the ranked matches are machine-verified (level 2 or 3: executed against held-out tests, report attached). They are listed separately because 115275 of the 118400 samples here are unverified harvested code and can outrank them on wording alone.\"}"
+      }
+     ],
+     "toolUseId": "tooluse_vRVz6kdCoa4XyzSV9iAB9z"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=9d259cec2cbf826350d819e08f8a8a2c88f672cc3e440fedc3012cd5042a750d bytes=426 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=aca9aeb1a88cf8fc0c13df22024b00b61b36748adcb0378bbf628c4cbb8927ed bytes=2780 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_ekyGbMUpLQl2pJoqcgAsrG",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=ba16acbe211c9b70abba0df835a7c00beb7e561ced57f1283bac0c989348c129 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_ekyGbMUpLQl2pJoqcgAsrG"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=828071b5930c69420e0c3b68dd1a8220067165f8e320dfa34cecf62fe46169ce bytes=2237 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_WGN2h4Yaw6eKhEJaSMeRMj",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=ba16acbe211c9b70abba0df835a7c00beb7e561ced57f1283bac0c989348c129 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_WGN2h4Yaw6eKhEJaSMeRMj"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=a7adca6352826230caf037b463684ad05906b5edd9da98529f0011202fa0e74d bytes=51 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=5ca0f1ef27b3bfdaaaa6b59e05fc2c1538a99f18eb51c445973a2e6e4b3f435a bytes=13 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_K9b58LkhHBokgm57sDRXGi",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=ba16acbe211c9b70abba0df835a7c00beb7e561ced57f1283bac0c989348c129 bytes=384 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_K9b58LkhHBokgm57sDRXGi"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=6774637a7c462e9a05522dc1d2fac620011a6f4a013a36beef5d750ee3a536f7 bytes=384 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 20,
+      "min_level": 0,
+      "query": "2302.11002"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_OT5cV3qlW3BSQIeiW2YeGC",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"2302.11002\", \"total_ranked\": 400, \"returned\": 20, \"results\": [{\"code_sha256\": \"cf1326f21a3b15f8\", \"entry\": \"zero\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.01825\", \"code_chars\": 49, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='cf1326f21a3b15f8')\"}, {\"code_sha256\": \"8e4c47cf7b76c111\", \"entry\": \"UniTimeGPT2\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2606.10466\", \"code_chars\": 2079, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='8e4c47cf7b76c111')\"}, {\"code_sha256\": \"09f9d43400b3c4c7\", \"entry\": \"iden\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.01825\", \"code_chars\": 57, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='09f9d43400b3c4c7')\"}, {\"code_sha256\": \"02d50eb7ec2085f9\", \"entry\": \"TW2\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2104.07970\", \"code_chars\": 744, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='02d50eb7ec2085f9')\"}, {\"code_sha256\": \"4166de3d9042368f\", \"entry\": \"str2bool\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.11797\", \"code_chars\": 48, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='4166de3d9042368f')\"}, {\"code_sha256\": \"5491d6713f712e40\", \"entry\": \"t2_adc\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2411.10772\", \"code_chars\": 259, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='5491d6713f712e40')\"}, {\"code_sha256\": \"6154bee9b6ca26bd\", \"entry\": \"prediction\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.02169\", \"code_chars\": 66, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='6154bee9b6ca26bd')\"}, {\"code_sha256\": \"d0573c4de7b89c13\", \"entry\": \"Beam\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1704.04368\", \"code_chars\": 620, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='d0573c4de7b89c13')\"}, {\"code_sha256\": \"4e78e41a8926dc30\", \"entry\": \"replicate_input\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.03015\", \"code_chars\": 54, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='4e78e41a8926dc30')\"}, {\"code_sha256\": \"038885c9d0925c53\", \"entry\": \"KalmanInit\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2110.11130\", \"code_chars\": 80, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='038885c9d0925c53')\"}, {\"code_sha256\": \"4e16af7e5dbea818\", \"entry\": \"binarize_static\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 1, \"origin_arxiv_id\": \"2302.06576\", \"code_chars\": 53, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='4e16af7e5dbea818')\"}, {\"code_sha256\": \"b634434403efcc68\", \"entry\": \"FactorVAE\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1802.05983\", \"code_chars\": 35573, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='b634434403efcc68')\"}, {\"code_sha256\": \"51f77e4457107d04\", \"entry\": \"error\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.02169\", \"code_chars\": 68, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='51f77e4457107d04')\"}, {\"code_sha256\": \"1aaafb7fbdb31aba\", \"entry\": \"Beam\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2106.15135\", \"code_chars\": 1019, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='1aaafb7fbdb31aba')\"}, {\"code_sha256\": \"107bf3b7b61a9085\", \"entry\": \"swish\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.14182\", \"code_chars\": 78, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='107bf3b7b61a9085')\"}, {\"code_sha256\": \"bacdbc0bbfe53598\", \"entry\": \"CDCK2\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"1807.03748\", \"code_chars\": 3377, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='bacdbc0bbfe53598')\"}, {\"code_sha256\": \"134293ad842ab4e6\", \"entry\": \"lpips_scaler\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 1, \"origin_arxiv_id\": \"2302.10326\", \"code_chars\": 46, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='134293ad842ab4e6')\"}, {\"code_sha256\": \"56cb5f68019f62a7\", \"entry\": \"GATv2SelfAttention\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2105.14491\", \"code_chars\": 2492, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='56cb5f68019f62a7')\"}, {\"code_sha256\": \"03a3df87a41d52ec\", \"entry\": \"Dim\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2302.06881\", \"code_chars\": 88, \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='03a3df87a41d52ec')\"}, {\"code_sha256\": \"732ac88ab92be26a\", \"entry\": \"DiscreteDiffusionAbsorb\", \"language\": \"python\", \"source_kind\": \"harvested\", \"verification_level\": 0, \"origin_arxiv_id\": \"2511.12114\", \"code_chars\": 9035, \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='732ac88ab92be26a')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 118400}, \"verified_matches\": [{\"code_sha256\": \"1cfa2c1ff434c8e4\", \"entry\": \"get_dirichlet_marginal\", \"verification_level\": 2, \"origin_arxiv_id\": \"2302.03020\", \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='1cfa2c1ff434c8e4')\"}, {\"code_sha256\": \"06c4d48915e2501d\", \"entry\": \"idct2\", \"verification_level\": 2, \"origin_arxiv_id\": \"2203.09693\", \"matched_by\": [\"semantic\"], \"fetch_with\": \"code_get(code_sha256='06c4d48915e2501d')\"}, {\"code_sha256\": \"ef662d005fabc3b0\", \"entry\": \"np_softmax\", \"verification_level\": 2, \"origin_arxiv_id\": \"2302.05118\", \"matched_by\": [\"origin_id\"], \"fetch_with\": \"code_get(code_sha256='ef662d005fabc3b0')\"}], \"verified_note\": \"3 of the ranked matches are machine-verified (level 2 or 3: executed against held-out tests, report attached). They are listed separately because 115275 of the 118400 samples here are unverified harvested code and can outrank them on wording alone.\"}"
+      }
+     ],
+     "toolUseId": "tooluse_OT5cV3qlW3BSQIeiW2YeGC"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=19112a678cf2f993d82f1aa550fc13eca2f5344bf9dd7470c2bf024f9b9068ae bytes=491 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "limit": 15,
+      "min_level": 2,
+      "query": "Kalman filter update measurement covariance"
+     },
+     "name": "code_search",
+     "toolUseId": "tooluse_wexeQFV6p2m66MAv7vj9Vl",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"query\": \"Kalman filter update measurement covariance\", \"total_ranked\": 281, \"returned\": 15, \"results\": [{\"code_sha256\": \"835f237560dee78d33f1929e69e2c706182a33ab127998a76a9502e7e74c59d9\", \"entry\": \"kalman_observation_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2206.14697\", \"code_chars\": 1406, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='835f237560dee78d33f1929e69e2c706182a33ab127998a76a9502e7e74c59d9')\"}, {\"code_sha256\": \"125a6f1032f1e7989c67b2a8c7cc786dad28f371b42d6af82c8064e0d7cbf430\", \"entry\": \"kalman_filter_update_z\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2308.14906\", \"code_chars\": 2464, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='125a6f1032f1e7989c67b2a8c7cc786dad28f371b42d6af82c8064e0d7cbf430')\"}, {\"code_sha256\": \"9379f756eaa9833211c997c02f95e81f43a63fc87588004d1f0a2d3793e8acb0\", \"entry\": \"cru_kalman_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2111.11344\", \"code_chars\": 1180, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='9379f756eaa9833211c997c02f95e81f43a63fc87588004d1f0a2d3793e8acb0')\"}, {\"code_sha256\": \"10fb69e4bf707fb3129775ae34eeec0616155b823ab500b7401dbb2434cdd46f\", \"entry\": \"enki_kalman_gain_and_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2211.01554\", \"code_chars\": 2673, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='10fb69e4bf707fb3129775ae34eeec0616155b823ab500b7401dbb2434cdd46f')\"}, {\"code_sha256\": \"651501cd449053bd28cf9b5b8f3c1f1d3cbf9d1988e76f54e2c13f058f0a0436\", \"entry\": \"filter_forward\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2306.01802\", \"code_chars\": 1614, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='651501cd449053bd28cf9b5b8f3c1f1d3cbf9d1988e76f54e2c13f058f0a0436')\"}, {\"code_sha256\": \"09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e\", \"entry\": \"update_covariance_and_vector\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2110.06394\", \"code_chars\": 820, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='09478503db4c14a7d00ffa56ac15aeb04bbdc5e00010543993e030074beea40e')\"}, {\"code_sha256\": \"05bc5435e09de4ce85e9113bfba0d03f0babbffaaa6b2a3f90a987b6a6ff6b01\", \"entry\": \"bam_update_covariance\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2402.14758\", \"code_chars\": 1932, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='05bc5435e09de4ce85e9113bfba0d03f0babbffaaa6b2a3f90a987b6a6ff6b01')\"}, {\"code_sha256\": \"cbe8d16efd1d0f806221a7162f60aef4af71676f25519f9a25827cb06a1ee68a\", \"entry\": \"filter_aggregation_step\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2302.04787\", \"code_chars\": 1560, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='cbe8d16efd1d0f806221a7162f60aef4af71676f25519f9a25827cb06a1ee68a')\"}, {\"code_sha256\": \"f1dd2543071ae042ca30dd0d1e72a620430b978a84fb9139c8cd3d10112bb868\", \"entry\": \"calibrate_distribution\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2101.06395\", \"code_chars\": 1085, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='f1dd2543071ae042ca30dd0d1e72a620430b978a84fb9139c8cd3d10112bb868')\"}, {\"code_sha256\": \"3a19afa4c984762d9683d0f91bedd3612f7269b6ee4a118c868fff130153d174\", \"entry\": \"particle_filter_weight_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2401.17752\", \"code_chars\": 1087, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='3a19afa4c984762d9683d0f91bedd3612f7269b6ee4a118c868fff130153d174')\"}, {\"code_sha256\": \"ea9fed5c5e8634b97cf729c92bf7793f05145b6d77313e8c07f9e9a32def9787\", \"entry\": \"compute_block_empirical_covariance\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2106.13329\", \"code_chars\": 1795, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='ea9fed5c5e8634b97cf729c92bf7793f05145b6d77313e8c07f9e9a32def9787')\"}, {\"code_sha256\": \"88fd99cd8207bef88d8633f36bef0ea17902ec9128ff69c8dd03af79f1e1268a\", \"entry\": \"compute_rho_t\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2405.05646\", \"code_chars\": 2032, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='88fd99cd8207bef88d8633f36bef0ea17902ec9128ff69c8dd03af79f1e1268a')\"}, {\"code_sha256\": \"c1fcd9a1168fc2fe751cb4684a7277ce7fd3613358ae6e848f4d62a7981e1b67\", \"entry\": \"gp_posterior_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2010.10154\", \"code_chars\": 2303, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='c1fcd9a1168fc2fe751cb4684a7277ce7fd3613358ae6e848f4d62a7981e1b67')\"}, {\"code_sha256\": \"eef95bedc1c1f2e9cea04d76c456ff163e032a56cc003f55d42afba174608b96\", \"entry\": \"huber_online_mirror_descent_update\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"origin_arxiv_id\": \"2503.00419\", \"code_chars\": 2052, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='eef95bedc1c1f2e9cea04d76c456ff163e032a56cc003f55d42afba174608b96')\"}, {\"code_sha256\": \"dc0c97e1ea6e64fddc2598aba746f199a300086bf6fb8240b00e28b7631790ac\", \"entry\": \"observation_update_and_normalize\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"origin_arxiv_id\": \"2002.09884\", \"code_chars\": 1066, \"matched_by\": [\"keyword\", \"semantic\"], \"fetch_with\": \"code_get(code_sha256='dc0c97e1ea6e64fddc2598aba746f199a300086bf6fb8240b00e28b7631790ac')\"}], \"corpus\": {\"code_samples\": 118400, \"at_or_above_min_level\": 3125}}"
+      }
+     ],
+     "toolUseId": "tooluse_wexeQFV6p2m66MAv7vj9Vl"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=4a45d95b9234154cab2672adc083e66d822a555d80e47b13aecc6d3ba2321397 bytes=54 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code_sha256": "835f237560dee78d33f1929e69e2c706182a33ab127998a76a9502e7e74c59d9"
+     },
+     "name": "code_get",
+     "toolUseId": "tooluse_wXoxGUBba41EVBEC09kcoB",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"samples\": [{\"code_sha256\": \"835f237560dee78d33f1929e69e2c706182a33ab127998a76a9502e7e74c59d9\", \"entry\": \"kalman_observation_update\", \"signature\": \"<redacted body sha256=8e6e60f43ea43183496e5bdb8b8bbffac533f33e14bcba7767b27ae0d07a5853 bytes=62 field=samples[].signature origin=2206.14697>\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 2, \"verification_report\": {\"method_name\": \"<redacted body sha256=d19665a7147980400519b345ec9aa04e6287a2f0c5c4876b596b5d6b1c1da162 bytes=57 field=samples[].verification_report.method_name origin=2206.14697>\", \"origin_arxiv_id\": \"2206.14697\", \"impl_sha256\": \"<redacted body sha256=d799495916b07226603eba33ad74ef9fdc7202d950e7f5f6a77660042f290583 bytes=16 field=samples[].verification_report.impl_sha256 origin=2206.14697>\", \"checks\": [{\"level\": 0, \"passed\": true, \"evidence\": {}}, {\"level\": 1, \"passed\": true, \"evidence\": {\"n_inputs\": 5}}, {\"level\": 2, \"passed\": true, \"evidence\": {\"n_peers\": 1, \"tol\": 1e-06}}], \"verification_level\": 2}, \"test_cases\": [{\"mu_prior\": [0.0, 0.0], \"Sigma_prior\": [[1.0, 0.0], [0.0, 1.0]], \"y\": [1.0], \"C\": [[1.0, 0.0]], \"R\": [[0.5]]}, {\"mu_prior\": [1.0, 2.0, 3.0], \"Sigma_prior\": [[2.0, 0.5, 0.0], [0.5, 1.5, 0.2], [0.0, 0.2, 1.0]], \"y\": [2.5, 3.0], \"C\": [[1.0, 0.5, 0.0], [0.0, 1.0, 0.5]], \"R\": [[0.25, 0.0], [0.0, 0.25]]}, {\"mu_prior\": [5.0], \"Sigma_prior\": [[4.0]], \"y\": [6.0], \"C\": [[2.0]], \"R\": [[1.0]]}, {\"mu_prior\": [0.5, 1.5], \"Sigma_prior\": [[0.8, 0.1], [0.1, 0.6]], \"y\": [1.2, 2.3, 0.5], \"C\": [[1.0, 0.0], [0.0, 1.0], [0.5, 0.5]], \"R\": [[0.1, 0.0, 0.0], [0.0, 0.1, 0.0], [0.0, 0.0, 0.1]]}, {\"mu_prior\": [10.0, 20.0], \"Sigma_prior\": [[5.0, 1.0], [1.0, 3.0]], \"y\": [15.0], \"C\": [[0.5, 0.5]], \"R\": [[2.0]]}], \"test_cases_provenance\": \"spec:batch_runs/spec.json:test_cases_v1\", \"env\": {\"python\": \"<redacted body sha256=2efff1261c25d94dd6698ea1047f5c0a7107ca98b0a6c2427ee6614143500215 bytes=4 field=samples[].env.python origin=->\", \"numpy\": \"<redacted body sha256=8811c41ed7e8de0fadf07c2df0c51b2523a12194b42b0a8311f369945068ae74 bytes=3 field=samples[].env.numpy origin=->\"}, \"generated_by\": \"llm:us.meta.llama3-3-70b-instruct-v1:0\", \"cross_checked_by\": \"llm:us.anthropic.claude-sonnet-4-5-20250929-v1:0\", \"spec_review\": \"unreviewed\", \"review_note\": null, \"origin_arxiv_id\": \"2206.14697\", \"code\": \"<redacted body sha256=835f237560dee78d33f1929e69e2c706182a33ab127998a76a9502e7e74c59d9 bytes=1406 field=samples[].code origin=2206.14697>\", \"attribution\": \"Reference implementation attributed to arXiv:2206.14697; reference code, not audited production code.\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_wXoxGUBba41EVBEC09kcoB"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=ef26ad1d2dec825a3be085067c806b19b6134bf470112893292319bd768d8793 bytes=490 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code_sha256": "9379f756eaa9833211c997c02f95e81f43a63fc87588004d1f0a2d3793e8acb0"
+     },
+     "name": "code_get",
+     "toolUseId": "tooluse_4HNzlqHYNUtWd0dLmjTGJ9",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"samples\": [{\"code_sha256\": \"9379f756eaa9833211c997c02f95e81f43a63fc87588004d1f0a2d3793e8acb0\", \"entry\": \"cru_kalman_update\", \"signature\": \"<redacted body sha256=614fbb109db794b12c3f6e7dd54b604138eeb6c80e87fa0cdea786c1a49e5126 bytes=63 field=samples[].signature origin=2111.11344>\", \"language\": \"python\", \"source_kind\": \"generated\", \"verification_level\": 3, \"verification_report\": {\"method_name\": \"<redacted body sha256=94431fea5e9f42df11bd71e2c02122aba75465690f9ea76a0c4bf7af757f664f bytes=33 field=samples[].verification_report.method_name origin=2111.11344>\", \"origin_arxiv_id\": \"2111.11344\", \"impl_sha256\": \"<redacted body sha256=23beea912a090903066234d87b373764228185b50fc9bd304120479086a80383 bytes=16 field=samples[].verification_report.impl_sha256 origin=2111.11344>\", \"checks\": [{\"level\": 0, \"passed\": true, \"evidence\": {}}, {\"level\": 1, \"passed\": true, \"evidence\": {\"n_inputs\": 4}}, {\"level\": 2, \"passed\": true, \"evidence\": {\"n_peers\": 1, \"tol\": 1e-06}}, {\"level\": 3, \"passed\": true, \"evidence\": {\"properties_passed\": [\"<redacted body sha256=ec98f67ac3d63580ee384d2fcff375db4e51394f41f60418775b4fdb30a24044 bytes=20 field=samples[].verification_report.checks[].evidence.properties_passed[] origin=->\", \"<redacted body sha256=defa69c3ba931df6cb73082b1f17eba7273141585d9f784b36543571e4a7de8d bytes=26 field=samples[].verification_report.checks[].evidence.properties_passed[] origin=->\", \"<redacted body sha256=248c6793aba3a1dfee5068b67157cbf9234bae45d9215f3303517c2f72ddbd10 bytes=24 field=samples[].verification_report.checks[].evidence.properties_passed[] origin=->\", \"<redacted body sha256=a500a563d8fb31782c20a8ec415f3b007b04edc935d13569490f9dcef750a0bf bytes=22 field=samples[].verification_report.checks[].evidence.properties_passed[] origin=->\", \"<redacted body sha256=68fda018f4bf2296bfb66a69b2f73da19f0417e97c9d0b52eb5f23df3041c8be bytes=22 field=samples[].verification_report.checks[].evidence.properties_passed[] origin=->\"], \"suspect_tests\": [], \"rule\": \"<redacted body sha256=4da4b0bcc07798355718183f4926ea0ad7124f2fe6a4dbfafbb6b5c81ce2421b bytes=23 field=samples[].verification_report.checks[].evidence.rule origin=->\", \"source\": \"<redacted body sha256=cfa66bdbfa2fc463f97ae13bc452a8e8a41c5080c235ec4f32cb0788f5f9de35 bytes=16 field=samples[].verification_report.checks[].evidence.source origin=->\"}}], \"verification_level\": 3}, \"test_cases\": [{\"mu_prior\": [0.0, 0.0], \"Sigma_prior\": [[10.0, 0.0], [0.0, 10.0]], \"y_obs\": [1.0, 2.0], \"sigma_obs\": [1.0, 1.0]}, {\"mu_prior\": [1.5, -0.5, 2.0], \"Sigma_prior\": [[2.0, 0.1, 0.0], [0.1, 3.0, 0.2], [0.0, 0.2, 1.5]], \"y_obs\": [1.0, 0.0, 1.5], \"sigma_obs\": [0.5, 0.8, 0.3]}, {\"mu_prior\": [0.5, 1.0], \"Sigma_prior\": [[1.0, 0.3], [0.3, 2.0]], \"y_obs\": [0.8, 1.2], \"sigma_obs\": [0.2, 0.4]}, {\"mu_prior\": [3.0, -1.0, 0.5, 2.0], \"Sigma_prior\": [[5.0, 0.0, 0.0, 0.0], [0.0, 4.0, 0.0, 0.0], [0.0, 0.0, 3.0, 0.0], [0.0, 0.0, 0.0, 2.0]], \"y_obs\": [2.5, -0.5, 0.8, 1.8], \"sigma_obs\": [1.0, 1.0, 1.0, 1.0]}], \"test_cases_provenance\": \"deterministic:batch_cycle_inputs_v1\", \"env\": {\"python\": \"<redacted body sha256=2efff1261c25d94dd6698ea1047f5c0a7107ca98b0a6c2427ee6614143500215 bytes=4 field=samples[].env.python origin=->\", \"numpy\": \"<redacted body sha256=8811c41ed7e8de0fadf07c2df0c51b2523a12194b42b0a8311f369945068ae74 bytes=3 field=samples[].env.numpy origin=->\"}, \"generated_by\": \"llm:us.meta.llama3-3-70b-instruct-v1:0\", \"cross_checked_by\": \"llm:us.anthropic.claude-sonnet-4-5-20250929-v1:0\", \"spec_review\": \"clean\", \"review_note\": null, \"origin_arxiv_id\": \"2111.11344\", \"code\": \"<redacted body sha256=9379f756eaa9833211c997c02f95e81f43a63fc87588004d1f0a2d3793e8acb0 bytes=1180 field=samples[].code origin=2111.11344>\", \"attribution\": \"Reference implementation attributed to arXiv:2111.11344; reference code, not audited production code.\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_4HNzlqHYNUtWd0dLmjTGJ9"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=c8cdc77a41a49e9bec6c2e082ceac02a5b1cb44f270ac21fc06e524d932309f7 bytes=1285 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=a544983379aed83c3d8df0952153298861d3416679a1e384411981c013a11834 bytes=2348 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_jqSYhK34HmekkeeDU3qmWx",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_jqSYhK34HmekkeeDU3qmWx"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]

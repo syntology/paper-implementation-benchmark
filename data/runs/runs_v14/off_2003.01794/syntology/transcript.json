@@ -1,0 +1,260 @@
+[
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=87e91a9e5855a2455e95a511ac2f043d9e429fbb5a05ebd954688bdcefecfa58 bytes=685 field=message.text origin=->"
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=e7ee97d915897198ea61f4eb63452f55633bf9ee8e396bfc54fcb93cc7ba7e60 bytes=78 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2003.01794"
+     },
+     "name": "syntology_get_paper",
+     "toolUseId": "tooluse_cIX59MMF3zavoNydntlPKY",
+     "type": "tool_use"
+    }
+   },
+   {
+    "toolUse": {
+     "input": {
+      "id_or_title": "2003.01794"
+     },
+     "name": "syntology_get_code_for_paper",
+     "toolUseId": "tooluse_1Sv095G4qDkE9YfSNbIPD0",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"title\": \"Good Subnetworks Provably Exist: Pruning via Greedy Forward Selection\", \"abstract\": \"<redacted body sha256=fa86d1db6e33cde567811dee350b5fc6704b6a7883f76980e6cae2bd3c2fa49b bytes=1428 field=abstract origin=2003.01794>\", \"arxiv_id\": \"2003.01794\", \"source_file\": \"2003.01794v3.tei.xml\", \"conference\": \"icml\", \"year\": 2020, \"venue_confirmed\": true, \"trace_readiness\": \"dense\", \"authors\": [{\"name\": \"Mao Ye\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Chengyue Gong\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Qiang Liu\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Lizhen Nie\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Denny Zhou\", \"provenance\": \"deterministic:grobid_header_parse\"}, {\"name\": \"Adam Klivans\", \"provenance\": \"deterministic:grobid_header_parse\"}], \"repos\": [{\"provenance\": \"external:paperswithcode_snapshot_2025-07-28\", \"url\": \"https://github.com/lushleaf/Network-Pruning-Greedy-Forward-Selection\"}], \"reviews\": [], \"n_reviews\": 0}"
+      }
+     ],
+     "toolUseId": "tooluse_cIX59MMF3zavoNydntlPKY"
+    }
+   },
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"arxiv_id\": \"2003.01794\", \"repos\": [{\"url\": \"https://github.com/lushleaf/Network-Pruning-Greedy-Forward-Selection\", \"owner\": \"lushleaf\", \"repo\": \"Network-Pruning-Greedy-Forward-Selection\", \"provenance\": \"external:paperswithcode_snapshot_2025-07-28\"}]}"
+      }
+     ],
+     "toolUseId": "tooluse_1Sv095G4qDkE9YfSNbIPD0"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=c4b4e681dc01a85fdae6e4a6bd9687ef92e8e9a0a4f4574cf1c9e9c4c970d3ef bytes=70 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "query": "Greedy Forward Selection"
+     },
+     "name": "syntology_list_reference_implementations",
+     "toolUseId": "tooluse_zPJ2NnSkWdbWB8iPFThxpp",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"total_matching\": 0, \"returned\": 0, \"implementations\": [], \"near_matches\": [{\"method\": \"Coverage-centric Coreset Selection (CCS)\", \"origin_arxiv_id\": \"2210.15809\", \"paper_title\": \"COVERAGE-CENTRIC CORESET SELECTION FOR HIGH PRUNING RATES\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Equal Selection (ES)\", \"origin_arxiv_id\": \"2110.13986\", \"paper_title\": \"Fair Sequential Selection Using Supervised Learning Models\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"FairBatch\", \"origin_arxiv_id\": \"2012.01696\", \"paper_title\": \"FAIRBATCH: BATCH SELECTION FOR MODEL FAIRNESS\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"HbBoPs\", \"origin_arxiv_id\": \"2412.07820\", \"paper_title\": \"Hyperband-based Bayesian Optimization for Black-box Prompt Selection\", \"year\": 2025, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"MeZO\", \"origin_arxiv_id\": \"2305.17333\", \"paper_title\": \"Fine-Tuning Language Models with Just Forward Passes\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"PINNACLE\", \"origin_arxiv_id\": \"2404.07662\", \"paper_title\": \"PINNACLE: PINN ADAPTIVE COLLOCATION AND EXPERIMENTAL POINTS SELECTION\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"POLICY-LEARN\", \"origin_arxiv_id\": \"2310.20082\", \"paper_title\": \"EFFICIENT SUBGRAPH GNNS BY LEARNING EFFEC-TIVE SELECTION POLICIES\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"PromptBoosting\", \"origin_arxiv_id\": \"2212.09257\", \"paper_title\": \"PromptBoosting: Black-Box Text Classification with Ten Forward Passes\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Reducible Holdout Loss Selection (RHO-LOSS)\", \"origin_arxiv_id\": \"2206.07137\", \"paper_title\": \"Prioritized Training on Points that are Learnable, Worth Learning, and Not Yet Learnt\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"SHINE\", \"origin_arxiv_id\": \"2106.00553\", \"paper_title\": \"SHINE: SHARING THE INVERSE ESTIMATE FROM THE FORWARD PASS FOR BI-LEVEL OPTIMIZATION AND IM-PLICIT MODELS\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Sequential Attention\", \"origin_arxiv_id\": \"2209.14881\", \"paper_title\": \"SEQUENTIAL ATTENTION FOR FEATURE SELECTION\", \"year\": 2023, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Topological Sample Selection (TSS)\", \"origin_arxiv_id\": \"2403.01942\", \"paper_title\": \"Mitigating Label Noise on Graphs via Topological Sample Selection\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"Uncertainty-Aware Pseudo-Label Selection (UPS) framework\", \"origin_arxiv_id\": \"2101.06329\", \"paper_title\": \"IN DEFENSE OF PSEUDO-LABELING: AN UNCERTAINTY-AWARE PSEUDO-LABEL SELEC-TION FRAMEWORK FOR SEMI-SUPERVISED LEARNING\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"active offline policy selection\", \"origin_arxiv_id\": \"2106.10251\", \"paper_title\": \"Active Offline Policy Selection\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"myopic exploration gap\", \"origin_arxiv_id\": \"2206.09421\", \"paper_title\": \"Guarantees for Epsilon-Greedy Reinforcement Learning with Function Approximation\", \"year\": 2022, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"scalable marginal-likelihood estimation method\", \"origin_arxiv_id\": \"2104.04975\", \"paper_title\": \"Scalable Marginal Likelihood Estimation for Model Selection in Deep Learning\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"\\u03b5-greedy exploration strategy to BAIL\", \"origin_arxiv_id\": \"2405.19883\", \"paper_title\": \"From Words to Actions: Unveiling the Theoretical Underpinnings of LLM-Driven Autonomous Systems\", \"year\": 2024, \"language\": \"python\", \"verification_level\": 3, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}, {\"method\": \"vertex-greedy algorithm\", \"origin_arxiv_id\": \"2110.04719\", \"paper_title\": \"Structure learning in polynomial time: Greedy algorithms, Bregman information, and exponential families\", \"year\": 2021, \"language\": \"python\", \"verification_level\": 2, \"matched_tokens\": 1, \"of_tokens\": 3, \"matched_distinctive\": 1, \"of_distinctive\": 3}], \"note\": \"No entry matched all 3 query tokens, but 18 matched some. This is NOT an empty catalog -- see near_matches and retry with a shorter query (e.g. just the method name without qualifiers).\"}"
+      }
+     ],
+     "toolUseId": "tooluse_zPJ2NnSkWdbWB8iPFThxpp"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=c8d2e0ae5d8bb4666ded63adc81a3aa2505d70006823712bef445cc5873b8516 bytes=668 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=15dc7b736b303c649dac6aef78118f3d6d902dec304c5a5d3c0b0f210985b28a bytes=885 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_uHeTF8V2a58eHRdprE8AYP",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=347cda412a2f5263281d97bc13688ba49acf84faa1b6f0e8fadfd0981f9ff825 bytes=378 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_uHeTF8V2a58eHRdprE8AYP"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=da86b1e8e6613880d58d12b14ac0a735ab3b024606607c12ce387b73b264b9e1 bytes=1135 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_mF43ubfjUJ8vhPfQwlw1L8",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=347cda412a2f5263281d97bc13688ba49acf84faa1b6f0e8fadfd0981f9ff825 bytes=378 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_mF43ubfjUJ8vhPfQwlw1L8"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7be4adfc4f1ddf0eb3f02a966bf43e8a9ee0e8d83ddd29a4653cf20133813edc bytes=32 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=54a445b161f52227216dc606341e9fc6b9f0568fd7407388bd87e192138ac28c bytes=109 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_iZZykMHYROPC88EAQSAiSs",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=347cda412a2f5263281d97bc13688ba49acf84faa1b6f0e8fadfd0981f9ff825 bytes=378 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_iZZykMHYROPC88EAQSAiSs"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=dd435a1532785ba1ce10665b44165122da60ce9fbeb079381e56486ed8823103 bytes=13 field=run_python.code origin=->"
+     },
+     "name": "run_python",
+     "toolUseId": "tooluse_bPWyiZUs83PJBUsgMZubGs",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"returncode\": 2, \"stdout\": \"<redacted body sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855 bytes=0 field=stdout origin=->\", \"stderr\": \"<redacted body sha256=347cda412a2f5263281d97bc13688ba49acf84faa1b6f0e8fadfd0981f9ff825 bytes=378 field=stderr origin=->\"}"
+      }
+     ],
+     "toolUseId": "tooluse_bPWyiZUs83PJBUsgMZubGs"
+    }
+   },
+   {
+    "cachePoint": {
+     "type": "default"
+    }
+   }
+  ],
+  "role": "user"
+ },
+ {
+  "content": [
+   {
+    "text": "<redacted body sha256=7785b7ed2aac0a800e71fd3f732caf303f07cf7e1c711cfbbd5c98e9b6ad8c01 bytes=1208 field=message.text origin=->"
+   },
+   {
+    "toolUse": {
+     "input": {
+      "code": "<redacted body sha256=1fa22b4a256988e7514e6ddd8c115574f1ec16743350d961661ec606dce9ffc5 bytes=3763 field=submit_solution.code origin=->"
+     },
+     "name": "submit_solution",
+     "toolUseId": "tooluse_TTNcFPJ5ynHltkF1DxOCM0",
+     "type": "tool_use"
+    }
+   }
+  ],
+  "role": "assistant"
+ },
+ {
+  "content": [
+   {
+    "toolResult": {
+     "content": [
+      {
+       "text": "{\"status\": \"submitted\"}"
+      }
+     ],
+     "toolUseId": "tooluse_TTNcFPJ5ynHltkF1DxOCM0"
+    }
+   }
+  ],
+  "role": "user"
+ }
+]
