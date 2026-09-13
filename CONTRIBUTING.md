@@ -49,7 +49,12 @@ being able to run the thing.
   Send the command, the output and your Python version.
 - **Portability.** A platform, interpreter or numpy version where something
   breaks. The CI matrix is Linux and macOS on CPython 3.10–3.14; everything
-  outside that is unmeasured, and reports are welcome.
+  outside that is unmeasured, and reports are welcome. **Windows is the
+  specific gap.** `.gitattributes` pins `eol=lf` so the bytes you check out
+  are the bytes `MANIFEST.json` hashed — that much is gated, by cloning with
+  `core.autocrlf=true` on purpose in CI — but no check in this repository has
+  ever been *run* on Windows. If you are there, that is the most useful report
+  we do not have.
 - **Documentation that does not match the code.** Every command in
   `REPRODUCTION.md` was executed from a clean clone before it was written, and
   four of five commands in one block were wrong when that was first done. If
@@ -149,9 +154,13 @@ it back here as an `identifiers:` entry in `CITATION.cff` and a line in the
 README. Two things to decide first, because a DOI is permanent:
 
 - **What gets archived.** Zenodo takes a snapshot of the tagged tree. This one
-  is ~27 MB with the redacted transcripts and audit rows, well inside Zenodo's
-  50 GB limit, and it is exactly the artifact you would want archived — the
-  numbers stay re-derivable even if the repository moves.
+  is **3.5 MB as the zip GitHub hands Zenodo** (14.9 MB unpacked, 1,273 files,
+  measured 2026-09-13 with `git archive --format=zip HEAD`), well inside
+  Zenodo's 50 GB limit, and it is exactly the artifact you would want archived
+  — the numbers stay re-derivable even if the repository moves. The zip path
+  is checked, not assumed: every credential-free gate was run 2026-09-13
+  against an unpacked `git archive` with no `.git` directory at all, and all
+  of them pass.
 - **Authorship.** The Zenodo record's author list comes from `CITATION.cff`,
   which currently names the organisation rather than individuals.
 

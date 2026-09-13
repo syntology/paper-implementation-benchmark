@@ -228,7 +228,7 @@ MANIFEST.json  every file, its sha256, and the internal artifact it came from
 
 ## Running it
 
-### Quickstart — about two minutes, no credentials, $0
+### Quickstart — no credentials, $0
 
 ```bash
 git clone <this repository> && cd <repo>
@@ -238,6 +238,20 @@ pip install -r requirements.txt
 python3 tools/smoke_referee.py     # the referee really runs here: 3 tasks, offline
 python3 tools/verify_claims.py     # 67 checks re-derive every table above from data/
 ```
+
+**Measured, not estimated: 15 seconds** end to end — 0.5 s clone, 3.1 s venv,
+**8.1 s for a genuinely cold `pip install`** (empty pip cache, 37 MB of wheels
+fetched), 2.2 s smoke, 0.8 s claims. Taken 2026-09-13 in a fresh
+`python:3.12-slim` container with no pip cache and no network shaping; this
+file used to say "about two minutes", which was a guess, and the cold install
+is the only part that will move much on your machine — it is a 37 MB download,
+so on a slow link budget for that rather than for the checks.
+
+**On Debian or Ubuntu, `python3 -m venv` fails** until you install the venv
+package — `sudo apt install python3-venv` (measured on `ubuntu:24.04`:
+*"ensurepip is not available"*). Skipping the venv is not a way around it;
+Ubuntu 24.04 then refuses `pip install` with `externally-managed-environment`
+(PEP 668). The Docker `python:*` images and macOS need neither step.
 
 You should see `referee smoke: PASS` and
 `67 checks passed, 0 failed, 3 figures not checkable here`. That is the whole
@@ -375,7 +389,9 @@ experiments against different pre-registrations.
 ## Provenance
 
 `tools/assemble.py` built this tree from internal artifacts and `MANIFEST.json`
-records the sha256 and origin of every one of its 775 files;
+records the sha256 and origin of every one of its 1,272 files (2026-09-13;
+`python3 -c "import json;print(len(json.load(open('MANIFEST.json'))['files']))"`,
+and the manifest cannot record its own hash, which is the 1,273rd);
 `tools/assemble.py --check` re-verifies the tree against that recorded manifest
 rather than recomputing both sides. `tools/verify_claims.py` re-derives every
 mechanically checkable number in this repository from `data/` — 67 checks,

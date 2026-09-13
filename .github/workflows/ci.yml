@@ -318,6 +318,82 @@ jobs:
           echo "  boundary confirmed: the referee scores on 3.9, the arm runner does not import"
 
   # --------------------------------------------------------------------------
+  # The Windows reader, measured on a Linux runner.
+  #
+  # This repository hashes itself: MANIFEST.json records the sha256 of all
+  # 1,273 files and tools/check_clean_clone.py compares the clone against them
+  # byte for byte. Git's end-of-line conversion therefore looks exactly like
+  # corruption. MEASURED 2026-09-13, before .gitattributes existed:
+  #
+  #     git -c core.autocrlf=true clone <repo>   ->  clean-clone check: 1272 FINDINGS
+  #
+  # and `core.autocrlf=true` is the Git-for-Windows INSTALLER DEFAULT, so that
+  # is what a Windows reader gets by doing nothing. Every other gate passed on
+  # that clone -- verify_claims, smoke_referee, the redaction verify, the
+  # secret scan -- so the only thing that broke was the one check whose job is
+  # to say the clone is intact. There is no Windows leg in the matrix above and
+  # there does not need to be: the conversion is done by git on checkout, and
+  # a Linux runner can ask for it explicitly.
+  #
+  # The second step is the mutation test. A green first step proves nothing on
+  # its own -- it would also be green if git had stopped converting, or if the
+  # gate had stopped comparing -- so the file is deleted and the failure is
+  # required, with the diagnosis in it.
+  # --------------------------------------------------------------------------
+  crlf-checkout:
+    name: "a core.autocrlf=true clone still matches MANIFEST.json"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0        # the steps below re-clone FROM this checkout
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: |
+          python -m venv "$RUNNER_TEMP/venv"
+          "$RUNNER_TEMP/venv/bin/python" -m pip install --quiet --upgrade pip
+          "$RUNNER_TEMP/venv/bin/python" -m pip install --quiet -r requirements.txt
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+
+      - name: A Git-for-Windows-default clone matches the manifest
+        run: |
+          git -c core.autocrlf=true clone --quiet "$GITHUB_WORKSPACE" "$RUNNER_TEMP/crlf"
+          python tools/check_clean_clone.py --root "$RUNNER_TEMP/crlf" | tee "$RUNNER_TEMP/crlf.log"
+          grep -q "clean-clone check: CLEAN" "$RUNNER_TEMP/crlf.log"
+
+      - name: ... and WITHOUT .gitattributes it does not, with the reason named
+        run: |
+          git clone --quiet "$GITHUB_WORKSPACE" "$RUNNER_TEMP/noattr"
+          git -C "$RUNNER_TEMP/noattr" rm -q .gitattributes
+          git -C "$RUNNER_TEMP/noattr" -c user.email=ci@local -c user.name=ci \
+              commit -q -m "mutation: drop .gitattributes"
+          git -c core.autocrlf=true clone --quiet "$RUNNER_TEMP/noattr" "$RUNNER_TEMP/crlf_bad"
+          set +e
+          python tools/check_clean_clone.py --root "$RUNNER_TEMP/crlf_bad" > "$RUNNER_TEMP/bad.log" 2>&1
+          rc=$?
+          set -e
+          cat "$RUNNER_TEMP/bad.log"
+          if [ "$rc" != "1" ]; then
+            echo "::error::without .gitattributes a core.autocrlf=true clone still passed (exit $rc). Either git stopped converting line endings or the manifest gate stopped comparing bytes -- until you know which, the step above is not evidence of anything."
+            exit 1
+          fi
+          grep -q "line endings converted on checkout" "$RUNNER_TEMP/bad.log" || {
+            echo "::error::the gate failed, but not with the line-ending diagnosis. A reader in this situation gets a wall of 'sha256 drift' and no way to tell a converted checkout from a corrupted one."
+            exit 1
+          }
+          echo "  PROVED  .gitattributes is what makes the step above pass"
+
+      - name: The gate's own self-test covers both of those classes
+        run: |
+          python tools/check_clean_clone.py --self-test | tee "$RUNNER_TEMP/self.log"
+          grep -q "self-test: PASS" "$RUNNER_TEMP/self.log"
+          grep -q "MANIFEST-crlf" "$RUNNER_TEMP/self.log"
+          grep -q "decoy cwd" "$RUNNER_TEMP/self.log"
+
+  # --------------------------------------------------------------------------
   # The machine-readable half: metadata a tool consumes, validated by the tools
   # that consume it. A CITATION.cff with one wrong field renders nothing on
   # GitHub and fails silently, which is the same defect class as everything

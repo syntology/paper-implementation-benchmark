@@ -37,7 +37,11 @@ now, and `assemble.py` calls THIS module rather than keeping a second copy
                 (3.14.6); it executes nothing.
   IMPORTS       every `src/**/*.py` imports with ONLY its own directory on
                 sys.path -- which is exactly what `python3 src/analyze.py`
-                gives it, and exactly what the working repo hid.
+                gives it, and exactly what the working repo hid. The probe
+                runs from an empty cwd, because `python -c` puts the caller's
+                directory on sys.path and a reader standing in a directory
+                that happens to hold a same-named module would otherwise get
+                a pass this tree did not earn.
   REQUIREMENTS  every unguarded module-level third-party import under `src/`
                 is declared in requirements.txt. An import inside a try/except
                 or under `if __name__ == "__main__"` is an option, not a
@@ -46,7 +50,11 @@ now, and `assemble.py` calls THIS module rather than keeping a second copy
                 byte count, every recorded file is present, and nothing is
                 present that MANIFEST.json does not record. `assemble.py
                 --check` does this too but cannot run without the working
-                repo; this half needs nothing but the clone.
+                repo; this half needs nothing but the clone. A mismatch that
+                disappears when CRLF is read back as LF is named as a line-
+                ending conversion rather than reported as 1,272 corrupt
+                files -- `.gitattributes` prevents it, and this says so when
+                a clone made without it arrives anyway.
 
 Exit 0 clean - 1 findings, per the project exit-code contract.
 
@@ -163,26 +171,37 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     """Import every shipped module the way a reader runs it: on its own path."""
     findings: list[str] = []
     mods = sorted((root / subdir).rglob("*.py"))
-    for mod in mods:
-        # Imported by NAME, on a path, not through a synthetic spec:
-        # arxiv_client.py reassigns `sys.modules[__name__].__class__`, and a
-        # module loaded under a made-up name fails there for reasons that have
-        # nothing to do with this tree.
-        r = subprocess.run(
-            [sys.executable, "-c",
-             "import sys,importlib,pathlib;"
-             "p=pathlib.Path(sys.argv[1]);"
-             # ONLY the script's own directory, which is exactly what
-             # `python3 src/analyze.py` puts on the path. Adding vendor/ here
-             # made the gate pass a tree whose modules could not import -- the
-             # gate was supplying the fix it was testing for.
-             "sys.path.insert(0, str(p.parent));"
-             "importlib.import_module(p.stem)",
-             str(mod)], capture_output=True, text=True)
-        if r.returncode != 0:
-            last = (r.stderr.strip().splitlines() or ["?"])[-1]
-            findings.append(f"shipped module does not import: "
-                            f"{mod.relative_to(root)} -- {last[:120]}")
+    # The probe runs with its cwd in an EMPTY directory. `python -c` prepends
+    # the current working directory to sys.path, so without this the gate
+    # answers a question about the caller's cwd rather than about the clone:
+    # measured 2026-09-13, running this file's own --self-test from a
+    # directory that happens to contain `provenance.py` flips the
+    # IMPORTS-broken_import plant from `caught` to `MISSED`, because the
+    # planted module resolves against the cwd. That is the SAME defect class
+    # the gate exists to catch -- a module resolving to something that is not
+    # in the clone -- so leaving it here would make this the one check that
+    # can be silenced by where a reader happens to be standing.
+    with tempfile.TemporaryDirectory() as neutral:
+        for mod in mods:
+            # Imported by NAME, on a path, not through a synthetic spec:
+            # arxiv_client.py reassigns `sys.modules[__name__].__class__`, and
+            # a module loaded under a made-up name fails there for reasons
+            # that have nothing to do with this tree.
+            r = subprocess.run(
+                [sys.executable, "-c",
+                 "import sys,importlib,pathlib;"
+                 "p=pathlib.Path(sys.argv[1]);"
+                 # ONLY the script's own directory, which is exactly what
+                 # `python3 src/analyze.py` puts on the path. Adding vendor/
+                 # here made the gate pass a tree whose modules could not
+                 # import -- the gate was supplying the fix it was testing for.
+                 "sys.path.insert(0, str(p.parent));"
+                 "importlib.import_module(p.stem)",
+                 str(mod)], capture_output=True, text=True, cwd=neutral)
+            if r.returncode != 0:
+                last = (r.stderr.strip().splitlines() or ["?"])[-1]
+                findings.append(f"shipped module does not import: "
+                                f"{mod.relative_to(root)} -- {last[:120]}")
     return findings, {"examined": len(mods), "findings": len(findings)}
 
 
@@ -266,6 +285,7 @@ def check_manifest(root: Path) -> tuple[list[str], dict]:
     recorded = json.loads(man_p.read_text())["files"]
     files, skipped = _walk(root)
     seen = set()
+    eol = []                                # drift that is not content drift
     for p in files:
         rel = p.relative_to(root).as_posix()
         if rel == "MANIFEST.json":          # cannot record its own hash
@@ -277,14 +297,40 @@ def check_manifest(root: Path) -> tuple[list[str], dict]:
             continue
         data = p.read_bytes()
         if hashlib.sha256(data).hexdigest() != want["sha256"]:
-            findings.append(f"sha256 drift vs MANIFEST.json: {rel}")
+            # One kind of "drift" is not drift at all: git converted line
+            # endings on checkout. Measured 2026-09-13 -- `git -c
+            # core.autocrlf=true clone` (the Git-for-Windows installer
+            # DEFAULT) rewrites every file in this tree to CRLF and this
+            # check then reports all 1,272 of them as corruption, while the
+            # repository itself works fine. Naming it is the difference
+            # between a reader fixing their git config in ten seconds and a
+            # reader concluding the download is broken. It is still a
+            # finding -- the tree does not match the manifest -- it is just a
+            # finding that says what to do.
+            if (b"\r\n" in data
+                    and hashlib.sha256(data.replace(b"\r\n", b"\n")).hexdigest()
+                    == want["sha256"]):
+                eol.append(rel)
+            else:
+                findings.append(f"sha256 drift vs MANIFEST.json: {rel}")
         elif len(data) != want.get("bytes"):
             findings.append(f"byte count drift vs MANIFEST.json: {rel}")
+    if eol:
+        findings.append(
+            f"line endings converted on checkout, not content drift: "
+            f"{len(eol)} file(s) match MANIFEST.json exactly once CRLF is read "
+            f"back as LF (e.g. {', '.join(sorted(eol)[:3])}). Your git rewrote "
+            f"them -- core.autocrlf=true is the Git-for-Windows default. Fix: "
+            f"`git config --global core.autocrlf false` and re-clone, or clone "
+            f"with `git -c core.autocrlf=false clone`. The .gitattributes in "
+            f"this repository pins eol=lf and prevents it; a clone that hits "
+            f"this was made without it.")
     for rel in recorded:
         if rel not in seen and rel != "MANIFEST.json":
             findings.append(f"in MANIFEST.json but missing from the tree: {rel}")
     return findings, {"examined": len(seen), "recorded": len(recorded),
-                      "skipped": skipped, "findings": len(findings)}
+                      "skipped": skipped, "eol_converted": len(eol),
+                      "findings": len(findings)}
 
 
 CHECKS = [("COMPILE", check_compile), ("IMPORTS", check_imports),
@@ -309,7 +355,8 @@ def run(root: Path, quiet: bool = False) -> tuple[int, dict[str, list[str]]]:
 # --- self-test -------------------------------------------------------------
 
 def _plant(td: Path, *, broken_import=False, undeclared=False,
-           syntax_error=False, extra_file=False, drift=False, missing=False):
+           syntax_error=False, extra_file=False, drift=False, missing=False,
+           crlf=False):
     """A minimal tree of the same SHAPE as this repo, with one defect."""
     (td / "src").mkdir(parents=True)
     (td / "requirements.txt").write_text("numpy>=1.24\n")
@@ -334,6 +381,13 @@ def _plant(td: Path, *, broken_import=False, undeclared=False,
                           "source": "self-test", "rule": "authored"}
     if drift:
         (td / "src" / "ok.py").write_text("import json\nX = 2\n")   # after hashing
+    if crlf:
+        # What `git -c core.autocrlf=true clone` does to every file in the
+        # tree. Same content, different bytes, so the hash misses -- and the
+        # gate has to say WHICH of those two things happened.
+        for rel in ("src/ok.py", "requirements.txt"):
+            f = td / rel
+            f.write_bytes(f.read_bytes().replace(b"\n", b"\r\n"))
     if missing:
         files["src/never_written.py"] = {"sha256": "0" * 64, "bytes": 0,
                                          "source": "self-test", "rule": "authored"}
@@ -344,28 +398,62 @@ def _plant(td: Path, *, broken_import=False, undeclared=False,
 
 
 def self_test() -> int:
+    # (class, plant, substring the finding must contain -- or None for any).
+    # The `crlf` plant carries one because catching it is not enough: the
+    # whole point of that branch is the WORDING, and a CRLF checkout reported
+    # as "sha256 drift" would pass a class-only assertion while leaving the
+    # reader exactly as stuck as before.
     plants = [
-        ("IMPORTS", {"broken_import": True}),
-        ("REQUIREMENTS", {"undeclared": True}),
-        ("COMPILE", {"syntax_error": True}),
-        ("MANIFEST", {"drift": True}),
-        ("MANIFEST", {"extra_file": True}),
-        ("MANIFEST", {"missing": True}),
+        ("IMPORTS", {"broken_import": True}, None),
+        ("REQUIREMENTS", {"undeclared": True}, None),
+        ("COMPILE", {"syntax_error": True}, None),
+        ("MANIFEST", {"drift": True}, "sha256 drift"),
+        ("MANIFEST", {"extra_file": True}, None),
+        ("MANIFEST", {"missing": True}, None),
+        ("MANIFEST", {"crlf": True}, "line endings converted on checkout"),
     ]
     missed = []
-    for want, kw in plants:
+    for want, kw, must in plants:
         with tempfile.TemporaryDirectory() as d:
             td = Path(d)
             _plant(td, **kw)
             _, out = run(td, quiet=True)
             label = f"{want}-{'+'.join(kw)}"
-            if out[want]:
+            if out[want] and (must is None
+                              or any(must in f for f in out[want])):
                 print(f"  caught  {label}")
+            elif out[want]:
+                print(f"  MISSED  {label} -- fired, but no finding said "
+                      f"{must!r}: {out[want][:2]}")
+                missed.append(label)
             else:
                 print(f"  MISSED  {label}")
                 missed.append(label)
             # A plant must fire its OWN class. A COMPILE plant that only shows
             # up as an IMPORTS failure has not proved the compile gate works.
+    # The IMPORTS plant again, but run from a decoy working directory that
+    # SUPPLIES the missing module. `python -c` puts cwd on sys.path, so until
+    # 2026-09-13 this flipped the plant from `caught` to `MISSED` and the gate
+    # quietly reported a clean tree because of a file that was never in it.
+    import os
+    with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as decoy:
+        td = Path(d)
+        _plant(td, broken_import=True)
+        (Path(decoy) / "provenance.py").write_text("X = 1\n")
+        here = os.getcwd()
+        try:
+            os.chdir(decoy)
+            _, out = run(td, quiet=True)
+        finally:
+            os.chdir(here)
+        if out["IMPORTS"]:
+            print("  caught  IMPORTS-broken_import from a decoy cwd "
+                  "(the probe ignores the caller's directory)")
+        else:
+            print("  MISSED  IMPORTS-cwd-leak: a module in the CALLER's cwd "
+                  "satisfied an import that is not in the tree")
+            missed.append("IMPORTS-cwd-leak")
+
     with tempfile.TemporaryDirectory() as d:                 # negative control
         td = Path(d)
         _plant(td)

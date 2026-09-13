@@ -1,0 +1,36 @@
+# Line endings, pinned, because this repository hashes itself.
+#
+# MANIFEST.json records the sha256 of every one of these files and
+# tools/check_clean_clone.py compares your checkout against those hashes BYTE
+# FOR BYTE. Git's end-of-line conversion therefore turns a perfectly good
+# clone into a wall of findings that look like corruption and are not.
+#
+# MEASURED 2026-09-13, on Linux, cloning this repository's own history:
+#
+#     git -c core.autocrlf=true clone <repo> win && cd win
+#     python3 tools/check_clean_clone.py
+#     ->  clean-clone check: 1272 FINDINGS      (every file, "sha256 drift")
+#
+# `core.autocrlf=true` is the Git-for-Windows installer default, so that is
+# not an exotic configuration -- it is what a Windows reader gets by doing
+# nothing. And the repository still WORKS in that state: verify_claims.py,
+# smoke_referee.py, redact_transcripts.py --verify and scan_secrets.py all
+# pass on a CRLF checkout. The only thing that breaks is the one gate whose
+# whole job is to say "this clone is intact", which is the worst possible
+# place for a false alarm.
+#
+# `eol=lf` pins the working-tree ending regardless of core.autocrlf or
+# core.eol, so the bytes you check out are the bytes that were hashed. No file
+# in this tree contains a CR byte and none is binary (measured: 0 of 1,273),
+# so this changes nothing about what is stored -- only about what your git is
+# allowed to do to it on the way out.
+#
+# Corollary for anyone committing here: content is LF in the repository. If
+# you commit a file containing CRLF, git normalises it on the way in, your
+# working tree keeps the CRLF, and `git status` will tell you immediately --
+# which is the right place to find out, rather than in a stranger's clone.
+#
+# The `crlf-checkout` job in .github/workflows/ci.yml proves this file works
+# by cloning with core.autocrlf=true and requiring a CLEAN gate, and proves
+# the gate can still fire by deleting this file and requiring a FAILURE.
+* text=auto eol=lf

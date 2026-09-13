@@ -74,7 +74,39 @@ the two arms that read a graph; `scipy` only to sharpen one Wilcoxon p-value.
 
 **This install was executed, not written from memory**: `python3 -m venv`,
 `pip install -r requirements.txt`, on macOS with CPython 3.14.6, into a fresh
-`git clone` of this repository with nothing else on the path.
+`git clone` of this repository with nothing else on the path. Re-measured
+2026-09-13 on Linux, from a clone of a **bare** clone — which is the shape a
+remote actually has — in a container with an empty pip cache: 0.5 s to clone,
+3.1 s for the venv, **8.1 s for the cold `pip install`** (37 MB of wheels),
+2.2 s for the smoke test, 0.8 s for `verify_claims.py`. Fifteen seconds, not
+the two minutes this file used to guess.
+
+**Two things that will stop you before any of that, neither of them ours:**
+
+- **Debian/Ubuntu ships `venv` separately.** `python3 -m venv .venv` prints
+  *"ensurepip is not available"* and creates nothing until you
+  `sudo apt install python3-venv` (measured on `ubuntu:24.04`, system CPython
+  3.12.3). Skipping the venv does not help: pip then refuses with
+  `error: externally-managed-environment` (PEP 668). The `python:*` Docker
+  images and macOS need neither step.
+- **An old `pip` is fine.** Measured on the 3.10 floor: the stock pip 23.0.1
+  installs cleanly, and so does a deliberately ancient pip 21.3.1 with
+  setuptools 58.0.4 — every requirement resolves from wheels, nothing here
+  builds from source. You will get a nag about upgrading pip and nothing else.
+
+**Line endings, if you are on Windows.** `.gitattributes` pins `eol=lf`,
+because every file here is hashed in `MANIFEST.json` and
+`tools/check_clean_clone.py` compares your checkout byte for byte. Before that
+file existed, a `git -c core.autocrlf=true clone` — the Git-for-Windows
+installer default — produced **1,272 findings** on an otherwise perfect clone
+while every other gate passed; the `crlf-checkout` job in CI now clones that
+way on purpose and requires CLEAN, and proves the point by deleting
+`.gitattributes` and requiring the failure back. If you somehow see it anyway,
+the gate now names it as a line-ending conversion and tells you to re-clone
+with `core.autocrlf=false` rather than reporting your download as corrupt.
+**Whether the checks themselves pass on Windows is UNMEASURED** — there is no
+Windows leg in CI, nothing here is obviously POSIX-only, and the activate line
+above is the Unix one (`.venv\Scripts\activate` on Windows). Reports welcome.
 
 ## Check your install before spending anything
 
