@@ -39,8 +39,22 @@ By transcript timestamps, **22%** of run activity precedes that write and
 **78%** follows it. The graph arm did not read one fixed graph; it read a graph
 that gained citation edges partway through.
 
-This should not have happened, and a lane freeze during a scored run is the
-obvious fix. It is disclosed here rather than discovered by a reader.
+**And it was not one write. A gate built afterwards to detect exactly this
+found 39.** The CITES tranche dominates by four orders of magnitude, but the
+run window also contains 36 author-correction *undo round trips* from
+`audit_author_extraction.py` (net `AUTHORED_BY` 0, `Author` +12) and two
+institution deletions (`Institution` −2, `AFFILIATED_WITH` −8). So the graph
+did not only grow underneath the run — it also **lost nodes and edges** while
+being scored. An earlier version of this file said "a write"; it was 39, and
+the correction is kept here rather than quietly folded in.
+
+This should not have happened, and it is disclosed here rather than discovered
+by a reader. It is now also prevented rather than merely regretted: the sweep
+runner records its own window, snapshots the graph at both edges, and **exits
+2 rather than reporting a score** if the write ledger shows any non-dry,
+non-zero-delta write overlapping that window. Run against the 2026-09-10
+window it refuses with all 39, which is the only test of such a gate that
+means anything.
 
 **Which way it biases the headline.** The published result is a *null*: the
 graph arm tied a flat BM25+cosine index at 24/24 with no discordant tasks. The
