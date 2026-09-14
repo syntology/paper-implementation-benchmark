@@ -237,6 +237,11 @@ surface.
 
 ## n, and the stopping rule — which depends on cost only
 
+**Kill criteria — this section is them.** If you came looking for the phrase
+and could not grep it, that was our fault and this paragraph is the fix. There
+is exactly one pre-specified rule for when this benchmark stops, it is the
+stopping rule below, and it reads **cost and nothing else**.
+
 `tasks_substitution.json`: **72 tasks** — the 24 from `tasks_freeze.json`
 (carried forward unedited, so they stay paired with v1.5's ceiling result)
 plus **48 new** admitted by a stricter rule than the original builder's:

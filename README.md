@@ -14,9 +14,37 @@ Four arms, identical prompt, identical budgets, identical held-out referee:
 | `code_only` | two tools over a **flat index** of the same code, with the graph removed |
 
 It has been run four times, each time against a pre-registration written and
-committed before any subject token was spent. Total subject spend across all
+committed before any subject token was spent. The **kill criteria** are the
+stopping rule in [`prereg/PREREGISTRATION_SUBSTITUTION.md`](prereg/PREREGISTRATION_SUBSTITUTION.md),
+and they read cost alone — never a result. Total subject spend across all
 four: **$75.88**. Every number in this repository is re-derivable from the
 artifacts in `data/`.
+
+---
+
+## Check it yourself — 15 seconds, no credentials, $0
+
+```bash
+python3 -m venv .venv && . .venv/bin/activate      # CPython 3.10+
+pip install -r requirements.txt
+
+python3 tools/smoke_referee.py     # the referee really runs here: 3 tasks, offline
+python3 tools/verify_claims.py     # 67 checks re-derive every table below from data/
+```
+
+You should see `referee smoke: PASS` and
+`67 checks passed, 0 failed, 3 figures not checkable here`. **Those three are
+printed rather than passed over** — what genuinely cannot be checked outside
+Syntology is named, not quietly skipped.
+
+Using a coding agent? Hand it this:
+
+> Read `REPRODUCTION.md` in this repository, run the credential-free
+> verification, and tell me which claims it could **not** check here and why.
+
+Timings, the Debian/Ubuntu `python3-venv` caveat, and the paid arms are under
+[Running it](#running-it); [`REPRODUCTION.md`](REPRODUCTION.md) is the full
+answer, including [what cannot be re-run outside Syntology](#why-the-flat-index-is-not-in-this-repository).
 
 ---
 
