@@ -140,6 +140,34 @@ jobs:
       - name: Interpreter and installed requirements
         run: |
           python -VV
+          # WHICH ENCODING WORLD IS THIS RUNNER IN? (2026-09-14)
+          # verify_claims reads README.md and LICENSE_QUESTION.md with
+          # Path.read_text() and no explicit encoding, so it follows the locale:
+          # UTF-8 on Linux and macOS, cp1252 on a Western Windows install. The
+          # phrases it asserts are pure ASCII, so it is expected to PASS EVEN
+          # WHEN THE TEXT IS MANGLED -- and a pass that cannot distinguish
+          # "read correctly" from "read wrongly and asserted an ASCII substring
+          # anyway" is not evidence about either. So the run says which.
+          python - <<'PY'
+          import locale, sys
+          from pathlib import Path
+          print(f"locale.getpreferredencoding={locale.getpreferredencoding(False)!r} "
+                f"utf8_mode={sys.flags.utf8_mode}")
+          for name in ("README.md", "LICENSE_QUESTION.md"):
+              p = Path(name)
+              if not p.is_file():
+                  continue
+              raw = p.read_bytes()
+              try:
+                  locale_read = p.read_text()
+              except UnicodeDecodeError as e:
+                  print(f"  {name}: UNREADABLE under the locale -- {e.reason}")
+                  continue
+              utf8 = raw.decode("utf-8")
+              delta = sum(1 for a, b in zip(locale_read, utf8) if a != b) + abs(len(locale_read) - len(utf8))
+              print(f"  {name}: locale-read {'MATCHES' if delta == 0 else f'DIFFERS from'} utf-8"
+                    + ("" if delta == 0 else f" by {delta} chars -- the gate is asserting against mangled text"))
+          PY
           python -c "import numpy, boto3, botocore, requests, neo4j; print('requirements import OK')"
           pip list
 
