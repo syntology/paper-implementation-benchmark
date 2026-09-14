@@ -167,30 +167,17 @@ jobs:
               delta = sum(1 for a, b in zip(locale_read, utf8) if a != b) + abs(len(locale_read) - len(utf8))
               print(f"  {name}: a BARE read_text() here would {'match' if delta == 0 else f'differ by {delta} chars'}"
                     " vs utf-8 (a platform fact, not a defect)")
-          # THE REGRESSION GUARD. The line above measures the PLATFORM and will
-          # always differ on Windows -- that is what cp1252 is. What must not
-          # come back is shipped code that reads text WITHOUT saying utf-8, and
-          # that is what this counts. 97 sites were fixed 2026-09-14 after the
-          # windows leg showed verify_claims passing on text that differed from
-          # its UTF-8 content by 20,463 characters.
-          import re
-          bare = []
-          for f in sorted(Path("src").rglob("*.py")) + sorted(Path("tools").rglob("*.py")):
-              for i, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
-                  if "encoding=" in line or line.strip().startswith("#"):
-                      continue
-                  if re.search(r"\.read_text\(\s*\)|\.write_text\(", line):
-                      bare.append(f"{f}:{i}")
-          print(f"  bare text I/O in shipped code: {len(bare)}")
-          for b in bare:
-              print(f"    {b}")
-          # Two known ASCII-only self-test fixtures in check_clean_clone.py
-          # carry parentheses inside string literals and were left alone; a
-          # third would be a regression.
-          if len(bare) > 2:
-              print("::error::bare read_text/write_text has come back in shipped code")
-              raise SystemExit(1)
           PY
+
+      # The guard that replaced an inline grep. The grep version reported 8
+      # already-fixed sites (a multi-line call puts `encoding=` on a later
+      # line) and read every binary `p.open("rb")` as a text call (the mode
+      # sits in args[0] for a Path method, args[1] for the builtin). Both were
+      # defects of the instrument. This one parses.
+      - name: Every text read and write names its encoding
+        run: |
+          python tools/qc_explicit_encoding.py
+          echo explicit_encoding >> "$RUNNER_TEMP/ran.txt"
           python -c "import numpy, boto3, botocore, requests, neo4j; print('requirements import OK')"
           pip list
 
@@ -350,7 +337,7 @@ jobs:
       # running and a check that stopped existing.
       - name: Every expected check actually ran
         run: |
-          expected="clean_clone clean_clone_self verify_claims fidelity_bracket scan_secrets scan_secrets_self redactor_self redactor_verify qc_code_only declared_skips tree_unchanged"
+          expected="clean_clone clean_clone_self explicit_encoding verify_claims fidelity_bracket scan_secrets scan_secrets_self redactor_self redactor_verify qc_code_only declared_skips tree_unchanged"
           # Platform-conditional expectations are NAMED here, not omitted. A
           # shorter list with no explanation is the silent skip this ledger
           # exists to prevent; this says which check is not expected, on which

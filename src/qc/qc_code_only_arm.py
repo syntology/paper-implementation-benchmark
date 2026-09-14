@@ -90,7 +90,7 @@ def _code_only(text: str) -> str:
 
 
 def check_purity(findings):
-    src = _code_only(ARM.read_text())
+    src = _code_only(ARM.read_text(encoding="utf-8"))
     for pat, what in FORBIDDEN:
         m = re.search(pat, src)
         if m:
@@ -152,7 +152,7 @@ def check_alignment(findings):
         findings.append(f"[C] alignment: {vec_p.name}/{sha_p.name} missing -- "
                         f"run build_code_vectors.py")
         return lex
-    shas = json.loads(sha_p.read_text())
+    shas = json.loads(sha_p.read_text(encoding="utf-8"))
     if shas != lex["sha"]:
         findings.append(
             "[C] alignment: all_shas.json and lexicon.pkl disagree on row "
@@ -183,7 +183,7 @@ def check_r2(findings, lex, live=True):
         findings.append(f"[D] R2: {recs} missing")
         return
     levels, shas, bad = [], [], 0
-    with recs.open() as fh:
+    with recs.open(encoding="utf-8") as fh:
         for line in fh:
             line = line.strip()
             if not line:

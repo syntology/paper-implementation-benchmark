@@ -158,7 +158,7 @@ def main():
     doclen = []
     n = 0
     with driver.session(database=os.environ.get("NEO4J_DATABASE", "neo4j")) as s, \
-            recs_p.open("w") as fh:
+            recs_p.open("w", encoding="utf-8") as fh:
         for r in fetch_all(s, args.limit):
             # R2 / the 313-node lesson: a level with no verification_report
             # behind it is 0 here, exactly as the graph arm reports it. The
