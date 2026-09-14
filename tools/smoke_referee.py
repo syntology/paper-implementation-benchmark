@@ -128,6 +128,24 @@ def main() -> int:
                       f"  ({row.get('properties_required') if row else '?'} properties){detail}")
                 if not ok:
                     failures.append(tid)
+                    # This file's docstring promises a failure is INFORMATIVE
+                    # either way. It was not. verify_solutions already captures
+                    # the referee's stderr into `detail` (verify_solutions.py,
+                    # the referee_ branch) -- it was simply never printed here,
+                    # so the single most likely first-run failure, dependencies
+                    # not installed, surfaced as "(None properties) --
+                    # referee_crash". That reads as a broken benchmark rather
+                    # than a missing venv, which is the worst possible first
+                    # minute for a stranger who came to check our work.
+                    why = (row.get("detail") or "").strip() if row else ""
+                    if why:
+                        print(f"        {why.splitlines()[-1][:160]}")
+                        if "ModuleNotFoundError" in why or "ImportError" in why:
+                            print(f"        -> the referee ran under {sys.executable},")
+                            print("           which does not have this repo's dependencies. Try:")
+                            print("             python3 -m venv venv")
+                            print("             ./venv/bin/pip install -r requirements.txt")
+                            print("             ./venv/bin/python3 tools/smoke_referee.py")
     finally:
         if args.keep:
             print(f"\ntemp tree kept at {tmp}")
