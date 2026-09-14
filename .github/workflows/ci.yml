@@ -157,7 +157,15 @@ jobs:
           echo clean_clone_self >> "$RUNNER_TEMP/ran.txt"
 
       # ---- the checks that already existed ---------------------------------
+      # SANDBOX-DEPENDENT, SO UNIX-ONLY (2026-09-14). smoke_referee runs
+      # verify_solutions, which imports `resource` for RLIMIT_CPU and RLIMIT_AS
+      # -- the caps this benchmark puts around untrusted code. POSIX-only
+      # stdlib; Windows has Job Objects instead, which is a port and not a
+      # patch. The skip is DECLARED in the expectation ledger below rather than
+      # dropped, because that ledger's whole point is telling a check that
+      # stopped running from one that stopped existing.
       - name: Referee smoke test (offline, $0)
+        if: runner.os != 'Windows'
         run: |
           python tools/smoke_referee.py | tee "$RUNNER_TEMP/smoke.log"
           grep -q "referee smoke: PASS" "$RUNNER_TEMP/smoke.log"
@@ -291,7 +299,18 @@ jobs:
       # running and a check that stopped existing.
       - name: Every expected check actually ran
         run: |
-          expected="clean_clone clean_clone_self smoke_referee verify_claims fidelity_bracket scan_secrets scan_secrets_self redactor_self redactor_verify qc_code_only declared_skips tree_unchanged"
+          expected="clean_clone clean_clone_self verify_claims fidelity_bracket scan_secrets scan_secrets_self redactor_self redactor_verify qc_code_only declared_skips tree_unchanged"
+          # Platform-conditional expectations are NAMED here, not omitted. A
+          # shorter list with no explanation is the silent skip this ledger
+          # exists to prevent; this says which check is not expected, on which
+          # OS, and why, and it still fails if the check vanishes on Unix.
+          if [ "$RUNNER_OS" != "Windows" ]; then
+            expected="$expected smoke_referee"
+          else
+            echo "platform: smoke_referee NOT expected on Windows -- it runs"
+            echo "platform: verify_solutions, which needs POSIX-only \`resource\`."
+            echo "platform: a Windows reader can verify the claims, not run the benchmark."
+          fi
           missing=""
           for c in $expected; do
             grep -qx "$c" "$RUNNER_TEMP/ran.txt" || missing="$missing $c"
