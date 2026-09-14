@@ -88,13 +88,22 @@ jobs:
         # characters, and verify_claims asserts only ASCII phrases against them
         # -- so it is expected to PASS ON CORRUPTED TEXT. A green verify_claims
         # on Windows is the finding this leg exists to produce.
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-latest]
         python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
         include:
           # The published runs were made on macOS with CPython 3.14.6. One leg
           # keeps that combination honest; the rest prove it is not required.
           - os: macos-latest
             python: "3.14"
+          # ONE Windows leg, not five (2026-09-14). The first Windows run
+          # measured the same fact five times: `resource` is POSIX-only stdlib
+          # and five shipped modules need it, identically on 3.10 through 3.14.
+          # A cross product that varies nothing costs quota -- Windows minutes
+          # bill at 2x on a private repo -- and tells you once what it told you
+          # five times. 3.12 is the leg; if a version-specific Windows
+          # behaviour ever turns up, that is the moment to widen it back.
+          - os: windows-latest
+            python: "3.12"
 
     steps:
       - uses: actions/checkout@v4

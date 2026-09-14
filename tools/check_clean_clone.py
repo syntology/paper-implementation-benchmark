@@ -76,6 +76,7 @@ import hashlib
 import json
 import py_compile
 import re
+import os
 import subprocess
 import sys
 import tempfile
@@ -167,9 +168,26 @@ def check_compile(root: Path) -> tuple[list[str], dict]:
 
 # --- IMPORTS ---------------------------------------------------------------
 
+# Stdlib modules that exist on POSIX and simply do not on Windows. Named
+# explicitly rather than matched loosely: the point is to excuse a PLATFORM
+# fact, never a missing dependency, and a short closed list is the difference.
+_POSIX_ONLY = ("resource", "fcntl", "pwd", "grp", "termios", "posix", "syslog")
+
+
+def _posix_only_stdlib(err: str) -> str | None:
+    """The POSIX-only module named by a ModuleNotFoundError, or None."""
+    if "ModuleNotFoundError" not in err:
+        return None
+    for name in _POSIX_ONLY:
+        if f"No module named '{name}'" in err:
+            return name
+    return None
+
+
 def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     """Import every shipped module the way a reader runs it: on its own path."""
     findings: list[str] = []
+    unsupported: list[str] = []
     mods = sorted((root / subdir).rglob("*.py"))
     # The probe runs with its cwd in an EMPTY directory. `python -c` prepends
     # the current working directory to sys.path, so without this the gate
@@ -200,9 +218,34 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
                  str(mod)], capture_output=True, text=True, cwd=neutral)
             if r.returncode != 0:
                 last = (r.stderr.strip().splitlines() or ["?"])[-1]
+                posix_only = _posix_only_stdlib(last)
+                if posix_only and os.name == "nt":
+                    # A PLATFORM FACT, COUNTED, NOT A FINDING (2026-09-14).
+                    # `resource` is POSIX-only stdlib and run_sandboxed.py uses
+                    # it for RLIMIT_CPU and RLIMIT_AS -- the CPU and memory caps
+                    # this benchmark puts around untrusted code. Five shipped
+                    # modules therefore cannot import on Windows, and that is
+                    # true, permanent and architectural: Windows has no rlimits,
+                    # only Job Objects, which is a port and not a patch.
+                    #
+                    # Reporting it as a finding made the whole Windows leg red
+                    # and hid the question the leg was added to answer -- can a
+                    # Windows reader VERIFY THE CLAIMS, which needs no sandbox
+                    # at all. So it is separated rather than suppressed: named
+                    # every run, counted in its own bucket, and never silently
+                    # dropped. Only on Windows, and only for stdlib modules that
+                    # genuinely do not exist there -- a missing THIRD-PARTY
+                    # module is still a finding, because that is a packaging
+                    # defect rather than a platform one.
+                    unsupported.append(f"{mod.relative_to(root)} -- needs "
+                                       f"{posix_only!r}, POSIX-only stdlib")
+                    continue
                 findings.append(f"shipped module does not import: "
                                 f"{mod.relative_to(root)} -- {last[:120]}")
-    return findings, {"examined": len(mods), "findings": len(findings)}
+    for u in unsupported:
+        print(f"          [platform] not importable on this OS: {u}")
+    return findings, {"examined": len(mods), "findings": len(findings),
+                      "platform_unsupported": len(unsupported)}
 
 
 # --- REQUIREMENTS ----------------------------------------------------------
