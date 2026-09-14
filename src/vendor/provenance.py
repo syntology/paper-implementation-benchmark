@@ -249,6 +249,16 @@ def stamp(inputs, params: dict | None = None,
 
 
 def _atomic_write_text(path: Path, text: str):
+    # mkstemp does NOT create the directory it is handed, and its failure names
+    # the temp file rather than the missing parent -- so a first write into a new
+    # directory dies with
+    #   FileNotFoundError: .../<INTERNAL>/.load_bolt_ramp.json.6011.tmp
+    # about a file that was never created. That crashed `loadtest-bolt-ramp`
+    # on 2026-09-13, 21s in, and reads as a mystery rather than as "mkdir first".
+    # Every derived artifact in this project comes through here and every lane
+    # opens a new <INTERNAL>/ directory, so this is the first-write-in-a-new-lane
+    # defect. Creating the parent is what the caller always meant.
+    path.parent.mkdir(parents=True, exist_ok=True)
     fd, tmp = tempfile.mkstemp(dir=str(path.parent), prefix=f".{path.name}.", suffix=".tmp")
     try:
         with os.fdopen(fd, "w") as f:

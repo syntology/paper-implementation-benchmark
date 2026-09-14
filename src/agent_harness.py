@@ -432,7 +432,17 @@ def _dispatch(name, args, run_python):
 
 def run_one(task: dict, arm: str, out_root: Path, client,
             variant: str = None, tasks_path: Path = None,
-            holdout: dict = None) -> dict:
+            holdout: dict = None, max_turns: int = None,
+            wall_cap_s: int = None) -> dict:
+    # The budget this run actually gets. Defaults are the module constants, so
+    # every previous version of this benchmark is byte-unchanged; the override
+    # exists because `MAX_TURNS` was a module constant with no way to reach it
+    # from the CLI, and the v1 freeze's sharpest search-arm number -- the cap
+    # hit in 11/24 runs -- cannot be told apart from an effect without one.
+    # See PREREGISTRATION_TURN_BUDGET.md.
+    max_turns = MAX_TURNS if max_turns is None else int(max_turns)
+    wall_cap_s = WALL_CAP_S if wall_cap_s is None else int(wall_cap_s)
+
     run_dir = out_root / task["task_id"] / arm
     meta_p = run_dir / "meta.json"
     if meta_p.exists():
@@ -486,8 +496,8 @@ def run_one(task: dict, arm: str, out_root: Path, client,
     t0 = time.time()
     stop_reason = None
 
-    for turn in range(MAX_TURNS):
-        if time.time() - t0 > WALL_CAP_S:
+    for turn in range(max_turns):
+        if time.time() - t0 > wall_cap_s:
             stop_reason = "wall_cap"
             break
         # Rolling prompt cache: one point after system (covers tools+system),
@@ -555,6 +565,16 @@ def run_one(task: dict, arm: str, out_root: Path, client,
         # recorded only in a side file cannot answer "was this run held out?"
         # from the artifact the analysis reads.
         "holdout_shas": sorted(ho_shas) if ho_shas else [],
+        # Same argument as holdout_shas one line up: the budget a run was
+        # given is a fact ABOUT that run, and an analysis that has to infer it
+        # from which sweep directory the file sits in is inferring, not
+        # reading. `submit_turn` is the censoring variable the turn-budget
+        # analysis needs and it was only ever recoverable by re-scanning
+        # tool_calls.
+        "max_turns": max_turns,
+        "wall_cap_s": wall_cap_s,
+        "submit_turn": next((c["turn"] for c in tool_calls
+                             if c["tool"] == "submit_solution"), None),
         "base_arm": base_arm,
         "stratum": task["stratum"], "method": task["method"],
         "submitted": submitted is not None,
@@ -581,7 +601,8 @@ def run_one(task: dict, arm: str, out_root: Path, client,
     # (rewriting them would be worse); from here the stamp follows --tasks.
     provenance.write_json(meta_p, meta,
                           inputs=[tasks_path or (HERE / "tasks" / "tasks.json")],
-                          params={"arm": arm, "max_turns": MAX_TURNS,
+                          params={"arm": arm, "max_turns": max_turns,
+                                  "wall_cap_s": wall_cap_s,
                                   "variant": variant})
     return meta
 
@@ -601,7 +622,26 @@ def main():
     ap.add_argument("--holdout", default=None,
                     help="holdout_sets.json (PREREGISTRATION_SUBSTITUTION.md); "
                          "required by the *_ho arms, ignored by the others")
+    ap.add_argument("--max-turns", type=int, default=None,
+                    help=f"assistant-turn cap (default {MAX_TURNS}). Raising it "
+                         f"changes the experiment: PREREGISTRATION_TURN_BUDGET.md")
+    ap.add_argument("--wall-cap-s", type=int, default=None,
+                    help=f"per-run wall cap in seconds (default {WALL_CAP_S}). "
+                         f"Raise it WITH --max-turns or the wall becomes the "
+                         f"new cap and the turn result is an artifact again")
     args = ap.parse_args()
+
+    # A raised turn cap under the default wall cap silently reintroduces the
+    # very confound this flag exists to remove, so refuse the combination
+    # rather than reporting a wall-capped run as a turn-budget measurement.
+    if args.max_turns and args.max_turns > MAX_TURNS:
+        implied = args.max_turns * (WALL_CAP_S / MAX_TURNS)
+        if (args.wall_cap_s or WALL_CAP_S) < implied:
+            sys.exit(
+                f"--max-turns {args.max_turns} needs --wall-cap-s >= "
+                f"{int(implied)} (scaled from {MAX_TURNS} turns / {WALL_CAP_S}s); "
+                f"otherwise the wall cap binds first and the run measures the "
+                f"wall, not the turn budget")
 
     holdout = None
     if args.holdout:
@@ -634,7 +674,8 @@ def main():
     with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
         futs = {ex.submit(_run_guarded, t, a, out_root, client,
                           args.variant, Path(args.tasks),
-                          holdout): (t["task_id"], a)
+                          holdout, args.max_turns,
+                          args.wall_cap_s): (t["task_id"], a)
                 for t, a in jobs}
         for fut in concurrent.futures.as_completed(futs):
             tid, arm = futs[fut]

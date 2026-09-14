@@ -2,8 +2,8 @@
 """
 corpus_files.py -- the ONE way this codebase enumerates corpus paper files.
 
-WHY THIS EXISTS (2026-08-29): `<CORPUS>/` is a symlink to
-<ARCHIVE_VOLUME>/<CORPUS> (RETIRED 2026-09-01 -- the
+WHY THIS EXISTS (2026-08-29): `canebrake_corpus/` is a symlink to
+<ARCHIVE_VOLUME>/canebrake_corpus (RETIRED 2026-09-01 -- the
 symlink now points at local APFS; the rule below still matters for S3
 restores and any non-native volume). That volume was not a native
 macOS filesystem, so macOS writes an AppleDouble sidecar ("._2001.07676.json")

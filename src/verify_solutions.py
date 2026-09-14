@@ -74,17 +74,15 @@ def main():
                "search_calls": meta.get("search_calls"),
                "stop_reason": meta.get("stop_reason")}
         if not sol.exists():
-            # Two different things used to land here with the same verdict.
-            # An arm that ran out of turns without submitting is a RESULT --
-            # the v1 freeze measured 11/24 of them in the search arm, and
-            # they are failures on purpose. A meta.json that says
-            # `submitted: true` next to a directory with no solution.py is
-            # not a result, it is a malformed input, and scoring it as a
-            # failed run writes a verdict the evidence contradicts
-            # (STANDARDS R2). Measured 2026-09-13: a reader following
-            # REPRODUCTION.md who names the file main.py gets
-            # "verified 1 runs (0 passed)" and exit 0 -- which reads as
-            # "my agent failed the benchmark" when nothing was ever loaded.
+            # Two different things used to land here with the same verdict. An
+            # arm that ran out of turns without submitting is a RESULT -- the
+            # v1 freeze measured 11/24 of them in the search arm and they are
+            # failures on purpose. A meta.json saying `submitted: true` beside
+            # a directory with no solution.py is not a result, it is a
+            # malformed input, and scoring it as a failed run writes a verdict
+            # the evidence contradicts (R2). Measured 2026-09-13: a reader who
+            # names the file main.py gets "verified 1 runs (0 passed)" and
+            # exit 0 -- which reads as "my agent failed" when nothing loaded.
             if meta.get("submitted") is True:
                 ledger.exclude("meta_says_submitted_but_no_solution_py")
                 continue
@@ -117,23 +115,20 @@ def main():
     n_pass = sum(1 for r in rows if r.get("passed"))
     print(f"verified {len(rows)} runs -> {args.out}  ({n_pass} passed)")
 
-    # The ledger above was being FILLED and never read -- the exclusions rode
-    # into the output JSON and nothing printed them, nothing gated on them
-    # (STANDARDS R3c and R11: a mechanism that exists and is not called is a
-    # defect that reads as progress). Measured 2026-09-13, all at exit 0:
-    # a nonexistent --runs directory, an empty one, `<arm>/<task>` instead of
-    # `<task>/<arm>`, a missing meta.json and a typo'd task id ALL printed
-    # "verified 0 runs (0 passed)" and reported success. This is the path
-    # README.md calls the one most likely to be useful to an outsider, so a
-    # silent zero is the worst available answer.
+    # The ledger above was being FILLED and never read -- exclusions rode into
+    # the output JSON with nothing printing them and nothing gating on them
+    # (R3c and R11: a mechanism that exists and is not called is a defect that
+    # reads as progress). Measured 2026-09-13, all at exit 0: a nonexistent
+    # --runs directory, an empty one, `<arm>/<task>` instead of `<task>/<arm>`,
+    # a missing meta.json and a typo'd task id ALL printed "verified 0 runs
+    # (0 passed)" and reported success.
     if not rows:
         print(f"REFUSED: nothing was scored. {ledger.summary()}\n"
-              f"  --runs {runs_root} "
-              f"({'does not exist' if not runs_root.exists() else 'exists'}); "
+              f"  --runs {args.runs} "
+              f"({'does not exist' if not Path(args.runs).exists() else 'exists'}); "
               f"looked for <task_id>/<arm>/meta.json beneath it, and for a "
-              f"solution.py beside each meta.json. REPRODUCTION.md has the "
-              f"directory shape. Pass --allow-partial if an empty result is "
-              f"genuinely what you meant.", file=sys.stderr)
+              f"solution.py beside each meta.json. Pass --allow-partial if an "
+              f"empty result is genuinely what you meant.", file=sys.stderr)
         if not args.allow_partial:
             raise SystemExit(3)
     ledger.enforce(accept=("run_without_task",

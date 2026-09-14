@@ -316,8 +316,12 @@ templates = _Unavailable("templates")
 # Entries here BLOCK a non---check assemble run: the published tree carries a
 # fix the internal source does not, so regenerating would silently revert it.
 # Cleared 2026-09-13 -- src/verify_solutions.py's refusal fix was ported into
-# groundwork/20_graph_vs_search_benchmark/verify_solutions.py, verified there
-# (exit 3 on a bad runs tree, exit 0 with --allow-partial).
+# `<BENCH>/verify_solutions.py`, verified there (exit 3 on a bad runs tree,
+# exit 0 with --allow-partial). Written with the placeholder, not the real
+# directory: the original of this comment spelled the internal name out and
+# scan_secrets caught it as an INTERNAL finding on 2026-09-14. A file whose
+# whole argument is that "a default is the leak" cannot name the directory in
+# its own changelog.
 UNMIRRORED_FIXES: dict[str, str] = {}
 
 PORTABILITY_PATCHES: list[tuple[str, str, str]] = [

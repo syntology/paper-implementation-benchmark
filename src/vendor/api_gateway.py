@@ -377,6 +377,17 @@ POLICY: dict[str, Policy] = {p.host: p for p in (
             "that left OpenReview ungoverned -- so it gets one in the same commit "
             "that removes the fallback. Same argument as PMLR: no published rate, "
             "no operator funded to absorb a sweep."),
+    Policy(
+        host="creativecommons.org",
+        interval=2.0, max_concurrency=1,
+        why="Licence legalcode, read rather than recalled. Every corpus this repo "
+            "considers acquiring declares an SPDX tag and nothing more (pwc-archive "
+            "is `license: cc-by-sa-4.0` in a 191-byte dataset card), so the only "
+            "place the ACTUAL terms exist is here -- and a ShareAlike obligation "
+            "quoted from memory is exactly the failure mode <INTERNAL>/46 was "
+            "written to stop. Static documents, a handful of reads per lane, "
+            "non-profit host publishing no rate: 2 s and one connection, the same "
+            "argument as the volunteer-run rows above."),
 )}
 
 
