@@ -70,8 +70,8 @@ def main():
     args = ap.parse_args()
 
     tasks = {t["task_id"]: t
-             for t in json.loads(Path(args.tasks).read_text())["tasks"]}
-    ho = json.loads(Path(args.holdout).read_text())["holdout"]
+             for t in json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]}
+    ho = json.loads(Path(args.holdout).read_text(encoding="utf-8"))["holdout"]
 
     rows = []
     t0 = time.time()

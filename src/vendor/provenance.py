@@ -302,14 +302,14 @@ def load(path) -> dict | None:
     path = Path(path)
     if path.suffix == ".json" and not path.name.endswith(".prov.json"):
         try:
-            obj = json.load(open(path))
+            obj = json.load(open(path, encoding="utf-8"))
             if isinstance(obj, dict) and PROV_KEY in obj:
                 return obj[PROV_KEY]
         except (json.JSONDecodeError, UnicodeDecodeError):
             pass
     side = path.with_name(path.name + ".prov.json")
     if side.exists():
-        return json.load(open(side))
+        return json.load(open(side, encoding="utf-8"))
     return None
 
 

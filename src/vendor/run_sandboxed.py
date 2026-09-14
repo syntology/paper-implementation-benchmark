@@ -42,7 +42,7 @@ spec = importlib.util.spec_from_file_location("impl", sys.argv[1])
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
 fn = getattr(mod, sys.argv[2])
-inputs = json.loads(open(sys.argv[3]).read())
+inputs = json.loads(open(sys.argv[3], encoding="utf-8").read())
 
 def sanitize(v):
     # Recursive: numpy scalars/arrays at ANY nesting depth become plain
@@ -82,7 +82,7 @@ def run(impl: Path, entry: str, inputs_json: Path,
         timeout: int = 30, cpu: int = 25, mem_mb: int = 2048) -> dict:
     with tempfile.TemporaryDirectory() as td:
         runner = Path(td) / "_runner.py"
-        runner.write_text(PREAMBLE + RUNNER)
+        runner.write_text(PREAMBLE + RUNNER, encoding="utf-8")
         # cwd is the temp dir, so caller-relative paths MUST be resolved
         # first (real bug: relative impl path + cwd=td -> FileNotFoundError)
         impl, inputs_json = Path(impl).resolve(), Path(inputs_json).resolve()
@@ -149,7 +149,7 @@ import json, sys, importlib.util
 # a dict of keyword arguments; ARGS_LIST, a list of such dicts, is the
 # multi-input form and is preferred when present.
 ns = {}
-exec(compile(open(sys.argv[3]).read(), "fixture", "exec"), ns)
+exec(compile(open(sys.argv[3], encoding="utf-8").read(), "fixture", "exec"), ns)
 cases = ns.get("ARGS_LIST")
 if cases is None:
     if "ARGS" not in ns:
@@ -268,7 +268,7 @@ def run_fixture(impl: Path, entry: str, fixture_py: Path,
     is not."""
     with tempfile.TemporaryDirectory() as td:
         runner = Path(td) / "_runner.py"
-        runner.write_text(FIXTURE_PREAMBLE + FIXTURE_RUNNER)
+        runner.write_text(FIXTURE_PREAMBLE + FIXTURE_RUNNER, encoding="utf-8")
         impl, fixture_py = Path(impl).resolve(), Path(fixture_py).resolve()
         try:
             p = subprocess.run(
@@ -299,7 +299,7 @@ def check_import(impl: Path, timeout: int = 20) -> dict:
     isolation posture (no network, rlimits, -I)?"""
     with tempfile.TemporaryDirectory() as td:
         runner = Path(td) / "_import_runner.py"
-        runner.write_text(PREAMBLE + IMPORT_RUNNER)
+        runner.write_text(PREAMBLE + IMPORT_RUNNER, encoding="utf-8")
         impl = Path(impl).resolve()
         try:
             p = subprocess.run(
@@ -353,7 +353,7 @@ def run_check(impl: Path, entry: str, check_file: Path,
     impl, check_file = Path(impl).resolve(), Path(check_file).resolve()
     with tempfile.TemporaryDirectory() as td:
         runner = Path(td) / "_check_runner.py"
-        runner.write_text(PREAMBLE + CHECK_RUNNER)
+        runner.write_text(PREAMBLE + CHECK_RUNNER, encoding="utf-8")
         try:
             p = subprocess.run(
                 [sys.executable, "-I", str(runner), str(impl), entry, str(check_file)],

@@ -52,7 +52,7 @@ def main():
 
 
     tasks = {t["task_id"]: t
-             for t in json.loads(Path(args.tasks).read_text())["tasks"]}
+             for t in json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]}
     runs_root = Path(args.runs)
     ledger = provenance.ExclusionLedger()
     rows = []
@@ -64,7 +64,7 @@ def main():
         if task is None:
             ledger.exclude("run_without_task")
             continue
-        meta = json.loads(meta_p.read_text())
+        meta = json.loads(meta_p.read_text(encoding="utf-8"))
         sol = run_dir / "solution.py"
         row = {"task_id": tid, "arm": arm, "stratum": task["stratum"],
                "method": task["method"],

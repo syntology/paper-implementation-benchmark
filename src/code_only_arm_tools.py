@@ -117,7 +117,7 @@ def _load_index():
             _sha_row = {sh: i for i, sh in enumerate(lex["sha"])}
             vp, sp = INDEX_DIR / "all_vectors.npy", INDEX_DIR / "all_shas.json"
             if vp.exists() and sp.exists():
-                shas = json.loads(sp.read_text())
+                shas = json.loads(sp.read_text(encoding="utf-8"))
                 if shas != lex["sha"]:
                     raise RuntimeError(
                         "all_shas.json and lexicon.pkl disagree on row order -- "

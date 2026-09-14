@@ -15,7 +15,7 @@ morning produced a fresh set within seconds.
 They break two specific, recurring ways:
 
   1. `glob("*.json")` matches them -- "._x.json" really does end in .json --
-     and they are BINARY, so json.loads(f.read_text()) dies with
+     and they are BINARY, so json.loads(f.read_text(encoding="utf-8")) dies with
      UnicodeDecodeError mid-run. Hit live in 06_process_new_papers.py's
      residue scan on 2026-08-29.
   2. The usual sidecar guard in this repo is name.startswith("_"), which
@@ -67,7 +67,7 @@ def load_paper(path: str | Path) -> dict | None:
     directory should skip a bad file, not abort the sweep. A caller that
     genuinely needs the failure to be loud should read it itself."""
     try:
-        data = json.loads(Path(path).read_text())
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
     except (json.JSONDecodeError, OSError, UnicodeDecodeError):
         return None
     return data if isinstance(data, dict) else None

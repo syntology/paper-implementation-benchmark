@@ -71,7 +71,7 @@ def validate(name: str, schema: dict, items: list[tuple[str, object]],
 
 def main() -> int:
     schema_path = REPO / "schemas" / "artifacts.schema.json"
-    root = json.loads(schema_path.read_text())
+    root = json.loads(schema_path.read_text(encoding="utf-8"))
     Draft202012Validator.check_schema(root)          # the schema itself is valid
     print(f"schema validation: {schema_path.relative_to(REPO)} "
           f"(python {sys.version.split()[0]})")
@@ -85,25 +85,25 @@ def main() -> int:
 
     tasks = []
     for p in sorted((REPO / "tasks").glob("*.json")):
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         for i, row in enumerate(doc.get("tasks", [])):
             tasks.append((f"{p.name}[{i}]", row))
     validate("task", sub("task"), tasks, findings)
 
     metas = []
     for p in sorted((REPO / "data" / "runs").glob("*/*/*/meta.json")):
-        metas.append((str(p.relative_to(REPO)), json.loads(p.read_text())))
+        metas.append((str(p.relative_to(REPO)), json.loads(p.read_text(encoding="utf-8"))))
     validate("run_meta", sub("run_meta"), metas, findings)
 
     rows = []
     for p in sorted((REPO / "data").glob("results*.json")):
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         for i, row in enumerate(doc.get("runs", [])):
             rows.append((f"{p.name}[{i}]", row))
     validate("result_row", sub("result_row"), rows, findings)
 
     validate("manifest", sub("manifest"),
-             [("MANIFEST.json", json.loads((REPO / "MANIFEST.json").read_text()))],
+             [("MANIFEST.json", json.loads((REPO / "MANIFEST.json").read_text(encoding="utf-8")))],
              findings)
 
     # An empty run would "pass" every check above. These floors are the same

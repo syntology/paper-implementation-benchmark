@@ -94,7 +94,7 @@ def wilcoxon(diffs):
 
 def transcript_text(run_dir: Path) -> str:
     p = run_dir / "transcript.json"
-    return p.read_text() if p.exists() else ""
+    return p.read_text(encoding="utf-8") if p.exists() else ""
 
 
 def fetched_origins(run_dir: Path) -> list:
@@ -133,7 +133,7 @@ def fetched_origins(run_dir: Path) -> list:
             for x in o:
                 _walk(x)
 
-    for msg in json.loads(p.read_text()):
+    for msg in json.loads(p.read_text(encoding="utf-8")):
         for block in msg.get("content", []) if isinstance(msg, dict) else []:
             tr = block.get("toolResult") if isinstance(block, dict) else None
             if not tr:
@@ -156,10 +156,10 @@ def main():
     ap.add_argument("--out", default=str(REPO / "data" / "analysis_substitution.json"))
     args = ap.parse_args()
 
-    res = json.loads(Path(args.results).read_text())["runs"]
-    ho = json.loads(Path(args.holdout).read_text())["holdout"]
+    res = json.loads(Path(args.results).read_text(encoding="utf-8"))["runs"]
+    ho = json.loads(Path(args.holdout).read_text(encoding="utf-8"))["holdout"]
     tasks = {t["task_id"]: t
-             for t in json.loads(Path(args.tasks).read_text())["tasks"]}
+             for t in json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]}
     runs_root = Path(args.runs)
 
     by = {(r["task_id"], r["arm"]): r for r in res}
@@ -270,7 +270,7 @@ def main():
             md = runs_root / t / arm / "meta.json"
             if not md.exists():
                 continue
-            m = json.loads(md.read_text())
+            m = json.loads(md.read_text(encoding="utf-8"))
             tc = m.get("tool_calls") or []
             calls += sum(1 for c in tc if c["tool"] not in
                          ("run_python", "submit_solution"))

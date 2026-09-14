@@ -49,10 +49,10 @@ def sign_test(pos, neg):
 
 
 def load(results, runs):
-    res = {(r["task_id"], r["arm"]): r for r in json.loads(Path(results).read_text())["runs"]}
+    res = {(r["task_id"], r["arm"]): r for r in json.loads(Path(results).read_text(encoding="utf-8"))["runs"]}
     metas = {}
     for mp in corpus_files.iter_paper_files(runs, "*/*/meta.json"):
-        m = json.loads(mp.read_text())
+        m = json.loads(mp.read_text(encoding="utf-8"))
         metas[(m["task_id"], m["arm"])] = m
     return res, metas
 
@@ -78,7 +78,7 @@ def main():
                  REPO / args.a_runs if not Path(args.a_runs).is_absolute() else args.a_runs)
     B, Bm = load(REPO / args.b if not Path(args.b).is_absolute() else args.b,
                  REPO / args.b_runs if not Path(args.b_runs).is_absolute() else args.b_runs)
-    tasks = json.loads(Path(args.tasks).read_text())["tasks"]
+    tasks = json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]
     strata = {t["task_id"]: t["stratum"] for t in tasks}
     out = {"arms": {}, "conditional": {}}
 

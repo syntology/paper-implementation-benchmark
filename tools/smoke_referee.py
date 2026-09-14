@@ -73,7 +73,7 @@ def main() -> int:
         p = REPO / tf
         if not p.exists():
             continue
-        for t in json.loads(p.read_text())["tasks"]:
+        for t in json.loads(p.read_text(encoding="utf-8"))["tasks"]:
             if t["task_id"] in want and t["task_id"] not in located:
                 located[t["task_id"]] = (tf, t)
     missing = [t for t in want if t not in located]
@@ -96,7 +96,7 @@ def main() -> int:
             (d / "meta.json").write_text(json.dumps(
                 {"task_id": tid, "arm": "smoke", "submitted": True,
                  "turns": 0, "wall_s": 0.0, "stop_reason": "smoke",
-                 "usage": {}}, indent=1))
+                 "usage": {}}, indent=1), encoding="utf-8")
             by_file.setdefault(tf, []).append(tid)
 
         for tf, tids in by_file.items():
@@ -119,7 +119,7 @@ def main() -> int:
                 print(f"verify_solutions failed for {tf}:\n{r.stderr[-2000:]}",
                       file=sys.stderr)
                 return 4
-            rows = {x["task_id"]: x for x in json.loads(out.read_text())["runs"]}
+            rows = {x["task_id"]: x for x in json.loads(out.read_text(encoding="utf-8"))["runs"]}
             for tid in tids:
                 row = rows.get(tid)
                 ok = bool(row and row.get("passed"))

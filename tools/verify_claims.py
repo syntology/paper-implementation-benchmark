@@ -68,7 +68,7 @@ def unverifiable(name: str, where: str):
 
 
 def load(p: str):
-    return json.loads((REPO / p).read_text())
+    return json.loads((REPO / p).read_text(encoding="utf-8"))
 
 
 def pass_table(results_file: str, tasks_file: str | None = None):
@@ -152,7 +152,7 @@ def main() -> int:
     calls = Counter()
     runs = Counter()
     for m in (REPO / "data" / "runs").rglob("meta.json"):
-        d = json.loads(m.read_text())
+        d = json.loads(m.read_text(encoding="utf-8"))
         runs[d["arm"]] += 1
         for tc in d.get("tool_calls", []):
             calls[tc["tool"]] += 1
@@ -186,7 +186,7 @@ def main() -> int:
     def called(run_dir, tool, arm):
         n = 0
         for m in (REPO / "data" / "runs" / run_dir).rglob("meta.json"):
-            d = json.loads(m.read_text())
+            d = json.loads(m.read_text(encoding="utf-8"))
             if d["arm"] == arm and any(tc["tool"] == tool
                                        for tc in d.get("tool_calls", [])):
                 n += 1
@@ -244,7 +244,7 @@ def main() -> int:
             ("NOTICE", ["72\nproperty-test suites", "144 generated"]),
             ("LICENSE_QUESTION.md", ["72 property suites and the 144 generated"]),
             ("README.md", ["72 property suites", "144 generated implementations"])):
-        text = (REPO / doc).read_text()
+        text = (REPO / doc).read_text(encoding="utf-8")
         check(f"{doc} states the counts this tree actually holds",
               [p for p in phrases if p not in text], [])
     # Report C counts task ROWS, not files, and that is the distinction that
@@ -265,7 +265,7 @@ def main() -> int:
             check("analyze_code_only_mechanism.py runs", r.stderr.strip()[-160:], "")
         else:
             a = load("data/mechanism_v15.json")
-            b = json.loads(out.read_text())
+            b = json.loads(out.read_text(encoding="utf-8"))
             a.pop("_provenance", None)
             b.pop("_provenance", None)
             check("mechanism_v15.json re-derives from data/runs/**/transcript.json",
@@ -325,7 +325,7 @@ def main() -> int:
     check("recompute_fidelity_bracket.py agrees with the published summary",
           r.returncode, 0)
     fa = json.loads((REPO / "data" / "fidelity_audit"
-                     / "audit_summary.json").read_text())
+                     / "audit_summary.json").read_text(encoding="utf-8"))
     check("fidelity bracket, low end (DeepSeek)",
           fa["per_model"]["deepseek"]["rate"], 0.2905)
     check("fidelity bracket, high end (Mistral)",

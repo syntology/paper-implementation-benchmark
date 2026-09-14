@@ -476,7 +476,7 @@ def _emit_transcript(run_dir: Path, rd: str, emit, redactions, problems, src: Pa
     if not p.exists():
         return
     stats = rt._new_stats()
-    red = rt.redact_transcript(json.loads(p.read_text()), stats)
+    red = rt.redact_transcript(json.loads(p.read_text(encoding="utf-8")), stats)
     findings = list(rt._bad_strings(red, ""))
     if findings:
         problems.append(f"redacted transcript not clean: {p} -- {findings[:2]}")
@@ -631,7 +631,7 @@ def main() -> int:
         if not p.exists():
             problems.append(f"missing source: {rel_src}")
             return
-        text = p.read_text()
+        text = p.read_text(encoding="utf-8")
         # PATCH BEFORE REDACT. The patch table matches real source lines, and
         # redaction rewrites the internal directory names those lines contain
         # -- so redacting first silently stops three rules from matching and
@@ -669,7 +669,7 @@ def main() -> int:
         if not p.exists():
             problems.append(f"missing task file: {f}")
             continue
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         # Point each task at the referee tree THIS repo ships, so the referee
         # resolves without an outsider knowing anything about the internal
         # layout. The internal path stays recoverable from
@@ -690,7 +690,7 @@ def main() -> int:
         if not p.exists():
             problems.append(f"missing data: {f}")
             continue
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         worst = _longest_string(doc)
         if worst > CONTENT_CAP:
             problems.append(f"NOT content-free, refusing to ship: {f} "
@@ -711,7 +711,7 @@ def main() -> int:
         if not p.exists():
             problems.append(f"missing audit summary: {s}")
             continue
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         text, n = _redact(json.dumps(doc, indent=1, sort_keys=True) + "\n")
         if n:
             redactions.append((d, n))
@@ -723,7 +723,7 @@ def main() -> int:
             problems.append(f"missing audit rows: {s}")
             continue
         out_lines, dropped = [], 0
-        for line in p.read_text().splitlines():
+        for line in p.read_text(encoding="utf-8").splitlines():
             if not line.strip():
                 continue
             row = json.loads(line)
@@ -746,7 +746,7 @@ def main() -> int:
     referee_index = {}
     seen_files: dict[str, str] = {}
     for tf in ("tasks_freeze.json", "tasks_substitution.json", "tasks.json"):
-        doc = json.loads((src / GW / "tasks" / tf).read_text())
+        doc = json.loads((src / GW / "tasks" / tf).read_text(encoding="utf-8"))
         for t in doc["tasks"]:
             tid = t["task_id"]
             if tid in referee_index:
@@ -777,7 +777,7 @@ def main() -> int:
                 if not p.exists():
                     problems.append(f"missing referee file {rel} for {tid}")
                     continue
-                text, n = _redact(p.read_text())
+                text, n = _redact(p.read_text(encoding="utf-8"))
                 if n:
                     redactions.append((f"referees/{tid}/{name}", n))
                 dest = f"referees/{tid}/{name}"
@@ -815,7 +815,7 @@ def main() -> int:
         if not root.is_dir():
             continue
         for meta in sorted(root.glob("*/*/meta.json")):
-            doc = json.loads(meta.read_text())
+            doc = json.loads(meta.read_text(encoding="utf-8"))
             worst = _longest_string(doc)
             # holdout_shas are 64-char hashes; nothing else may be long.
             if worst > CONTENT_CAP:
@@ -957,7 +957,7 @@ def main() -> int:
         if not man_p.exists():
             problems.append("no MANIFEST.json to check against")
         else:
-            recorded = json.loads(man_p.read_text())["files"]
+            recorded = json.loads(man_p.read_text(encoding="utf-8"))["files"]
             for rel, got in manifest.items():
                 want = recorded.get(rel)
                 if want is None:
@@ -974,7 +974,7 @@ def main() -> int:
                        "tools/assemble.py --check, which compares against THIS "
                        "file rather than recomputing both sides.",
                "summary": summary, "files": manifest}
-        man_p.write_text(json.dumps(man, indent=1, sort_keys=True) + "\n")
+        man_p.write_text(json.dumps(man, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
     print(json.dumps(summary, indent=1))
     if problems:

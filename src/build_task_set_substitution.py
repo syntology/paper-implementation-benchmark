@@ -88,10 +88,10 @@ def main():
     ap.add_argument("--seed", type=int, default=SEED)
     args = ap.parse_args()
 
-    carried = json.loads(Path(args.carry_forward).read_text())["tasks"]
+    carried = json.loads(Path(args.carry_forward).read_text(encoding="utf-8"))["tasks"]
     seen_aids = {t["arxiv_id"] for t in carried}
 
-    recs = [json.loads(l) for l in open(V3_RESULTS)]
+    recs = [json.loads(l) for l in open(V3_RESULTS, encoding="utf-8")]
     pool = [r for r in recs
             if r.get("v3") == "V3" and r.get("method")
             and r.get("arxiv_id") not in seen_aids]

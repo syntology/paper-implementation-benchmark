@@ -90,7 +90,7 @@ def _mk_run_python(run_dir: Path):
         """Execute Python code in your working directory (venv interpreter,
         45s CPU-limited, no secrets in env). Returns stdout/stderr tails."""
         script = run_dir / "_scratch.py"
-        script.write_text(code)
+        script.write_text(code, encoding="utf-8")
         try:
             p = subprocess.run(
                 [os.environ.get("BENCH_PYTHON", sys.executable), "-I", str(script)],
@@ -541,7 +541,7 @@ def run_one(task: dict, arm: str, out_root: Path, client,
                                "args_chars": len(json.dumps(args))})
             if name == "submit_solution":
                 submitted = args.get("code", "")
-                (run_dir / "solution.py").write_text(submitted)
+                (run_dir / "solution.py").write_text(submitted, encoding="utf-8")
                 result = {"status": "submitted"}
             else:
                 try:
@@ -593,7 +593,7 @@ def run_one(task: dict, arm: str, out_root: Path, client,
                     "throttled": stats.throttled},
     }
     (run_dir / "transcript.json").write_text(
-        json.dumps(messages, indent=1, default=str))
+        json.dumps(messages, indent=1, default=str), encoding="utf-8")
     # Stamp the task file this run ACTUALLY used. It was hardcoded to
     # tasks/tasks.json, so every v1.4 freeze meta records a sha256 for a file
     # that run never read -- R1 asks what the artifact was derived from, and a
@@ -645,10 +645,10 @@ def main():
 
     holdout = None
     if args.holdout:
-        hj = json.loads(Path(args.holdout).read_text())
+        hj = json.loads(Path(args.holdout).read_text(encoding="utf-8"))
         holdout = {k: v["shas"] for k, v in hj["holdout"].items()}
 
-    tasks = json.loads(Path(args.tasks).read_text())["tasks"]
+    tasks = json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]
     if args.only:
         keep = set(args.only.split(","))
         tasks = [t for t in tasks if t["task_id"] in keep]

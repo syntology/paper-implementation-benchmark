@@ -263,7 +263,7 @@ def check_requirements(root: Path, subdir: str = "src") -> tuple[list[str], dict
     declared = set()
     reqs = root / "requirements.txt"
     if reqs.exists():
-        for line in reqs.read_text().splitlines():
+        for line in reqs.read_text(encoding="utf-8").splitlines():
             line = line.split("#")[0].strip()
             if line:
                 declared.add(re.split(r"[<>=!\[]", line)[0].strip().lower())
@@ -276,7 +276,7 @@ def check_requirements(root: Path, subdir: str = "src") -> tuple[list[str], dict
     unparsed = 0
     for mod in mods:
         try:
-            tree = ast.parse(mod.read_text())
+            tree = ast.parse(mod.read_text(encoding="utf-8"))
         except SyntaxError:
             # A file that will not parse has no import list to check, and it
             # is COMPILE's finding, not this one's -- reported here as a count
@@ -325,7 +325,7 @@ def check_manifest(root: Path) -> tuple[list[str], dict]:
     man_p = root / "MANIFEST.json"
     if not man_p.exists():
         return ["no MANIFEST.json"], {"examined": 0, "findings": 1}
-    recorded = json.loads(man_p.read_text())["files"]
+    recorded = json.loads(man_p.read_text(encoding="utf-8"))["files"]
     files, skipped = _walk(root)
     seen = set()
     eol = []                                # drift that is not content drift
@@ -402,19 +402,20 @@ def _plant(td: Path, *, broken_import=False, undeclared=False,
            crlf=False):
     """A minimal tree of the same SHAPE as this repo, with one defect."""
     (td / "src").mkdir(parents=True)
-    (td / "requirements.txt").write_text("numpy>=1.24\n")
-    (td / "src" / "ok.py").write_text("import json\nX = 1\n")
+    (td / "requirements.txt").write_text("numpy>=1.24\n", encoding="utf-8")
+    (td / "src" / "ok.py").write_text("import json\nX = 1\n", encoding="utf-8")
     if broken_import:
         # The exact 2026-09-13 defect: a module resolving a shared module at
         # the working repo's root, which is not where this layout keeps it.
         (td / "src" / "broken.py").write_text(
             "import sys, pathlib\n"
             "sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1]))\n"
-            "import provenance  # lives at the WORKING repo's root, not here\n")
+            "import provenance  # lives at the WORKING repo's root, not here\n",
+            encoding="utf-8")
     if undeclared:
-        (td / "src" / "undeclared.py").write_text("import requests\n")
+        (td / "src" / "undeclared.py").write_text("import requests\n", encoding="utf-8")
     if syntax_error:
-        (td / "src" / "broken_syntax.py").write_text("def f(:\n    pass\n")
+        (td / "src" / "broken_syntax.py").write_text("def f(:\n    pass\n", encoding="utf-8")
     files = {}
     for p in sorted(td.rglob("*")):
         if p.is_file():
@@ -423,7 +424,7 @@ def _plant(td: Path, *, broken_import=False, undeclared=False,
                           "bytes": p.stat().st_size,
                           "source": "self-test", "rule": "authored"}
     if drift:
-        (td / "src" / "ok.py").write_text("import json\nX = 2\n")   # after hashing
+        (td / "src" / "ok.py").write_text("import json\nX = 2\n", encoding="utf-8")   # after hashing
     if crlf:
         # What `git -c core.autocrlf=true clone` does to every file in the
         # tree. Same content, different bytes, so the hash misses -- and the
@@ -435,9 +436,10 @@ def _plant(td: Path, *, broken_import=False, undeclared=False,
         files["src/never_written.py"] = {"sha256": "0" * 64, "bytes": 0,
                                          "source": "self-test", "rule": "authored"}
     if extra_file:
-        (td / "src" / "unrecorded.py").write_text("Y = 1\n")
+        (td / "src" / "unrecorded.py").write_text("Y = 1\n", encoding="utf-8")
     (td / "MANIFEST.json").write_text(
-        json.dumps({"summary": {}, "files": files}, indent=1, sort_keys=True) + "\n")
+        json.dumps({"summary": {}, "files": files}, indent=1, sort_keys=True) + "\n",
+        encoding="utf-8")
 
 
 def self_test() -> int:
@@ -482,7 +484,7 @@ def self_test() -> int:
     with tempfile.TemporaryDirectory() as d, tempfile.TemporaryDirectory() as decoy:
         td = Path(d)
         _plant(td, broken_import=True)
-        (Path(decoy) / "provenance.py").write_text("X = 1\n")
+        (Path(decoy) / "provenance.py").write_text("X = 1\n", encoding="utf-8")
         here = os.getcwd()
         try:
             os.chdir(decoy)

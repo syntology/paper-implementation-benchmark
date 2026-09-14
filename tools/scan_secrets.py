@@ -244,7 +244,7 @@ def scan(root: Path, extra_rules: list = ()) -> tuple[list[dict], dict]:
                              "file": rel, "line": 0,
                              "excerpt": f"{size/1e6:.1f} MB"})
         try:
-            text = p.read_text()
+            text = p.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
             stats["skipped_binary"] += 1
             continue
@@ -306,13 +306,13 @@ def self_test() -> int:
     with tempfile.TemporaryDirectory() as td:
         root = Path(td)
         for name, plant in SELF_TEST_PLANTS.items():
-            (root / f"{name}.txt").write_text(f"harmless line\n{plant}\nharmless\n")
-        (root / ".env").write_text("NOTHING=1\n")
+            (root / f"{name}.txt").write_text(f"harmless line\n{plant}\nharmless\n", encoding="utf-8")
+        (root / ".env").write_text("NOTHING=1\n", encoding="utf-8")
         # A line that MENTIONS the marker mid-sentence must not be exempt.
         (root / "mentions_marker.txt").write_text(
             "a line may opt out with a trailing # noscan marker, like so: "
-            + "AKIA" + "IOSFODNN7EXAMPLE\n")
-        (root / "clean.txt").write_text("nothing to see, media@syntology.ai is allowlisted\n")
+            + "AKIA" + "IOSFODNN7EXAMPLE\n", encoding="utf-8")
+        (root / "clean.txt").write_text("nothing to see, media@syntology.ai is allowlisted\n", encoding="utf-8")
         # A third-party repo path of the same SHAPE as an internal stage
         # directory, sitting where transcripts actually put one. The shape
         # rule must NOT fire on it -- a gate that cries wolf on every
@@ -321,7 +321,7 @@ def self_test() -> int:
             '  "text": "{\\"repo\\": \\"ep-infosec/50_google_neural-tangents\\", '  # noscan
             '\\"content\\": \\"<redacted body sha256=' + "0" * 64 +
             ' bytes=18000 field=content origin=ep-infosec/50_google_neural-tangents>'  # noscan
-            '\\"}"\n')
+            '\\"}"\n', encoding="utf-8")
         import os
         configured = any(os.environ.get(v) for v in (
             "BENCH_INTERNAL_DIR", "BENCH_INTERNAL_REFIMPL_DIR",
@@ -334,15 +334,13 @@ def self_test() -> int:
             # 20_whatever directory" as readily as it says the whole path, and
             # a rule that only knew the joined form would miss it.
             nm = os.environ.get("BENCH_INTERNAL_DIR", "").strip("/")
-            (root / "exactname.txt").write_text(
-                f'  "{EXACT_PLANT_FIELD}": "produced under {nm}/x.py"\n')
+            (root / "exactname.txt").write_text(f'  "{EXACT_PLANT_FIELD}": "produced under {nm}/x.py"\n', encoding="utf-8")
             (root / "exactleaf.txt").write_text(
-                f'  "{EXACT_PLANT_FIELD}": "see {nm.split("/")[-1]} for the sweep"\n')
+                f'  "{EXACT_PLANT_FIELD}": "see {nm.split("/")[-1]} for the sweep"\n', encoding="utf-8")
             extra_nm = os.environ.get("BENCH_INTERNAL_NAMES", "").split(",")[0]
             extra_nm = extra_nm.split("=", 1)[0].strip()
             if extra_nm:
-                (root / "exactextra.txt").write_text(
-                    f'  "{EXACT_PLANT_FIELD}": "resolved from {extra_nm}/x"\n')
+                (root / "exactextra.txt").write_text(f'  "{EXACT_PLANT_FIELD}": "resolved from {extra_nm}/x"\n', encoding="utf-8")
         findings, _ = scan(root, exact_rules)
         hit_files = {f["file"] for f in findings}
         for name in SELF_TEST_PLANTS:

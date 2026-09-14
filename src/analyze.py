@@ -71,7 +71,7 @@ def main():
     # the wrong file.
     out_p = Path(args.out) if args.out else results_p.with_name(
         results_p.name.replace("results", "analysis"))
-    res = json.loads(results_p.read_text())["runs"]
+    res = json.loads(results_p.read_text(encoding="utf-8"))["runs"]
     if args.arms == "auto":
         ARMS = sorted({r["arm"] for r in res})
     elif args.arms:
@@ -181,7 +181,7 @@ def main():
         for t in tasks:
             mp = runs_root / t / arm / "meta.json"
             if mp.exists():
-                metas.append(json.loads(mp.read_text()))
+                metas.append(json.loads(mp.read_text(encoding="utf-8")))
         key = "code_only_calls" if arm == "code_only" else "syntology_calls"
         used = sum(1 for m in metas if m.get(key, 0) > 0)
         got_ref = sum(1 for m in metas

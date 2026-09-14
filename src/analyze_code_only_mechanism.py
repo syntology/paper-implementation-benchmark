@@ -93,13 +93,13 @@ def main():
     args = ap.parse_args()
 
     tasks = {t["task_id"]: t
-             for t in json.loads(Path(args.tasks).read_text())["tasks"]}
+             for t in json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]}
     truth = {r["task_id"]: set(r["correct_shas"])
-             for r in json.loads(Path(args.probe).read_text())["rows"]}
+             for r in json.loads(Path(args.probe).read_text(encoding="utf-8"))["rows"]}
     passed = {}
     rp = Path(args.results)
     if rp.exists():
-        for r in json.loads(rp.read_text())["runs"]:
+        for r in json.loads(rp.read_text(encoding="utf-8"))["runs"]:
             passed[(r["task_id"], r["arm"])] = r["passed"]
 
     rows = []
@@ -110,7 +110,7 @@ def main():
             tp = Path(args.runs) / tid / arm / "transcript.json"
             if not tp.exists():
                 continue
-            tr = json.loads(tp.read_text())
+            tr = json.loads(tp.read_text(encoding="utf-8"))
             row = {"task_id": tid, "arm": arm, "stratum": task["stratum"],
                    "passed": passed.get((tid, arm)),
                    "queries": [], "fetched": [], "route": None,

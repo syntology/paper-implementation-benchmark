@@ -75,7 +75,7 @@ def _candidate(rec, batch_dir: Path):
     if not (spec_p.exists() and tests_p.exists()):
         return None, "missing_files"
     try:
-        spec = json.loads(spec_p.read_text())
+        spec = json.loads(spec_p.read_text(encoding="utf-8"))
     except ValueError:
         return None, "spec_unreadable"
     entry, sig = spec.get("entry_name"), spec.get("signature")
@@ -118,7 +118,7 @@ def main():
     ap.add_argument("--out", default=str(REPO / "tasks" / "tasks.json"))
     args = ap.parse_args()
 
-    recs = [json.loads(l) for l in open(V3_RESULTS)]
+    recs = [json.loads(l) for l in open(V3_RESULTS, encoding="utf-8")]
     v3 = [r for r in recs if r.get("v3") == "V3"]
     served, titles = _served_levels()
 

@@ -98,7 +98,7 @@ def main():
     n[n == 0] = 1.0
     M = (M / n).astype(np.float32)
     np.save(vec_p, M)
-    sha_p.write_text(json.dumps(shas))
+    sha_p.write_text(json.dumps(shas), encoding="utf-8")
     params = {"uri": os.environ["NEO4J_URI"], "n": len(shas),
               "dims": DIMS, "embedding_models": sorted(models),
               "rows_without_embedding": missing,

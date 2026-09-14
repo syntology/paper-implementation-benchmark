@@ -116,12 +116,12 @@ def main():
     args = ap.parse_args()
 
     tasks = {t["task_id"]: t
-             for t in json.loads(Path(args.tasks).read_text())["tasks"]}
-    ho = json.loads(Path(args.holdout).read_text())["holdout"]
+             for t in json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]}
+    ho = json.loads(Path(args.holdout).read_text(encoding="utf-8"))["holdout"]
     probe = {}
     p = Path(args.probe)
     if p.exists():
-        for row in json.loads(p.read_text()).get("rows", []):
+        for row in json.loads(p.read_text(encoding="utf-8")).get("rows", []):
             probe[row.get("task_id")] = row
 
     driver = GraphDatabase.driver(

@@ -106,7 +106,7 @@ def main():
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
 
-    tasks = json.loads(Path(args.tasks).read_text())["tasks"]
+    tasks = json.loads(Path(args.tasks).read_text(encoding="utf-8"))["tasks"]
     driver = GraphDatabase.driver(
         os.environ["NEO4J_URI"],
         auth=(os.environ["NEO4J_USER"], os.environ["NEO4J_PASSWORD"]))

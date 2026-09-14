@@ -88,7 +88,7 @@ def check(name: str, got, want):
 
 def rows(name: str) -> list[dict]:
     p = AUDIT / name
-    return [json.loads(l) for l in p.read_text().splitlines() if l.strip()]
+    return [json.loads(l) for l in p.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 def by_model(rs: list[dict]) -> dict[str, list[dict]]:
@@ -102,9 +102,9 @@ def main() -> int:
     if not AUDIT.is_dir():
         print(f"no audit artifacts at {AUDIT}", file=sys.stderr)
         return 4
-    summary = json.loads((AUDIT / "audit_summary.json").read_text())
-    val_sum = json.loads((AUDIT / "validate_summary.json").read_text())
-    mut_sum = json.loads((AUDIT / "mutate_summary.json").read_text())
+    summary = json.loads((AUDIT / "audit_summary.json").read_text(encoding="utf-8"))
+    val_sum = json.loads((AUDIT / "validate_summary.json").read_text(encoding="utf-8"))
+    mut_sum = json.loads((AUDIT / "mutate_summary.json").read_text(encoding="utf-8"))
 
     print("the frame and the draw")
     check("frame size (HAS_REFERENCE_IMPL edges)",

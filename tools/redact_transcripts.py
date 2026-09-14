@@ -229,7 +229,7 @@ def verify(root: Path) -> list[str]:
     n = 0
     for p in sorted(root.rglob("transcript.json")):
         n += 1
-        doc = json.loads(p.read_text())
+        doc = json.loads(p.read_text(encoding="utf-8"))
         for hit in _bad_strings(doc, ""):
             findings.append(f"{p.relative_to(root)}: {hit}")
     if not n:
@@ -432,12 +432,12 @@ def main() -> int:
     stats["transcripts"] = 0
     for rd in RUN_DIRS:
         for p in sorted((src / rd).glob("*/*/transcript.json")):
-            doc = json.loads(p.read_text())
+            doc = json.loads(p.read_text(encoding="utf-8"))
             red = redact_transcript(doc, stats)
             d = out / rd / p.parent.parent.name / p.parent.name
             d.mkdir(parents=True, exist_ok=True)
             (d / "transcript.json").write_text(
-                json.dumps(red, indent=1, sort_keys=True) + "\n")
+                json.dumps(red, indent=1, sort_keys=True) + "\n", encoding="utf-8")
             stats["transcripts"] += 1
     if not stats["transcripts"]:
         print(f"no transcripts under {src}", file=sys.stderr)

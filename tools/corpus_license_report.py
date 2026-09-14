@@ -79,7 +79,7 @@ def _env(root: Path) -> dict:
     env = {}
     p = root / ".env"
     if p.exists():
-        for line in p.read_text().splitlines():
+        for line in p.read_text(encoding="utf-8").splitlines():
             m = re.match(r"^([A-Z0-9_]+)=(.*)$", line.strip())
             if m:
                 env[m.group(1)] = m.group(2).strip().strip('"').strip("'")
@@ -148,7 +148,7 @@ def main() -> int:
     for root in tr_roots:
         for tr in root.glob("*/*/transcript.json"):
             try:
-                msgs = json.loads(tr.read_text())
+                msgs = json.loads(tr.read_text(encoding="utf-8"))
             except Exception:
                 continue
             for m in msgs:
@@ -182,7 +182,7 @@ def main() -> int:
     task_detail = []
     for tf in ("tasks_freeze.json", "tasks_substitution.json"):
         tasks_dir = (src / GW / "tasks") if GW else (DEST / "tasks")
-        doc = json.loads((tasks_dir / tf).read_text())
+        doc = json.loads((tasks_dir / tf).read_text(encoding="utf-8"))
         for t in doc["tasks"]:
             impl = t.get("impl_for_validation") or ""
             kind = ("generated_by_us" if impl.endswith("impl_sonnet.py")
@@ -196,7 +196,7 @@ def main() -> int:
     driver.close()
     out = Path(args.out)
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps(report, indent=1, sort_keys=True) + "\n")
+    out.write_text(json.dumps(report, indent=1, sort_keys=True) + "\n", encoding="utf-8")
 
     a = report["A_corpus_census"]
     h = a["buckets"].get("harvested", {})
