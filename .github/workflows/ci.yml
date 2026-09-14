@@ -63,10 +63,32 @@ jobs:
     name: py${{ matrix.python }} ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
+    # BASH ON EVERY OS, INCLUDING WINDOWS (2026-09-14). The steps below use
+    # tee, sed and $RUNNER_TEMP; GitHub's Windows runners default to PowerShell,
+    # where those are syntax errors. Without this line a windows-latest leg
+    # fails on shell grammar and says NOTHING about Windows -- a red that reads
+    # like a finding and is not one. Windows runners ship Git Bash, so this is
+    # the supported way to keep one set of steps for every OS.
+    #
+    # It does NOT weaken the test. The shell is bash; the interpreter is still
+    # Windows CPython with a cp1252 locale, which is the thing under test.
+    defaults:
+      run:
+        shell: bash
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
+        # windows-latest added 2026-09-14. Measured on a Linux container with a
+        # forced non-UTF-8 locale: 2 of 4 credential-free gates die with
+        # UnicodeDecodeError, because 99 call sites read text with no explicit
+        # encoding and Path.read_text() follows the locale -- cp1252 on Windows.
+        #
+        # The interesting case is NOT the crash. Under real cp1252 README.md and
+        # LICENSE_QUESTION.md decode fine and differ from UTF-8 by 130 and 26
+        # characters, and verify_claims asserts only ASCII phrases against them
+        # -- so it is expected to PASS ON CORRUPTED TEXT. A green verify_claims
+        # on Windows is the finding this leg exists to produce.
+        os: [ubuntu-latest, windows-latest]
         python: ["3.10", "3.11", "3.12", "3.13", "3.14"]
         include:
           # The published runs were made on macOS with CPython 3.14.6. One leg
