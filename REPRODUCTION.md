@@ -104,9 +104,32 @@ way on purpose and requires CLEAN, and proves the point by deleting
 `.gitattributes` and requiring the failure back. If you somehow see it anyway,
 the gate now names it as a line-ending conversion and tells you to re-clone
 with `core.autocrlf=false` rather than reporting your download as corrupt.
-**Whether the checks themselves pass on Windows is UNMEASURED** — there is no
-Windows leg in CI, nothing here is obviously POSIX-only, and the activate line
-above is the Unix one (`.venv\Scripts\activate` on Windows). Reports welcome.
+**Windows: you can verify the claims, you cannot run the benchmark.** Measured
+2026-09-14 on a `windows-latest` CI leg (py3.12), not argued:
+
+- **Verification works.** `verify_claims`, `recompute_fidelity_bracket`,
+  `scan_secrets`, the redaction verify and the clean-clone gate all pass.
+- **The benchmark does not run.** `smoke_referee` calls `verify_solutions`,
+  which imports `resource` — POSIX-only stdlib — for the `RLIMIT_CPU` and
+  `RLIMIT_AS` caps this harness puts around untrusted code. Windows has Job
+  Objects instead. Five shipped modules therefore cannot import there, and the
+  CI leg skips that step by declaration rather than silently. Porting the
+  sandbox is real work, not a flag.
+- **Use `.venv\Scripts\activate`**, not the Unix line above. A venv's
+  executables live in `Scripts/` on Windows; our own CI hardcoded `bin/` and
+  died at install before it learned this.
+
+**One honest caveat about that green.** On Windows the default encoding is
+`cp1252`, not UTF-8, and this repo reads most text without an explicit
+`encoding=`. Measured on the same leg: `README.md` read through the locale
+differs from its UTF-8 content by **20,463 characters**, and
+`LICENSE_QUESTION.md` by 6,472. `verify_claims` passes anyway because every
+phrase it asserts is pure ASCII — so it is checking real facts against mangled
+text, and it would keep passing if the mangling got worse. Two files
+(`referees/sub_2208.06193/impl_sonnet.py` and `referees/sub_2304.03274/…`)
+cannot be decoded as cp1252 at all; no gate currently reads them. Reports
+welcome, and a patch adding `encoding="utf-8"` at the read sites is welcome
+more.
 
 ## Check your install before spending anything
 
