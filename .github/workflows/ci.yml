@@ -114,9 +114,18 @@ jobs:
       - name: Install from requirements.txt alone, outside the clone
         run: |
           python -m venv "$RUNNER_TEMP/venv"
-          "$RUNNER_TEMP/venv/bin/python" -m pip install --upgrade pip
-          "$RUNNER_TEMP/venv/bin/python" -m pip install -r requirements.txt
-          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          # A venv's executables live in bin/ on POSIX and Scripts/ on Windows.
+          # RESOLVED, not assumed: the hardcoded bin/ made all five
+          # windows-latest legs exit 127 on their first real run (2026-09-14),
+          # before a single gate executed -- so the encoding question this leg
+          # was added to answer went UNMEASURED behind a path-layout failure.
+          # A stranger following REPRODUCTION.md on Windows hits the same wall
+          # at install time.
+          VENV_BIN="$RUNNER_TEMP/venv/bin"
+          [ -d "$RUNNER_TEMP/venv/Scripts" ] && VENV_BIN="$RUNNER_TEMP/venv/Scripts"
+          "$VENV_BIN/python" -m pip install --upgrade pip
+          "$VENV_BIN/python" -m pip install -r requirements.txt
+          echo "$VENV_BIN" >> "$GITHUB_PATH"
           : > "$RUNNER_TEMP/ran.txt"
 
       - name: Interpreter and installed requirements
