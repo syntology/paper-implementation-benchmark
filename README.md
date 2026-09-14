@@ -64,6 +64,12 @@ single task.**
 | `syntology` (graph) | 18/18 | 6/6 | **24/24** |
 | `code_only` (flat index) | **18/18** | **6/6** | **24/24** |
 
+> **Read this table as dated.** The `syntology` arm reads a private graph that
+> has changed since: `Method` is up **63%**, and **141,896 CITES were written
+> while the run was executing**. Neither arm has been re-tested.
+> [**GRAPH_STATE.md**](GRAPH_STATE.md) states the graph these numbers were
+> measured against, the mid-run write, and which way it biases the null.
+
 **Paired: +0 / −0 discordant tasks. Exact two-sided sign test p = 1.00.**
 Same 6 median turns. All 24 flat-index fetches retrieved the exact sample the
 graph serves — and that clause is now checkable here like the rest of the

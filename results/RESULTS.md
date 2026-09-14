@@ -1,5 +1,10 @@
 # Results: graph-vs-search benchmark, run 1 (2026-08-31)
 
+> **The graph arm's substrate is dated and has moved.** These numbers were
+> measured 2026-09-10/11; a 141,896-edge CITES write landed mid-run, and
+> `Method` has grown 63% since. See
+> [`../GRAPH_STATE.md`](../GRAPH_STATE.md). Not re-tested.
+
 > **v1 FREEZE (2026-09-03): see FREEZE_RUN.md.** Same 24 tasks re-run
 > against serving@bc87485a on the 1,028-V3 catalog: syntology 21/24,
 > both 21/24, search 11/24, none 13/24; 18/18 in-catalog fetch-and-pass
