@@ -18,11 +18,27 @@ Syntology today.
 The v1.5 and v1.6 transcripts in `data/` span
 
 ```
-2026-09-10T19:47:12  ->  2026-09-11T13:54:14
+2026-09-10T20:00:34  ->  2026-09-11T00:57:02
 ```
 
-taken from 412 ISO timestamps inside the shipped transcripts, so a reader can
-re-derive the window from the artifacts rather than take our word for it.
+**Corrected 2026-09-15.** This file previously cited "412 ISO timestamps inside
+the shipped transcripts". That was wrong twice: the 478 shipped
+`transcript.json` files contain **no timestamps at all**, and the 412 was
+inflated by a globbing bug that counted `data/*.json` twice. A reader
+following that sentence could not have re-derived anything — which is the one
+failure this document cannot afford.
+
+The window above re-derives from the **218 `_provenance.created_at`
+stamps in `data/**/meta.json`** dated 2026-09-10/11. All carry a `+00:00`
+offset, so they are UTC and directly comparable with the write ledger.
+
+Two things a reader should know about what they are. They are **file-write
+times, not turn times** — the shipped artifacts carry no per-turn timing, so
+this delimits when run outputs were written, not when the model was thinking.
+And `meta.json` also holds 146 `inputs.mtime` stamps in the same date range
+which are **input-file mtimes, not run activity**; an earlier version of this
+correction pooled all 364 and got a different window. Only `created_at` is
+used here.
 
 ## A write landed in the middle of the run
 
@@ -35,8 +51,8 @@ Syntology's write ledger records three CITES backfill tranches on 2026-09-10:
 | **20:41:46** | **+141,896** | **during the run** |
 
 **141,896 CITES were added to the graph while the benchmark was executing.**
-By transcript timestamps, **22%** of run activity precedes that write and
-**78%** follows it. The graph arm did not read one fixed graph; it read a graph
+By those stamps, **72 of 218 (33%)** precede
+that write and 146 (67%) follow it. The graph arm did not read one fixed graph; it read a graph
 that gained citation edges partway through.
 
 **And it was not one write. A gate built afterwards to detect exactly this
@@ -63,8 +79,8 @@ else, so the arm that changed is the one the null is about, and it changed in
 the direction that would help it. On that reading the tie is conservative.
 
 We are not claiming that settles it. More edges can also dilute a retrieval,
-and 22% of the run saw the smaller graph while 78% saw the larger, so the arm
-was not internally uniform either. **Only a re-run against a frozen graph can
+and roughly a fifth to a third of the run's outputs were written before the
+write while the rest came after, so the arm was not internally uniform either. **Only a re-run against a frozen graph can
 close this**, and that re-run has not been done.
 
 ## The graph at the end of the run
