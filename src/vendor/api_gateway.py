@@ -205,7 +205,22 @@ def _github_headers() -> dict:
     """GitHub's token, same rule. Unauthenticated REST is 60 requests/hour;
     with a token it is 5,000/hour, which is the difference between a lane that
     runs and a lane that does not."""
-    tok = (os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN") or "").strip()
+    # ONE way, and the name matters: a bare GITHUB_TOKEN in .env is handed to
+    # `gh` ahead of its keyring, which broke `git push` machine-wide on
+    # 2026-09-14. syntology.config.github_token prefers SYNTOLOGY_GITHUB_TOKEN.
+    # syntology.config is OURS and is not published with the harness, so the
+    # import is optional: an outsider running the shipped arm gets the plain
+    # environment lookup, which is the documented contract anyway. Without this
+    # guard the published api_gateway imports a module that does not exist for
+    # them -- caught by assemble.py, which refuses to ship a module that cannot
+    # import.
+    try:
+        from syntology.config import github_token
+        tok = (github_token() or "").strip()
+    except Exception:                                            # noqa: BLE001
+        tok = (os.environ.get("SYNTOLOGY_GITHUB_TOKEN")
+               or os.environ.get("GITHUB_TOKEN")
+               or os.environ.get("GH_TOKEN") or "").strip()
     return {"Authorization": f"Bearer {tok}",
             "Accept": "application/vnd.github+json"} if tok else {}
 
@@ -772,6 +787,26 @@ def request(method: str, url: str, *, params: dict | None = None,
             last_status = r.status_code
             if r.status_code == 429:
                 last_err, kind = "HTTP 429", "throttle"
+                # 2026-09-14, from arXiv's operator: a 429 whose BODY reads
+                # "Rate exceeded." is a SYSTEM-WIDE limit -- too many total
+                # users, typically a transient bot spike -- not a verdict on
+                # this client. The two are identical in the status line and
+                # call for opposite conclusions: a per-client 429 means our own
+                # rate is wrong and should come down; a system-wide one means
+                # wait, and lowering our steady-state rate buys nothing. We
+                # only RECORD the distinction here -- the backoff is
+                # deliberately unchanged, because what the right response is to
+                # a system-wide spike is a question for measurement, not a
+                # guess made while patching the reporting.
+                try:
+                    body = (r.text or "")[:200].strip()
+                except Exception:                            # noqa: BLE001
+                    body = ""
+                if body.lower().startswith("rate exceeded"):
+                    last_err = "HTTP 429 (system-wide: 'Rate exceeded.')"
+                    if stats is not None:
+                        stats["throttled_systemwide"] = (
+                            stats.get("throttled_systemwide", 0) + 1)
                 if stats is not None:
                     stats["throttled"] = stats.get("throttled", 0) + 1
             elif 500 <= r.status_code < 600:

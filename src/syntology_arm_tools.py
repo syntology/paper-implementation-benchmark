@@ -375,6 +375,44 @@ def _verified_impls_for_paper(session, arxiv_id: str, limit: int = 5) -> dict:
     return {"verified_reference_implementations": impls, "note": note}
 
 
+
+def _licensed_harvested(arxiv_id: str, limit: int = 3) -> list:
+    """Harvested code we MAY redistribute, with the code, at level 0.
+
+    31,902 harvested samples carry license_inline_ok -- a permissive upstream
+    licence, overwhelmingly MIT/Apache/BSD -- and none was reachable by any
+    code-returning path. They attach to 4,279 methods, against the 2,830 that
+    hold a verified implementation, so withholding them roughly halved what the
+    graph could answer with, for no legal reason at all.
+
+    This returns the CODE, unlike _harvested_pointers, because a permissive
+    licence is exactly permission to redistribute. What it must never do is let
+    that be mistaken for a reference implementation: verification_level is 0
+    and stated, attribution and licence ride along, and the tier is named
+    `licensed_harvested` rather than folded into `implementations`. A caller
+    that wants only verified code filters on the tier and is unaffected.
+    """
+    # Opens its OWN session: the caller's has already closed by the time the
+    # fallback return runs, which is what "Session closed" was telling me.
+    with _get_session() as session:
+        rows = session.run("""
+            MATCH (p:Paper {arxiv_id: $aid})-[:HAS_HARVESTED_IMPL]->(cs:CodeSample)
+            WHERE cs.license_inline_ok = true AND cs.code IS NOT NULL
+            RETURN cs.entry AS entry, cs.code AS code, cs.generated_by AS repo,
+                   cs.source_path AS path, cs.upstream_license AS spdx,
+                   cs.code_sha256 AS sha, coalesce(cs.verification_level,0) AS lvl
+            ORDER BY size(cs.code) DESC LIMIT $limit
+        """, aid=arxiv_id, limit=limit).data()
+    return [{
+        "entry": r["entry"], "code": r["code"], "code_sha256": r["sha"],
+        "verification_level": r["lvl"],
+        "upstream_license": r["spdx"],
+        "attribution": f"https://github.com/{r['repo']}/blob/HEAD/{r['path']}",
+        "what_this_is": ("code from the authors' repository for this paper, "
+                         "redistributed under its upstream licence. UNVERIFIED: "
+                         "not run, and not checked to implement this method."),
+    } for r in rows]
+
 def get_reference_implementation(name: str, min_level: int = 2) -> dict:
     resolved_via = None
     """v2.3 CodeSample serving (2026-08-26). Exact-then-CONTAINS method
@@ -475,9 +513,18 @@ def get_reference_implementation(name: str, min_level: int = 2) -> dict:
                 f"'{name}' matched no method name in the graph. This is a name-match "
                 f"failure, not proof the method is unknown -- try the canonical "
                 f"paper name, or list_reference_implementations to browse.")
+        lic = []
+        if isinstance(alt, dict) and alt.get("origin_arxiv_id"):
+            lic = _licensed_harvested(alt["origin_arxiv_id"])
+        note = ("No verified implementation exists. `fallback` carries the "
+                "most actionable thing available; see fallback.tier.")
+        if lic:
+            note += (f" We DO hold {len(lic)} permissively-licensed file(s) from the "
+                     f"authors' own repository, served in `licensed_harvested` -- "
+                     f"UNVERIFIED (level 0), not checked to implement this method, "
+                     f"and attributed to source.")
         return {"query": name, "implementations": [], "fallback": alt,
-                "note": "No verified implementation exists. `fallback` carries the "
-                        "most actionable thing available; see fallback.tier."}
+                "licensed_harvested": lic or None, "note": note}
     exact = [r for r in rows if r["method"].lower() == name.lower()]
     matches = exact or rows
     servable, best = [], -1
@@ -527,9 +574,66 @@ def get_reference_implementation(name: str, min_level: int = 2) -> dict:
     out = {"implementations": servable}
     if resolved_via:
         out["resolved_via"] = resolved_via
-        out["note"] = (f"'{name}' did not match exactly; resolved by token overlap "
-                       f"to '{resolved_via}'. Confirm this is the method you meant.")
+        # RESOLUTION ORDER (2026-09-15). A token-overlap match is a DIFFERENT
+        # method: asked for "Weighted Preference Optimization (WPO)", served
+        # "Tree Preference Optimization (TPO)"; asked for "Prophet Attention",
+        # served "ReAttention". Verified code for the wrong method used to be
+        # the only thing offered, and it outranked the RIGHT paper's own code
+        # purely because the substitute happened to carry a verification level.
+        # Measured on 12 sampled methods: substitution pre-empted the correct
+        # paper's licensed code on 4.
+        #
+        # Neither dominates -- one is verified-but-wrong-method, the other is
+        # right-paper-but-unverified -- so both are returned and NEITHER is
+        # silently dropped. What changes is the order and the note: the code
+        # from the paper actually asked about comes first, because an agent
+        # that takes the first thing should take the one attached to the right
+        # question.
+        own = _licensed_harvested_for_method(name)
+        if own:
+            out["from_the_method_you_asked_for"] = own
+            out["note"] = (
+                f"'{name}' did not match exactly. `implementations` below is "
+                f"'{resolved_via}' -- a DIFFERENT method reached by token overlap. "
+                f"Prefer `from_the_method_you_asked_for`: {len(own)} file(s) from "
+                f"the repository of the paper that actually proposes '{name}', "
+                f"permissively licensed, UNVERIFIED (level 0). Confirm which you "
+                f"meant before using either.")
+        else:
+            out["note"] = (f"'{name}' did not match exactly; resolved by token overlap "
+                           f"to '{resolved_via}'. Confirm this is the method you meant.")
     return out
+
+
+def _licensed_harvested_for_method(name: str, limit: int = 3) -> list:
+    """Licensed harvested code from the paper that proposes THIS method.
+
+    Exists so an inexact resolution can offer the right paper's code rather
+    than only a lexical neighbour's. Matches the method name exactly -- a fuzzy
+    match here would reintroduce the very substitution this is meant to rank
+    below.
+    """
+    with _get_session() as session:
+        rows = session.run("""
+            MATCH (m:Method) WHERE toLower(m.name) = toLower($name)
+            MATCH (p:Paper)-[:PROPOSES]->(m)
+            MATCH (p)-[:HAS_HARVESTED_IMPL]->(cs:CodeSample)
+            WHERE cs.license_inline_ok = true AND cs.code IS NOT NULL
+            RETURN DISTINCT cs.entry AS entry, cs.code AS code,
+                   cs.generated_by AS repo, cs.source_path AS path,
+                   cs.upstream_license AS spdx, cs.code_sha256 AS sha,
+                   p.arxiv_id AS paper
+            LIMIT $limit
+        """, name=name, limit=limit).data()
+    return [{
+        "entry": r["entry"], "code": r["code"], "code_sha256": r["sha"],
+        "verification_level": 0, "upstream_license": r["spdx"],
+        "origin_arxiv_id": r["paper"],
+        "attribution": f"https://github.com/{r['repo']}/blob/HEAD/{r['path']}",
+        "what_this_is": ("from the repository of the paper that proposes the method "
+                         "you asked for. UNVERIFIED: not run, not checked to "
+                         "implement it."),
+    } for r in rows]
 
 
 def list_reference_implementations(query: str = None, min_level: int = 0, limit: int = 50) -> dict:
@@ -692,6 +796,51 @@ def _best_backed_level(impls):
     return best
 
 
+
+def _harvested_pointers(session, arxiv_id: str, limit: int = 5) -> list:
+    """Repos we harvested code FROM, as pointers. Never the code itself.
+
+    WHY THIS EXISTS (2026-09-15). have() answered `no_code` for 14,959 methods
+    whose paper has harvested code sitting in the graph with a working GitHub
+    link on it -- 16.9% of all methods, against the 3.19% that hold a verified
+    implementation. Saying "no" while holding the authors' own repository URL
+    is not honesty, it is a category error: **a link is not redistribution.**
+    No licence is required to state where code lives, including -- especially --
+    for the 68% of harvested samples whose repo declares no licence at all,
+    because a pointer is then the only lawful way to surface them.
+
+    So this returns repo, path, url, SPDX id and verification_level, and never
+    a `code` field. `license_inline_ok` is reported so a caller can see at a
+    glance whether it may copy what it is being pointed at; `upstream_license:
+    null` means the repo declared none, which means look-do-not-reuse.
+
+    verification_level is 0 by construction -- a repository does not come with
+    evidence -- and is stated rather than implied, so this can never be read as
+    a reference implementation. That distinction is the 313-node lesson.
+    """
+    rows = session.run("""
+        MATCH (p:Paper {arxiv_id: $aid})-[:HAS_HARVESTED_IMPL]->(cs:CodeSample)
+        WHERE cs.generated_by IS NOT NULL
+        RETURN DISTINCT cs.generated_by AS repo, cs.source_path AS path,
+               cs.upstream_license AS spdx, cs.license_inline_ok AS inline_ok,
+               coalesce(cs.verification_level, 0) AS lvl
+        ORDER BY (cs.upstream_license IS NULL), repo LIMIT $limit
+    """, aid=arxiv_id, limit=limit).data()
+    out = []
+    for r in rows:
+        out.append({
+            "repo": r["repo"], "path": r["path"],
+            "url": f"https://github.com/{r['repo']}/blob/HEAD/{r['path']}",
+            "upstream_license": r["spdx"],
+            "may_reuse": bool(r["inline_ok"]),
+            "verification_level": r["lvl"],
+            "what_this_is": ("code from the authors' own repository for this paper, "
+                             "UNVERIFIED and not checked to implement this method"),
+            "what_you_may_do": ("read it" if not r["inline_ok"]
+                                else f"read and reuse it under {r['spdx']}"),
+        })
+    return out
+
 def _have_method(session, name: str) -> dict:
     """Method branch of have(x). Three edges this MUST get right (found by
     probing the first shipped version, 2026-09-03):
@@ -818,9 +967,17 @@ def _have_method(session, name: str) -> dict:
             note += (f" HOWEVER, code IS stored for related methods -- see code_nearby "
                      f"(e.g. '{nearby[0]['method']}', V{nearby[0]['verification_level']}); "
                      f"check whether one of them is what you mean before concluding absence.")
+        ptrs = _harvested_pointers(session, r["origin"]) if r.get("origin") else []
+        if ptrs:
+            n_reuse = sum(1 for x in ptrs if x["may_reuse"])
+            note += (f" We DO hold the authors' repository for this paper: see "
+                     f"harvested_pointers ({len(ptrs)} link(s), {n_reuse} under a "
+                     f"licence that permits reuse). Pointers only -- no code is "
+                     f"served here and none of it has been run.")
         out.update(have="no_code", absence_asserted="for_this_exact_name_only",
-                   tier=alt.get("tier", "paper_only"), fallback=alt or None,
-                   code_nearby=nearby, note=note)
+                   tier=("repo_known" if ptrs else alt.get("tier", "paper_only")),
+                   fallback=alt or None, code_nearby=nearby,
+                   harvested_pointers=ptrs or None, note=note)
     return out
 
 
@@ -874,6 +1031,14 @@ def have(x: str) -> dict:
                 out = _have_method(session, x)      # token fallback, last
     out["query"] = x
     out["cost"] = "free"
+    # Telemetry is handed the finished verdict and cannot reach the response:
+    # record() takes a copy, never raises, and returns nothing. A serving path
+    # must not answer differently because logging had a bad day.
+    try:
+        import demand_log
+        demand_log.record(x, dict(out), surface="have")
+    except Exception:                                            # noqa: BLE001
+        pass
     return out
 
 

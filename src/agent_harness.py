@@ -36,7 +36,16 @@ sys.path.insert(0, str(HERE))
 
 import boto3  # noqa: E402
 import provenance  # noqa: E402
-import benchmark_holdout  # noqa: E402
+import benchmark_holdout
+# run_window_guard lives in the internal repo root and is NOT published with
+# this harness, so the import is optional. An outsider gets the sweep without
+# the write-ledger check -- which is correct, because they have no write ledger
+# to check against. Guarding it here rather than shipping a module that cannot
+# import is what assemble.py refuses on, and rightly.
+try:
+    import run_window_guard                            # noqa: E402
+except ImportError:                                    # pragma: no cover
+    run_window_guard = None
 from bedrock_client import (BedrockDayCapped, InvocationStats,  # noqa: E402
                             converse_with_retry)
 from run_sandboxed import set_limits  # noqa: E402
@@ -44,6 +53,16 @@ import code_only_arm_tools  # noqa: E402
 import search_arm_tools  # noqa: E402
 import syntology_arm_tools  # noqa: E402
 
+# The subject model. Overridable with --model, and both call sites read this
+# global at call time so the override reaches them. meta.json already records
+# model_id per run, so a multi-model sweep self-labels without further work.
+#
+# WHY IT IS WORTH CYCLING. v1.5's headline is a null, and both compared arms
+# scored 24/24 -- a CEILING. Two things that each answer every question cannot
+# be told apart, so the null may be a property of the task set's difficulty
+# rather than of retrieval. A weaker subject lowers all arms off the ceiling
+# and is the cheapest way to find out. bedrock_client already carries HAIKU,
+# MISTRAL, DEEPSEEK and LLAMA alongside SONNET.
 MODEL_ID = "us.anthropic.claude-sonnet-4-5-20250929-v1:0"
 MAX_TURNS = 20
 MAX_TOKENS_PER_TURN = 4096
@@ -430,18 +449,6 @@ def _dispatch(name, args, run_python):
     return {"error": f"unknown tool {name}"}
 
 
-
-def _supports_prompt_cache(model_id: str) -> bool:
-    """Whether Bedrock will accept a cachePoint block for this model.
-
-    An allow-list on purpose, not a deny-list: a new model that silently
-    ignored an unsupported cachePoint would be billed at full price with
-    nobody noticing, whereas a new model missing from this list merely runs
-    uncached and shows up in the cost line.
-    """
-    return "anthropic" in model_id.lower()
-
-
 def run_one(task: dict, arm: str, out_root: Path, client,
             variant: str = None, tasks_path: Path = None,
             holdout: dict = None, max_turns: int = None,
@@ -519,15 +526,18 @@ def run_one(task: dict, arm: str, out_root: Path, client,
         # there are never more than two.
         #
         # ...but ONLY for models that accept the block. Bedrock rejects the
-        # entire Converse call with AccessDeniedException ("You invoked an
+        # whole Converse call with AccessDeniedException ("You invoked an
         # unsupported model or your request did not allow prompt caching") when
-        # a cachePoint is sent to a model without caching support. Sending it
-        # unconditionally silently restricts this harness to Anthropic
-        # subjects: Mistral Large 3 and DeepSeek v3.2 both answer tool_use fine
-        # on a bare Converse call and both failed here, on the request SHAPE
-        # rather than on the work. Anyone reproducing with a non-Anthropic
-        # subject hits that and has no way to tell it from a permissions
-        # problem.
+        # a cachePoint is sent to a model without caching support, so an
+        # unconditional cachePoint silently restricts the harness to Anthropic
+        # subjects. Measured 2026-09-14: Mistral Large 3 and DeepSeek v3.2 both
+        # answer tool_use fine on a bare Converse call and both fail here, on
+        # the request SHAPE rather than on the work.
+        #
+        # This is a cost asymmetry, not a capability one -- a cached subject is
+        # billed less for the same prompt -- and PREREGISTRATION_MODEL_CYCLE.md
+        # records it, because pass/fail is what this benchmark scores and
+        # caching does not touch it.
         for m in messages:
             if m.get("role") == "user":
                 m["content"] = [b for b in m["content"] if "cachePoint" not in b]
@@ -634,6 +644,77 @@ def run_one(task: dict, arm: str, out_root: Path, client,
     return meta
 
 
+
+
+def _supports_prompt_cache(model_id: str) -> bool:
+    """Whether Bedrock will accept a cachePoint block for this model.
+
+    Deliberately an allow-list, not a deny-list: a new model that silently
+    ignored an unsupported cachePoint would be billed at full price without
+    anyone noticing, whereas a new model missing from this list merely runs
+    uncached and is obvious in the cost line.
+    """
+    return "anthropic" in model_id.lower()
+
+def _dt_now_iso() -> str:
+    from datetime import datetime, timezone
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _finish_window(out_root, win_start, snap_before, reads_graph) -> None:
+    """Record the run window, and REFUSE to call the sweep scorable if the
+    graph moved underneath it (R4: this gates, it does not flag).
+
+    The refusal is at the END on purpose. The writes cannot be un-made and the
+    tokens are already spent; what this protects is the SCORE. A sweep whose
+    substrate changed mid-run is not a measurement of one system, and the
+    honest outcome is to say so loudly at the moment it is still obvious,
+    rather than to leave it for whoever reads the tables next week.
+    """
+    import json
+    from pathlib import Path
+    win_end = _dt_now_iso()
+    rec = {"run_window": {"start": win_start, "end": win_end},
+           "reads_graph": reads_graph,
+           "graph_at_start": snap_before, "graph_at_end": None,
+           "writes_in_window": []}
+    if run_window_guard is None:
+        print("  run-window guard unavailable (internal module); this sweep "
+              "records no graph window. It is NOT verified as clean.")
+        return
+    if reads_graph:
+        try:
+            rec["graph_at_end"] = run_window_guard.graph_snapshot()
+        except Exception as e:                                   # noqa: BLE001
+            print(f"  WARNING: no graph snapshot at end ({type(e).__name__}: {e})")
+    try:
+        hits = run_window_guard.writes_in_window(win_start, win_end)
+    except Exception as e:                                       # noqa: BLE001
+        print(f"  WARNING: run-window guard could not read the write ledger "
+              f"({type(e).__name__}: {e}) -- this sweep is UNVERIFIED, not clean")
+        hits = None
+    out = Path(out_root) / "_run_window.json"
+    if hits is not None:
+        rec["writes_in_window"] = [
+            {"started_at": h.get("started_at"), "ended_at": h.get("ended_at"),
+             "script": h.get("script"), "intent": h.get("intent"),
+             "delta": {k: v for k, v in (h.get("delta") or {}).items() if v}}
+            for h in hits]
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(json.dumps(rec, indent=1), encoding="utf-8")
+    print(f"  run window recorded -> {out}")
+    if hits:
+        print(f"\n  REFUSED: {len(hits)} graph write(s) overlapped this sweep "
+              f"({win_start} .. {win_end}).")
+        for h in hits[:5]:
+            print(f"    {h.get('started_at')}  "
+                  f"{ {k: v for k, v in (h.get('delta') or {}).items() if v} }")
+        print("  The arms did not all read the same graph, so this sweep is NOT "
+              "scorable as a measurement of one system. Freeze graph writes and "
+              "re-run. See GRAPH_STATE.md.")
+        sys.exit(2)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tasks", default=str(REPO / "tasks" / "tasks.json"))
@@ -656,7 +737,16 @@ def main():
                     help=f"per-run wall cap in seconds (default {WALL_CAP_S}). "
                          f"Raise it WITH --max-turns or the wall becomes the "
                          f"new cap and the turn result is an artifact again")
+    ap.add_argument("--model", default=None,
+                    help="subject model id (default: %(default)s -> MODEL_ID). "
+                         "Cycling models is a DIFFERENT experiment from the "
+                         "published one and needs its own pre-registration; the "
+                         "model is recorded per run in meta.json either way.")
     args = ap.parse_args()
+    if args.model:
+        global MODEL_ID
+        MODEL_ID = args.model
+        print(f"  subject model OVERRIDDEN -> {MODEL_ID}")
 
     # A raised turn cap under the default wall cap silently reintroduces the
     # very confound this flag exists to remove, so refuse the combination
@@ -687,6 +777,36 @@ def main():
                                                      "us-east-1"))
     jobs = [(t, a) for t in tasks for a in arms]
     print(f"{len(jobs)} runs ({len(tasks)} tasks x {arms})")
+
+    # A scored run must read ONE graph. On 2026-09-10 this one did not: 39
+    # ledger writes overlapped the v1.5/v1.6 window, +141,896 CITES among them,
+    # and nothing noticed until a week later. Record the window and the state
+    # at its edges so the next run knows what it measured instead of having it
+    # reconstructed afterwards -- GRAPH_STATE.md had to reconstruct, and says so.
+    # code_only is in this list because code_only_arm_tools._get_session opens
+    # a Neo4j driver: `code_get` reads CodeSample BODIES out of the graph. The
+    # arm traverses nothing, which is the ablation's claim and is still true,
+    # but "touches no graph" is a different claim and a false one. Omitting it
+    # made a code_only_ho run record reads_graph: false and skip its snapshot,
+    # so it could not say afterwards what it had read -- the exact gap
+    # GRAPH_STATE.md exists to close, reintroduced one flag at a time.
+    _reads_graph = any(x in arms for x in ("syntology", "both", "syntology_ho",
+                                           "both_ho", "code_only", "code_only_ho"))
+    if run_window_guard is None:
+        _reads_graph = False       # nothing to snapshot and nothing to check
+    _win_start = _dt_now_iso()
+    _snap_before = None
+    if _reads_graph:
+        try:
+            _snap_before = run_window_guard.graph_snapshot()
+            print(f"  graph at run start: Paper={_snap_before.get('node:Paper'):,} "
+                  f"Method={_snap_before.get('node:Method'):,} "
+                  f"CITES={_snap_before.get('rel:CITES'):,}")
+        except Exception as e:                                   # noqa: BLE001
+            # Not fatal, and not silent: a run with no snapshot is scorable,
+            # it just cannot later prove what it read.
+            print(f"  WARNING: no graph snapshot at start ({type(e).__name__}: {e}); "
+                  f"this run will not be able to state what it measured")
     done = 0
     def _run_guarded(*a, **kw):
         # The hold-out is thread-local and these threads are POOLED. Clearing
@@ -724,6 +844,8 @@ def main():
             except Exception:
                 print(f"[{done}/{len(jobs)}] {tid}/{arm}: ERROR")
                 traceback.print_exc()
+
+    _finish_window(out_root, _win_start, _snap_before, _reads_graph)
 
 
 if __name__ == "__main__":
