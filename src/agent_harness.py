@@ -430,6 +430,18 @@ def _dispatch(name, args, run_python):
     return {"error": f"unknown tool {name}"}
 
 
+
+def _supports_prompt_cache(model_id: str) -> bool:
+    """Whether Bedrock will accept a cachePoint block for this model.
+
+    An allow-list on purpose, not a deny-list: a new model that silently
+    ignored an unsupported cachePoint would be billed at full price with
+    nobody noticing, whereas a new model missing from this list merely runs
+    uncached and shows up in the cost line.
+    """
+    return "anthropic" in model_id.lower()
+
+
 def run_one(task: dict, arm: str, out_root: Path, client,
             variant: str = None, tasks_path: Path = None,
             holdout: dict = None, max_turns: int = None,
@@ -505,13 +517,28 @@ def run_one(task: dict, arm: str, out_root: Path, client,
         # run re-bills ~400k input tokens (measured on the smoke); with it the
         # stable prefix is a cache read. Strip stale message-level points so
         # there are never more than two.
+        #
+        # ...but ONLY for models that accept the block. Bedrock rejects the
+        # entire Converse call with AccessDeniedException ("You invoked an
+        # unsupported model or your request did not allow prompt caching") when
+        # a cachePoint is sent to a model without caching support. Sending it
+        # unconditionally silently restricts this harness to Anthropic
+        # subjects: Mistral Large 3 and DeepSeek v3.2 both answer tool_use fine
+        # on a bare Converse call and both failed here, on the request SHAPE
+        # rather than on the work. Anyone reproducing with a non-Anthropic
+        # subject hits that and has no way to tell it from a permissions
+        # problem.
         for m in messages:
             if m.get("role") == "user":
                 m["content"] = [b for b in m["content"] if "cachePoint" not in b]
-        messages[-1]["content"].append({"cachePoint": {"type": "default"}})
+        if _supports_prompt_cache(MODEL_ID):
+            messages[-1]["content"].append({"cachePoint": {"type": "default"}})
+        system_blocks = [{"text": system_text}]
+        if _supports_prompt_cache(MODEL_ID):
+            system_blocks.append({"cachePoint": {"type": "default"}})
         resp = converse_with_retry(
             client, model_id=MODEL_ID, messages=messages,
-            system=[{"text": system_text}, {"cachePoint": {"type": "default"}}],
+            system=system_blocks,
             tool_config=tool_config,
             inference_config={"maxTokens": MAX_TOKENS_PER_TURN},
             stats=stats)
