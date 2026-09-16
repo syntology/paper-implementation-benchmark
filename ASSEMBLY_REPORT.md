@@ -232,7 +232,7 @@ a stand-in that raises an explanatory error.
 |---|---|
 | `tools/scan_secrets.py` | 0 findings, 1,262 files (15.5 MB) |
 | `tools/scan_secrets.py --self-test` | all 13 plants caught, plus the false-positive check that the INTERNAL shape rule does **not** fire on a third-party repo path; 9 mutations of the INTERNAL gate all caught |
-| `tools/verify_claims.py` | **67 checks pass**, 0 fail, 3 things flagged as not checkable here |
+| `tools/verify_claims.py` | **67 checks pass**, 0 fail, 3 things flagged as not checkable here *(as this report was written, 2026-09-13; the tool has since grown and reports 73 / 0 / 4 — this row is a record of that day, not a current figure)* |
 | `tools/redact_transcripts.py --self-test` | 6/6, and 8 mutations of the redactor all caught |
 | `tools/redact_transcripts.py --verify` | 478 redacted transcripts, 0 findings |
 | `tools/recompute_fidelity_bracket.py` | **41 checks pass** — the 0.29-0.80 bracket, both Wilson bounds, both instruments' sensitivity/specificity and the mutation channel, all re-derived from the published rows |

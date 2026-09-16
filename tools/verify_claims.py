@@ -109,7 +109,18 @@ def paired(results_file: str, arm_a: str, arm_b: str):
 # This deliberately does NOT increment the check count. A check that counts
 # itself changes the number it is checking, and then the docs can never state a
 # stable figure. It reads the final totals and fails the run on disagreement.
-_DOC_FILES = ("README.md", "REPRODUCTION.md", "llms.txt")
+# Docs that describe the CURRENT state and must therefore track this tool.
+# CONTRIBUTING.md was missing from this list and carried "67 checks" long after
+# the tool reached 73 -- the gate cannot see a file it does not read, which is
+# its whole failure mode.
+#
+# ASSEMBLY_REPORT.md is deliberately NOT here. It opens "Written at packaging
+# time 2026-09-11; revised 2026-09-13" and its table records what each tool
+# printed on that day. 67 / 3 was correct then. Rewriting it to match today
+# would falsify a dated record to satisfy a gate, so the row is annotated as
+# historical instead. A dated record and a current claim are different things
+# and only one of them should drift.
+_DOC_FILES = ("README.md", "REPRODUCTION.md", "llms.txt", "CONTRIBUTING.md")
 
 _COUNT_PATTERNS = (
     r"#\s*(\d+)\s+checks\b",
