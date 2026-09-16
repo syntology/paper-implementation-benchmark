@@ -92,3 +92,12 @@ So the headline comparison is **re-derivable from `data/`, not re-runnable**.
 - `CONTRIBUTING.md` · `SECURITY.md` — scope, and the fact that this repository
   ships generated code that the referee executes on your machine.
 - `CITATION.cff` — machine-readable citation. No DOI yet.
+
+## Read this before quoting any number from the benchmark tables
+- GRAPH_STATE.md — the v1.5/v1.6 runs were scored while the graph was being
+  written to: 90 overlapping writes (39 changing node/edge counts, 51 property
+  writes), re-derivable from data/run_window_ledger.json. Those results are
+  NOT re-tested against the current graph.
+- Method has grown 63% since that run. An author measurement; not checkable here.
+- FREEZE_RUN separation (graph 21/24 vs search 11/24) and the v1.5/v1.6 null
+  are DIFFERENT runs. Read both before quoting either.

@@ -1,0 +1,1092 @@
+{
+ "_what": "Every non-dry write-ledger entry whose own [started_at, ended_at] OVERLAPS the v1.5/v1.6 scored run window 2026-09-10T19:47:12Z .. 2026-09-11T13:54:14Z. Published so that GRAPH_STATE.md's overlap counts can be RE-DERIVED here rather than asserted -- an outside reader noted, correctly, that the page's most precise numbers were its least checkable.",
+ "_fields": "Local paths, machine identity and argv are omitted: they carry nothing that supports the claim. delta counts NODES AND EDGES, so an entry with an empty or all-zero delta is a PROPERTY write -- it changed the graph without changing any count, which is the distinction the first version of the gate missed.",
+ "window": {
+  "start": "2026-09-10T19:47:12Z",
+  "end": "2026-09-11T13:54:14Z"
+ },
+ "total_overlapping": 90,
+ "changed_node_or_edge_counts": 39,
+ "property_writes_only": 51,
+ "entries": [
+  {
+   "started_at": "2026-09-10T19:53:44.828825+00:00",
+   "ended_at": "2026-09-10T19:53:46.130666+00:00",
+   "script": "pr_bz_delete_junk_institution",
+   "intent": "Delete the junk Institution node named NeurIPS (PR-BZ, owner-authorized 2026-09-10). A venue name was materialised as an employer: it carried only name/name_lower and two edges -- Tom Claassen AFFILIA",
+   "delta": {
+    "rel:AFFILIATED_WITH": -1,
+    "rel:FROM_INSTITUTION": -1,
+    "node:Institution": -1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:26:49.196353+00:00",
+   "ended_at": "2026-09-10T20:26:51.034653+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:26:51.086638+00:00",
+   "ended_at": "2026-09-10T20:26:51.881689+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:26:51.968423+00:00",
+   "ended_at": "2026-09-10T20:26:52.798242+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:26:52.819424+00:00",
+   "ended_at": "2026-09-10T20:26:53.929533+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:26:54.078957+00:00",
+   "ended_at": "2026-09-10T20:26:55.023345+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:26:55.077622+00:00",
+   "ended_at": "2026-09-10T20:26:56.031091+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:26:56.134005+00:00",
+   "ended_at": "2026-09-10T20:26:56.892410+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:36:20.275042+00:00",
+   "ended_at": "2026-09-10T20:36:21.376037+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:36:21.426714+00:00",
+   "ended_at": "2026-09-10T20:36:22.244464+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:36:22.318954+00:00",
+   "ended_at": "2026-09-10T20:36:23.064065+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:36:23.086268+00:00",
+   "ended_at": "2026-09-10T20:36:24.027113+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:36:24.182171+00:00",
+   "ended_at": "2026-09-10T20:36:25.109403+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:36:25.170778+00:00",
+   "ended_at": "2026-09-10T20:36:25.975245+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T20:36:26.076744+00:00",
+   "ended_at": "2026-09-10T20:36:26.838001+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T20:41:46.818751+00:00",
+   "ended_at": "2026-09-10T20:45:15.224710+00:00",
+   "script": "backfill_cites_from_s2.py",
+   "intent": "CITES backfill tranche 3, owner-approved. Tranches 1-2 wrote 83,910 edges across 2,969 papers with complete accounting -- every reference in exactly one bucket, no stub nodes, and papers whose S2 batc",
+   "delta": {
+    "rel:CITES": 141896,
+    "node:Paper": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T22:37:50.316030+00:00",
+   "ended_at": "2026-09-10T22:37:51.388703+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T22:37:51.440506+00:00",
+   "ended_at": "2026-09-10T22:37:52.180368+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T22:37:52.263468+00:00",
+   "ended_at": "2026-09-10T22:37:53.043477+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T22:37:53.068326+00:00",
+   "ended_at": "2026-09-10T22:37:54.028989+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T22:37:54.198549+00:00",
+   "ended_at": "2026-09-10T22:37:55.130795+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T22:37:55.186899+00:00",
+   "ended_at": "2026-09-10T22:37:55.986111+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T22:37:56.083921+00:00",
+   "ended_at": "2026-09-10T22:37:56.794110+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:47:27.412108+00:00",
+   "ended_at": "2026-09-10T23:47:28.521513+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:47:28.572664+00:00",
+   "ended_at": "2026-09-10T23:47:29.357082+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:47:29.432262+00:00",
+   "ended_at": "2026-09-10T23:47:30.200561+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:47:30.222119+00:00",
+   "ended_at": "2026-09-10T23:47:31.178141+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:47:31.358996+00:00",
+   "ended_at": "2026-09-10T23:47:32.292791+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:47:32.340127+00:00",
+   "ended_at": "2026-09-10T23:47:33.155494+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:47:33.264323+00:00",
+   "ended_at": "2026-09-10T23:47:34.009795+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:53:16.382875+00:00",
+   "ended_at": "2026-09-10T23:53:17.534581+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:53:17.604106+00:00",
+   "ended_at": "2026-09-10T23:53:18.400285+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:53:18.476273+00:00",
+   "ended_at": "2026-09-10T23:53:19.228839+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:53:19.257517+00:00",
+   "ended_at": "2026-09-10T23:53:20.278925+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:53:20.427827+00:00",
+   "ended_at": "2026-09-10T23:53:21.393762+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-10T23:53:21.452898+00:00",
+   "ended_at": "2026-09-10T23:53:22.284623+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-10T23:53:22.396828+00:00",
+   "ended_at": "2026-09-10T23:53:23.184100+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T00:18:55.266640+00:00",
+   "ended_at": "2026-09-11T00:18:56.470609+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T00:18:56.539366+00:00",
+   "ended_at": "2026-09-11T00:18:57.331072+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T00:18:57.436489+00:00",
+   "ended_at": "2026-09-11T00:18:58.206148+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T00:18:58.231779+00:00",
+   "ended_at": "2026-09-11T00:18:59.159594+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T00:18:59.299927+00:00",
+   "ended_at": "2026-09-11T00:19:00.205107+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T00:19:00.259742+00:00",
+   "ended_at": "2026-09-11T00:19:01.094470+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T00:19:01.196504+00:00",
+   "ended_at": "2026-09-11T00:19:01.999213+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T01:23:52.914762+00:00",
+   "ended_at": "2026-09-11T01:23:54.099845+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T01:23:54.169156+00:00",
+   "ended_at": "2026-09-11T01:23:54.960488+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T01:23:55.059216+00:00",
+   "ended_at": "2026-09-11T01:23:55.831614+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T01:23:55.871300+00:00",
+   "ended_at": "2026-09-11T01:23:56.863117+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T01:23:57.023297+00:00",
+   "ended_at": "2026-09-11T01:23:58.049940+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T01:23:58.116773+00:00",
+   "ended_at": "2026-09-11T01:23:58.958521+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T01:23:59.079022+00:00",
+   "ended_at": "2026-09-11T01:23:59.818129+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:40:31.407888+00:00",
+   "ended_at": "2026-09-11T02:40:33.044296+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:40:33.109558+00:00",
+   "ended_at": "2026-09-11T02:40:35.140364+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:40:35.228633+00:00",
+   "ended_at": "2026-09-11T02:40:36.273003+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:40:36.301634+00:00",
+   "ended_at": "2026-09-11T02:40:37.440312+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:40:37.589120+00:00",
+   "ended_at": "2026-09-11T02:40:39.455537+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:40:39.512594+00:00",
+   "ended_at": "2026-09-11T02:40:41.140823+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:40:41.256047+00:00",
+   "ended_at": "2026-09-11T02:40:42.477808+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:47:13.414600+00:00",
+   "ended_at": "2026-09-11T02:47:14.577902+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:47:14.639077+00:00",
+   "ended_at": "2026-09-11T02:47:15.459578+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:47:15.541749+00:00",
+   "ended_at": "2026-09-11T02:47:16.402330+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:47:16.426217+00:00",
+   "ended_at": "2026-09-11T02:47:17.454716+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:47:17.583679+00:00",
+   "ended_at": "2026-09-11T02:47:18.582765+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:47:18.644438+00:00",
+   "ended_at": "2026-09-11T02:47:19.655137+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:47:19.753695+00:00",
+   "ended_at": "2026-09-11T02:47:20.521638+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:48:05.018594+00:00",
+   "ended_at": "2026-09-11T02:48:06.326088+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:48:06.382288+00:00",
+   "ended_at": "2026-09-11T02:48:07.270226+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:48:07.353475+00:00",
+   "ended_at": "2026-09-11T02:48:08.224620+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:48:08.253331+00:00",
+   "ended_at": "2026-09-11T02:48:09.382827+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:48:09.520884+00:00",
+   "ended_at": "2026-09-11T02:48:10.614773+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T02:48:10.670847+00:00",
+   "ended_at": "2026-09-11T02:48:11.699848+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T02:48:11.808555+00:00",
+   "ended_at": "2026-09-11T02:48:12.614649+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:09:45.654289+00:00",
+   "ended_at": "2026-09-11T04:09:47.941712+00:00",
+   "script": "delete_venue_institution.py",
+   "intent": "PR-BZ residual: ICML 2025 is a venue banner in the affiliation slot; the paper already carries venue=ICML",
+   "delta": {
+    "rel:AFFILIATED_WITH": -7,
+    "rel:FROM_INSTITUTION": -1,
+    "node:Institution": -1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:36:47.278774+00:00",
+   "ended_at": "2026-09-11T04:36:49.628447+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:36:49.701576+00:00",
+   "ended_at": "2026-09-11T04:36:50.738088+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:36:50.818218+00:00",
+   "ended_at": "2026-09-11T04:36:51.796827+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:36:51.828468+00:00",
+   "ended_at": "2026-09-11T04:36:52.990347+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:36:53.126702+00:00",
+   "ended_at": "2026-09-11T04:36:54.181881+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:36:54.238323+00:00",
+   "ended_at": "2026-09-11T04:36:55.155862+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:36:56.276827+00:00",
+   "ended_at": "2026-09-11T04:36:57.537840+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:44:33.173223+00:00",
+   "ended_at": "2026-09-11T04:44:34.901917+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 1
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:44:34.981422+00:00",
+   "ended_at": "2026-09-11T04:44:35.964772+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:44:36.049130+00:00",
+   "ended_at": "2026-09-11T04:44:36.903639+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:44:36.934767+00:00",
+   "ended_at": "2026-09-11T04:44:38.211093+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": -1,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:44:38.362632+00:00",
+   "ended_at": "2026-09-11T04:44:39.720026+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T04:44:39.786381+00:00",
+   "ended_at": "2026-09-11T04:44:40.935948+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 2,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": true
+  },
+  {
+   "started_at": "2026-09-11T04:44:41.038440+00:00",
+   "ended_at": "2026-09-11T04:44:41.998834+00:00",
+   "script": "audit_author_extraction.py",
+   "intent": "author-correction undo round trip against the reserved id test-undo-0000.00000 -- a restore path that has never restored is a comment",
+   "delta": {
+    "rel:AUTHORED_BY": 0,
+    "node:Author": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T13:09:25.228411+00:00",
+   "ended_at": "2026-09-11T13:09:32.008425+00:00",
+   "script": "backfill_venue_lower.py",
+   "intent": "write the venue_lower twin on 95,934 Papers so have(<venue>) can seek an index instead of scanning 523,883 nodes",
+   "delta": {
+    "node:Paper": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T13:11:19.031405+00:00",
+   "ended_at": "2026-09-11T13:11:28.693306+00:00",
+   "script": "repair_no_references_label.py",
+   "intent": "withdraw the no_references label where CITES or a TEI bibliography contradicts it, and remove the references_declared=0 the defective disclosure write manufactured",
+   "delta": {
+    "node:Paper": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  },
+  {
+   "started_at": "2026-09-11T13:11:57.755485+00:00",
+   "ended_at": "2026-09-11T13:12:02.540081+00:00",
+   "script": "repair_banner_titles.py",
+   "intent": "replace 365 publisher-banner titles with the publisher's own, each corroborated against the banner-stripped remainder or the paper's own TEI",
+   "delta": {
+    "node:Paper": 0
+   },
+   "dry_run": false,
+   "changed_counts": false
+  }
+ ]
+}

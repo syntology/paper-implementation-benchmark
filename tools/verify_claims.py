@@ -344,6 +344,29 @@ def main() -> int:
                  "the raw transcripts, which carry fetched third-party source "
                  "and are not published; the redacted ones keep structure only")
 
+    # --- GRAPH_STATE's overlap counts, now derivable rather than asserted ----
+    # An outside reader found this page's most precise numbers were its least
+    # checkable. The overlapping ledger entries are published, so the split can
+    # be re-derived here. The tranche SIZE (+141,896) is a fact about the graph
+    # rather than the ledger and stays unverifiable-here.
+    try:
+        lw = load("data/run_window_ledger.json")
+        ents = lw["entries"]
+        struct = sum(1 for e in ents if e.get("changed_counts"))
+        check("GRAPH_STATE: writes overlapping the scored run", len(ents), 90)
+        check("GRAPH_STATE: of those, changing node/edge counts", struct, 39)
+        check("GRAPH_STATE: of those, property writes only", len(ents) - struct, 51)
+        check("GRAPH_STATE: ledger header agrees with its own rows",
+              [lw["total_overlapping"], lw["changed_node_or_edge_counts"],
+               lw["property_writes_only"]],
+              [len(ents), struct, len(ents) - struct])
+    except Exception as e:                                       # noqa: BLE001
+        bad.append(f"run-window ledger: {type(e).__name__}: {e}")
+        print(f"  FAIL  run-window ledger unreadable: {type(e).__name__}: {e}")
+    unverifiable("the +141,896 CITES tranche size",
+                 "the private graph -- the ledger records that the write "
+                 "happened and its delta, not the graph's state")
+
     print(f"\n{ok} checks passed, {len(bad)} failed, "
           f"{len(notes)} figures not checkable here")
     for b in bad:

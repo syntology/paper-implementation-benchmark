@@ -40,7 +40,7 @@ python3 tools/verify_claims.py     # 67 checks re-derive every table below from 
 ```
 
 You should see `referee smoke: PASS` and
-`67 checks passed, 0 failed, 3 figures not checkable here`. **Those three are
+`71 checks passed, 0 failed, 4 figures not checkable here`. **Those four are
 printed rather than passed over** — what genuinely cannot be checked outside
 Syntology is named, not quietly skipped.
 
@@ -65,6 +65,8 @@ given the same code with the graph stripped out.
 paper nodes, not one relationship traversed — matched the graph arm on every
 single task.**
 
+*The census file is dated packaging-time; the live graph is not checkable here.*
+
 | v1.5, 2026-09-10 | in-catalog (18) | off-catalog (6) | overall |
 |---|---|---|---|
 | `none` (floor) | 8/18 | 2/6 | **10/24** |
@@ -76,6 +78,8 @@ single task.**
 > while the run was executing**. Neither arm has been re-tested.
 > [**GRAPH_STATE.md**](GRAPH_STATE.md) states the graph these numbers were
 > measured against, the mid-run write, and which way it biases the null.
+
+*Author measurement, not checkable in this repository:* the `Method +63%` growth and the tranche SIZE rest on the private graph. The 90 overlapping writes behind them now re-derive from [`data/run_window_ledger.json`](data/run_window_ledger.json); the graph's own state does not.
 
 **Paired: +0 / −0 discordant tasks. Exact two-sided sign test p = 1.00.**
 Same 6 median turns. All 24 flat-index fetches retrieved the exact sample the
@@ -261,7 +265,7 @@ tools/      assemble.py            built this tree; --check re-verifies it
             check_clean_clone.py   compile / import / declared-deps / manifest,
                                    self-tested; the gate for the defect in §4.9
             validate_schemas.py    the shipped artifacts against schemas/
-            corpus_license_report.py  the licence census behind the exclusions
+            corpus_license_report.py *(author-only: needs Neo4j)*  the licence census behind the exclusions
 schemas/    artifacts.schema.json  JSON Schema for the task, run-metadata,
                                    referee-verdict and manifest shapes —
                                    checked against every artifact in CI
@@ -304,7 +308,7 @@ Ubuntu 24.04 then refuses `pip install` with `externally-managed-environment`
 (PEP 668). The Docker `python:*` images and macOS need neither step.
 
 You should see `referee smoke: PASS` and
-`67 checks passed, 0 failed, 3 figures not checkable here`. That is the whole
+`71 checks passed, 0 failed, 4 figures not checkable here`. That is the whole
 claim of this repository in two commands: **the referee runs in your
 environment, and the numbers `verify_claims` covers re-derive from the
 artifacts in `data/`** — including the mechanism analysis, re-run over the

@@ -7,7 +7,7 @@ rule, when that file was committed relative to the run, and which artifact the
 number comes out of.**
 
 Claims that were *not* pre-registered are marked **post-hoc** and say so in
-their own row. There are five of them, and each is in the conservative
+their own row. There are five of them (the post-hoc set is enumerated in full below; if that list and this count ever disagree, the list wins). Each is in the conservative
 direction — a bound, a caveat, or a licence measurement made at packaging time.
 
 `tools/verify_claims.py` re-derives the mechanically checkable subset of this

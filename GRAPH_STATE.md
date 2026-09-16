@@ -52,13 +52,17 @@ Syntology's write ledger records three CITES backfill tranches on 2026-09-10:
 
 **141,896 CITES were added to the graph while the benchmark was executing.**
 
-> **NOT CHECKABLE FROM THIS REPOSITORY.** Every write count on this page — the
-> 141,896 tranche, the 39 count-changing writes, the 51 property writes, the 90
-> total — is derived from a write ledger held in the private graph and not
-> shipped here. `tools/verify_claims.py` does not cover them and does not claim
-> to. They are **asserted, not derived**, and a reader who wants to check them
-> cannot. Stated because an outside reader found the page's precision outrunning
-> its evidence, 2026-09-16.
+> **NOW CHECKABLE — see [`data/run_window_ledger.json`](data/run_window_ledger.json).**
+> An outside reader observed, correctly, that this page's most precise numbers
+> were its least verifiable: the overlap counts came from a write ledger held in
+> the private graph. The 90 overlapping entries are now published — timestamps,
+> script, intent and delta, with local paths and machine identity removed — so
+> **39 count-changing and 51 property-only re-derive here** rather than being
+> asserted. `tools/verify_claims.py` checks both against the file.
+>
+> Still not checkable here: the **+141,896** tranche size itself, which is a
+> fact about the graph rather than about the ledger, and the `Method +63%`
+> growth figure. Those remain author measurements.
 By those stamps, **72 of 218 (33%)** precede
 that write and 146 (67%) follow it. The graph arm did not read one fixed graph; it read a graph
 that gained citation edges partway through.
