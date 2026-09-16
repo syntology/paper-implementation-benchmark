@@ -193,8 +193,10 @@ rows — `evidence_quote` and the two withheld-field markers — because those a
 the papers' words, not ours. Nothing the bracket is computed from depends on
 them.
 
-**Two things are still not checkable here, and `verify_claims.py` prints both
-rather than letting them pass:** whether any individual verdict is right (the
+**Two things from THIS audit are still not checkable here, and
+`verify_claims.py` prints them rather than letting them pass** (it prints four
+`[unverifiable-here]` lines in total; the other two belong to other sections —
+the raw transcripts and the CITES tranche size)**:** whether any individual verdict is right (the
 adjudicators read the served code and the paper body, neither of which is
 published — and the audit's own primary finding is that the verdicts are
 unreliable in the permissive direction), and that the 400 rows are an SRS of

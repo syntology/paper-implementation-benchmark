@@ -200,39 +200,95 @@ def _declared_requirements(root: Path) -> set[str]:
     return out
 
 
-def _declared_missing_module(err: str, declared: set[str]) -> str | None:
-    """The module named by a ModuleNotFoundError **that requirements declares**.
+# The import probe REPORTS ITS OWN FAILURE, structurally.
+#
+# Three rounds of external review found the same defect at three depths, each
+# time because this gate asked "what does the last line of stderr say?" when the
+# question was "why did the process fail?":
+#
+#   r2  `"ModuleNotFoundError" in err`      excused a SyntaxError
+#   r3  substring anywhere                  excused `RuntimeError: ModuleNotFound...`
+#   r4  anchored at line start              excused an atexit handler that PRINTS
+#                                           `ModuleNotFoundError: No module named 'numpy'`
+#                                           while the real failure was a RuntimeError
+#
+# Each fix made the text match stricter, and text can always be forged, because
+# the module under test controls its own stderr. So this stops reading prose.
+# The probe catches the exception itself and emits its TYPE, its MRO and its
+# `.name` as JSON behind a sentinel, then calls os._exit -- which skips atexit
+# handlers and any replaced excepthook, so nothing the module registered can
+# append a line after ours. A module could print the sentinel during import, so
+# the LAST sentinel line wins and ours is provably last.
+#
+# ONLY the script's own directory goes on the path, which is exactly what
+# `python3 src/analyze.py` does. Adding vendor/ here made the gate pass a tree
+# whose modules could not import -- the gate supplying the fix it was testing.
+_PROBE_SENTINEL = "__CCC_IMPORT_PROBE__"
+_PROBE_SRC = (
+    "import sys, os, json, pathlib, importlib\n"
+    "p = pathlib.Path(sys.argv[1])\n"
+    "sys.path.insert(0, str(p.parent))\n"
+    "try:\n"
+    "    importlib.import_module(p.stem)\n"
+    "except BaseException as e:\n"
+    "    info = {'type': type(e).__name__,\n"
+    "            'mro': [c.__name__ for c in type(e).__mro__],\n"
+    "            'name': getattr(e, 'name', None),\n"
+    "            'msg': str(e)[:300]}\n"
+    "    sys.stderr.write('\\n" + _PROBE_SENTINEL + "' + json.dumps(info) + '\\n')\n"
+    "    sys.stderr.flush()\n"
+    "    os._exit(1)\n"
+)
 
-    None for everything else, and "everything else" is the point. An earlier
-    version of this asked the opposite question -- "is this NOT an undeclared
-    dependency?" -- and answered None for any error that was not a
-    ModuleNotFoundError at all. A shipped module with a SyntaxError therefore
-    landed in the [env] bucket carrying the advice "run pip install", and
-    IMPORTS reported findings=0 on a clone that does not compile. An external
-    reviewer found that within an hour of it shipping, by reading the self-test
-    output rather than the source: `[env] src/broken_syntax.py -- SyntaxError`.
 
-    So the predicate is positive now: a name is returned ONLY when the error is
-    a ModuleNotFoundError AND the module it names is declared in
-    requirements.txt. A missing UNDECLARED module returns None and stays a
-    finding, because that is a packaging defect. Any other import failure --
-    SyntaxError, ImportError from a bad relative import, a RuntimeError raised
-    at import time -- also returns None and stays a finding, because none of
-    those are fixed by installing anything."""
-    # ANCHORED at the start of the line, because `err` is the last line of
-    # stderr and a traceback's last line begins with the exception type. A
-    # substring test matched
-    #     RuntimeError: ModuleNotFoundError: No module named 'numpy'
-    # and excused a RuntimeError as a missing dependency -- the same type-vs-text
-    # confusion as the SyntaxError bug this function was written to fix, one
-    # layer deeper, found by the same reviewer one round later. Matching on text
-    # where the question is about a TYPE is the defect; the anchor is the fix.
-    m = re.match(r"ModuleNotFoundError: No module named '([A-Za-z0-9_.]+)'",
-                 err.strip())
-    if not m:
+def _probe_verdict(stderr: str) -> dict | None:
+    """The probe's own report of the exception, or None if it never spoke."""
+    hit = None
+    for line in stderr.splitlines():
+        line = line.strip()
+        if line.startswith(_PROBE_SENTINEL):
+            hit = line[len(_PROBE_SENTINEL):]
+    if hit is None:
         return None
-    name = m.group(1).split(".")[0]
-    return name if name.lower() in declared else None
+    try:
+        v = json.loads(hit)
+        return v if isinstance(v, dict) else None
+    except ValueError:
+        return None
+
+def _probe_summary(verdict: dict | None, raw_last: str) -> str:
+    """One readable line for a report. The JSON envelope is the WIRE FORMAT and
+    has no business in a finding a human reads."""
+    if not verdict:
+        return raw_last[:120]
+    t = verdict.get("type") or "?"
+    m = (verdict.get("msg") or "").strip()
+    return f"{t}: {m}"[:120] if m else t
+
+
+def _declared_missing_module(verdict: dict | None,
+                             declared: set[str]) -> str | None:
+    """The declared distribution a genuine ModuleNotFoundError names, else None.
+
+    Takes the PROBE'S OWN REPORT, not a line of stderr. A missing declared
+    dependency is an unprovisioned environment; everything else -- an undeclared
+    module, a SyntaxError, a bad relative import, a RuntimeError, or a module
+    that merely PRINTS something that looks like a ModuleNotFoundError -- is a
+    finding, because none of those are fixed by installing anything.
+
+    `mro` rather than `type`, so a subclass of ModuleNotFoundError is still
+    recognised as one; `name` rather than a parse of the message, because
+    ModuleNotFoundError carries the module name as an attribute and reading it
+    from prose is what produced three rounds of findings."""
+    if not verdict:
+        return None
+    if "ModuleNotFoundError" not in (verdict.get("mro") or []):
+        return None
+    name = verdict.get("name")
+    if not isinstance(name, str) or not name:
+        return None
+    top = name.split(".")[0]
+    return top if top.lower() in declared else None
 
 def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     """Import every shipped module the way a reader runs it: on its own path."""
@@ -258,18 +314,11 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
             # a module loaded under a made-up name fails there for reasons
             # that have nothing to do with this tree.
             r = subprocess.run(
-                [sys.executable, "-c",
-                 "import sys,importlib,pathlib;"
-                 "p=pathlib.Path(sys.argv[1]);"
-                 # ONLY the script's own directory, which is exactly what
-                 # `python3 src/analyze.py` puts on the path. Adding vendor/
-                 # here made the gate pass a tree whose modules could not
-                 # import -- the gate was supplying the fix it was testing for.
-                 "sys.path.insert(0, str(p.parent));"
-                 "importlib.import_module(p.stem)",
-                 str(mod)], capture_output=True, text=True, cwd=neutral)
+                [sys.executable, "-c", _PROBE_SRC, str(mod)],
+                capture_output=True, text=True, cwd=neutral)
             if r.returncode != 0:
                 last = (r.stderr.strip().splitlines() or ["?"])[-1]
+                verdict = _probe_verdict(r.stderr)
                 posix_only = _posix_only_stdlib(last)
                 if posix_only and os.name == "nt":
                     # A PLATFORM FACT, COUNTED, NOT A FINDING (2026-09-14).
@@ -292,15 +341,17 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
                     unsupported.append(f"{mod.relative_to(root)} -- needs "
                                        f"{posix_only!r}, POSIX-only stdlib")
                     continue
-                if _declared_missing_module(last, declared):
+                if _declared_missing_module(verdict, declared):
                     # Declared in requirements.txt and simply absent from
                     # this interpreter. Named every run and counted in its
                     # own bucket, never silently dropped.
                     uninstalled.append(
-                        f"{mod.relative_to(root)} -- {last[:90]}")
+                        f"{mod.relative_to(root)} -- "
+                        f"{_probe_summary(verdict, last)}")
                     continue
                 findings.append(f"shipped module does not import: "
-                                f"{mod.relative_to(root)} -- {last[:120]}")
+                                f"{mod.relative_to(root)} -- "
+                                f"{_probe_summary(verdict, last)}")
     for u in unsupported:
         print(f"          [platform] not importable on this OS: {u}")
     if uninstalled:

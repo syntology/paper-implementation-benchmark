@@ -221,8 +221,8 @@ jobs:
           python tools/verify_claims.py | tee "$RUNNER_TEMP/claims.log"
           grep -q ", 0 failed" "$RUNNER_TEMP/claims.log"
           n=$(sed -n 's/^\([0-9][0-9]*\) checks passed.*/\1/p' "$RUNNER_TEMP/claims.log")
-          if [ "${n:-0}" -lt 67 ]; then
-            echo "::error::verify_claims ran ${n:-0} checks; the floor is 67. Raise the floor deliberately, never let it fall."
+          if [ "${n:-0}" -lt 74 ]; then
+            echo "::error::verify_claims ran ${n:-0} checks; the floor is 74. Raise the floor deliberately, never let it fall."
             exit 1
           fi
           echo verify_claims >> "$RUNNER_TEMP/ran.txt"

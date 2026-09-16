@@ -40,6 +40,7 @@ Exit 0 all checks pass - 1 any mismatch.
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 from collections import Counter
 import pathlib
@@ -132,19 +133,71 @@ def paired(results_file: str, arm_a: str, arm_b: str):
 # day; 67 / 3 was correct then. Rewriting it to satisfy a gate would falsify a
 # record. A dated record and a current claim are different things and only one
 # of them is allowed to drift.
-_DATED_RECORDS = {"ASSEMBLY_REPORT.md"}
+# Exempting a whole FILE was too blunt, as the reviewer argued: ASSEMBLY_REPORT
+# .md:457 still says "the 67 claim checks" in present tense, invisible to the
+# gate purely because of the filename. A dated record is a marked PASSAGE. Any
+# line carrying this marker is exempt and every other line in the file is
+# scanned, so a historical table stays historical while present-tense prose in
+# the same file still has to be true.
+_HISTORICAL_MARKER = "as this report was written"
+_DATED_RECORDS: set[str] = set()
 
 
 def _doc_files() -> list[pathlib.Path]:
-    out = []
-    for fp in sorted(REPO.rglob("*.md")) + sorted(REPO.rglob("*.txt")):
-        rel = fp.relative_to(REPO)
-        if ".git" in rel.parts or "node_modules" in rel.parts:
+    """Every TRACKED text file, from git rather than a glob.
+
+    The previous version globbed `*.md` and `*.txt`, and an outside reviewer
+    demonstrated the hole in one move: a lying `.rst`, `.html`, `.yml` or
+    extensionless file sat in the tree and the gate exited 0. Two rounds earlier
+    the same gate had a hardcoded FILE LIST with the same failure; widening a
+    list to a glob just moved the boundary. `git ls-files` has no boundary to
+    guess -- it is exactly the set this repository ships.
+
+    It also fixes two things the reviewer noticed in passing: the glob walked
+    into `.venv` (47 markdown files that could one day contain "N checks
+    passed") while check_clean_clone deliberately skips it, and it scanned
+    `requirements.txt` as prose. Neither is tracked-and-prose, so both fall out.
+
+    Binary and data files are skipped by extension rather than by sniffing,
+    because a false positive here fails an honest run and a gate that cries
+    wolf gets switched off."""
+    # DOCUMENTATION, not every tracked file. The gate exists so that prose a
+    # READER trusts matches what the tool emits. Two things are not that, and
+    # scanning them made the gate fail an honest tree:
+    #   - this file's own comments, which narrate the 67 -> 71 -> 74 history and
+    #     must keep saying 67;
+    #   - .github/workflows/ci.yml, whose "floor is 67" is a ratchet LOWER BOUND,
+    #     not a claim about the current total.
+    # A gate that cries wolf gets switched off, which is worse than the drift it
+    # catches. Extensionless files are included: NOTICE and LICENSE are prose.
+    DOC_EXT = {".md", ".txt", ".rst", ".html", ".htm", ".adoc", ".org", ""}
+    try:
+        out = subprocess.run(["git", "ls-files", "-z"], cwd=REPO,
+                             capture_output=True, text=True, timeout=60)
+        names = [n for n in out.stdout.split("\0") if n]
+    except (OSError, subprocess.SubprocessError):
+        names = []
+    if not names:
+        # Not a git checkout (a tarball, say). Fall back to the old globs
+        # rather than silently scanning nothing -- a gate that quietly stops
+        # gating is the failure mode this whole file exists to prevent.
+        print("  [doc-drift] git ls-files unavailable; falling back to "
+              "*.md/*.txt glob, which is narrower")
+        return [f for f in sorted(REPO.rglob("*.md")) + sorted(REPO.rglob("*.txt"))
+                if ".git" not in f.relative_to(REPO).parts
+                and f.name not in _DATED_RECORDS]
+    out_paths = []
+    for n in names:
+        fp = REPO / n
+        if not fp.is_file():
             continue
-        if rel.name in _DATED_RECORDS:
+        if fp.suffix.lower() not in DOC_EXT:
             continue
-        out.append(fp)
-    return out
+        if fp.name in _DATED_RECORDS:
+            continue
+        out_paths.append(fp)
+    return out_paths
+
 
 
 _COUNT_PATTERNS = (
@@ -162,13 +215,25 @@ _COUNT_PATTERNS = (
     # separated by the verb, so every earlier pattern missed it.
     r"verify_claims\.py`? checks (\d+) of",
     r"checks (\d+) of them",
+    # "the 67 claim checks" -- ASSEMBLY_REPORT.md:457, present tense, in a
+    # file that used to be exempt WHOLESALE by filename. The reviewer who
+    # argued against whole-file exemption pointed straight at this line.
+    r"the (\d+) claim checks",
 )
 _NOTES_PATTERNS = (
     r"names (\d+) it cannot",
     r"prints the (\w+) things that",
     r"The (\w+) it prints as \*not\* checkable",
+    # Added after round 4. CLAIMS_TO_PREREG.md said "Two things are still not
+    # checkable here, and verify_claims.py prints both" over a tool printing
+    # FOUR, and the gate was green on a file it was already scanning. Round 3
+    # taught that the count patterns needed a sibling phrasing; I added it there
+    # and did not give the notes side the same treatment. Half a symmetric fix.
+    r"(\w+) things are still not checkable",
+    r"(\w+) things are not checkable",
+    r"prints (both) rather than",
 )
-_WORD = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+_WORD = {"both": 2, "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 
 
 def _doc_drift(n_checks: int, n_notes: int) -> list[str]:
@@ -181,6 +246,8 @@ def _doc_drift(n_checks: int, n_notes: int) -> list[str]:
             text = fp.read_text(encoding="utf-8")
         except (OSError, UnicodeDecodeError):
             continue
+        text = "\n".join(ln for ln in text.splitlines()
+                          if _HISTORICAL_MARKER not in ln)
         for pat in _COUNT_PATTERNS:
             for m in _re.finditer(pat, text):
                 if int(m.group(1)) != n_checks:
@@ -239,8 +306,6 @@ def _run_spend(fn: str) -> float:
     # derivable. It was; I had searched for one spelling and concluded from its
     # absence. Silence is not absence.
     top = d.get("total_spend_usd")
-    if isinstance(top, (int, float)):
-        return round(float(top), 2)
     eff = d.get("effort") or {}
     tot = 0.0
     for v in eff.values():
@@ -250,6 +315,19 @@ def _run_spend(fn: str) -> float:
             if key in v:
                 tot += float(v[key])
                 break
+    # The header is preferred, but never trusted BLIND. It agreed with the arms
+    # when a reviewer checked (15.8089 both ways) -- and a preference with no
+    # cross-check would have blessed the header if it ever stopped agreeing,
+    # reporting a total no arm supports. Disagreement is a defect in the data,
+    # so it is raised rather than silently resolved either way.
+    if isinstance(top, (int, float)) and eff:
+        if round(float(top), 2) != round(tot, 2):
+            raise AssertionError(
+                f"{fn}: total_spend_usd={float(top):.4f} but the arms sum to "
+                f"{tot:.4f} -- the header and the data disagree")
+        return round(float(top), 2)
+    if isinstance(top, (int, float)):
+        return round(float(top), 2)
     return round(tot, 2)
 
 
