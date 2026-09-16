@@ -151,12 +151,21 @@ neither is audited as faithful to the paper.
 An audit of the population these come from — all 2,831 served
 reference-implementation edges, pre-registered, n = 400 — put paper fidelity in
 a **bracket of 0.29–0.80**, with *no adjudicator earning the right to narrow
-it* (the permissive instrument's sensitivity measured 0.25 against a 0.50 bar,
-and it approved 83.8% of deliberately mutated code). **That audit is in this
+it* (the permissive instrument's sensitivity measured 0.25 against a 0.50 bar, and
+it caught only 18.6% of deliberately mutated code — a paired flip rate of
+0.1862, so it approved roughly four mutants in five). **That audit is in this
 repository**: its pre-registration, its adjudicator summaries and its 1,536
 per-row verdicts are under `data/fidelity_audit/`, and
 `tools/recompute_fidelity_bracket.py` re-derives every figure in this sentence
-from them. What you cannot check here is whether any individual verdict is
+from them.
+
+> **Corrected 2026-09-16, by an outside reader.** This sentence previously said
+> the instrument "approved 83.8% of deliberately mutated code". 83.8% is
+> 145/173 — the rate at which it correctly approved UNMUTATED originals, a
+> different statistic pointing the other way. The mutant figure is the paired
+> flip rate, 0.1862. The claim above it, that the tool re-derives every figure
+> in the sentence, was therefore also false: the tool never emitted 83.8% as a
+> mutant statistic, and running it would have shown that. It does now. What you cannot check here is whether any individual verdict is
 right — the adjudicators read the served code and the paper body, neither of
 which is published — and the audit's own primary finding is that on its own
 evidence they largely are not. The audit's sharpest
