@@ -97,7 +97,108 @@ def paired(results_file: str, arm_a: str, arm_b: str):
     return wins, losses
 
 
+# --- DOC-DRIFT GATE ------------------------------------------------------
+# "The cited tool does not produce the cited number" has now been found twice
+# by outside readers: once as a README sentence calling 83.8% a mutant-approval
+# rate that `recompute_fidelity_bracket.py` never emitted, and once as ten
+# separate citations of "67 checks / names 3" surviving in README, REPRODUCTION
+# and llms.txt after this tool had grown to 71 and 4. Both were prose drifting
+# away from a tool that had moved. A third correction is not the answer; a gate
+# is.
+#
+# This deliberately does NOT increment the check count. A check that counts
+# itself changes the number it is checking, and then the docs can never state a
+# stable figure. It reads the final totals and fails the run on disagreement.
+_DOC_FILES = ("README.md", "REPRODUCTION.md", "llms.txt")
+
+_COUNT_PATTERNS = (
+    r"#\s*(\d+)\s+checks\b",
+    r"re-derives the (\d+) checkable numbers",
+    r"(\d+) of them and names \d+ it cannot",
+    r"from `data/` — (\d+) checks",
+    # The quickstart's EXPECTED-OUTPUT line. The gate shipped without this
+    # pattern and passed while README still promised "71 checks passed" over a
+    # tool emitting 73 -- the gate reproducing, at once, the exact defect it
+    # was written to prevent. Any sentence quoting the tool's summary counts.
+    r"`?(\d+) checks passed",
+)
+_NOTES_PATTERNS = (
+    r"names (\d+) it cannot",
+    r"prints the (\w+) things that",
+    r"The (\w+) it prints as \*not\* checkable",
+)
+_WORD = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
+
+
+def _doc_drift(n_checks: int, n_notes: int) -> list[str]:
+    """Every doc citation of this tool's own totals must match what it emits."""
+    import re as _re
+    problems = []
+    for fname in _DOC_FILES:
+        fp = REPO / fname
+        if not fp.exists():
+            continue
+        text = fp.read_text(encoding="utf-8")
+        for pat in _COUNT_PATTERNS:
+            for m in _re.finditer(pat, text):
+                if int(m.group(1)) != n_checks:
+                    problems.append(f"{fname} cites {m.group(1)} checks; "
+                                    f"this tool emits {n_checks}")
+        for pat in _NOTES_PATTERNS:
+            for m in _re.finditer(pat, text):
+                raw = m.group(1)
+                val = _WORD.get(raw.lower(), None)
+                if val is None:
+                    try:
+                        val = int(raw)
+                    except ValueError:
+                        continue
+                if val != n_notes:
+                    problems.append(f"{fname} says {raw!r} unverifiable; "
+                                    f"this tool prints {n_notes}")
+    # The manifest's own summary must agree with its own file list, and the
+    # README must agree with both. summary.files sat at 1,275 while files held
+    # 1,277, and the README quoted the stale one next to the command that
+    # prints the real one.
+    try:
+        import json as _json
+        man = _json.loads((REPO / "MANIFEST.json").read_text(encoding="utf-8"))
+        n_files = len(man["files"])
+        summ = (man.get("summary") or {}).get("files")
+        if summ is not None and summ != n_files:
+            problems.append(f"MANIFEST.json summary.files={summ} but "
+                            f"len(files)={n_files}")
+        readme = (REPO / "README.md").read_text(encoding="utf-8")
+        for m in __import__("re").finditer(r"every one of its ([\d,]+) files", readme):
+            if int(m.group(1).replace(",", "")) != n_files:
+                problems.append(f"README cites {m.group(1)} manifest files; "
+                                f"MANIFEST.json holds {n_files}")
+    except Exception as e:                                          # noqa: BLE001
+        problems.append(f"manifest cross-check could not run: {e}")
+    return problems
+
+
+def _run_spend(fn: str) -> float:
+    """A run's subject spend: the sum of its own effort.*.total_cost fields.
+
+    Published as prose only until 2026-09-16, when an outside reader added the
+    shipped fields and got a cent more than the README on two of four runs
+    (37.25 not 37.24, 17.41 not 17.40). The fields were already at cent
+    precision and summed exactly, so it was not a rounding artifact -- the prose
+    had simply been computed once, somewhere else, and never re-derived. Gated
+    here for the two runs whose arms are all in one file; v15 is stratified and
+    v16's arms are not carried in analysis_substitution.json, so the published
+    total still rests partly on figures this tool cannot reach."""
+    eff = load(fn).get("effort") or {}
+    return round(sum(float(v["total_cost"]) for v in eff.values()
+                     if isinstance(v, dict) and "total_cost" in v), 2)
+
+
 def main() -> int:
+    print("subject spend, re-derived from each run's own effort fields")
+    check("run-1 subject spend", _run_spend("data/analysis.json"), 37.25, " USD")
+    check("v14 subject spend", _run_spend("data/analysis_v14.json"), 17.41, " USD")
+
     print("v1.5 -- the code_only ablation (results_v15.json)")
     t = pass_table("data/results_v15.json")
     check("code_only passed", t["code_only"], (24, 24))
@@ -366,6 +467,10 @@ def main() -> int:
     unverifiable("the +141,896 CITES tranche size",
                  "the private graph -- the ledger records that the write "
                  "happened and its delta, not the graph's state")
+
+    for problem in _doc_drift(ok, len(notes)):
+        bad.append(problem)
+        print(f"  FAIL  doc drift: {problem}")
 
     print(f"\n{ok} checks passed, {len(bad)} failed, "
           f"{len(notes)} figures not checkable here")

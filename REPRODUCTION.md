@@ -143,7 +143,7 @@ A failure here means either this tree is broken or a property suite has stopped
 being satisfiable in your numpy — both worth knowing before you buy tokens.
 
 ```bash
-python3 tools/verify_claims.py              # 67 checks, offline, a few seconds
+python3 tools/verify_claims.py              # 73 checks, offline, a few seconds
 python3 tools/recompute_fidelity_bracket.py # the 0.29-0.80 bracket, from rows
 python3 tools/check_clean_clone.py          # does THIS clone compile, import,
                                             # declare its deps, match MANIFEST?
@@ -165,7 +165,7 @@ python3 tools/assemble.py --check --source <repo> \
 published tables from `data/`, re-runs `src/analyze_code_only_mechanism.py`
 over the redacted transcripts and compares the result to the published
 `data/mechanism_v15.json`, re-derives the fidelity bracket from the audit rows,
-and prints the three things that still are not checkable here instead of
+and prints the four things that still are not checkable here instead of
 letting them pass as checked.
 
 ## Running the referee on your own agent

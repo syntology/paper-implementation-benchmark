@@ -92,6 +92,17 @@ def main() -> int:
     for rel, e, b in authored:
         e["sha256"] = hashlib.sha256(b).hexdigest()
         e["bytes"] = len(b)
+    # summary.files is DERIVED, never carried forward. It was written once and
+    # never maintained, so it drifted to 1,275 while files held 1,277 -- and the
+    # README quoted the stale one, next to the very one-liner that prints the
+    # real one. An external reviewer found the contradiction by running the
+    # command the README told them to run. A summary that is not recomputed
+    # where it is written is a stale number waiting to be cited.
+    if isinstance(m.get("summary"), dict):
+        before = m["summary"].get("files")
+        m["summary"]["files"] = len(m["files"])
+        if before != m["summary"]["files"]:
+            print(f"  summary.files corrected {before} -> {m['summary']['files']}")
     mp.write_text(json.dumps(m, indent=1) + "\n", encoding="utf-8")
     print(f"\n  refreshed {len(authored)} authored entr(ies)")
     return 1 if (foreign or missing) else 0

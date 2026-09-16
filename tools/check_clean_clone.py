@@ -200,24 +200,32 @@ def _declared_requirements(root: Path) -> set[str]:
     return out
 
 
-def _undeclared_dep(err: str, declared: set[str]) -> str | None:
-    """The module a ModuleNotFoundError names, unless requirements declares it.
+def _declared_missing_module(err: str, declared: set[str]) -> str | None:
+    """The module named by a ModuleNotFoundError **that requirements declares**.
 
-    A declared-but-absent dependency is an UNPROVISIONED ENVIRONMENT, not a
-    defect in the clone. Running this gate before `pip install -r
-    requirements.txt` reported 13 findings on a repo whose REQUIREMENTS check
-    PASSED in the same run -- which reads to a first-time cloner as a broken
-    repository, and that first impression is the whole point of the gate. An
-    UNDECLARED third-party module is still a finding: that is the packaging
-    defect this check exists to catch, and the distinction is the difference."""
+    None for everything else, and "everything else" is the point. An earlier
+    version of this asked the opposite question -- "is this NOT an undeclared
+    dependency?" -- and answered None for any error that was not a
+    ModuleNotFoundError at all. A shipped module with a SyntaxError therefore
+    landed in the [env] bucket carrying the advice "run pip install", and
+    IMPORTS reported findings=0 on a clone that does not compile. An external
+    reviewer found that within an hour of it shipping, by reading the self-test
+    output rather than the source: `[env] src/broken_syntax.py -- SyntaxError`.
+
+    So the predicate is positive now: a name is returned ONLY when the error is
+    a ModuleNotFoundError AND the module it names is declared in
+    requirements.txt. A missing UNDECLARED module returns None and stays a
+    finding, because that is a packaging defect. Any other import failure --
+    SyntaxError, ImportError from a bad relative import, a RuntimeError raised
+    at import time -- also returns None and stays a finding, because none of
+    those are fixed by installing anything."""
     if "ModuleNotFoundError" not in err:
         return None
     m = re.search(r"No module named '([A-Za-z0-9_.]+)'", err)
     if not m:
         return None
     name = m.group(1).split(".")[0]
-    return None if name.lower() in declared else name
-
+    return name if name.lower() in declared else None
 
 def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     """Import every shipped module the way a reader runs it: on its own path."""
@@ -277,7 +285,7 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
                     unsupported.append(f"{mod.relative_to(root)} -- needs "
                                        f"{posix_only!r}, POSIX-only stdlib")
                     continue
-                if declared and _undeclared_dep(last, declared) is None:
+                if _declared_missing_module(last, declared):
                     # Declared in requirements.txt and simply absent from
                     # this interpreter. Named every run and counted in its
                     # own bucket, never silently dropped.
@@ -289,10 +297,10 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     for u in unsupported:
         print(f"          [platform] not importable on this OS: {u}")
     if uninstalled:
-        print(f"          [env] {len(uninstalled)} shipped module(s) need a "
-              f"dependency requirements.txt declares and this interpreter "
-              f"lacks. NOT a finding: run `pip install -r requirements.txt` "
-              f"and re-run.")
+        print(f"          [env] ENVIRONMENT INCOMPLETE: {len(uninstalled)} shipped "
+              f"module(s) need a dependency requirements.txt declares and this "
+              f"interpreter lacks. Not a defect in the clone -- run "
+              f"`pip install -r requirements.txt` and re-run to exercise them.")
         for u in uninstalled:
             print(f"          [env]   {u}")
     return findings, {"examined": len(mods), "findings": len(findings),
