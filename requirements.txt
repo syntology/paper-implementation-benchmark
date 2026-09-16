@@ -33,3 +33,7 @@ neo4j>=5.0
 # inside a try/except in api_gateway.py and s2_api_key.py, absent = environment
 # only) and scipy (see above). Both are guarded at their import site, which is
 # what makes them optional rather than merely undeclared.
+# validate_schemas.py refuses to run without this and says so rather than
+# skipping. It was absent, so the README's credential-free install produced a
+# tool that exits 2. Found by an outside reader, 2026-09-16.
+jsonschema>=4.18

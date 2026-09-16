@@ -238,7 +238,7 @@ a stand-in that raises an explanatory error.
 | `tools/recompute_fidelity_bracket.py` | **41 checks pass** — the 0.29-0.80 bracket, both Wilson bounds, both instruments' sensitivity/specificity and the mutation channel, all re-derived from the published rows |
 | `src/analyze_code_only_mechanism.py` over the published redacted transcripts | re-derives `data/mechanism_v15.json` **with no differing key** |
 | every module in `src/` imports | 18/18 — it was **5/18** before 2026-09-13 |
-| `tools/check_clean_clone.py` | **CLEAN** on a fresh clone: every `.py` compiles, all 30 modules under `src/` import with only their own directory on the path, every unguarded third-party import is declared, and every file matches its `MANIFEST.json` sha256 — measured on CPython 3.10, 3.11, 3.12 and 3.14 |
+| `tools/check_clean_clone.py` | **CLEAN** on a fresh clone as of 2026-09-16: every `.py` compiles, all 30 modules under `src/` import with only their own directory on the path, every unguarded third-party import is declared, and every file matches its `MANIFEST.json` sha256 — measured on CPython 3.10, 3.11, 3.12 and 3.14 |
 | `tools/check_clean_clone.py --self-test` | 6/6 plants caught (a module that cannot import, an undeclared import, a syntax error, a hash drift, an unrecorded file, a recorded file that is missing) plus the clean-tree false-positive control; three real-tree mutations also caught, including re-introducing the 2026-09-13 defect itself |
 | `tools/validate_schemas.py` | 1,077 shipped artifacts validate against `schemas/artifacts.schema.json`; 4 mutations caught, and a missing `jsonschema` is an **error**, not a skip |
 | `CITATION.cff` | valid against CFF 1.2.0 (`cffconvert --validate`); two mutations of it rejected |
@@ -528,3 +528,23 @@ The audience includes bots, so two things stopped being prose:
 must travel with the numbers, the machine-readable files, the commands that run
 for $0, and the ones that cannot run at all. It is a pointer file, not a
 duplicate of the README.
+
+
+---
+
+## Correction, 2026-09-16 — this report claimed CLEAN while the tip was not
+
+§3 recorded `tools/check_clean_clone.py` as CLEAN on a fresh clone, including
+"every file matches its `MANIFEST.json` sha256". That was **false on the
+published tip** between 2026-09-15 and 2026-09-16: a correction to
+`GRAPH_STATE.md` changed the file without regenerating the manifest, so a clone
+of the published repository failed its own integrity check with a sha256 drift.
+
+An outside reader found it by running the tool on a clean clone — which is what
+the report told them to do, and what nobody here had done after the edit. The
+manifest is regenerated and the check is CLEAN again.
+
+The general lesson, recorded because it is the same one this repository keeps
+learning: **a status recorded in a document is a claim about a moment, and every
+edit after that moment silently ages it.** The check itself was never wrong;
+only the sentence asserting its result was.

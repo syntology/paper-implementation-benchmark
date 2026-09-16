@@ -17,8 +17,15 @@ It has been run four times, each time against a pre-registration written and
 committed before any subject token was spent. The **kill criteria** are the
 stopping rule in [`prereg/PREREGISTRATION_SUBSTITUTION.md`](prereg/PREREGISTRATION_SUBSTITUTION.md),
 and they read cost alone — never a result. Total subject spend across all
-four: **$75.88**. Every number in this repository is re-derivable from the
-artifacts in `data/`.
+four: **$75.88** — the sum of four per-run totals ($37.24 + $17.40 + $5.43 +
+$15.81); the per-run figures are in `data/`, the addition is not shipped as a
+command.
+
+**Most** numbers here re-derive from `data/` — `tools/verify_claims.py` checks
+67 of them and names 3 it cannot. Spend totals, the corpus census and the
+mid-run overlap counts are **not** among them: they rest on a private graph and
+a write ledger this repository does not ship. Corrected 2026-09-16 after an
+outside reader pointed out that "every number" was false.
 
 ---
 
@@ -248,7 +255,7 @@ tools/      assemble.py            built this tree; --check re-verifies it
             scan_secrets.py        the publication gate, with a --self-test
             redact_transcripts.py  what made the transcripts publishable;
                                    self-tested, and it verifies its own output
-            verify_claims.py       re-derives every checkable number from data/
+            verify_claims.py       re-derives the 67 checkable numbers; names 3 it cannot
             recompute_fidelity_bracket.py  re-derives the 0.29–0.80 bracket
             smoke_referee.py       proves the referee runs here, offline, $0
             check_clean_clone.py   compile / import / declared-deps / manifest,
@@ -299,10 +306,15 @@ Ubuntu 24.04 then refuses `pip install` with `externally-managed-environment`
 You should see `referee smoke: PASS` and
 `67 checks passed, 0 failed, 3 figures not checkable here`. That is the whole
 claim of this repository in two commands: **the referee runs in your
-environment, and every published number re-derives from the artifacts in
-`data/`** — including the mechanism analysis, re-run over the redacted
-transcripts, and the fidelity bracket, re-derived from the audit rows. The
-three it prints as *not* checkable here are printed rather than passed over.
+environment, and the numbers `verify_claims` covers re-derive from the
+artifacts in `data/`** — including the mechanism analysis, re-run over the
+redacted transcripts, and the fidelity bracket, re-derived from the audit rows.
+The three it prints as *not* checkable here are printed rather than passed over.
+
+What it does **not** cover, and did not before this sentence was corrected:
+subject spend, the corpus licence census, and the mid-run write counts in
+`GRAPH_STATE.md`. Those depend on a private graph and on a write ledger that is
+not published, so they are assertions here rather than derivations.
 
 Three more, all offline, all $0:
 
@@ -432,7 +444,7 @@ experiments against different pre-registrations.
 ## Provenance
 
 `tools/assemble.py` built this tree from internal artifacts and `MANIFEST.json`
-records the sha256 and origin of every one of its 1,272 files (2026-09-13;
+records the sha256 and origin of every one of its 1,275 files (2026-09-16;
 `python3 -c "import json;print(len(json.load(open('MANIFEST.json'))['files']))"`,
 and the manifest cannot record its own hash, which is the 1,273rd);
 `tools/assemble.py --check` re-verifies the tree against that recorded manifest

@@ -51,6 +51,14 @@ Syntology's write ledger records three CITES backfill tranches on 2026-09-10:
 | **20:41:46** | **+141,896** | **during the run** |
 
 **141,896 CITES were added to the graph while the benchmark was executing.**
+
+> **NOT CHECKABLE FROM THIS REPOSITORY.** Every write count on this page — the
+> 141,896 tranche, the 39 count-changing writes, the 51 property writes, the 90
+> total — is derived from a write ledger held in the private graph and not
+> shipped here. `tools/verify_claims.py` does not cover them and does not claim
+> to. They are **asserted, not derived**, and a reader who wants to check them
+> cannot. Stated because an outside reader found the page's precision outrunning
+> its evidence, 2026-09-16.
 By those stamps, **72 of 218 (33%)** precede
 that write and 146 (67%) follow it. The graph arm did not read one fixed graph; it read a graph
 that gained citation edges partway through.
