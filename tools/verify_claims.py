@@ -170,7 +170,10 @@ def _doc_files() -> list[pathlib.Path]:
     #     not a claim about the current total.
     # A gate that cries wolf gets switched off, which is worse than the drift it
     # catches. Extensionless files are included: NOTICE and LICENSE are prose.
-    DOC_EXT = {".md", ".txt", ".rst", ".html", ".htm", ".adoc", ".org", ""}
+    DOC_EXT = {".md", ".txt", ".rst", ".html", ".htm", ".adoc", ".org",
+               # CITATION.cff is prose a reader cites us from; a reviewer
+               # listed it as under-reach and they were right.
+               ".cff", ""}
     try:
         out = subprocess.run(["git", "ls-files", "-z"], cwd=REPO,
                              capture_output=True, text=True, timeout=60)

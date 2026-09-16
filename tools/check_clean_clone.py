@@ -224,15 +224,23 @@ def _declared_requirements(root: Path) -> set[str]:
 # `python3 src/analyze.py` does. Adding vendor/ here made the gate pass a tree
 # whose modules could not import -- the gate supplying the fix it was testing.
 _PROBE_SENTINEL = "__CCC_IMPORT_PROBE__"
+_PROBE_OK = "__CCC_IMPORT_OK__"
 _PROBE_SRC = (
     "import sys, os, json, pathlib, importlib\n"
-    # BOUND BEFORE THE IMPORT. `os._exit` is an attribute, and the module under
-    # test runs before the except block reaches it: `os._exit = lambda c: None`
-    # neuters the escape hatch, atexit fires, and a forged sentinel lands after
-    # ours. Found by attacking this file's own fix an hour after writing it --
-    # the commit that introduced it claimed nothing could append after ours,
-    # which was false. A saved reference cannot be rebound by the module.
+    # EVERY primitive the handler needs is bound BEFORE the import, because the
+    # module under test runs in this process and can rebind any of them. Round 5
+    # forged the verdict three ways that had nothing to do with exception types:
+    #   json.dumps      -> handler serialised attacker-controlled JSON
+    #   sys.stderr.write-> handler's real sentinel was swapped on the way out
+    #   os._exit(0)     -> module exited 0 before raising, and returncode 0 was
+    #                      read as success, so the gate saw nothing at all
+    # A saved reference cannot be rebound. That is the whole defence, and it is
+    # the same lesson as the os._exit fix one round earlier, applied to the rest
+    # of the surface instead of to one name.
     "_exit = os._exit\n"
+    "_dumps = json.dumps\n"
+    "_write = sys.stderr.write\n"
+    "_flush = sys.stderr.flush\n"
     "p = pathlib.Path(sys.argv[1])\n"
     "sys.path.insert(0, str(p.parent))\n"
     "try:\n"
@@ -242,9 +250,15 @@ _PROBE_SRC = (
     "            'mro': [c.__name__ for c in type(e).__mro__],\n"
     "            'name': getattr(e, 'name', None),\n"
     "            'msg': str(e)[:300]}\n"
-    "    sys.stderr.write('\\n" + _PROBE_SENTINEL + "' + json.dumps(info) + '\\n')\n"
-    "    sys.stderr.flush()\n"
+    "    _write('\\n" + _PROBE_SENTINEL + "' + _dumps(info) + '\\n')\n"
+    "    _flush()\n"
     "    _exit(1)\n"
+    # SUCCESS IS PROVEN, NOT INFERRED. `os._exit(0)` at module level exits
+    # before the try completes, so returncode 0 alone meant "imported fine" for
+    # a module that never imported anything. The parent now requires this line.
+    "_write('\\n" + _PROBE_OK + "\\n')\n"
+    "_flush()\n"
+    "_exit(0)\n"
 )
 
 
@@ -294,10 +308,26 @@ def _declared_missing_module(verdict: dict | None,
     closing it would mean distrusting an exception's own attribute, and the
     threat model here is ACCIDENT, not attack: every module this gate imports is
     one we ship. An adversarial module in this tree is a supply-chain problem
-    that a classifier cannot fix. What IS closed is every way a module could
-    mislead the gate WITHOUT deliberately raising the wrong exception type --
-    printing the text, wrapping it, forging the last stderr line, or rebinding
-    os._exit to let an atexit handler forge it."""
+    that a classifier cannot fix.
+
+    THE SENTENCE THAT USED TO FOLLOW IS WITHDRAWN. It claimed that "every way a
+    module could mislead the gate without deliberately raising the wrong
+    exception type" was closed. A reviewer falsified it three times in one round
+    without raising any exception at all -- rebinding `json.dumps`, rebinding
+    `sys.stderr.write`, and calling `os._exit(0)` so the gate read a clean
+    success. Each is closed now, by binding every primitive the handler needs
+    before the import and by proving success instead of inferring it from a
+    return code. But the error was the CLAIM, not the three holes: a module
+    imported into this process can reach anything in it, so no enumeration of
+    forges is ever complete, and asserting completeness is how you get falsified
+    three times in an afternoon.
+
+    The honest statement is narrower. Failure modes that occur in practice -- a
+    missing dependency, a syntax error, a bad relative import, an exception at
+    import time -- are classified from the exception OBJECT rather than from
+    prose, and the forges found so far are closed. Against a module actively
+    trying to deceive this gate it offers nothing, and it does not need to:
+    every module it imports is one we ship."""
     if not verdict:
         return None
     if "ModuleNotFoundError" not in (verdict.get("mro") or []):
@@ -334,6 +364,15 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
             r = subprocess.run(
                 [sys.executable, "-c", _PROBE_SRC, str(mod)],
                 capture_output=True, text=True, cwd=neutral)
+            if r.returncode == 0 and _PROBE_OK not in r.stderr:
+                # Exited 0 without reaching the end of the probe: the module
+                # called os._exit / SystemExit-with-0 during import. Not a
+                # successful import, and not an environment problem either.
+                findings.append(
+                    f"shipped module exited 0 without completing its import: "
+                    f"{mod.relative_to(root)} -- the probe never reported "
+                    f"success, so the module short-circuited the interpreter")
+                continue
             if r.returncode != 0:
                 last = (r.stderr.strip().splitlines() or ["?"])[-1]
                 verdict = _probe_verdict(r.stderr)
