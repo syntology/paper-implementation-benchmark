@@ -347,6 +347,12 @@ def _declared_missing_module(verdict: dict | None,
     of every bucket, including the POSIX-only platform bucket, which read prose
     until a reviewer noticed this paragraph and the code disagreed.
 
+    CLASSIFICATION, not display. When the probe never speaks at all -- a module
+    that redirects fd 2 with dup2, say -- the finding's MESSAGE falls back to the
+    last stderr line, which may be empty or meaningless. That is a human-readable
+    string in a report, and no bucket decision is taken from it. The distinction
+    matters because the sentence above would otherwise be false on a grep.
+
     It offers NOTHING against a module that wants to deceive it, and the nonce
     does not change that. A reviewer stole this run's nonce four ways, each
     forging a silent clean success:
@@ -359,10 +365,18 @@ def _declared_missing_module(verdict: dict | None,
       * a sitecustomize on PYTHONPATH, which site runs BEFORE the probe's first
         line, so before the pop.
 
-    The first three are unfixable while the module shares the probe's process,
-    which it must, because importing it is the measurement. The fourth is
-    fixable only with -S, which also removes site-packages and makes every real
-    dependency look missing -- the cure disables the diagnosis.
+    The first three are fixable in principle and not worth fixing, and those are
+    different statements, so both are made. A fork-based probe would hold the
+    nonce in a parent that imports nothing, putting it out of reach of frames,
+    gc and /proc in the child. That would close the STEAL. It would not close
+    the forgery, because `os._exit(0)` ends the process whose exit is the
+    measurement, and no marker scheme survives a module that can exit cleanly
+    before the marker is written. Since the steal only matters as a route to the
+    forgery, closing it buys nothing, and a redesign that buys nothing is not
+    worth the surface it adds. The fourth, sitecustomize, is fixable only with
+    -S, which also removes site-packages and makes every real dependency look
+    missing -- deps_not_installed went 0 to 13 inside the venv when I tried it.
+    The cure disables the diagnosis.
 
     So the nonce is NOT a security boundary and no claim here rests on it. It is
     cheap insurance against accidental and clumsy interference: a module that
