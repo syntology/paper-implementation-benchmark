@@ -175,14 +175,22 @@ def check_compile(root: Path) -> tuple[list[str], dict]:
 _POSIX_ONLY = ("resource", "fcntl", "pwd", "grp", "termios", "posix", "syslog")
 
 
-def _posix_only_stdlib(err: str) -> str | None:
-    """The POSIX-only module named by a ModuleNotFoundError, or None."""
-    if "ModuleNotFoundError" not in err:
+def _posix_only_stdlib(verdict: dict | None) -> str | None:
+    """The POSIX-only stdlib module a genuine ModuleNotFoundError names.
+
+    Reads the PROBE'S REPORT, like every other classification here. It used to
+    scan the last line of stderr for the module name, which meant the one
+    sentence in this file claiming classification came from the exception object
+    rather than from prose was false -- a reviewer found the contradiction by
+    reading the code against the docstring rather than by running anything."""
+    if not verdict:
         return None
-    for name in _POSIX_ONLY:
-        if f"No module named '{name}'" in err:
-            return name
-    return None
+    if "ModuleNotFoundError" not in (verdict.get("mro") or []):
+        return None
+    name = verdict.get("name")
+    if not isinstance(name, str):
+        return None
+    return name if name.split(".")[0] in _POSIX_ONLY else None
 
 
 def _declared_requirements(root: Path) -> set[str]:
@@ -277,15 +285,19 @@ def _probe_verdict(stderr: str, nonce: str = "") -> dict | None:
     A report without this run's nonce is not the probe speaking -- it is
     something in the child writing the sentinel, which a reviewer did with one
     `os.write(2, ...)` call."""
+    # NO NONCE, NO REPORT. The previous version fell back to accepting any line
+    # starting with the sentinel when `nonce` was empty -- unreachable from
+    # today's parent, which always generates one, and exactly the kind of branch
+    # that becomes reachable the day someone adds a second caller. A reviewer
+    # filed it as latent; latent is how the last four defects started.
+    if not nonce:
+        return None
     want = _PROBE_SENTINEL + nonce + " "
     hit = None
     for line in stderr.splitlines():
         line = line.strip()
-        if nonce:
-            if line.startswith(want):
-                hit = line[len(want):]
-        elif line.startswith(_PROBE_SENTINEL):
-            hit = line[len(_PROBE_SENTINEL):]
+        if line.startswith(want):
+            hit = line[len(want):]
     if hit is None:
         return None
     try:
@@ -327,24 +339,47 @@ def _declared_missing_module(verdict: dict | None,
     one we ship. An adversarial module in this tree is a supply-chain problem
     that a classifier cannot fix.
 
-    THE SENTENCE THAT USED TO FOLLOW IS WITHDRAWN. It claimed that "every way a
-    module could mislead the gate without deliberately raising the wrong
-    exception type" was closed. A reviewer falsified it three times in one round
-    without raising any exception at all -- rebinding `json.dumps`, rebinding
-    `sys.stderr.write`, and calling `os._exit(0)` so the gate read a clean
-    success. Each is closed now, by binding every primitive the handler needs
-    before the import and by proving success instead of inferring it from a
-    return code. But the error was the CLAIM, not the three holes: a module
-    imported into this process can reach anything in it, so no enumeration of
-    forges is ever complete, and asserting completeness is how you get falsified
-    three times in an afternoon.
+    WHAT THIS GATE DOES AND DOES NOT OFFER, after six rounds of external review
+    in which the claim in this docstring was falsified twice.
 
-    The honest statement is narrower. Failure modes that occur in practice -- a
-    missing dependency, a syntax error, a bad relative import, an exception at
-    import time -- are classified from the exception OBJECT rather than from
-    prose, and the forges found so far are closed. Against a module actively
-    trying to deceive this gate it offers nothing, and it does not need to:
-    every module it imports is one we ship."""
+    It classifies from the exception OBJECT -- type, MRO and `.name`, reported
+    by the probe itself -- rather than from the text of stderr. That is now true
+    of every bucket, including the POSIX-only platform bucket, which read prose
+    until a reviewer noticed this paragraph and the code disagreed.
+
+    It offers NOTHING against a module that wants to deceive it, and the nonce
+    does not change that. A reviewer stole this run's nonce four ways, each
+    forging a silent clean success:
+
+      * /proc/self/environ, which holds the environment as it was at exec and is
+        untouched by os.environ.pop -- the channel was leaky by construction and
+        I did not know it;
+      * sys._getframe(), walking to the probe's own `_nonce` local;
+      * gc.get_objects(), scanning for the dict that holds it;
+      * a sitecustomize on PYTHONPATH, which site runs BEFORE the probe's first
+        line, so before the pop.
+
+    The first three are unfixable while the module shares the probe's process,
+    which it must, because importing it is the measurement. The fourth is
+    fixable only with -S, which also removes site-packages and makes every real
+    dependency look missing -- the cure disables the diagnosis.
+
+    So the nonce is NOT a security boundary and no claim here rests on it. It is
+    cheap insurance against accidental and clumsy interference: a module that
+    prints something sentinel-shaped, or writes to fd 2 without knowing what the
+    parent expects. It stops that. It does not stop anyone who reads this file.
+
+    THE THREAT MODEL IS ACCIDENT, NOT ATTACK, and that is a statement about what
+    this gate is for rather than an excuse. Every module it imports is one this
+    repository ships. A module in this tree that actively forges its own import
+    verdict is a supply-chain compromise, and no classifier downstream of the
+    compromise can help. What the gate is for is telling an honest reader
+    whether an honest tree imports -- and a reviewer shipping a hostile module
+    to defeat it is doing us a favour, not breaking a defence.
+
+    KNOWN AND ACCEPTED: a module can raise ModuleNotFoundError("x",
+    name="numpy") and be read as an unprovisioned dependency. That is a claim
+    about its own failure, taken at face value on purpose."""
     if not verdict:
         return None
     if "ModuleNotFoundError" not in (verdict.get("mro") or []):
@@ -381,6 +416,16 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
             nonce = secrets.token_hex(8)
             env = dict(os.environ, CCC_PROBE_NONCE=nonce)
             r = subprocess.run(
+                # NO -S, DELIBERATELY, and this was tried. A reviewer showed
+                # that site runs before the -c body, so a sitecustomize on
+                # PYTHONPATH reads the nonce before the probe can pop it. -S
+                # closes that -- and also removes site-packages, so every real
+                # dependency becomes unimportable and the gate reports an
+                # unprovisioned environment on a fully provisioned one
+                # (deps_not_installed went 0 -> 13 inside the venv). The cure
+                # disables the diagnosis. The sitecustomize vector needs an
+                # attacker-controlled PYTHONPATH in the CHECKER's own
+                # environment, which is a compromised host, not a bad module.
                 [sys.executable, "-c", _PROBE_SRC, str(mod)],
                 capture_output=True, text=True, cwd=neutral, env=env)
             if r.returncode == 0 and (_PROBE_OK + nonce) not in r.stderr:
@@ -395,7 +440,7 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
             if r.returncode != 0:
                 last = (r.stderr.strip().splitlines() or ["?"])[-1]
                 verdict = _probe_verdict(r.stderr, nonce)
-                posix_only = _posix_only_stdlib(last)
+                posix_only = _posix_only_stdlib(verdict)
                 if posix_only and os.name == "nt":
                     # A PLATFORM FACT, COUNTED, NOT A FINDING (2026-09-14).
                     # `resource` is POSIX-only stdlib and run_sandboxed.py uses
