@@ -42,6 +42,7 @@ from __future__ import annotations
 import json
 import sys
 from collections import Counter
+import pathlib
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
@@ -120,7 +121,31 @@ def paired(results_file: str, arm_a: str, arm_b: str):
 # would falsify a dated record to satisfy a gate, so the row is annotated as
 # historical instead. A dated record and a current claim are different things
 # and only one of them should drift.
-_DOC_FILES = ("README.md", "REPRODUCTION.md", "llms.txt", "CONTRIBUTING.md")
+# Every tracked .md in the tree, because a fixed list is a list of the files
+# someone happened to think of. That list has now been extended twice by outside
+# reviewers -- CONTRIBUTING.md, then GRAPH_STATE.md -- and each time the gate was
+# green while a doc lied, because a gate cannot see a file it does not read.
+# Discovering the set removes the whole class instead of the instance.
+#
+# DATED RECORDS ARE EXCLUDED BY NAME. ASSEMBLY_REPORT.md opens "Written at
+# packaging time 2026-09-11" and its table records what each tool printed that
+# day; 67 / 3 was correct then. Rewriting it to satisfy a gate would falsify a
+# record. A dated record and a current claim are different things and only one
+# of them is allowed to drift.
+_DATED_RECORDS = {"ASSEMBLY_REPORT.md"}
+
+
+def _doc_files() -> list[pathlib.Path]:
+    out = []
+    for fp in sorted(REPO.rglob("*.md")) + sorted(REPO.rglob("*.txt")):
+        rel = fp.relative_to(REPO)
+        if ".git" in rel.parts or "node_modules" in rel.parts:
+            continue
+        if rel.name in _DATED_RECORDS:
+            continue
+        out.append(fp)
+    return out
+
 
 _COUNT_PATTERNS = (
     r"#\s*(\d+)\s+checks\b",
@@ -132,6 +157,11 @@ _COUNT_PATTERNS = (
     # tool emitting 73 -- the gate reproducing, at once, the exact defect it
     # was written to prevent. Any sentence quoting the tool's summary counts.
     r"`?(\d+) checks passed",
+    # "verify_claims.py checks 67 of them" -- GRAPH_STATE.md, found by an
+    # outside reviewer after the file-list fix. The count and the noun are
+    # separated by the verb, so every earlier pattern missed it.
+    r"verify_claims\.py`? checks (\d+) of",
+    r"checks (\d+) of them",
 )
 _NOTES_PATTERNS = (
     r"names (\d+) it cannot",
@@ -145,11 +175,12 @@ def _doc_drift(n_checks: int, n_notes: int) -> list[str]:
     """Every doc citation of this tool's own totals must match what it emits."""
     import re as _re
     problems = []
-    for fname in _DOC_FILES:
-        fp = REPO / fname
-        if not fp.exists():
+    for fp in _doc_files():
+        fname = fp.relative_to(REPO)
+        try:
+            text = fp.read_text(encoding="utf-8")
+        except (OSError, UnicodeDecodeError):
             continue
-        text = fp.read_text(encoding="utf-8")
         for pat in _COUNT_PATTERNS:
             for m in _re.finditer(pat, text):
                 if int(m.group(1)) != n_checks:
@@ -200,15 +231,33 @@ def _run_spend(fn: str) -> float:
     here for the two runs whose arms are all in one file; v15 is stratified and
     v16's arms are not carried in analysis_substitution.json, so the published
     total still rests partly on figures this tool cannot reach."""
-    eff = load(fn).get("effort") or {}
-    return round(sum(float(v["total_cost"]) for v in eff.values()
-                     if isinstance(v, dict) and "total_cost" in v), 2)
+    d = load(fn)
+    # Two field spellings ship in this tree: `total_cost` (runs 1 and v14) and
+    # `total_cost_usd` (v16), with v16 also carrying a top-level
+    # `total_spend_usd`. This function looked for `total_cost` only, so it read
+    # v16 as costing nothing -- and I told a reviewer the figure was not
+    # derivable. It was; I had searched for one spelling and concluded from its
+    # absence. Silence is not absence.
+    top = d.get("total_spend_usd")
+    if isinstance(top, (int, float)):
+        return round(float(top), 2)
+    eff = d.get("effort") or {}
+    tot = 0.0
+    for v in eff.values():
+        if not isinstance(v, dict):
+            continue
+        for key in ("total_cost", "total_cost_usd"):
+            if key in v:
+                tot += float(v[key])
+                break
+    return round(tot, 2)
 
 
 def main() -> int:
     print("subject spend, re-derived from each run's own effort fields")
     check("run-1 subject spend", _run_spend("data/analysis.json"), 37.25, " USD")
     check("v14 subject spend", _run_spend("data/analysis_v14.json"), 17.41, " USD")
+    check("v16 subject spend", _run_spend("data/analysis_substitution.json"), 15.81, " USD")
 
     print("v1.5 -- the code_only ablation (results_v15.json)")
     t = pass_table("data/results_v15.json")

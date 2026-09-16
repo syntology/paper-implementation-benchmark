@@ -140,7 +140,7 @@ on 2026-09-10 is not evidence of a tie today, in either direction, and this
 repository does not claim one.
 
 The pre-registrations, the transcripts and the referee are all fixed artifacts
-and re-derive exactly as published — `tools/verify_claims.py` checks 67 of
+and re-derive exactly as published — `tools/verify_claims.py` checks 74 of
 them. What is dated is the *graph*, and only the `syntology` arm depends on it.
 
 ## What would close this

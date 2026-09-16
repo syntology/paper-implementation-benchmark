@@ -219,9 +219,16 @@ def _declared_missing_module(err: str, declared: set[str]) -> str | None:
     SyntaxError, ImportError from a bad relative import, a RuntimeError raised
     at import time -- also returns None and stays a finding, because none of
     those are fixed by installing anything."""
-    if "ModuleNotFoundError" not in err:
-        return None
-    m = re.search(r"No module named '([A-Za-z0-9_.]+)'", err)
+    # ANCHORED at the start of the line, because `err` is the last line of
+    # stderr and a traceback's last line begins with the exception type. A
+    # substring test matched
+    #     RuntimeError: ModuleNotFoundError: No module named 'numpy'
+    # and excused a RuntimeError as a missing dependency -- the same type-vs-text
+    # confusion as the SyntaxError bug this function was written to fix, one
+    # layer deeper, found by the same reviewer one round later. Matching on text
+    # where the question is about a TYPE is the defect; the anchor is the fix.
+    m = re.match(r"ModuleNotFoundError: No module named '([A-Za-z0-9_.]+)'",
+                 err.strip())
     if not m:
         return None
     name = m.group(1).split(".")[0]

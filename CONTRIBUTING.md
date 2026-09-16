@@ -101,7 +101,7 @@ being able to run the thing.
 
    ```bash
    python3 tools/check_clean_clone.py      # compiles, imports, deps, manifest
-   python3 tools/verify_claims.py          # 73 checks, offline, seconds
+   python3 tools/verify_claims.py          # 74 checks, offline, seconds
    python3 tools/smoke_referee.py          # the referee really runs here
    python3 tools/scan_secrets.py           # the publication gate
    ```

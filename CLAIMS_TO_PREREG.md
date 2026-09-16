@@ -21,8 +21,8 @@ transcripts ship — and the fidelity bracket, whose audit rows ship too.
 
 | run | date | prereg file | committed | runs | subject spend |
 |---|---|---|---|---|---|
-| run 1 | 2026-08-31 | `prereg/PREREGISTRATION.md` | before the first subject token | 96 | $37.24 |
-| v1.4 "the v1 freeze" | 2026-09-02 | `prereg/FREEZE_RUN.md` | before any v1.4 run | 96 | $17.40 |
+| run 1 | 2026-08-31 | `prereg/PREREGISTRATION.md` | before the first subject token | 96 | $37.25 |
+| v1.4 "the v1 freeze" | 2026-09-02 | `prereg/FREEZE_RUN.md` | before any v1.4 run | 96 | $17.41 |
 | v1.5 `code_only` | 2026-09-10 | `prereg/PREREGISTRATION_CODE_ONLY.md` | before any v1.5 token and before any retrieval measurement against the tasks | 72 | $5.43 |
 | v1.6 substitution | 2026-09-11 | `prereg/PREREGISTRATION_SUBSTITUTION.md` | commit `8505db391`, before any subject token | 146 | $15.81 |
 

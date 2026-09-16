@@ -17,7 +17,7 @@ claimed" section of `README.md` beside it.**
 | `syntology` | 13/24 | **21/24** | **24/24** | **24/48** (held out) |
 | `both` | 14/24 | **21/24** | not re-run | not run |
 | `code_only` | — | — | **24/24** | **23/48** (held out) |
-| subject spend | $37.24 | $17.40 | $5.43 | $15.81 |
+| subject spend | $37.25 | $17.41 | $5.43 | $15.81 |
 
 Run 1's numbers are the **strict-referee corrected** ones: an audit found the
 sandbox stringifying numpy booleans, and all four run sets were re-verified
