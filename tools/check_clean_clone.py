@@ -77,6 +77,7 @@ import json
 import py_compile
 import re
 import os
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -237,6 +238,14 @@ _PROBE_SRC = (
     # A saved reference cannot be rebound. That is the whole defence, and it is
     # the same lesson as the os._exit fix one round earlier, applied to the rest
     # of the surface instead of to one name.
+    # The nonce is read and DELETED before the import, so the module under test
+    # cannot read it from os.environ, sys.argv or anywhere else. Both markers
+    # carry it, and the parent accepts neither without it. This does not make
+    # the gate proof against a hostile module -- nothing does, since the module
+    # runs in this process -- but it moves forging a verdict from "one line of
+    # os.write" to "guess 64 bits", including forging SUCCESS, which is the
+    # dangerous direction because success is silent.
+    "_nonce = os.environ.pop('CCC_PROBE_NONCE', '')\n"
     "_exit = os._exit\n"
     "_dumps = json.dumps\n"
     "_write = sys.stderr.write\n"
@@ -250,24 +259,32 @@ _PROBE_SRC = (
     "            'mro': [c.__name__ for c in type(e).__mro__],\n"
     "            'name': getattr(e, 'name', None),\n"
     "            'msg': str(e)[:300]}\n"
-    "    _write('\\n" + _PROBE_SENTINEL + "' + _dumps(info) + '\\n')\n"
+    "    _write('\\n" + _PROBE_SENTINEL + "' + _nonce + ' ' + _dumps(info) + '\\n')\n"
     "    _flush()\n"
     "    _exit(1)\n"
     # SUCCESS IS PROVEN, NOT INFERRED. `os._exit(0)` at module level exits
     # before the try completes, so returncode 0 alone meant "imported fine" for
     # a module that never imported anything. The parent now requires this line.
-    "_write('\\n" + _PROBE_OK + "\\n')\n"
+    "_write('\\n" + _PROBE_OK + "' + _nonce + '\\n')\n"
     "_flush()\n"
     "_exit(0)\n"
 )
 
 
-def _probe_verdict(stderr: str) -> dict | None:
-    """The probe's own report of the exception, or None if it never spoke."""
+def _probe_verdict(stderr: str, nonce: str = "") -> dict | None:
+    """The probe's own report of the exception, or None if it never spoke.
+
+    A report without this run's nonce is not the probe speaking -- it is
+    something in the child writing the sentinel, which a reviewer did with one
+    `os.write(2, ...)` call."""
+    want = _PROBE_SENTINEL + nonce + " "
     hit = None
     for line in stderr.splitlines():
         line = line.strip()
-        if line.startswith(_PROBE_SENTINEL):
+        if nonce:
+            if line.startswith(want):
+                hit = line[len(want):]
+        elif line.startswith(_PROBE_SENTINEL):
             hit = line[len(_PROBE_SENTINEL):]
     if hit is None:
         return None
@@ -361,10 +378,12 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
             # arxiv_client.py reassigns `sys.modules[__name__].__class__`, and
             # a module loaded under a made-up name fails there for reasons
             # that have nothing to do with this tree.
+            nonce = secrets.token_hex(8)
+            env = dict(os.environ, CCC_PROBE_NONCE=nonce)
             r = subprocess.run(
                 [sys.executable, "-c", _PROBE_SRC, str(mod)],
-                capture_output=True, text=True, cwd=neutral)
-            if r.returncode == 0 and _PROBE_OK not in r.stderr:
+                capture_output=True, text=True, cwd=neutral, env=env)
+            if r.returncode == 0 and (_PROBE_OK + nonce) not in r.stderr:
                 # Exited 0 without reaching the end of the probe: the module
                 # called os._exit / SystemExit-with-0 during import. Not a
                 # successful import, and not an environment problem either.
@@ -375,7 +394,7 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
                 continue
             if r.returncode != 0:
                 last = (r.stderr.strip().splitlines() or ["?"])[-1]
-                verdict = _probe_verdict(r.stderr)
+                verdict = _probe_verdict(r.stderr, nonce)
                 posix_only = _posix_only_stdlib(last)
                 if posix_only and os.name == "nt":
                     # A PLATFORM FACT, COUNTED, NOT A FINDING (2026-09-14).
