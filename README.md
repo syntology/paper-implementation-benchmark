@@ -19,17 +19,37 @@ stopping rule in [`prereg/PREREGISTRATION_SUBSTITUTION.md`](prereg/PREREGISTRATI
 and they read cost alone — never a result. Total subject spend across all
 four: **$75.90** — the sum of four per-run totals ($37.25 + $17.41 + $5.43 +
 $15.81); the per-run figures are in `data/`, the addition is not shipped as a
-command. Each per-run figure is the sum of that run's `effort.*.total_cost`
-fields, so the addition is checkable even though it is not a command: run 1 is
-12.94 + 6.84 + 11.76 + 5.71, and v14 is 5.25 + 1.19 + 9.16 + 1.81. The first
-two were published a cent low until 2026-09-16, when an outside reader summed
-the shipped fields and got 75.90.
+command. Three of the four re-derive by summing that run's
+`effort.*.total_cost` fields: run 1 is 12.94 + 6.84 + 11.76 + 5.71 = 37.25,
+v14 is 5.25 + 1.19 + 9.16 + 1.81 = 17.41, and v16 carries its own
+`total_spend_usd` of 15.8089. **v1.5 is the exception and the rule above does
+not apply to it:** its effort keys are stratified — `code_only|in_catalog`,
+`code_only|off_catalog`, `code_only|ALL`, and the same for two other arms — so
+summing every key counts each arm twice and yields 10.86. The run's spend is
+the three `|ALL` rows, 2.33 + 1.14 + 1.96 = 5.43, or equivalently the six
+strata rows without them. `verify_claims.py` gates the other three and
+deliberately does not gate this one, so 5.43 and the 75.90 total are **not**
+among its checks.
+
+Two of these were published a cent low until 2026-09-16, when an outside reader
+summed the shipped fields; the v1.5 exception was undocumented until a second
+reader followed the stated rule literally, got 10.86, and a four-run total of
+81.33.
 
 **Most** numbers here re-derive from `data/` — `tools/verify_claims.py` checks
-74 of them and names 4 it cannot. Spend totals, the corpus census and the
-mid-run overlap counts are **not** among them: they rest on a private graph and
-a write ledger this repository does not ship. Corrected 2026-09-16 after an
-outside reader pointed out that "every number" was false.
+74 of them and names 4 it cannot. What it does not check, precisely: the v1.5
+subject spend and therefore the $75.90 total (see above — that run's effort
+keys are stratified and the tool declines to guess), and the corpus licence
+census, whose shipped artifact `data/corpus/license_census.json` is
+hand-checkable against the table below but can only be REGENERATED from a
+private graph.
+
+This paragraph used to say that spend totals and the mid-run overlap counts
+rested on "a write ledger this repository does not ship". That stopped being
+true on 2026-09-16, when three of the four spends became gated checks and
+`data/run_window_ledger.json` was published — and the disclaimer was left
+standing for a day, contradicting a sentence further down this same file. It
+was corrected when a reader ran the checks and read the caveat.
 
 ---
 
@@ -319,10 +339,17 @@ artifacts in `data/`** — including the mechanism analysis, re-run over the
 redacted transcripts, and the fidelity bracket, re-derived from the audit rows.
 The four it prints as *not* checkable here are printed rather than passed over.
 
-What it does **not** cover, and did not before this sentence was corrected:
-subject spend, the corpus licence census, and the mid-run write counts in
-`GRAPH_STATE.md`. Those depend on a private graph and on a write ledger that is
-not published, so they are assertions here rather than derivations.
+What it does **not** cover, stated precisely because the previous version of
+this sentence was wrong in the other direction. It covers three of the four
+subject spends and all three mid-run write counts (90 / 39 / 51), which
+re-derive from `data/run_window_ledger.json` — a file this README once said was
+not published, while the same README linked to it two screens earlier. What
+remains uncovered is narrower: the **v1.5** spend of $5.43, and therefore the
+$75.90 total, because that run's effort keys are stratified and the tool
+declines to guess which reading is meant; and the **corpus licence census**,
+whose shipped artifact is hand-checkable against the table below but can only be
+regenerated from a private graph. The `Method +63%` growth and the CITES tranche
+SIZE also remain private-graph claims, as `GRAPH_STATE.md` says.
 
 Three more, all offline, all $0:
 

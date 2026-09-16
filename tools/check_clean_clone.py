@@ -246,13 +246,24 @@ _PROBE_SRC = (
     # A saved reference cannot be rebound. That is the whole defence, and it is
     # the same lesson as the os._exit fix one round earlier, applied to the rest
     # of the surface instead of to one name.
-    # The nonce is read and DELETED before the import, so the module under test
-    # cannot read it from os.environ, sys.argv or anywhere else. Both markers
-    # carry it, and the parent accepts neither without it. This does not make
-    # the gate proof against a hostile module -- nothing does, since the module
-    # runs in this process -- but it moves forging a verdict from "one line of
-    # os.write" to "guess 64 bits", including forging SUCCESS, which is the
-    # dangerous direction because success is silent.
+    # The nonce is read and DELETED from os.environ before the import. THAT IS
+    # ALL IT DOES, and this comment used to claim much more: that the module
+    # "cannot read it from os.environ, sys.argv or anywhere else" and that
+    # forging required guessing 64 bits. Both are false, and a reviewer proved
+    # it four ways -- /proc/self/environ keeps the environment as it was at
+    # exec, sys._getframe() reaches this very local, gc.get_objects() finds the
+    # dict holding it, and sitecustomize runs before this line. See the full
+    # account in _declared_missing_module's docstring.
+    #
+    # The docstring was corrected and this comment was not, so for one round the
+    # same file said the nonce was unstealable in one place and named four
+    # steals in another. A correction that lands in one of two places is half a
+    # correction, and a reviewer reads both.
+    #
+    # What the nonce is actually for: a module that prints something
+    # sentinel-shaped by accident, or writes to fd 2 without knowing what the
+    # parent expects, does not get believed. That is worth the two lines. It is
+    # not a boundary and nothing here rests on it.
     "_nonce = os.environ.pop('CCC_PROBE_NONCE', '')\n"
     "_exit = os._exit\n"
     "_dumps = json.dumps\n"
