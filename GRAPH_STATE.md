@@ -56,7 +56,7 @@ that write and 146 (67%) follow it. The graph arm did not read one fixed graph; 
 that gained citation edges partway through.
 
 **And it was not one write. A gate built afterwards to detect exactly this
-found 39.** The CITES tranche dominates by four orders of magnitude, but the
+found 39 — and then, once the gate itself was fixed, 90.** The CITES tranche dominates by four orders of magnitude, but the
 run window also contains 36 author-correction *undo round trips* from
 `audit_author_extraction.py` (net `AUTHORED_BY` 0, `Author` +12) and two
 institution deletions (`Institution` −2, `AFFILIATED_WITH` −8). So the graph
@@ -64,13 +64,30 @@ did not only grow underneath the run — it also **lost nodes and edges** while
 being scored. An earlier version of this file said "a write"; it was 39, and
 the correction is kept here rather than quietly folded in.
 
+**Corrected again, 2026-09-16: the true figure is 90.** The gate excluded any
+ledger entry whose delta was empty or all zeros, on the reasoning that a write
+changing nothing is not a write. But the delta counts NODES AND EDGES, and a
+write that sets properties on existing nodes creates and deletes nothing — so
+its delta is legitimately `{}` while the graph it leaves behind is different.
+Measured across the shipped ledger, 276 of 668 entries (41%) are non-dry writes
+with an empty or all-zero delta, and 51 of them overlap this run window. A
+scored arm reading `cs.code` or `cs.verification_level` does not care whether
+any count moved.
+
+So the run was scored across **39 writes that changed node or edge counts and
+51 that edited properties in place**. Both are now reported, separately,
+because they invalidate a scored run equally but call for different
+post-mortems — and conflating them hides which happened. This is the second
+correction to this number in this file; both are kept for the same reason.
+
 This should not have happened, and it is disclosed here rather than discovered
 by a reader. It is now also prevented rather than merely regretted: the sweep
 runner records its own window, snapshots the graph at both edges, and **exits
 2 rather than reporting a score** if the write ledger shows any non-dry,
-non-zero-delta write overlapping that window. Run against the 2026-09-10
-window it refuses with all 39, which is the only test of such a gate that
-means anything.
+write overlapping that window. Run against the 2026-09-10 window it refuses
+with all 90, which is the only test of such a gate that means anything. It
+refused with 39 before the zero-delta blind spot above was fixed — a gate can
+be wrong in the same direction as the thing it was built to catch.
 
 **Which way it biases the headline.** The published result is a *null*: the
 graph arm tied a flat BM25+cosine index at 24/24 with no discordant tasks. The
