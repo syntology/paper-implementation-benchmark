@@ -21,6 +21,30 @@ The v1.5 and v1.6 transcripts in `data/` span
 2026-09-10T20:00:34  ->  2026-09-11T00:57:02
 ```
 
+**Two intervals are in play and this file used to call both of them "the run
+window".** They answer different questions and they give different counts:
+
+| interval | bounds | what it is | ledger entries in it |
+|---|---|---|---|
+| **transcript span** | `20:00:34` → `00:57:02` | derived from the 218 v1.5/v1.6 `meta.json` `created_at` stamps: when the scored arms actually ran | **43** — 19 count-changing, 24 property-only |
+| **ledger window** | `19:47:12Z` → `13:54:14Z` | what `data/run_window_ledger.json` labels the scored-run window; bounded by the retrieval probe and the fidelity audit artifacts, not by run metas | **90** — 39 count-changing, 51 property-only |
+
+**The 90 / 39 / 51 quoted throughout this file are the WIDE interval.** Of those
+90, one precedes the transcript span and 46 follow it — mostly author-extraction
+audits and institution/venue repairs that ran after the last arm finished.
+
+Reported this way because the wide interval is the CONSERVATIVE one: it counts
+more graph mutation against our own null result, not less. But conservative is
+not the same as accurate, and an outside reviewer re-derived 43 from the bounds
+this page itself prints while the page claimed 90 — correct arithmetic against a
+window the prose had silently swapped. Both are now here so a reader can pick
+the one matching the question they are asking. If the question is "did the graph
+move while the arms were being scored", the answer is **43 writes, 19 of which
+changed counts**. If it is "did the graph move at any point between the
+retrieval probe and the fidelity audit", it is 90.
+
+**Corrected 2026-09-16**, round 8 of external review.
+
 **Corrected 2026-09-15.** This file previously cited "412 ISO timestamps inside
 the shipped transcripts". That was wrong twice: the 478 shipped
 `transcript.json` files contain **no timestamps at all**, and the 412 was
@@ -82,12 +106,15 @@ changing nothing is not a write. But the delta counts NODES AND EDGES, and a
 write that sets properties on existing nodes creates and deletes nothing — so
 its delta is legitimately `{}` while the graph it leaves behind is different.
 Measured across the shipped ledger, 276 of 668 entries (41%) are non-dry writes
-with an empty or all-zero delta, and 51 of them overlap this run window. A
+with an empty or all-zero delta, and 51 of them overlap the LEDGER window
+above (24 of them overlap the narrower transcript span). A
 scored arm reading `cs.code` or `cs.verification_level` does not care whether
 any count moved.
 
-So the run was scored across **39 writes that changed node or edge counts and
-51 that edited properties in place**. Both are now reported, separately,
+So across the ledger window the run was scored against **39 writes that changed
+node or edge counts and 51 that edited properties in place** — and across the
+narrower transcript span, when the arms were actually executing, **19 and 24**.
+The larger pair is quoted as the headline because it is the conservative one. Both are now reported, separately,
 because they invalidate a scored run equally but call for different
 post-mortems — and conflating them hides which happened. This is the second
 correction to this number in this file; both are kept for the same reason.
@@ -140,7 +167,7 @@ on 2026-09-10 is not evidence of a tie today, in either direction, and this
 repository does not claim one.
 
 The pre-registrations, the transcripts and the referee are all fixed artifacts
-and re-derive exactly as published — `tools/verify_claims.py` checks 74 of
+and re-derive exactly as published — `tools/verify_claims.py` checks 77 of
 them. What is dated is the *graph*, and only the `syntology` arm depends on it.
 
 ## What would close this

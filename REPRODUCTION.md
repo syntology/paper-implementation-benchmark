@@ -143,7 +143,7 @@ A failure here means either this tree is broken or a property suite has stopped
 being satisfiable in your numpy — both worth knowing before you buy tokens.
 
 ```bash
-python3 tools/verify_claims.py              # 74 checks, offline, a few seconds
+python3 tools/verify_claims.py              # 77 checks, offline, a few seconds
 python3 tools/recompute_fidelity_bracket.py # the 0.29-0.80 bracket, from rows
 python3 tools/check_clean_clone.py          # does THIS clone compile, import,
                                             # declare its deps, match MANIFEST?

@@ -454,7 +454,7 @@ One more step exists because of a hazard this repository already had:
 
 `REPRODUCTION.md` said 3.11+. Nobody had measured it. The floor is **3.10**,
 and 3.9 is more interesting than a bare "unsupported": on CPython 3.9 the
-**referee path works completely** — smoke, the 74 claim checks and the fidelity
+**referee path works completely** — smoke, the 77 claim checks and the fidelity
 recompute all pass — while **five modules fail to import**, `agent_harness.py`
 (the arm runner) among them, on PEP 604 annotations evaluated at module load.
 A reader on macOS's system Python can therefore score submissions all day and

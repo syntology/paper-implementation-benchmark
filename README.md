@@ -37,7 +37,7 @@ reader followed the stated rule literally, got 10.86, and a four-run total of
 81.33.
 
 **Most** numbers here re-derive from `data/` — `tools/verify_claims.py` checks
-74 of them and names 4 it cannot. What it does not check, precisely: the v1.5
+77 of them and names 4 it cannot. What it does not check, precisely: the v1.5
 subject spend and therefore the $75.90 total (see above — that run's effort
 keys are stratified and the tool declines to guess), and the corpus licence
 census, whose shipped artifact `data/corpus/license_census.json` is
@@ -60,11 +60,11 @@ python3 -m venv .venv && . .venv/bin/activate      # CPython 3.10+
 pip install -r requirements.txt
 
 python3 tools/smoke_referee.py     # the referee really runs here: 3 tasks, offline
-python3 tools/verify_claims.py     # 74 checks re-derive every table below from data/
+python3 tools/verify_claims.py     # 77 checks re-derive every table below from data/
 ```
 
 You should see `referee smoke: PASS` and
-74 checks passed, 0 failed, 4 figures not checkable here`. **Those four are
+77 checks passed, 0 failed, 4 figures not checkable here`. **Those four are
 printed rather than passed over** — what genuinely cannot be checked outside
 Syntology is named, not quietly skipped.
 
@@ -283,7 +283,7 @@ tools/      assemble.py            built this tree; --check re-verifies it
             scan_secrets.py        the publication gate, with a --self-test
             redact_transcripts.py  what made the transcripts publishable;
                                    self-tested, and it verifies its own output
-            verify_claims.py       re-derives the 74 checkable numbers; names 4 it cannot
+            verify_claims.py       re-derives the 77 checkable numbers; names 4 it cannot
             recompute_fidelity_bracket.py  re-derives the 0.29–0.80 bracket
             smoke_referee.py       proves the referee runs here, offline, $0
             check_clean_clone.py   compile / import / declared-deps / manifest,
@@ -314,7 +314,7 @@ python3 -m venv .venv && . .venv/bin/activate      # CPython 3.10+
 pip install -r requirements.txt
 
 python3 tools/smoke_referee.py     # the referee really runs here: 3 tasks, offline
-python3 tools/verify_claims.py     # 74 checks re-derive every table above from data/
+python3 tools/verify_claims.py     # 77 checks re-derive every table above from data/
 ```
 
 **Measured, not estimated: 15 seconds** end to end — 0.5 s clone, 3.1 s venv,
@@ -332,7 +332,7 @@ Ubuntu 24.04 then refuses `pip install` with `externally-managed-environment`
 (PEP 668). The Docker `python:*` images and macOS need neither step.
 
 You should see `referee smoke: PASS` and
-74 checks passed, 0 failed, 4 figures not checkable here`. That is the whole
+77 checks passed, 0 failed, 4 figures not checkable here`. That is the whole
 claim of this repository in two commands: **the referee runs in your
 environment, and the numbers `verify_claims` covers re-derive from the
 artifacts in `data/`** — including the mechanism analysis, re-run over the
@@ -485,7 +485,7 @@ records the sha256 and origin of every one of its 1,277 files (2026-09-16;
 cannot record its own hash);
 `tools/assemble.py --check` re-verifies the tree against that recorded manifest
 rather than recomputing both sides. `tools/verify_claims.py` re-derives every
-mechanically checkable number in this repository from `data/` — 74 checks,
+mechanically checkable number in this repository from `data/` — 77 checks,
 including re-running the mechanism analyzer over the redacted transcripts and
 the fidelity recompute over the audit rows — and prints the four things that
 still rest on evidence not published here rather than letting them read as

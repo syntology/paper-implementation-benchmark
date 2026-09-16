@@ -602,6 +602,37 @@ def main() -> int:
               [lw["total_overlapping"], lw["changed_node_or_edge_counts"],
                lw["property_writes_only"]],
               [len(ents), struct, len(ents) - struct])
+
+        # THE LEDGER AGREEING WITH ITSELF WAS NEVER THE QUESTION. GRAPH_STATE
+        # prints a run window derived from the scored runs' own meta stamps, and
+        # quoted the ledger's 90/39/51 against it -- but the ledger's window is
+        # bounded by the retrieval probe and the fidelity audit, and is hours
+        # wider. Only 43 of the 90 fall inside the interval the page prints. An
+        # outside reviewer re-derived that from the shipped files in one pass,
+        # and this tool could not have caught it: it checked the ledger against
+        # itself and never against the page quoting it. These three close that.
+        import datetime as _dt
+        _P = lambda x: _dt.datetime.fromisoformat(str(x).replace("Z", "+00:00"))
+        stamps = []
+        for _m in (REPO / "data" / "runs").rglob("meta.json"):
+            try:
+                _c = (json.loads(_m.read_text(encoding="utf-8"))
+                      .get("_provenance") or {}).get("created_at")
+            except Exception:                                        # noqa: BLE001
+                continue
+            if _c:
+                _t = _P(_c)
+                if _t.date() in (_dt.date(2026, 9, 10), _dt.date(2026, 9, 11)):
+                    stamps.append(_t)
+        _lo, _hi = min(stamps), max(stamps)
+        check("GRAPH_STATE: transcript span re-derives from the run metas",
+              [_lo.strftime("%Y-%m-%dT%H:%M:%S"), _hi.strftime("%Y-%m-%dT%H:%M:%S")],
+              ["2026-09-10T20:00:34", "2026-09-11T00:57:02"])
+        _in = [e for e in ents if _lo <= _P(e["started_at"]) <= _hi]
+        _inchg = [e for e in _in if e.get("changed_counts")]
+        check("GRAPH_STATE: ledger writes inside the TRANSCRIPT span", len(_in), 43)
+        check("GRAPH_STATE: of those, changing node/edge counts",
+              [len(_inchg), len(_in) - len(_inchg)], [19, 24])
     except Exception as e:                                       # noqa: BLE001
         bad.append(f"run-window ledger: {type(e).__name__}: {e}")
         print(f"  FAIL  run-window ledger unreadable: {type(e).__name__}: {e}")
