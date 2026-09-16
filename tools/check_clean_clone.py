@@ -184,10 +184,47 @@ def _posix_only_stdlib(err: str) -> str | None:
     return None
 
 
+def _declared_requirements(root: Path) -> set[str]:
+    """Distribution names declared in requirements.txt, lowercased.
+
+    Parsed exactly the way check_requirements parses them, so the two checks
+    cannot disagree about what "declared" means."""
+    reqs = root / "requirements.txt"
+    if not reqs.exists():
+        return set()
+    out = set()
+    for line in reqs.read_text(encoding="utf-8").splitlines():
+        line = line.split("#")[0].strip()
+        if line and not line.startswith("-"):
+            out.add(re.split(r"[<>=!\[]", line)[0].strip().lower())
+    return out
+
+
+def _undeclared_dep(err: str, declared: set[str]) -> str | None:
+    """The module a ModuleNotFoundError names, unless requirements declares it.
+
+    A declared-but-absent dependency is an UNPROVISIONED ENVIRONMENT, not a
+    defect in the clone. Running this gate before `pip install -r
+    requirements.txt` reported 13 findings on a repo whose REQUIREMENTS check
+    PASSED in the same run -- which reads to a first-time cloner as a broken
+    repository, and that first impression is the whole point of the gate. An
+    UNDECLARED third-party module is still a finding: that is the packaging
+    defect this check exists to catch, and the distinction is the difference."""
+    if "ModuleNotFoundError" not in err:
+        return None
+    m = re.search(r"No module named '([A-Za-z0-9_.]+)'", err)
+    if not m:
+        return None
+    name = m.group(1).split(".")[0]
+    return None if name.lower() in declared else name
+
+
 def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
     """Import every shipped module the way a reader runs it: on its own path."""
     findings: list[str] = []
     unsupported: list[str] = []
+    uninstalled: list[str] = []
+    declared = _declared_requirements(root)
     mods = sorted((root / subdir).rglob("*.py"))
     # The probe runs with its cwd in an EMPTY directory. `python -c` prepends
     # the current working directory to sys.path, so without this the gate
@@ -240,12 +277,27 @@ def check_imports(root: Path, subdir: str = "src") -> tuple[list[str], dict]:
                     unsupported.append(f"{mod.relative_to(root)} -- needs "
                                        f"{posix_only!r}, POSIX-only stdlib")
                     continue
+                if declared and _undeclared_dep(last, declared) is None:
+                    # Declared in requirements.txt and simply absent from
+                    # this interpreter. Named every run and counted in its
+                    # own bucket, never silently dropped.
+                    uninstalled.append(
+                        f"{mod.relative_to(root)} -- {last[:90]}")
+                    continue
                 findings.append(f"shipped module does not import: "
                                 f"{mod.relative_to(root)} -- {last[:120]}")
     for u in unsupported:
         print(f"          [platform] not importable on this OS: {u}")
+    if uninstalled:
+        print(f"          [env] {len(uninstalled)} shipped module(s) need a "
+              f"dependency requirements.txt declares and this interpreter "
+              f"lacks. NOT a finding: run `pip install -r requirements.txt` "
+              f"and re-run.")
+        for u in uninstalled:
+            print(f"          [env]   {u}")
     return findings, {"examined": len(mods), "findings": len(findings),
-                      "platform_unsupported": len(unsupported)}
+                      "platform_unsupported": len(unsupported),
+                      "deps_not_installed": len(uninstalled)}
 
 
 # --- REQUIREMENTS ----------------------------------------------------------
