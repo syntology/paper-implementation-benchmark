@@ -226,6 +226,13 @@ def _declared_requirements(root: Path) -> set[str]:
 _PROBE_SENTINEL = "__CCC_IMPORT_PROBE__"
 _PROBE_SRC = (
     "import sys, os, json, pathlib, importlib\n"
+    # BOUND BEFORE THE IMPORT. `os._exit` is an attribute, and the module under
+    # test runs before the except block reaches it: `os._exit = lambda c: None`
+    # neuters the escape hatch, atexit fires, and a forged sentinel lands after
+    # ours. Found by attacking this file's own fix an hour after writing it --
+    # the commit that introduced it claimed nothing could append after ours,
+    # which was false. A saved reference cannot be rebound by the module.
+    "_exit = os._exit\n"
     "p = pathlib.Path(sys.argv[1])\n"
     "sys.path.insert(0, str(p.parent))\n"
     "try:\n"
@@ -237,7 +244,7 @@ _PROBE_SRC = (
     "            'msg': str(e)[:300]}\n"
     "    sys.stderr.write('\\n" + _PROBE_SENTINEL + "' + json.dumps(info) + '\\n')\n"
     "    sys.stderr.flush()\n"
-    "    os._exit(1)\n"
+    "    _exit(1)\n"
 )
 
 
@@ -279,7 +286,18 @@ def _declared_missing_module(verdict: dict | None,
     `mro` rather than `type`, so a subclass of ModuleNotFoundError is still
     recognised as one; `name` rather than a parse of the message, because
     ModuleNotFoundError carries the module name as an attribute and reading it
-    from prose is what produced three rounds of findings."""
+    from prose is what produced three rounds of findings.
+
+    KNOWN BOUNDARY, stated rather than papered over. A module can raise
+    `ModuleNotFoundError("anything", name="numpy")` itself and be classified as
+    an unprovisioned dependency when it is not one. That is not closed, because
+    closing it would mean distrusting an exception's own attribute, and the
+    threat model here is ACCIDENT, not attack: every module this gate imports is
+    one we ship. An adversarial module in this tree is a supply-chain problem
+    that a classifier cannot fix. What IS closed is every way a module could
+    mislead the gate WITHOUT deliberately raising the wrong exception type --
+    printing the text, wrapping it, forging the last stderr line, or rebinding
+    os._exit to let an atexit handler forge it."""
     if not verdict:
         return None
     if "ModuleNotFoundError" not in (verdict.get("mro") or []):
